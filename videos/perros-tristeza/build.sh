@@ -12,8 +12,8 @@ for k in $(seq 0 $((N-1))); do python3 render.py video "$N" "$k" & done; wait
 for k in $(seq 0 $((N-1))); do printf "file 'part_%02d.mp4'\n" "$k"; done > list.txt
 ffmpeg -y -loglevel error -f concat -safe 0 -i list.txt -c copy video_only.mp4
 ffmpeg -y -loglevel error -i mix_raw.wav -af "loudnorm=I=-14:TP=-1.0:LRA=9" -ar 48000 mix.wav
-ffmpeg -y -loglevel error -i video_only.mp4 -i mix.wav -map 0:v -map 1:a -c:v libx264 -preset slow -crf 18 \
-  -maxrate 14M -bufsize 28M -pix_fmt yuv420p -profile:v high -level 4.2 -r 30 \
+ffmpeg -y -loglevel error -i video_only.mp4 -i mix.wav -map 0:v -map 1:a -c:v libx264 -preset slow -crf 19 \
+  -maxrate 9M -bufsize 18M -pix_fmt yuv420p -profile:v high -level 4.2 -r 30 \
   -c:a aac -b:a 256k -ar 48000 -shortest -movflags +faststart final_9x16.mp4
 rm -f part_*.mp4 video_only.mp4 list.txt mix_raw.wav music_only.wav
 echo "Listo: final_9x16.mp4 + subtitulos.srt"
