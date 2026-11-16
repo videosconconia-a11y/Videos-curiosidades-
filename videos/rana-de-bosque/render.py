@@ -64,7 +64,7 @@ def photo(key):
     """Foto recortada a 9:16 alrededor de su punto de interés, a tamaño BW x BH."""
     if key in _PH: return _PH[key]
     m = PHOTOS[key]
-    im = ImageOps.exif_transpose(Image.open(os.path.join(HERE, "assets", "photos", m["file"]))).convert("RGB")
+    im = ImageOps.exif_transpose(Image.open(os.path.join(HERE, "assets", m.get("dir", "photos"), m["file"]))).convert("RGB")
     w, h = im.size
     zoom = m.get("zoom", 1.0)
     ch = h / zoom; cw = ch * 9 / 16
@@ -254,6 +254,14 @@ SHOTDEF = {
 FALLBACK = {"boreal": "aurora_proc", "aurora": "aurora_proc", "alaska": "aurora_proc", "ice_macro": "ice_grow",
             "frost_leaves": "ice_grow", "pond": "frog_spring", "snow_forest": "aurora_proc"}
 
+# imágenes generadas con IA (assets/ai/<plano>.jpg): si existen, sustituyen a la foto de ese plano
+AI_DIR = os.path.join(HERE, "assets", "ai")
+if os.path.isdir(AI_DIR):
+    for f in sorted(os.listdir(AI_DIR)):
+        if f.endswith(".jpg"):
+            PHOTOS["ai_" + f[:-4]] = dict(dir="ai", file=f, focus=(0.5, 0.45))
+def ai(name):
+    return photo("ai_" + name) if "ai_" + name in PHOTOS else None
 print("cargando fotos", flush=True)
 BG = {"dark": bg_dark(), "lab": bg_dark((6, 16, 30), (20, 50, 70)), "aurora_proc": bg_aurora()}
 MOL = rng.random((26, 5)); CELLS = rng.random((14, 3))
@@ -261,7 +269,7 @@ STOP, FLAT, BACK = heart_beats(TM)
 
 
 def photo_or_none(key):
-    return photo(key) if key in PHOTOS and os.path.exists(os.path.join(HERE, "assets", "photos", PHOTOS[key]["file"])) else None
+    return photo(key) if key in PHOTOS and os.path.exists(os.path.join(HERE, "assets", PHOTOS[key].get("dir", "photos"), PHOTOS[key]["file"])) else None
 
 
 def shot_frame(name, t, a, b):
@@ -270,7 +278,9 @@ def shot_frame(name, t, a, b):
     punch = 1 + 0.06 * max(0, 1 - (t - a) / 0.35) ** 2
     if name in SHOTDEF:
         sd = SHOTDEF[name]
-        src = photo_or_none(sd["src"])
+        src = ai(name)
+        if src is not None: sd = dict(sd, grade_amt=sd.get("grade_amt", 1.0) * 0.35)
+        else: src = photo_or_none(sd["src"])
         if src is None:
             fb = FALLBACK.get(name)
             if fb and fb in SHOTDEF and photo_or_none(SHOTDEF[fb]["src"]) is not None: return shot_frame(fb, t, a, b)
@@ -289,14 +299,17 @@ def shot_frame(name, t, a, b):
         if sd.get("drips"): drips(img, t)
         if sd.get("snow", 0) > 0: draw_snow(img, t, sd["snow"], big=sd.get("big", False))
         return img
+    if name == "ice_grow" and ai(name) is not None:
+        img = frost(cam(ai(name), p, (1.0 * punch, 1.25 * punch, 0.2, 0)), 0.1 + 0.5 * ease(p))
+        draw_snow(img, t, 0.4); return img
     if name == "ice_grow":
         r = 200 + p * 1700
         m = np.clip((r - ICE_DIST) / 120, 0, 1)[..., None]
         img = cam(to_img(ICE_BASE + ICE_CRYST * m), p, (1.05 * punch, 1.2 * punch, -0.3, 0.2))
         draw_snow(img, t, 0.5); return img
     if name == "stat_65":
-        base = photo_or_none(SHOTDEF["frog_freeze"]["src"])
-        img = cam(base if base is not None else to_img(ICE_FULL), 1.0, (1.3, 1.3, 0, 0)).filter(ImageFilter.GaussianBlur(10))
+        base = ai(name) or photo_or_none(SHOTDEF["frog_freeze"]["src"])
+        img = cam(base if base is not None else to_img(ICE_FULL), p, (1.1, 1.25, 0, 0)).filter(ImageFilter.GaussianBlur(4 if ai(name) else 10))
         img = frost(grade(img, "frozen"), 0.7 + 0.25 * p)
         img = to_img(np.asarray(img, float) * 0.55)
         counter(img, p, 65, "%", "DEL AGUA DE SU CUERPO", ICE)
@@ -307,8 +320,8 @@ def shot_frame(name, t, a, b):
         text_c(d, 930, "SE CONVIERTE EN HIELO", F_SM, (255, 255, 255), 4)
         draw_snow(img, t, 0.4); return img
     if name in ("stat_193", "stat_18"):
-        base = photo_or_none("aurora_2") or BG["aurora_proc"]
-        img = cam(base, 0.3 + p * 0.4, (1.25, 1.35, 0.3 if name == "stat_193" else -0.3, 0)).filter(ImageFilter.GaussianBlur(9))
+        base = ai(name) or photo_or_none("aurora_2") or BG["aurora_proc"]
+        img = cam(base, 0.3 + p * 0.4, (1.25, 1.35, 0.3 if name == "stat_193" else -0.3, 0)).filter(ImageFilter.GaussianBlur(4 if ai(name) else 9))
         img = to_img(np.asarray(grade(img, "cold"), float) * 0.5 + np.array([0, 8, 24]))
         d = ImageDraw.Draw(img, "RGBA")
         if name == "stat_193":
@@ -326,11 +339,20 @@ def shot_frame(name, t, a, b):
             d.rounded_rectangle([x0 + 12, 250 + int(480 * lvl), x0 + 48, 750], 18, fill=ICE + (255,))
         draw_snow(img, t, 1.0, big=name == "stat_18"); return img
     if name in ("heartbeat", "heartbeat_back"):
-        img = to_img(np.zeros((H, W, 3)) + np.array([2, 8, 5]))
+        bg = ai(name)
+        img = to_img(np.asarray(cam(bg, p, (1.05, 1.2, 0, 0)), float) * 0.45) if bg is not None else to_img(np.zeros((H, W, 3)) + np.array([2, 8, 5]))
         if name == "heartbeat": ecg(img, t, STOP, flat_after=FLAT)
         else: ecg(img, t, BACK)
         return img
     if name in ("glucose", "cells"):
+        if ai(name) is not None:
+            img = cam(ai(name), p, (1.0 * punch, 1.2 * punch, 0, 0))
+            d = ImageDraw.Draw(img, "RGBA")
+            if name == "glucose":
+                text_c(d, 230, "GLUCOSA", F_MED, GOLD + (255,), 6); text_c(d, 340, "ANTICONGELANTE NATURAL", F_SM, (255, 255, 255), 4)
+            else:
+                text_c(d, 230, "HIELO FUERA", F_MED, ICE + (255,), 6); text_c(d, 340, "CÉLULAS A SALVO", F_SM, GOLD + (255,), 4)
+            return img
         img = cam(BG["dark"] if name == "glucose" else BG["lab"], p, (1.0, 1.1, 0, 0))
         lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
         if name == "glucose":
@@ -356,6 +378,11 @@ def shot_frame(name, t, a, b):
         g = lay.filter(ImageFilter.GaussianBlur(18))
         img.paste(g, (0, 0), g); img.paste(lay, (0, 0), lay)
         return img
+    if name == "lab" and ai(name) is not None:
+        img = cam(ai(name), p, (1.0 * punch, 1.2 * punch, 0, -0.2))
+        d2 = ImageDraw.Draw(img, "RGBA")
+        text_c(d2, 230, "CRIOCONSERVACIÓN", F_MED, ICE + (255,), 6); text_c(d2, 340, "DE ÓRGANOS", F_SM, (255, 255, 255), 4)
+        return img
     if name == "lab":
         img = cam(BG["lab"], p, (1.0, 1.15, 0, -0.3))
         lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
@@ -376,8 +403,8 @@ def shot_frame(name, t, a, b):
         text_c(d2, 410, "DE ÓRGANOS", F_SM, (255, 255, 255), 4)
         return img
     if name == "end_card":
-        src = photo_or_none("frog_head")
-        img = cam(src, p, (1.5, 1.75, 0, 0)) if src is not None else to_img(ICE_FULL).resize((W, H))
+        src = ai(name) or photo_or_none("frog_head")
+        img = cam(src, p, (1.0, 1.2, 0, 0) if ai(name) else (1.5, 1.75, 0, 0)) if src is not None else to_img(ICE_FULL).resize((W, H))
         img = frost(grade(img, "cold"), 0.55 + 0.2 * p)
         img = to_img(np.asarray(img, float) * (1 - 0.5 * min(1, p * 2)))
         d = ImageDraw.Draw(img, "RGBA")
