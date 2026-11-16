@@ -3,3 +3,8 @@
 *.part.mp4
 still_*.jpg
 __pycache__/
+build/
+# entregables que sí se suben
+!videos/*/final_9x16.mp4
+!videos/*/web/*.mp4
+videos/*/assets/voice/
