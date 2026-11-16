@@ -160,7 +160,7 @@ def big_stat(img, t, a, b, value, unit, sub, y=430, count=True):
     p = min(1, (t - a) / 1.0); p = 1 - (1 - p) ** 3
     v = value * p if count else value
     s = f"{v:,.0f}".replace(",", ".") if value >= 100 else f"{v:.0f}"
-    if unit == "%": s = f"{(value * p):.1f}".replace(".", ",").replace(",0", "")
+    if unit == "%": s = f"{(value * p):.2f}".replace(".", ",")
     lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
     f = F_BIG
     while d.textlength(s + (unit if unit == "%" else ""), font=f) > 900: f = ImageFont.truetype(FB, f.size - 6)
@@ -169,7 +169,8 @@ def big_stat(img, t, a, b, value, unit, sub, y=430, count=True):
     d.text((W / 2 - tw / 2, y), full, font=f, fill=YEL + (255,), stroke_width=6, stroke_fill=(0, 0, 0, 255))
     if unit != "%":
         uw = d.textlength(unit, font=F_MID); d.text((W / 2 - uw / 2, y + f.size + 10), unit, font=F_MID, fill=WHITE + (255,), stroke_width=4, stroke_fill=(0, 0, 0, 255))
-    sw = d.textlength(sub, font=F_SRC); d.text((W / 2 - sw / 2, y + f.size + 85), sub, font=F_SRC, fill=(230, 230, 230, 255), stroke_width=3, stroke_fill=(0, 0, 0, 255))
+    fs = F_TAG; sy = y + f.size + (85 if unit != "%" else 20)
+    sw = d.textlength(sub, font=fs); d.text((W / 2 - sw / 2, sy), sub, font=fs, fill=(235, 235, 235, 255), stroke_width=4, stroke_fill=(0, 0, 0, 255))
     g = lay.filter(ImageFilter.GaussianBlur(18)); g.putalpha(g.split()[3].point(lambda v: int(v * 0.6 * al)))
     lay.putalpha(lay.split()[3].point(lambda v: int(v * al)))
     img.alpha_composite(g); img.alpha_composite(lay)
@@ -201,7 +202,7 @@ def comment_icon(img, t, a):
     if t < a: return
     k = min(1, (t - a) / 0.35); s = 0.6 + 0.4 * (1 - (1 - k) ** 3) + 0.05 * math.sin(t * 6)
     lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
-    cx, cy, R = 520, 520, 85 * s
+    cx, cy, R = 520, 330, 85 * s
     d.ellipse([cx - R, cy - R * 0.85, cx + R, cy + R * 0.85], fill=WHITE + (int(235 * k),))
     d.polygon([(cx - R * 0.5, cy + R * 0.55), (cx - R * 0.75, cy + R * 1.1), (cx - R * 0.05, cy + R * 0.78)], fill=WHITE + (int(235 * k),))
     for j in (-1, 0, 1):
