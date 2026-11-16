@@ -74,8 +74,22 @@ const SCENES = [
   { t: 44.5, text: "Y con el deshielo, su corazón vuelve a latir… y en pocas horas, respira otra vez." },
   { t: 50.5, text: "Hoy, los científicos la estudian para aprender a conservar órganos. ¿Te dejarías congelar… si supieras que vas a despertar?" },
 ];
-const VOICE = { lang: "es-ES", rate: 0.95, pitch: 1.05, volume: 1 };
-const MUSIC_FULL = 1.0, MUSIC_DUCK = 0.3;      // la música baja mientras habla la voz
+const VOICE = { lang: "es-ES", rate: 0.95, pitch: 1.0, volume: 1 };
+const MUSIC_FULL = 0.9, MUSIC_DUCK = 0.12;     // la música baja mucho mientras habla la voz
+let actx = null, gainNode = null;             // Web Audio: el volumen también funciona en iPhone
+function setupAudio() {
+  if (actx) { actx.resume && actx.resume(); return; }
+  try {
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    const src = actx.createMediaElementSource(v);
+    gainNode = actx.createGain(); gainNode.gain.value = MUSIC_FULL;
+    src.connect(gainNode); gainNode.connect(actx.destination);
+  } catch (e) { actx = null; gainNode = null; }
+}
+function setMusic(level) {
+  if (gainNode) gainNode.gain.setTargetAtTime(level, actx.currentTime, 0.12);
+  else v.volume = level;
+}
 
 // ---------------------------------------------------------------- Estado
 const v = document.getElementById("v"), go = document.getElementById("go"), startEl = document.getElementById("start");
@@ -100,7 +114,7 @@ function score(vc) {
   if (/online/.test(n)) s += 20;
   if (/google/.test(n)) s += 30;
   if (/microsoft/.test(n)) s += 15;
-  if (/premium|enhanced|mejorad|siri/.test(n)) s += 25;
+  if (/premium|enhanced|mejorad|siri/.test(n)) s += 60;
   if (/(alvaro|álvaro|elvira|monica|mónica|jorge|helena|laura|dalia|ximena)/.test(n)) s += 8;
   if (/espeak|compact|eloquence|grandpa|grandma|bad news|zarvox/.test(n)) s -= 40;
   return s;
@@ -143,17 +157,17 @@ function speak(i) {
   if (chosen) u.voice = chosen;
   u.lang = chosen ? chosen.lang : VOICE.lang;
   u.rate = VOICE.rate; u.pitch = VOICE.pitch; u.volume = VOICE.volume;
-  u.onstart = () => { if (my === token) v.volume = MUSIC_DUCK; };
+  u.onstart = () => { if (my === token) setMusic(MUSIC_DUCK); };
   const done = () => {
     if (my !== token) return;
-    speakingScene = -1; v.volume = MUSIC_FULL;
+    speakingScene = -1; setMusic(MUSIC_FULL);
     if (holding) { holding = false; holdEl.classList.remove("on"); v.play().catch(() => {}); }
   };
   u.onend = done; u.onerror = done;
   speakingScene = i; spoken = i;
   synth.speak(u);
 }
-function stopVoice() { token++; if (synth) synth.cancel(); speakingScene = -1; v.volume = MUSIC_FULL; }
+function stopVoice() { token++; if (synth) synth.cancel(); speakingScene = -1; setMusic(MUSIC_FULL); }
 
 // Bucle de sincronización: lanza cada frase justo al empezar su escena y,
 // si la voz va más lenta que el vídeo, congela la imagen en el corte hasta que termine.
@@ -182,11 +196,11 @@ function restartScene(t) {
 
 // ---------------------------------------------------------------- Controles
 go.onclick = () => {
-  voiceOn = true;
+  voiceOn = true; setupAudio();
   if (synth) { synth.cancel(); synth.speak(new SpeechSynthesisUtterance("")); } // desbloquea el audio en móviles
   startEl.classList.add("hidden");
   stopVoice(); spoken = -1; holding = false;
-  v.currentTime = 0; v.volume = MUSIC_FULL;
+  v.currentTime = 0; setMusic(MUSIC_FULL);
   v.play().catch(() => showStatus("Toca de nuevo para reproducir."));
 };
 pp.onclick = () => {
