@@ -16,7 +16,7 @@ mínimas de −18 °C… y sobrevivieron todas. 🧊❤️
 ¿Te dejarías congelar si supieras que vas a despertar? 👇
 
 Fuentes: Larson et al. 2014 (Journal of Experimental Biology); National Park Service; PBS NOVA.
-Fotos: Ryan Hodnett, Peter Paplanus, Jasper Shide, Riley Stanton, Dave Huth, Ruth Hartnup, Thomas Hirsch, W.carter, FairbanksMike, Skybluesally (CC BY / CC BY-SA / CC0, Wikimedia Commons); BLM Alaska, NASA, USFWS (dominio público). Voz: IA (Piper TTS).
+Fotos: Ryan Hodnett, Peter Paplanus, Jasper Shide, Riley Stanton, Dave Huth, Ruth Hartnup, Thomas Hirsch, W.carter, FairbanksMike, Skybluesally (CC BY / CC BY-SA / CC0, Wikimedia Commons); BLM Alaska, NASA, USFWS (dominio público). Imágenes generadas con IA (SDXL + SDXL-Lightning), las de la rana a partir de esas fotos. Voz: IA (Piper TTS).
 
 ## Hashtags
 #curiosidades #animales #ciencia #naturaleza #ranadebosque #datoscuriosos #sabiasque #biologia
@@ -24,3 +24,8 @@ Fotos: Ryan Hodnett, Peter Paplanus, Jasper Shide, Riley Stanton, Dave Huth, Rut
 
 ## Comentario fijado (para avivar los comentarios)
 ¿SÍ o NO? 🧊 Yo me lo pensaría… 🐸
+
+## Etiqueta de contenido IA (obligatoria)
+- **TikTok:** al publicar, activa «Contenido generado por IA» (Más opciones → Etiqueta de contenido de IA).
+- **YouTube Shorts:** en «Contenido alterado o sintético» marca **Sí**.
+- **Instagram Reels:** activa la etiqueta «Información de IA».

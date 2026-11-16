@@ -17,7 +17,9 @@ efectos de sonido y subtítulos sincronizados.
   bloque de subtítulo y guarda `build/timing.json`. Todo el montaje se ajusta a esos tiempos.
 - `audio.py` — música de tensión y efectos sintetizados, sincronizados con la voz; *ducking* (la música baja
   mientras habla la voz) y normalización a −14 LUFS.
-- `media.py` + `assets/photos/` — fotos reales con licencia libre (Wikimedia Commons), con su punto de interés.
+- `ai_images.py` + `assets/ai/` — una imagen generada con IA por plano, según la narración (SDXL + SDXL-Lightning en
+  local, o la API de OpenAI con `AI_BACKEND=openai`). Los planos de la rana parten de fotos reales (img2img).
+- `media.py` + `assets/photos/` — fotos reales con licencia libre (Wikimedia Commons) usadas como base, con su punto de interés.
 - `render.py` — monta cada plano (foto con movimiento de cámara, etalonaje, escarcha animada, nieve, gráficos)
   y los subtítulos dinámicos; codifica las escenas con ffmpeg.
 - `build.sh` — genera todo: `final_9x16.mp4`, `subtitulos.srt` y `web/`.
@@ -26,7 +28,7 @@ efectos de sonido y subtítulos sincronizados.
 ## Uso
 
 ```bash
-pip install numpy pillow scipy piper-tts
+pip install numpy pillow scipy piper-tts torch diffusers transformers accelerate
 cd videos/rana-de-bosque
 ./build.sh
 ```

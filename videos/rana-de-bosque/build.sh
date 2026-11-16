@@ -3,6 +3,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p build
+# imágenes con IA (solo genera las que falten en assets/ai/; AI_BACKEND=local|openai)
+HF_HUB_DISABLE_XET=1 python3 ai_images.py
 python3 voice.py                         # build/voice.wav + build/timing.json (tiempos reales de la voz)
 python3 audio.py                         # build/music_sfx.wav + build/mix.wav (voz + música con ducking)
 python3 -c "from script_data import write_srt; write_srt('subtitulos.srt')"

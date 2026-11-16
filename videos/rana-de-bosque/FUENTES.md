@@ -21,7 +21,19 @@
 - No se afirma que «los ojos se vuelven blancos» ni una cifra de «x veces más azúcar»: no se encontraron
   fuentes sólidas.
 
-## Fotos (Wikimedia Commons, licencias libres)
+## Imágenes generadas con IA
+
+Todas las imágenes del vídeo están generadas con IA (`ai_images.py`, una por plano, con un prompt que sigue lo que
+dice la voz en ese momento): **Stable Diffusion XL base 1.0** (Stability AI) + **SDXL-Lightning 4 pasos**
+(ByteDance), ambos con licencia **CreativeML OpenRAIL++-M** (uso comercial permitido), ejecutados en local.
+
+- Paisajes, aurora, hielo, glucosa, células, laboratorio y científico: generados solo a partir de texto.
+- Planos de la rana: para que la anatomía sea correcta, la IA parte de una foto real (img2img) y la transforma
+  según la narración (congelada, cubierta de escarcha, deshielo, luz de primavera…). Esas imágenes son obras
+  derivadas de las fotos de la tabla siguiente, por lo que se mantienen sus créditos y licencias.
+- Alternativa: `AI_BACKEND=openai python3 ai_images.py` usa la API de imágenes de OpenAI con los prompts largos.
+
+## Fotos de partida (Wikimedia Commons, licencias libres)
 
 Las fotos se recortan a 9:16, se reencuadran, se etalonan y se les añaden efectos (escarcha, nieve, luz).
 Las licencias CC BY-SA exigen compartir las obras derivadas con la misma licencia: el vídeo hereda CC BY-SA 4.0
