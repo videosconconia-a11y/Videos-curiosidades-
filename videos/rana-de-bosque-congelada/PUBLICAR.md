@@ -8,6 +8,6 @@ La rana de bosque pasa el invierno congelada: su corazón se detiene, deja de re
 ¿Lo sabías? Cuéntamelo en comentarios 👇
 
 **Hashtags:**
-#ranadebosque #curiosidades #animales #naturaleza #ciencia #sabíasque #datoscuriosos #biología #invierno #aprendeentiktok #fyp #parati
+#ranadebosque #curiosidades #animales #ciencia #sabíasque
 
 **Nota para la publicación:** las imágenes del animal son recreaciones generadas por IA. En TikTok, activa la etiqueta «Contenido generado por IA» al publicar.
