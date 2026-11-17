@@ -9,3 +9,5 @@ videos/*/chunk_*.mp4
 videos/*/mix.wav
 videos/*/video_only.mp4
 __pycache__/
+videos/*/final_9x16.mp4
+videos/*/assets/candidatas/

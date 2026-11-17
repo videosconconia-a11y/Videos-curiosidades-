@@ -9,7 +9,7 @@ STYLE = ("Ultra-realistic cinematic macro photograph, National Geographic style,
 SCENES = [
     dict(text="En la selva hay un hongo que convierte a las hormigas en zombis. Y no es una forma de hablar.",
          images=[
-             ("hook_zombie", "single dead black ant clinging under a leaf, long thin pale fungus stalk growing from its head, cordyceps, eerie green backlight, mist, horror"),
+             ("hook_zombie", "zombie ant infected by cordyceps fungus, dead ant clamped on a leaf, long thin brown fungal spike sprouting out of the back of its head, eerie green light, horror"),
              ("hook_jungle", "dark misty tropical rainforest at dawn, giant trees, light rays, ominous mysterious"),
          ]),
     dict(text="Se llama Ophiocordyceps. Todo empieza cuando una espora microscópica cae sobre una hormiga carpintera… y atraviesa su caparazón.",
@@ -38,7 +38,7 @@ SCENES = [
          images=[
              ("bite_vein", "extreme macro of black ant jaws biting the central vein under a green leaf"),
              ("noon_sun", "looking up through jungle canopy at the bright midday sun, leaf silhouette with a small ant hanging underneath"),
-             ("death_grip", "dead black ant hanging from the underside of a leaf by its jaws, legs spread, dim eerie light"),
+             ("death_grip", "dead ant hanging upside down under a leaf, jaws locked on the leaf vein, legs stiff, white fungal fuzz on its joints, dim eerie light"),
          ]),
     dict(text="Lo más escalofriante: los científicos descubrieron que el hongo ni siquiera entra en su cerebro. Envuelve sus músculos con una red de filamentos… y la maneja como a una marioneta.",
          images=[
@@ -48,7 +48,7 @@ SCENES = [
          ]),
     dict(text="Días después, de su cabeza brota un tallo. Y desde ahí, el hongo suelta una lluvia de esporas sobre el camino de sus compañeras… y el ciclo vuelve a empezar.",
          images=[
-             ("stalk_grow", "dead ant on a leaf with a long pale fungus stalk growing out of its head, cordyceps, night rainforest, rim light"),
+             ("stalk_grow", "ophiocordyceps fungus, dead ant on a leaf with a single long thin pale stalk growing straight up from its head, night jungle, rim light"),
              ("spore_rain", "glowing spores raining down from a cordyceps fungus stalk in a dark rainforest, light beams"),
              ("ants_below", "trail of black ants on the forest floor under a shower of tiny glowing spores, ground level macro"),
          ]),
@@ -60,7 +60,7 @@ SCENES = [
     dict(text="Tranquilo: este hongo no puede infectar a los humanos. Pero dime… ¿te imaginas que algún día pudiera? Te leo en comentarios.",
          images=[
              ("human_city", "person seen from behind on a night city street under a streetlight, tiny glowing spores floating in the air"),
-             ("final_ant", "close-up of an infected dead ant on a leaf with a fungus stalk on its head, glowing spores floating, dark background"),
+             ("final_ant", "cordyceps zombie ant portrait, dead ant on a leaf, tall thin fungal stalk rising from its head, glowing spores floating, dark background"),
          ]),
 ]
 

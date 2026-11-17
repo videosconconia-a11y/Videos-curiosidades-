@@ -9,6 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/hormigas-zombi` | El hongo que convierte hormigas en zombis (voz es-ES + imágenes IA) | 1:22 |
 
 ## Estructura de cada vídeo
 

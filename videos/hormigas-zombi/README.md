@@ -7,12 +7,13 @@ con IA que siguen lo que se narra, subtítulos palabra a palabra y música suave
 
 | Archivo | Qué es |
 |---|---|
-| `final_9x16.mp4` | Vídeo final 1080×1920, 30 fps |
+| `final_9x16.mp4` | Vídeo final 1080×1920, 30 fps (no se sube al repo por tamaño; se genera con `./build.sh`) |
 | `subtitulos_hormigas_zombi.srt` | Subtítulos sincronizados con la voz |
 | `PUBLICAR.md` | Título, descripción y hashtags |
 | `script_data.py` | Guion (narración por escena) y prompts de las imágenes |
 | `gen_voice.py` | Voz `es-ES-AlvaroNeural` (masculina, tono medio, España) + tiempos de cada palabra |
-| `gen_images_local.py` | Imágenes IA con SDXL-Turbo en local (CPU) |
+| `gen_images_local.py` | Imágenes IA con SDXL-Turbo en local (CPU); las elegidas están en `assets/img` |
+| `stalk_img2img.py` | Planos del tallo del hongo: esbozo pintado + img2img para hacerlo realista |
 | `timeline.py` | Calcula escenas, cortes de imagen y bloques de subtítulos a partir de la voz real |
 | `audio.py` | Música sintetizada (pad + arpegio suave + latido) y mezcla con *ducking* |
 | `render.py` | Montaje: movimiento de cámara, fundidos y subtítulos |
