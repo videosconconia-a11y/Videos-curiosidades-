@@ -5,3 +5,4 @@ still_*.jpg
 __pycache__/
 *.npy
 videos/.voices/
+build.log
