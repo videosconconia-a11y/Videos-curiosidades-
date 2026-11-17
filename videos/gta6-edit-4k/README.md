@@ -1,6 +1,6 @@
 # GTA VI beauty edit — 20 s, vertical 4K (2160×3840, 30 fps), no music
 
-Delivered file: `gta6_edit_4k_45mbps.mp4` (H.264 High@5.2, ~45 Mb/s, silent AAC track). The ~169 Mb/s master is `gta6_edit_4k.mp4`.
+Deliverables (from `./build.sh`): `gta6_edit_4K.mp4` (2160×3840, 2-pass ~16 Mb/s, ~39 MB) and `gta6_edit_1080p.mp4` (~24 MB). v2 uses hard beat cuts with a short zoom punch (no blur transitions), the best-looking official images and no on-screen credit.
 
 15 official Rockstar Games images, none of them repeated from the highlights clip: Vice City boat at dusk, the 80s Vice City couple, a sunset kayak, a resort pool, an underwater cave, a dolphin over turquoise water, the Grassrivers stilt town, the Mount Kalaga forest, Ambrosia at night, the Ocean View Hotel, cars, an aerial of boats, a bar, and the neon dance final with "GTA VI".
 

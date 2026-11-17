@@ -12,21 +12,27 @@ IMG_DIR = os.path.join(HERE, "assets", "official")
 
 # (image prefix, focal x, duration s, zoom from, zoom to, pan x)
 SHOTS_DEF = [
-    ("ULTIMATE_EDITION_SQUALO_01", .42, 2.0, 1.00, 1.10, -0.5),
-    ("VINTAGE_VICE_CITY_PACK_02", .40, 2.0, 1.10, 1.00, 0.5),
-    ("ULTIMATE_EDITION_SAFEHOUSE_VEHICLES_03", .42, 1.0, 1.00, 1.08, 0.4),
-    ("Vice_City_02", .62, 1.0, 1.08, 1.00, -0.4),
-    ("Leonida_Keys_07", .45, 1.0, 1.00, 1.10, 0.0),
-    ("ULTIMATE_EDITION_SQUALO_03", .62, 1.0, 1.10, 1.00, 0.4),
-    ("Grassrivers_02", .55, 1.0, 1.00, 1.08, -0.4),
-    ("Mount_Kalaga_National_Park_03", .30, 1.0, 1.08, 1.00, 0.4),
-    ("Ambrosia_02", .50, 1.0, 1.00, 1.10, 0.4),
-    ("VINTAGE_VICE_CITY_PACK_01", .45, 1.0, 1.10, 1.00, 0.0),
-    ("ULTIMATE_EDITION_VAPID_GANADO_RETRO_BUILD_01", .45, 1.0, 1.00, 1.08, -0.4),
-    ("ULTIMATE_EDITION_GROTTI_CHEETAH_03", .55, 1.0, 1.08, 1.00, 0.4),
-    ("ULTIMATE_EDITION_SQUALO_04", .50, 1.0, 1.00, 1.10, -0.3),
-    ("Jason_and_Lucia_18", .45, 1.0, 1.10, 1.00, 0.3),
-    ("VINTAGE_VICE_CITY_PACK_EXCLUSIVE_LOOKS_01", .45, 4.0, 1.00, 1.12, 0.0),
+    ("Jason_Lucia_Rooftop_portrait", .50, 2.0, 1.00, 1.08, 0.0),
+    ("Vice_City_15", .45, 1.0, 1.08, 1.00, 0.4),
+    ("Leonida_Keys_01", .55, 1.0, 1.00, 1.08, -0.4),
+    ("ULTIMATE_EDITION_SQUALO_01", .42, 1.0, 1.08, 1.00, 0.4),
+    ("VINTAGE_VICE_CITY_PACK_02", .40, 1.0, 1.00, 1.08, -0.3),
+    ("Jason_and_Lucia_16", .50, 1.0, 1.08, 1.00, 0.3),
+    ("Mount_Kalaga_National_Park_04", .55, 1.0, 1.00, 1.08, 0.3),
+    ("Mount_Kalaga_National_Park_02", .38, 1.0, 1.08, 1.00, -0.3),
+    ("Grassrivers_04", .50, 0.5, 1.00, 1.06, 0.3),
+    ("Jason_Duval_17", .33, 0.5, 1.06, 1.00, -0.3),
+    ("Vice_City_17", .50, 0.5, 1.00, 1.06, 0.3),
+    ("Lucia_Caminos_13", .30, 0.5, 1.06, 1.00, -0.3),
+    ("Leonida_Keys_04", .50, 1.0, 1.00, 1.08, 0.0),
+    ("ULTIMATE_EDITION_SQUALO_03", .62, 1.0, 1.08, 1.00, 0.3),
+    ("Vice_City_01", .50, 1.0, 1.00, 1.08, 0.4),
+    ("Vice_City_08", .50, 1.0, 1.08, 1.00, -0.3),
+    ("Jason_and_Lucia_14", .50, 0.5, 1.00, 1.06, 0.2),
+    ("Lucia_Caminos_11", .55, 0.5, 1.06, 1.00, -0.2),
+    ("ULTIMATE_EDITION_GROTTI_CHEETAH_01", .50, 0.5, 1.00, 1.06, 0.2),
+    ("Vice_City_26", .50, 0.5, 1.06, 1.00, 0.0),
+    ("Jason_Lucia_Lock_And_Load_portrait", .50, 3.0, 1.00, 1.10, 0.0),
 ]
 SHOTS = []; t = 0.0
 for d in SHOTS_DEF: SHOTS.append((t, t + d[2]) + d); t += d[2]
@@ -36,7 +42,7 @@ def ease(p): p = min(max(p, 0), 1); return p * p * (3 - 2 * p)
 def eout(p): p = min(max(p, 0), 1); return 1 - (1 - p) ** 3
 def to_img(a): return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
-@lru_cache(maxsize=6)
+@lru_cache(maxsize=4)
 def load(prefix):
     fs = sorted(glob.glob(os.path.join(IMG_DIR, prefix + ".*jpg"))) or sorted(glob.glob(os.path.join(IMG_DIR, prefix + "*.jpg")))
     return Image.open(fs[0]).convert("RGB")
@@ -95,34 +101,27 @@ def shot_index(t):
     return len(SHOTS) - 1
 
 def frame(t, fi):
-    i = shot_index(t); a, b = SHOTS[i][:2]; p = (t - a) / (b - a); age = t - a; left = b - t
-    img = np.asarray(view(i, p), np.float32)
-    # crossfade into the shot (first 0.25 s), with zoom-blur around the cut
-    XF = 0.25 if SHOTS[i][4] < 2 else 0.45
-    if i > 0 and age < XF:
-        pa, pb = SHOTS[i - 1][:2]
-        prev = np.asarray(view(i - 1, min(1, (t - pa) / (pb - pa))), np.float32)
-        k = ease(age / XF); img = prev * (1 - k) + img * k
-        img = zoom_blur(img, 1 - abs(2 * k - 1))
-    elif i + 1 < len(SHOTS) and left < 0.08:
-        img = zoom_blur(img, 1 - left / 0.08)
-    img = grade(img)
-    img = img + bloom(img) * 0.35 + light_leak(t) * 0.10
-    if t < 0.8: img = img * ease(t / 0.8)                               # fade in
-    if TOTAL - t < 0.7: img = img * ease((TOTAL - t) / 0.7)             # fade out
-    img = img * VIG + np.repeat(np.repeat(GRAIN[fi % 4], 2, 0), 2, 1)[..., None]
-    out = to_img(img).convert("RGBA")
-    d = ImageDraw.Draw(out)
-    # final title on the last shot
-    if i == len(SHOTS) - 1 and age > 0.8:
-        k = eout((age - 0.8) / 1.0) * (ease((TOTAL - t) / 0.7) if TOTAL - t < 0.7 else 1)
-        f = ImageFont.truetype(os.path.join(FD, "Anton-Regular.ttf"), 360)
-        s = "GTA VI"; sp = 60 * (1 - k) + 24
-        ws = [d.textlength(c, font=f) for c in s]; x = (W - sum(ws) - sp * (len(s) - 1)) / 2
+    i = shot_index(t); a, b = SHOTS[i][:2]; p = (t - a) / (b - a); age = t - a
+    v = view(i, p)
+    if i > 0 and age < 0.22:                     # beat "punch": quick zoom settle on every cut
+        z = 1 + 0.05 * (1 - eout(age / 0.22))
+        cw, ch = W / z, H / z
+        v = v.resize((W, H), Image.BICUBIC, box=((W - cw) / 2, (H - ch) / 2, (W + cw) / 2, (H + ch) / 2))
+    img = grade(np.asarray(v, np.float32))
+    img = img + bloom(img) * 0.25
+    if i > 0 and age < 1 / FPS + 1e-6: img = img * 1.12 + 10   # one-frame brightness pop on the cut
+    if t < 0.4: img = img * ease(t / 0.4)
+    if TOTAL - t < 0.5: img = img * ease((TOTAL - t) / 0.5)
+    out = to_img(img * VIG).convert("RGBA")
+    if i == len(SHOTS) - 1 and age > 0.5:
+        d = ImageDraw.Draw(out)
+        k = eout((age - 0.5) / 0.8) * (ease((TOTAL - t) / 0.5) if TOTAL - t < 0.5 else 1)
+        f = ImageFont.truetype(os.path.join(FD, "Anton-Regular.ttf"), 340)
+        s_ = "GTA VI"; sp = 50 * (1 - k) + 22
+        ws = [d.textlength(c, font=f) for c in s_]; x = (W - sum(ws) - sp * (len(s_) - 1)) / 2
         lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dl = ImageDraw.Draw(lay)
-        for c, w_ in zip(s, ws): dl.text((x, 2700), c, font=f, fill=(255, 255, 255, int(255 * k))); x += w_ + sp
-        g = lay.filter(ImageFilter.GaussianBlur(30)); out.alpha_composite(g); out.alpha_composite(lay)
-    d.text((70, H - 110), "IMAGES © ROCKSTAR GAMES", font=ImageFont.truetype(os.path.join(FD, "Anton-Regular.ttf"), 40), fill=(255, 255, 255, 110))
+        for c, w_ in zip(s_, ws): dl.text((x, 2950), c, font=f, fill=(255, 255, 255, int(255 * k))); x += w_ + sp
+        out.alpha_composite(lay.filter(ImageFilter.GaussianBlur(28))); out.alpha_composite(lay)
     return out.convert("RGB")
 
 if __name__ == "__main__":
@@ -133,7 +132,7 @@ if __name__ == "__main__":
         wk, nw = int(sys.argv[2]), int(sys.argv[3]); nf = int(round(TOTAL * FPS))
         per = math.ceil(nf / nw); f0, f1 = wk * per, min(nf, (wk + 1) * per)
         p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
-                              "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "12", "-pix_fmt", "yuv420p",
+                              "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "10", "-pix_fmt", "yuv420p",
                               os.path.join(HERE, f"part_{wk}.mp4")], stdin=subprocess.PIPE)
         for fi in range(f0, f1):
             p.stdin.write(frame(fi / FPS, fi).tobytes())
