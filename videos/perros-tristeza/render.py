@@ -141,6 +141,7 @@ def chapter(img, t, a, b, num, label):
     img.alpha_composite(lay)
 
 def source(img, t, a, b, line1, line2):
+    if not SHOW_SOURCES: return
     al = fade_in_out(t, a, b, 0.3)
     if al <= 0: return
     lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
@@ -233,6 +234,8 @@ def hook_title(img, t, end):
     lay = Image.alpha_composite(sh.filter(ImageFilter.GaussianBlur(16)), lay)
     if al < 1: lay.putalpha(lay.split()[3].point(lambda v: int(v * al)))
     img.alpha_composite(lay)
+
+SHOW_SOURCES = False   # rótulos de estudios desactivados (fuentes en FUENTES.md)
 
 def overlays(img, t):
     S = SEGT
