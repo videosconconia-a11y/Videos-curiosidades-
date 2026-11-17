@@ -9,6 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/perros-emociones` | Tu perro huele tus emociones (con voz IA Piper es_ES y ducking) | 78,8 s |
 
 ## Estructura de cada vídeo
 
