@@ -15,7 +15,7 @@ FONT = next(f for f in ["/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf
                         "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf",
                         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"] if os.path.exists(f))
 F_CAP = ImageFont.truetype(FONT, 100)
-F_TOP = ImageFont.truetype(FONT, 46)
+F_TOP = ImageFont.truetype(FONT, 54)
 F_END = ImageFont.truetype(FONT, 84)
 GOLD = (255, 204, 64)
 SC = {s[2]: (a, b, v) for (a, b, v), s in zip(TIMES, SCENES)}
@@ -77,9 +77,21 @@ def end_card(img, t):
     d.polygon([(cx - 40, yb), (cx + 40, yb), (cx, yb + 54)], fill=GOLD + (int(255 * u),))
     return img
 
+# cámara viva y contraste: ajustados midiendo con tools/medir.py (ver GUIA_ESTILO.md)
+CONTRAST, PIVOT = 1.32, 96
+
+def live_cam(img, t):
+    z = 1.06 + 0.02 * math.sin(2 * math.pi * t / 11.0) + 0.0008 * t
+    dx = 14 * math.sin(2 * math.pi * t / 13.0) + 8 * math.sin(2 * math.pi * t / 7.3 + 1.1)
+    dy = 12 * math.sin(2 * math.pi * t / 17.0 + 0.7) + 7 * math.sin(2 * math.pi * t / 5.9 + 2.3)
+    cw, ch = W / z, H / z
+    return img.resize((W, H), Image.BILINEAR, box=(W / 2 + dx - cw / 2, H / 2 + dy - ch / 2, W / 2 + dx + cw / 2, H / 2 + dy + ch / 2))
+
 def process(img, t, fi):
+    img = live_cam(img, t)
     blur = img.filter(ImageFilter.GaussianBlur(5))
     arr = np.asarray(img, np.float32); arr = arr + (np.asarray(blur, np.float32) - arr) * BLUR_MASK
+    arr = (arr - PIVOT) * CONTRAST + PIVOT
     arr *= VIG
     for h in HITS:
         u = t - h

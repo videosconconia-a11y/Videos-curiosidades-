@@ -234,7 +234,7 @@ wheels.customDepthMaterial = depthMat(wheels.material.map); wheels.castShadow = 
 const EL = []; for (let k = 0; k < 15; k++) EL.push([-60 + k * 8.5 + (rnd() - 0.5) * 3, -252 - (k % 2) * 4]);
 const eleph = new Crowd([SP.elephant()], 6.0, 4.9, EL.length);
 // ---- héroes
-const alex = new Hero([0, 1].map(f => SP.rider({ frame: f, coat: '#18161a', mane: '#050505', cloak: '#d8202a', helmet: '#f0c43a', plume: '#ffffff', star: true, gold: true })), 4.2, 4.2);
+const alex = new Hero([0, 1].map(f => SP.rider({ frame: f, coat: '#18161a', mane: '#050505', cloak: '#d8202a', helmet: '#f0c43a', plume: '#ffffff', star: true, gold: true })), 5.0, 5.0);
 const dar = new Hero([SP.darius(0), SP.darius(1)], 7.0, 5.7);
 // ---- conspiradores del final (sus propios hombres)
 const CONS = new Crowd([SP.persian('#1c1c2a', '#3a3a50')], 1.25, 2.5, 6, () => new THREE.Color(0.45, 0.45, 0.55));
@@ -369,7 +369,7 @@ function camKeys() {
   const K = [];
   const k = (t, pos, tgt, fov = 50) => K.push({ t, pos, tgt, fov });
   let t;
-  t = 0;                        k(t, A(t).add(V(0, 3.0, 9)), A(t).add(V(2, 1.0, -260)), 34);
+  t = 0;                        k(t, A(t).add(V(-1.4, 3.0, 9)), A(t).add(V(-4, 1.0, -260)), 34);
   t = at('gancho', 0.55);        k(t, A(t).add(V(2.5, 4.2, 13)), A(t).add(V(-20, 0, -260)), 38);
   t = at('gancho', 1);           k(t, A(t).add(V(-20, 9, 24)), V(-30, 2, -240), 52);
   t = at('macedonios', 0.35);    k(t, V(-20, 3.2, -22), V(-35, 2.2, 8), 46);
@@ -385,11 +385,11 @@ function camKeys() {
   t = at('pasillos', 0.25);      k(t, V(-17, 2.4, 34), V(-28, 2.4, -60), 50);
   t = at('pasillos', 0.7);       k(t, V(-15, 2.8, 40), V(-28, 2.0, -20), 52);
   t = at('pasillos', 1);         k(t, V(-38, 6, 70), V(-30, 1.5, 40), 50);
-  t = at('cuna', 0.25);          k(t, A(t).add(V(8.6, 3.6, 6.8)), A(t).add(V(-23, 1.2, -19)), 48);
-  t = at('cuna', 0.7);           k(t, A(t).add(V(8.0, 3.4, 7.2)), A(t).add(V(-22, 1.2, -20)), 48);
-  t = at('cuna', 1);             k(t, A(t).add(V(6.5, 3.6, 8)), D(t).add(V(0, 2.5, 0)), 44);
-  t = at('huida', 0.6);          k(t, A(t).add(V(0.8, 3.4, 9.5)), D(t).add(V(0, 2.5, 0)), 38);
-  t = at('huida', 1);            k(t, D(t).add(V(22, 6, 30)), D(t).add(V(0, 2.5, 0)), 42);
+  t = at('cuna', 0.25);          k(t, A(t).add(V(8.6, 6.4, 6.8)), A(t).add(V(-23, 0.0, -19)), 48);
+  t = at('cuna', 0.7);           k(t, A(t).add(V(8.0, 6.4, 7.2)), A(t).add(V(-22, 0.0, -20)), 48);
+  t = at('cuna', 1);             k(t, A(t).add(V(6.5, 6.6, 8)), D(t).add(V(0, 1.5, 0)), 44);
+  t = at('huida', 0.6);          k(t, A(t).add(V(0.8, 7.5, 9.5)), D(t).add(V(0, 1.5, 0)), 38);
+  t = at('huida', 1);            k(t, D(t).add(V(22, 8, 30)), D(t).add(V(0, 2.5, 0)), 42);
   t = at('final', 0.5);          k(t, D(t).add(V(13, 3.0, 17)), D(t).add(V(0, 2.8, 0)), 40);
   t = TL.total;                  k(t, D(t).add(V(8, 3.0, 11)), D(t).add(V(0, 3.0, 0)), 38);
   return K;
@@ -410,6 +410,20 @@ function hermite(K, t, f) {
 function cameraAt(t) {
   const p = hermite(KEYS, t, k => k.pos), g = hermite(KEYS, t, k => k.tgt);
   const fv = hermite(KEYS, t, k => V(k.fov, 0, 0)).x;
+  // carga y huida: cámara de seguimiento detrás y por encima de Alejandro (la carga es demasiado rápida para claves)
+  const f0 = SC.cuna.a + 0.3, f1 = SC.huida.b - 0.2;
+  const w = ease(clamp01((t - f0) / 0.9)) * ease(clamp01((f1 - t) / 0.9));
+  if (w > 0) {
+    const A = alexPos(t), dir = alexPos(t + 0.25).sub(alexPos(t - 0.25)); dir.y = 0;
+    if (dir.length() < 0.5) dir.set(-0.3, 0, -1);
+    dir.normalize();
+    const side = V(-dir.z, 0, dir.x);
+    const fp = A.clone().addScaledVector(dir, -10).addScaledVector(side, -3.5); fp.y = groundY(fp.x, fp.z) + 5.2;
+    const look = A.clone().addScaledVector(dir, 28); look.y = 1.5;
+    const dlook = darPos(t).add(V(0, 2.2, 0));
+    look.lerp(dlook, clamp01((t - SC.cuna.a) / (SC.cuna.b - SC.cuna.a) * 1.4 - 0.5));
+    p.lerp(fp, w); g.lerp(look, w);
+  }
   // micro-movimiento de mano: la cámara nunca está quieta
   p.x += Math.sin(t * 1.3) * 0.12; p.y += Math.sin(t * 1.7 + 1) * 0.08;
   const minY = groundY(p.x, p.z) + 1.4; if (p.y < minY) p.y = minY;
