@@ -7,7 +7,8 @@ con IA que siguen lo que se narra, subtítulos palabra a palabra y música suave
 
 | Archivo | Qué es |
 |---|---|
-| `final_9x16.mp4` | Vídeo final 1080×1920, 30 fps (no se sube al repo por tamaño; se genera con `./build.sh`) |
+| `hormigas_zombi_tiktok.mp4` | **Vídeo final para descargar** (1080×1920, 30 fps, 74 MB) |
+| `final_9x16.mp4` | Versión de máxima calidad generada por `./build.sh` (no se sube: 126 MB) |
 | `subtitulos_hormigas_zombi.srt` | Subtítulos sincronizados con la voz |
 | `PUBLICAR.md` | Título, descripción y hashtags |
 | `script_data.py` | Guion (narración por escena) y prompts de las imágenes |
