@@ -9,6 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/gta6-trucos` | GTA 6: "haz esto YA" (estilo gaming viral, voz Piper es_ES, subtítulos palabra a palabra) | 28 s |
 
 ## Estructura de cada vídeo
 
