@@ -10,7 +10,8 @@
 > 4. **Revelación:** el giro, con golpe de sonido y silencio de medio segundo antes.
 > 5. **Cierre:** consecuencia real (qué pasó después) + pregunta personal al espectador para comentar.
 > 6. Narrador masculino, español de España, tono neutro y serio, ~2,5 palabras/segundo, 45–75 s.
-> 7. Visual: cambio de plano cada 2–4 s, estética CCTV/linterna/grano, subtítulos grandes con palabras clave en rojo,
+> 7. Visual: guion **frase a frase** (como `videos/chico-en-las-paredes`): cada frase tiene su plano y el corte cae
+>    justo cuando empieza esa frase, para que la imagen enseñe siempre lo que dice la voz; cambio de plano cada 1–4 s, estética CCTV/linterna/grano, subtítulos grandes con palabras clave en rojo,
 >    etiqueta "HISTORIA REAL · RECREACIÓN". Nunca caras reales de víctimas.
 > 8. Verifica cada dato en 2 fuentes fiables (agencias, prensa, documentos); si un dato viral es falso, corrígelo.
 > 9. Entrega `final_9x16.mp4`, `.srt`, README con fuentes y `PUBLICAR.md` (portada, descripción, hashtags,

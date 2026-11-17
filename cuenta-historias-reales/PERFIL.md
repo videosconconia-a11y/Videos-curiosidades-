@@ -26,7 +26,7 @@ Historias de miedo 100 % reales 🕯️ Casos documentados. Uno nuevo cada día 
 - Evita: gore explícito, nombres de víctimas menores, imágenes reales de cadáveres (TikTok las penaliza o elimina).
 
 ## Siguientes casos (reales y verificables) — ideas
-- Daniel LaPlante, el chico que vivía dentro de las paredes (Massachusetts, 1987).
+- ~~Daniel LaPlante, el chico que vivía dentro de las paredes~~ (hecho: vídeo 2).
 - Hinterkaifeck: huellas en la nieve que solo iban hacia la casa (Alemania, 1922).
 - Elisa Lam y el hotel Cecil (Los Ángeles, 2013).
 - El paso Diatlov (URSS, 1959).
