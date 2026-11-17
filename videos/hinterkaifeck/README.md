@@ -1,6 +1,6 @@
 # Hinterkaifeck (Baviera, Alemania, 1922) — caso real sin resolver
 
-~75 s · 9:16 · voz neuronal es-ES Álvaro · subtítulos karaoke por palabra · encuesta a mitad · sin etiqueta en pantalla.
+~75 s · 9:16 · voz neuronal es-ES Álvaro · subtítulos karaoke por palabra · sin etiqueta en pantalla.
 Mismo sistema que `videos/el-vigilante` (guion frase a frase, plano sincronizado con cada frase).
 
 ## Generar

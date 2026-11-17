@@ -594,8 +594,8 @@ def end_card(t, p):
     a = attic(t, 0.5) * 0.6
     img = to_img(a); d = ImageDraw.Draw(img)
     d.ellipse([620, 990, 680, 1040], fill=(0, 0, 0))                                   # alguien en el ventanuco
-    text_c(d, 360, "¿QUIÉN ESTABA", ImageFont.truetype(FONT, 130), (255, 255, 255), 8, w=BW)
-    text_c(d, 510, "EN EL DESVÁN?", ImageFont.truetype(FONT, 130), RED, 8, w=BW)
+    text_c(d, 360, "¿QUÉ OYÓ", ImageFont.truetype(FONT, 140), (255, 255, 255), 8, w=BW)
+    text_c(d, 520, "LA CRIADA?", ImageFont.truetype(FONT, 140), RED, 8, w=BW)
     return arr(img)
 
 # ---------------------------------------------------------------- precálculo
@@ -609,7 +609,7 @@ VIG = np.clip(1.2 - (((xx - W / 2) / (W * 0.6)) ** 2 + ((yy - H / 2) / (H * 0.6)
 MODES = {
     "tracks_farm": (1.0, 1.25, -0.3, 0.4), "tracks_close": (1.0, 1.15, 0, -0.5), "farm_wide": (1.1, 1.0, 0, 0),
     "family_lamp": (1.0, 1.2, 0, 0.2), "lantern_tracks": (1.0, 1.2, 0.4, 0.5), "attic": (1.0, 1.25, 0, 0),
-    "attic_lantern": (1.1, 1.3, 0, 0.3), "newspaper": (1.1, 1.0, 0, -0.2), "maid_leaving": (1.0, 1.15, 0, 0.4),
+    "attic_lantern": (1.1, 1.3, 0, 0.3), "newspaper": (1.1, 1.0, 0, -0.2), "maid_leaving": (1.0, 1.15, 0, 0.4), "maid_leaving2": (1.2, 1.35, 0.2, 0.5), "new_maid2": (1.15, 1.3, -0.3, 0.4),
     "poll": (1.0, 1.02, 0, 0), "farm_night": (1.0, 1.2, 0, 0), "new_maid": (1.0, 1.1, -0.2, 0.3),
     "barn_door": (1.0, 1.3, 0, 0), "window_dark": (1.0, 1.4, 0.3, 0.1), "chimney": (1.0, 1.15, 0, -0.3),
     "stable": (1.0, 1.2, 0, 0), "kitchen_killer": (1.0, 1.25, -0.2, 0), "neighbors": (1.0, 1.15, 0, 0.3),
@@ -619,9 +619,9 @@ MODES = {
 def shot_frame(name, t, a, b):
     p = min(max((t - a) / (b - a), 0.0), 1.0)
     M = MODES.get(name, (1.0, 1.1, 0, 0))
-    snowy = name in ("tracks_farm", "farm_wide", "lantern_tracks", "maid_leaving", "farm_night", "new_maid", "chimney", "neighbors", "field", "memorial")
+    snowy = name in ("maid_leaving2", "new_maid2", "tracks_farm", "farm_wide", "lantern_tracks", "maid_leaving", "farm_night", "new_maid", "chimney", "neighbors", "field", "memorial")
     fn = {"tracks_close": tracks_close, "family_lamp": family_lamp, "lantern_tracks": lantern_tracks, "attic": attic,
-          "attic_lantern": lambda t, p: attic(t, p, True), "newspaper": newspaper_munich, "maid_leaving": maid_leaving,
+          "attic_lantern": lambda t, p: attic(t, p, True), "newspaper": newspaper_munich, "maid_leaving": maid_leaving, "maid_leaving2": maid_leaving, "new_maid2": new_maid,
           "poll": poll, "new_maid": new_maid, "barn_door": barn_door, "window_dark": window_dark, "chimney": chimney,
           "stable": stable, "kitchen_killer": kitchen_killer, "neighbors": neighbors, "case_file": case_file,
           "field": field, "memorial": lambda t, p: field(t, p, True), "end_card": end_card}.get(name)

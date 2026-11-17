@@ -15,7 +15,6 @@ LINES = [
     ("Pero no encuentran a nadie.", {"NADIE"}, ["attic_lantern"], 0.2, "n"),
     ("Y aparece un periódico de Múnich que nadie en la casa ha comprado.", {"PERIÓDICO", "NADIE"}, ["newspaper"], 0.15, "n"),
     ("La criada anterior se había marchado meses antes, diciendo que en esa casa se oían cosas.", {"CRIADA", "OÍAN"}, ["maid_leaving"], 0.3, "n"),
-    ("Antes de seguir: ¿tú dormirías una noche allí? Escribe uno si te quedas, y dos si te vas.", {"DORMIRÍAS", "UNO", "DOS"}, ["poll"], 0.4, "n"),
     ("Ellos se quedaron.", {"QUEDARON"}, ["farm_night"], 0.3, "n"),
     ("El 31 de marzo llega una criada nueva.", {"NUEVA"}, ["new_maid"], 0.15, "n"),
     ("Esa misma noche, alguien mata a las seis personas de la granja.", {"SEIS"}, ["barn_door"], 0.5, "n"),
@@ -27,12 +26,16 @@ LINES = [
     ("La policía investigó el caso durante décadas, pero nunca encontró al culpable.", {"DÉCADAS", "NUNCA"}, ["case_file"], 0.2, "n"),
     ("Poco después, derribaron la granja.", {"DERRIBARON"}, ["field"], 0.15, "n"),
     ("Hoy, más de cien años después, sigue sin resolver.", {"CIEN", "RESOLVER"}, ["memorial"], 0.3, "n"),
-    ("Así que dime: ¿quién estaba en el desván?", {"QUIÉN", "DESVÁN"}, ["end_card"], 2.2, "n"),
+    ("Una criada se marchó a tiempo.", {"TIEMPO"}, ["maid_leaving2"], 0.2, "n"),
+    ("La otra llegó justo el día del crimen.", {"CRIMEN"}, ["new_maid2"], 0.35, "n"),
+    ("¿Tú crees que la primera oyó algo… que nadie quiso creer?", {"OYÓ", "CREER"}, ["end_card"], 2.2, "n"),
 ]
 
 LEAD = 0.15
 _tj = os.path.join(HERE, "timings.json")
-TIM = json.load(open(_tj)) if os.path.exists(_tj) else [{"dur": len(l[0]) / 14, "words": []} for l in LINES]
+TIM = json.load(open(_tj)) if os.path.exists(_tj) else []
+if len(TIM) != len(LINES):   # guion cambiado: tiempos provisionales hasta regenerar la voz
+    TIM = [{"dur": len(l[0]) / 14, "words": []} for l in LINES]
 
 SCENES = []   # (inicio, fin, texto, claves, planos, inicio_voz, dur_voz, palabras[(t0,t1,txt)])
 _t = 0.0

@@ -30,7 +30,7 @@ def click(at, g=1.0):
     i0 = int(at * SR); x = np.zeros(N); n = min(350, N - i0)
     x[i0:i0 + n] = rng.standard_normal(n) * np.exp(-np.arange(n) / 45); return (x - lp(x, 0.3)) * g
 
-key = [(0, .6), (S("tracks_close"), .8), (S("farm_wide"), .4), (S("attic"), .8), (S("newspaper"), .6), (S("poll"), .3),
+key = [(0, .6), (S("tracks_close"), .8), (S("farm_wide"), .4), (S("attic"), .8), (S("newspaper"), .6),
        (S("farm_night"), .6), (S("barn_door") - 0.1, 1.0), (S("window_dark"), .7), (S("kitchen_killer"), 1.0),
        (S("neighbors"), .6), (S("case_file"), .7), (S("field"), .4), (S("end_card"), .9), (TOTAL, .8)]
 I = np.interp(t, [k[0] for k in key], [k[1] for k in key])
@@ -38,7 +38,7 @@ for f, g in [(36.7, .32), (36.95, .22), (73.4, .16), (110.0, .08), (155.6, .05),
     add(np.sin(2 * np.pi * f * t + rng.uniform(0, 6)) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.05 * t + f)), g * 0.5 * (0.4 + 0.8 * I))
 # viento invernal constante, más fuerte en exteriores
 outside = np.zeros(N)
-for n in ["tracks_farm", "tracks_close", "farm_wide", "lantern_tracks", "maid_leaving", "farm_night", "new_maid", "chimney", "neighbors", "field", "memorial"]:
+for n in ["tracks_farm", "tracks_close", "farm_wide", "lantern_tracks", "maid_leaving", "farm_night", "new_maid", "chimney", "neighbors", "field", "memorial", "maid_leaving2", "new_maid2"]:
     a0, b0 = SH[n]; outside = np.maximum(outside, seg(a0, b0, 0.3))
 for p_ in (-0.4, 0.4):
     w = lp(rng.standard_normal(N), 0.006) * 9 * (0.6 + 0.4 * np.sin(2 * np.pi * (0.13 + p_ * 0.05) * t))
@@ -48,7 +48,7 @@ def crunch(at, g=1.0):
     i0 = int(at * SR); n = min(int(0.18 * SR), N - i0); x = np.zeros(N)
     x[i0:i0 + n] = rng.standard_normal(n) * np.exp(-np.arange(n) / (0.05 * SR)) * (rng.random(n) > 0.6)
     return (x - lp(x, 0.2)) * g
-for n, step in [("tracks_farm", 0.55), ("tracks_close", 0.6), ("maid_leaving", 0.5), ("new_maid", 0.5), ("neighbors", 0.45)]:
+for n, step in [("tracks_farm", 0.55), ("tracks_close", 0.6), ("maid_leaving", 0.5), ("new_maid", 0.5), ("neighbors", 0.45), ("maid_leaving2", 0.5), ("new_maid2", 0.5)]:
     a0, b0 = SH[n]; k = a0 + 0.2
     while k < b0 - 0.1: add(crunch(k, rng.uniform(0.6, 1)), 0.1, rng.uniform(-0.3, 0.3)); k += step
 # pasos en el desván (madera)
@@ -61,9 +61,6 @@ add(cr * seg(SH["attic_lantern"][0], SH["attic_lantern"][1], 0.3), 0.02)
 add(cr * seg(SH["barn_door"][0], SH["barn_door"][1] - 0.5, 0.2), 0.03)
 # papel del periódico
 x = rng.standard_normal(N); add((x - lp(x, 0.3)) * seg(S("newspaper"), S("newspaper") + 0.5, 0.05) * (rng.random(N) > 0.5), 0.05)
-# tic-tac en la encuesta
-for j in range(int((SH["poll"][1] - S("poll")) / 0.5)):
-    add(click(S("poll") + j * 0.5, 1.2 if j % 2 == 0 else 0.7), 0.15)
 # fuego crepitando (chimenea y cocina)
 fire = np.zeros(N)
 for j in range(400):
