@@ -1,0 +1,6 @@
+# ruta_clip | inicio_seg | duración_seg | texto opcional
+# 4 planos largos y continuos (~17 s en total). Cambia rutas y tiempos por los de tus grabaciones.
+clips/01_amanecer_autopista.mp4 | 0 | 5   |
+clips/02_coche_noche_ciudad.mp4 | 0 | 5   | Crecí en estas calles
+clips/03_costa_atardecer.mp4    | 0 | 4.5 |
+clips/04_mirador_noche.mp4      | 0 | 5   |
