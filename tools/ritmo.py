@@ -8,11 +8,17 @@ import os, re, sys
 
 d = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
 sys.path.insert(0, d)
-from script_data import SCENES  # noqa: E402
+import script_data  # noqa: E402
+
+# dos formatos: (inicio, fin, narración, …) o (narración, …) con TIMES calculados de la voz
+if hasattr(script_data, "TIMES"):
+    ROWS = [(a, b, s[0]) for (a, b, _v), s in zip(script_data.TIMES, script_data.SCENES)]
+else:
+    ROWS = [(s[0], s[1], s[2]) for s in script_data.SCENES]
 
 tot_w = tot_s = 0
 print(f"{'escena':>6} {'seg':>5} {'palabras':>8} {'pal/s':>6}")
-for i, (a, b, narr, *_r) in enumerate(SCENES):
+for i, (a, b, narr) in enumerate(ROWS):
     w = len(re.findall(r"[\wáéíóúüñÁÉÍÓÚÜÑ%]+", narr))
     tot_w += w; tot_s += b - a
     flag = "  ← lento" if w / (b - a) < 3.0 else ("  ← muy rápido" if w / (b - a) > 4.0 else "")

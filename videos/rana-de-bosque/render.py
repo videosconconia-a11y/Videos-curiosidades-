@@ -406,11 +406,11 @@ PIVOT = 80
 def live_cam(img, t):
     """Cámara viva global: deriva y respiración lentas y continuas para que ningún cuadro quede quieto,
     ni siquiera en gráficas o en la tarjeta final."""
-    # deriva en elipse: la velocidad nunca baja de ~6 px/s, así que la cámara no se para nunca
-    w = 2 * math.pi / 21.0
-    z = LIVE_ZOOM + 0.02 * math.sin(2 * math.pi * t / 11.0)
-    dx = 20 * math.cos(w * t)
-    dy = 26 * math.sin(w * t)
+    # combinación de senos de periodos distintos: medido, deja la cámara en movimiento el ~90 % de los cuadros
+    # (una deriva en elipse de velocidad constante dio peor resultado: 85 %)
+    z = LIVE_ZOOM + 0.025 * math.sin(2 * math.pi * t / 11.0) + 0.0012 * t
+    dx = 16 * math.sin(2 * math.pi * t / 13.0) + 9 * math.sin(2 * math.pi * t / 7.3 + 1.1)
+    dy = 12 * math.sin(2 * math.pi * t / 17.0 + 0.7) + 7 * math.sin(2 * math.pi * t / 5.9 + 2.3)
     cw, ch = W / z, H / z
     cx, cy = W / 2 + dx, H / 2 + dy
     return img.resize((W, H), Image.BILINEAR, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2))
