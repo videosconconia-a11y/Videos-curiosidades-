@@ -12,7 +12,9 @@
 > 6. Narrador masculino, español de España, tono neutro y serio, ~2,5 palabras/segundo, 45–75 s.
 > 7. Visual: guion **frase a frase** (como `videos/chico-en-las-paredes`): cada frase tiene su plano y el corte cae
 >    justo cuando empieza esa frase, para que la imagen enseñe siempre lo que dice la voz; cambio de plano cada 1–4 s, estética CCTV/linterna/grano, subtítulos grandes con palabras clave en rojo,
->    etiqueta "HISTORIA REAL · RECREACIÓN". Nunca caras reales de víctimas.
+>    sin etiquetas en pantalla (la etiqueta de IA se activa en TikTok al subir). Nunca caras reales de víctimas.
+> 7b. Voz: `es-ES-AlvaroNeural` (ver `videos/el-vigilante/voice.py`), subtítulos karaoke palabra a palabra.
+> 7c. Interacción: una pregunta tipo encuesta a mitad ("1 / 2 en comentarios") y cierre pidiendo teorías para la parte 2.
 > 8. Verifica cada dato en 2 fuentes fiables (agencias, prensa, documentos); si un dato viral es falso, corrígelo.
 > 9. Entrega `final_9x16.mp4`, `.srt`, README con fuentes y `PUBLICAR.md` (portada, descripción, hashtags,
 >    comentario fijado).

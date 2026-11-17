@@ -11,6 +11,7 @@ efectos de sonido y subtítulos sincronizados.
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
 | `videos/armario-japon` | Historias reales: la mujer que vivió un año en un armario (Japón, 2008) | 65,7 s |
 | `videos/chico-en-las-paredes` | Historias reales: el chico que vivía dentro de las paredes (EE. UU., 1986) | 74,2 s |
+| `videos/el-vigilante` | El Vigilante: cartas anónimas a una familia (EE. UU., 2014, sin resolver) | 89,3 s |
 
 ## Estructura de cada vídeo
 
