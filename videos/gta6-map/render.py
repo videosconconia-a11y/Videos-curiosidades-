@@ -256,6 +256,48 @@ def plate_city():
         x += bw + 6
     d.rectangle([0, 1600, w, h], fill=(20, 40, 70))
     return img
+# ---- official Rockstar screenshots (assets/official, fetched by fetch_official.sh) — © Rockstar Games
+FOCAL = {"hero": 0.45, "vice_sign": 0.5, "vice_night": 0.55, "keys": 0.55, "keys_boats": 0.4, "grass": 0.5, "grass_town": 0.5,
+         "ambrosia": 0.5, "ambrosia_sunset": 0.42, "kalaga_heli": 0.38, "kalaga_canyon": 0.5, "kalaga_forest": 0.36,
+         "kalaga_river": 0.48, "kalaga_trails": 0.5, "gellhorn": 0.32}
+def _load(key):
+    fs = sorted(glob.glob(os.path.join(HERE, "assets", "official", key + ".jpg")))
+    if not fs: return None
+    im = Image.open(fs[0]).convert("RGB"); s_ = 2300 / im.height
+    return im.resize((int(im.width * s_), 2300), Image.LANCZOS)
+OFF = {k: _load(k) for k in FOCAL}
+HAVE_OFF = all(v is not None for v in OFF.values())
+def off_view(key, p, z0=1.0, z1=1.12, dx=0.0, dy=0.0, dark=1.0, blur=0, focal=None):
+    im = OFF.get(key)
+    if im is None:   # fallback: illustration
+        v = plate_view("kalaga" if "kalaga" in key else "vice", p, z0, z1)
+    else:
+        z = lerp(z0, z1, ease(p) * .5 + p * .5)
+        ch = im.height / z; cw = ch * W / H
+        cx = im.width * (focal if focal is not None else FOCAL[key]) + dx * (p - .5) * cw * 0.25; cy = im.height / 2 + dy * (p - .5) * (im.height - ch)
+        cx = min(max(cx, cw / 2), im.width - cw / 2); cy = min(max(cy, ch / 2), im.height - ch / 2)
+        v = im.resize((W, H), Image.BILINEAR, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2)).convert("RGBA")
+    if blur: v = v.filter(ImageFilter.GaussianBlur(blur))
+    if dark != 1.0:
+        a = np.asarray(v).astype(np.float32); a[..., :3] *= dark; v = to_img(a)
+    return v
+def off_inset(img, key, x, y, w, p, age, label="© ROCKSTAR GAMES"):
+    im = OFF.get(key)
+    if im is None or age < 0: return
+    k = eout(age / 0.3); h = int(w * 9 / 16)
+    z = 1.0 + 0.08 * p; cw = im.width / z; ch = cw * 9 / 16
+    box = (im.width / 2 - cw / 2, im.height / 2 - ch / 2, im.width / 2 + cw / 2, im.height / 2 + ch / 2)
+    ins = im.resize((w, h), Image.BILINEAR, box=box).convert("RGBA")
+    xo = int(x + (1 - k) * 700)
+    lay = rgba(); lay.paste(ins, (xo, y)); dl = ImageDraw.Draw(lay)
+    dl.rectangle([xo, y, xo + w, y + h], outline=WHITE + (255,), width=6)
+    img.alpha_composite(lay)
+    tag(ImageDraw.Draw(img), xo, y + h - 46, label, WHITE)
+LENS = (70, 560, 1010, 1270)
+LENS_MASK = Image.new("L", (W, H), 0); ImageDraw.Draw(LENS_MASK).rounded_rectangle(LENS, 36, fill=255)
+MAP_BG = {"hook_scan": "hero", "hook_map": "hero", "leonida_reveal": "keys", "florida_overlay": "keys", "pin_vice": "hero",
+          "pin_keys": "keys", "pin_grass": "grass", "pin_ambrosia": "ambrosia_sunset", "scan_north": "ambrosia_sunset",
+          "edge": "kalaga_heli", "kalaga_lock": "kalaga_heli", "britton": "vice_night", "hiding": "gellhorn"}
 PLATES = {"hero": load_official("hero"), "vice": load_official("vice"), "kalaga": load_official("kalaga"),
           "keys": load_official("keys"), "grass": load_official("grass")}
 OFFICIAL_ANY = any(v is not None for v in PLATES.values())
@@ -360,16 +402,29 @@ def draw_shot(name, t, a, b, seg):
     p = (t - a) / max(1e-3, b - a); age = t - a
     img = Image.new("RGBA", (W, H), (0, 0, 0, 255)); d = ImageDraw.Draw(img)
     view = None
-    if name in CAM:
-        bg, view = map_frame(name, p, t); img.paste(bg); d = ImageDraw.Draw(img)
+    if name in CAM and name != "punch":
+        mapimg, view = map_frame(name, p, t)
+        img.paste(off_view(MAP_BG.get(name, "hero"), p, 1.05, 1.18, 0.4, 0.2, dark=0.62))
+        lk = 1.0
+        if name == "hook_scan": lk = eout((age - 0.9) / 0.35)
+        if lk > 0:
+            m = LENS_MASK if lk >= 1 else scaled(Image.merge("RGBA", [LENS_MASK] * 4), lk, W / 2, 915).split()[3]
+            mm = np.asarray(m).astype(np.float32) * 0.94
+            img.paste(mapimg, (0, 0), to_img(mm).convert("L"))
+            dd = ImageDraw.Draw(img)
+            if lk >= 1:
+                dd.rounded_rectangle(LENS, 36, outline=(255, 255, 255, 200), width=4)
+                corner_brackets(dd, LENS[0] - 12, LENS[1] - 12, LENS[2] + 12, LENS[3] + 12, YEL, 50, 6)
+        d = ImageDraw.Draw(img)
+    elif name == "punch":
+        view = None
     S = lambda key: to_screen(*PLACES[key], *view)
 
     if name == "hook_scan":
-        if plate_is_official("hero"):
-            img.paste(plate_view("hero", p, 1.25, 1.05)); d = ImageDraw.Draw(img)
-        radar_sweep(img, t, W / 2, 760, 520)
+        radar_sweep(img, t, W / 2, 915, 520)
         d = ImageDraw.Draw(img)
-        x, y = S("kalaga"); red_circle(img, x, y, 170, 130, age / 0.6)
+        if age > 1.1:
+            x, y = S("kalaga"); red_circle(img, x, y, 170, 130, (age - 1.1) / 0.5)
         text_c(d, W / 2, 330, "GTA 6", ANTON(260), WHITE + (255,), 12)
         tag(d, 330, 470, "MAP INTEL // CLASSIFIED", RED, WHITE)
     elif name == "hook_map":
@@ -410,20 +465,12 @@ def draw_shot(name, t, a, b, seg):
         if key == "ambrosia":
             lx, ly = S("lake"); red_circle(img, lx, ly, 110, 110, (age - 0.4) / 0.5, RED, 7)
         marker(img, x, y, age - 0.05, YEL, lab[0], lab[1], side=1 if x < W / 2 else -1)
-        if key == "vice":
-            inset = plate_view("vice", p, 1.0, 1.1).resize((380, 560))
-            fr = rgba(); df = ImageDraw.Draw(fr)
-            k = eout((age - 0.4) / 0.3)
-            if k > 0:
-                ix, iy = W - 450 + int((1 - k) * 600), 250
-                fr.paste(inset, (ix, iy)); df.rectangle([ix, iy, ix + 380, iy + 560], outline=WHITE + (255,), width=6)
-                img.alpha_composite(fr); d = ImageDraw.Draw(img)
-                tag(d, ix, iy + 560 - 50, "© ROCKSTAR GAMES" if plate_is_official("vice") else "ILLUSTRATION", WHITE if plate_is_official("vice") else GREY)
+        ins = {"vice": "vice_sign", "keys": "keys_boats", "grass": "grass_town", "ambrosia": "ambrosia"}[key]
+        off_inset(img, ins, 250, 175, 620, p, age - 0.25)
         d = ImageDraw.Draw(img)
-        tag(d, 40, 200, "OFFICIAL LOCATION", GREEN)
+        tag(d, 40, 110, "OFFICIAL LOCATION", GREEN)
     elif name == "river_grass":
-        img.paste(map_view(-80.9, 25.7, 1.6, src=MAP_BLUR)); d = ImageDraw.Draw(img)
-        d.rectangle([0, 0, W, H], fill=(0, 0, 0, 120))
+        img.paste(off_view("grass", p, 1.1, 1.25, -0.4, 0, dark=0.5)); d = ImageDraw.Draw(img)
         e = back(age / 0.35); lay = rgba(); dl = ImageDraw.Draw(lay)
         cx, cy = W / 2, 760
         dl.rectangle([cx - 300, cy - 420, cx + 300, cy + 420], fill=(232, 222, 196, 255), outline=(60, 50, 40, 255), width=6)
@@ -476,12 +523,17 @@ def draw_shot(name, t, a, b, seg):
             if age > 1.0: tag(d, W / 2 - 160, 520, "OFFICIAL ROCKSTAR LOCATION", GREEN)
         d.text((60, H - 520), "TARGET LOCKED", font=MONT(36, 800), fill=RED)
     elif name == "kalaga_features":
-        img.paste(plate_view("kalaga", p, 1.05, 1.3, 0.2, -0.2)); d = ImageDraw.Draw(img)
-        tag(d, 40, 200, "© ROCKSTAR GAMES" if plate_is_official("kalaga") else "ILLUSTRATION · NOT GAME FOOTAGE", WHITE if plate_is_official("kalaga") else GREY)
         try:
             ts = [word_time("kalaga", w) for w in ("forests", "rivers", "trails")]
         except KeyError:
             ts = [a, a + .6, a + 1.2]
+        cur = "kalaga_forest"; ca = a
+        for k_, key_ in zip(ts, ("kalaga_forest", "kalaga_river", "kalaga_trails")):
+            if t >= k_ - 0.08: cur, ca = key_, k_ - 0.08
+        img.paste(off_view(cur, min(1, (t - ca) / 1.2), 1.0, 1.15, 0.5, 0.1, dark=0.85)); d = ImageDraw.Draw(img)
+        if 0 <= t - ca < 0.1 and cur != "kalaga_forest":
+            img.alpha_composite(Image.new("RGBA", (W, H), (255, 255, 255, int(160 * (1 - (t - ca) / 0.1))))); d = ImageDraw.Draw(img)
+        tag(d, 40, 110, "OFFICIAL SCREENSHOT · MOUNT KALAGA", WHITE)
         for i, (lab, col) in enumerate([("FORESTS", GREEN), ("RIVERS", BLUE), ("TRAILS", YEL)]):
             ak = t - ts[i]
             if ak < 0: continue
@@ -493,14 +545,14 @@ def draw_shot(name, t, a, b, seg):
             lay = lay.transform((W, H), Image.AFFINE, (1, 0, (1 - e) * 700, 0, 1, 0))
             img.alpha_composite(lay)
     elif name == "mountain_rise":
-        img.paste(Image.new("RGBA", (W, H), (8, 10, 14, 255))); d = ImageDraw.Draw(img)
+        img.paste(off_view("kalaga_heli", p, 1.0, 1.2, 0, 0, dark=0.45)); d = ImageDraw.Draw(img)
         for gx in range(0, W, 60): d.line([gx, 0, gx, H], fill=(255, 255, 255, 18))
         for gy in range(0, H, 60): d.line([0, gy, W, gy], fill=(255, 255, 255, 18))
         k = eout(age / 0.7)
         xs = np.arange(0, W + 1, 6)
         prof = 1150 - k * (620 * np.exp(-((xs - 540) / 210) ** 2) + 260 * np.exp(-((xs - 300) / 140) ** 2) + 200 * np.exp(-((xs - 800) / 160) ** 2))
         lay = rgba(); dl = ImageDraw.Draw(lay)
-        dl.polygon([(0, 1250)] + list(zip(xs, prof)) + [(W, 1250)], fill=(40, 60, 50, 255))
+        dl.polygon([(0, 1250)] + list(zip(xs, prof)) + [(W, 1250)], fill=(40, 60, 50, 150))
         for r_ in range(8):
             dl.line(list(zip(xs, prof + r_ * 14)), fill=(120, 160, 130, 120 - r_ * 14), width=2)
         dl.line(list(zip(xs, prof)), fill=YEL + (255,), width=8)
@@ -509,9 +561,11 @@ def draw_shot(name, t, a, b, seg):
         if age > 0.4: stamp(img, W / 2, 330, "A MOUNTAIN", ANTON(170), RED, age - 0.4, rot=-4)
         d.text((60, 1180), "ELEVATION PROFILE", font=MONT(32, 800), fill=GREY)
     elif name == "problem":
-        img.paste(Image.new("RGBA", (W, H), (40, 0, 4, 255))); d = ImageDraw.Draw(img)
+        bgp = np.asarray(off_view("kalaga_heli", p, 1.2, 1.3, dark=1.0).convert("L")).astype(np.float32)
+        red = np.stack([bgp * 0.75 + 30, bgp * 0.08, bgp * 0.1, np.full_like(bgp, 255)], -1)
+        img.paste(to_img(red)); d = ImageDraw.Draw(img)
         on = int(t * 6) % 2 == 0
-        for y_ in range(0, H, 120): d.rectangle([0, y_, W, y_ + 60], fill=(60, 0, 8, 255))
+        for y_ in range(0, H, 120): d.rectangle([0, y_, W, y_ + 60], fill=(60, 0, 8, 90))
         lay = rgba(); dl = ImageDraw.Draw(lay)
         dl.polygon([(W / 2, 470), (W / 2 - 260, 920), (W / 2 + 260, 920)], fill=(RED if on else (200, 20, 30)) + (255,))
         text_c(dl, W / 2, 760, "!", ANTON(300), BLACK + (255,))
@@ -522,7 +576,7 @@ def draw_shot(name, t, a, b, seg):
         marker(img, x, y, age, RED, "BRITTON HILL", "FLORIDA'S HIGHEST POINT", side=1 if x < W / 2 else -1)
         tag(ImageDraw.Draw(img), 40, 200, "REAL-WORLD FACT", WHITE)
     elif name == "compare":
-        img.paste(Image.new("RGBA", (W, H), (10, 12, 16, 255))); d = ImageDraw.Draw(img)
+        img.paste(off_view("ambrosia_sunset", p, 1.1, 1.15, dark=0.22, blur=8)); d = ImageDraw.Draw(img)
         base = 1180; scale_ = 1.45  # px per ft
         k = eout(age / 0.8)
         v = int(345 * k)
@@ -545,7 +599,7 @@ def draw_shot(name, t, a, b, seg):
         text_c(d, sx, base + 125, "305 FT (WITH PEDESTAL)", MONT(28), GREY + (255,))
         text_c(d, W / 2, 230, "THAT'S IT.", ANTON(140), WHITE + (255,), 8)
     elif name == "state_rank":
-        img.paste(Image.new("RGBA", (W, H), (10, 12, 16, 255))); d = ImageDraw.Draw(img)
+        img.paste(off_view("vice_night", p, 1.1, 1.15, dark=0.2, blur=8)); d = ImageDraw.Draw(img)
         rows = [("1", "ALASKA · DENALI", 20310, WHITE), ("2", "CALIFORNIA · WHITNEY", 14505, WHITE), ("49", "DELAWARE", 448, WHITE), ("50", "FLORIDA · BRITTON HILL", 345, RED)]
         for i, (rk, lab, ft, col) in enumerate(rows):
             ak = age - i * 0.15
@@ -561,19 +615,17 @@ def draw_shot(name, t, a, b, seg):
         if age > 0.8: red_circle(img, 520, 360 + 3 * 200 + 60 + 70, 470, 120, (age - .8) / .5)
         if age > 1.0: stamp(img, W / 2, 1180, "DEAD LAST", ANTON(120), RED, age - 1.0, rot=-5)
     elif name == "punch":
-        x, y = S("kalaga")
-        lay = rgba(); dl = ImageDraw.Draw(lay)
-        e = back(age / 0.4); mh = 260 * e
-        dl.polygon([(x - 170, y + 40), (x - 40, y + 40 - mh), (x + 10, y + 40 - mh * .8), (x + 60, y + 40 - mh * 1.0), (x + 190, y + 40)], fill=(230, 235, 240, 255))
-        dl.polygon([(x - 80, y + 40 - mh * .55), (x - 40, y + 40 - mh), (x + 10, y + 40 - mh * .8), (x + 60, y + 40 - mh), (x + 105, y + 40 - mh * .55)], fill=WHITE + (255,))
-        glow_paste(img, lay, 20, 1)
-        d = ImageDraw.Draw(img)
-        stamp(img, W / 2, 300, "A MOUNTAIN", ANTON(150), WHITE, age - 0.2, rot=0, box=False)
-        stamp(img, W / 2, 450, "FLORIDA NEVER HAD", ANTON(110), YEL, age - 0.5, rot=0, box=False)
-        if age > 0.8: red_circle(img, x, y - 60, 260, 230, (age - .8) / .5)
+        img.paste(off_view("kalaga_canyon", p, 1.0, 1.22, 0.3, 0.0, dark=0.95, focal=0.62)); d = ImageDraw.Draw(img)
+        g = rgba(); dg = ImageDraw.Draw(g)
+        for y_ in range(0, 700, 10): dg.rectangle([0, y_, W, y_ + 10], fill=(0, 0, 0, int(170 * (1 - y_ / 700))))
+        img.alpha_composite(g)
+        stamp(img, W / 2, 300, "A MOUNTAIN", ANTON(170), WHITE, age - 0.15, rot=0, box=False)
+        stamp(img, W / 2, 460, "FLORIDA NEVER HAD", ANTON(120), YEL, age - 0.45, rot=0, box=False)
+        if age > 0.8: red_circle(img, 640, 900, 360, 260, (age - .8) / .5)
+        if age > 1.2: arrow(img, 160, 620, 330, 800, (age - 1.2) / .3, YEL)
+        tag(ImageDraw.Draw(img), 40, 110, "OFFICIAL SCREENSHOT · MOUNT KALAGA", WHITE)
     elif name == "official_map":
-        img.paste(map_view(*FULL, src=MAP_BLUR)); d = ImageDraw.Draw(img)
-        d.rectangle([0, 0, W, H], fill=(0, 0, 0, 140))
+        img.paste(off_view("vice_sign", p, 1.0, 1.12, 0.6, 0, dark=0.5)); d = ImageDraw.Draw(img)
         e = back(age / .4); lay = rgba(); dl = ImageDraw.Draw(lay)
         cx, cy = W / 2, 720
         dl.rectangle([cx - 290, cy - 300, cx + 290, cy + 300], fill=WHITE + (255,))
@@ -599,8 +651,7 @@ def draw_shot(name, t, a, b, seg):
         text_c(d, W / 2, 300, "WHAT ELSE", ANTON(130), WHITE + (255,), 8)
         text_c(d, W / 2, 430, "IS HIDDEN?", ANTON(130), RED + (255,), 8)
     elif name == "comments":
-        img.paste(map_view(*FULL, src=MAP_BLUR)); d = ImageDraw.Draw(img)
-        d.rectangle([0, 0, W, H], fill=(0, 0, 0, 150))
+        img.paste(off_view("keys", p, 1.0, 1.12, -0.5, 0, dark=0.4)); d = ImageDraw.Draw(img)
         opts = [("VICE CITY", YEL), ("LEONIDA KEYS", WHITE), ("GRASSRIVERS", WHITE), ("AMBROSIA", WHITE), ("PORT GELLHORN", WHITE), ("MOUNT KALAGA", RED)]
         for i, (lab, col) in enumerate(opts):
             ak = age - i * .1
@@ -689,8 +740,9 @@ def frame(t, fi):
     d.text((98, 58), "LEONIDA // MAP INTEL", font=MONT(28, 800), fill=WHITE)
     if view:
         d.text((W - 400, 58), coords_text(view[0], view[1]), font=MONT(26, 700), fill=YEL)
-        if name not in ("river_grass", "official_map", "comments"):
-            d.text((60, H - 120), "ILLUSTRATIVE MAP · NOT OFFICIAL · POSITIONS APPROXIMATE", font=MONT(24, 700), fill=(220, 220, 220))
+        if name not in ("river_grass", "official_map", "comments", "punch"):
+            d.text((60, H - 150), "MAP: ILLUSTRATION · NOT OFFICIAL · POSITIONS APPROXIMATE", font=MONT(24, 700), fill=(220, 220, 220))
+    if HAVE_OFF: d.text((60, H - 115), "IMAGES © ROCKSTAR GAMES · FAN-MADE, NOT AFFILIATED", font=MONT(24, 700), fill=(220, 220, 220))
     else:
         d.text((W - 400, 58), "SIGNAL // " + f"{int(t * 1000) % 100000:05d}", font=MONT(26, 700), fill=YEL)
     pw = W * min(1, t / TOTAL); d.rectangle([0, 0, pw, 8], fill=RED)

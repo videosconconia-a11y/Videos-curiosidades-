@@ -21,9 +21,10 @@ Leonida mirrors Florida region by region: Vice City is Miami, the Leonida Keys a
 Deliberately **left out**: the Collector's Box map leak (Selfridges, Nov 12) and its new place names, because they are unverified photos of a leak; and fan estimates of the map's size (83–125 km², "2.55× GTA 5"), because Rockstar has published no dimensions.
 
 ## Visuals and image rights
-- The base map is an **original illustration**: a Florida-shaped Leonida, with positions taken from the real-world analogues. It is labelled on screen as "ILLUSTRATIVE MAP · NOT OFFICIAL · POSITIONS APPROXIMATE". It is not Rockstar's map and not a fan reconstruction.
-- **Official Rockstar images are not in this version.** This environment could not download from rockstargames.com: the network first, then the session's permission checks, blocked it. `render.py` is ready for them. Put official screenshots in `assets/official/` named `hero.jpg` (main background behind the hook), `vice.jpg` (Vice City inset) and `kalaga.jpg` (Mount Kalaga plate), and optionally `keys.jpg` / `grass.jpg`. Then run `./build.sh`. They are used automatically, with a "© ROCKSTAR GAMES" credit replacing the "ILLUSTRATION" tag.
-- Rockstar's screenshots are published for media coverage. Using them in a commentary Short is common, but it is not a licence, so keep the credit and the "not affiliated" line in the description.
+- **Backgrounds are official Rockstar Games screenshots** (4K) from rockstargames.com/VI ("Only in Leonida" and the launch gallery). The hero is the Vice City skyline. Each section uses its own region: Leonida Keys (aerial view and boats), Grassrivers (airboat chase and town), Ambrosia (refinery and sunset), Mount Kalaga (helicopter over the hills, forest, river kayak, dirt-bike trails, canyon), Port Gellhorn (motel), plus the giant "VICE CITY" sign. On screen: "IMAGES © ROCKSTAR GAMES · FAN-MADE, NOT AFFILIATED".
+- The images are **not stored in git** (copyright). `./fetch_official.sh` downloads them again from Rockstar's site into `assets/official/`.
+- The map inside the HUD lens is an **original illustration**: a Florida-shaped Leonida with approximate positions. It is labelled "MAP: ILLUSTRATION · NOT OFFICIAL". It is not Rockstar's map and not a fan reconstruction.
+- Rockstar publishes these screenshots for promotion and media. Using them in a commentary Short is common practice, but it is not a licence: keep the credit and the "not affiliated" line.
 - The music and SFX are original and synthesised in `audio.py`. The fonts (Anton, Montserrat) are SIL OFL.
 
 ## Production

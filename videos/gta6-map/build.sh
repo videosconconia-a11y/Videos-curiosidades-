@@ -3,6 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 export HF_HUB_DISABLE_XET=1
+[ -f assets/official/hero.jpg ] || ./fetch_official.sh
 [ -f voice.wav ] && [ -f timings.json ] || python3 voice.py      # delete voice.wav to re-voice
 python3 audio.py
 python3 subs.py
