@@ -3,3 +3,9 @@
 *.part.mp4
 still_*.jpg
 __pycache__/
+videos/*/stills/
+videos/*/assets/img/*_[ab].png
+videos/*/chunk_*.mp4
+videos/*/mix.wav
+videos/*/video_only.mp4
+__pycache__/
