@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from script_data import SCENES, TOTAL, caption_timeline, shot_timeline, hits
+from script_data import SCENES, TOTAL, caption_timeline, shot_timeline, hits, caption_start
 
 W, H, FPS = 1080, 1920, 30
 BW, BH = 1300, 2310
@@ -391,6 +391,105 @@ def end_frame(t, p):
         d.polygon([(cx - 45, yb), (cx + 45, yb), (cx, yb + 60)], fill=RED)
     return img
 
+
+# ---------------------------------------------------------------- testigos: el brazo que se levanta
+def arm_frame(t, p, wide=False):
+    z = (1.0 + 0.12 * ease(p)) if wide else (1.35 + 0.25 * ease(p)); cw, ch = BW / z, BH / z
+    cx, cy = (650, 1155) if wide else (820, 1560)
+    cx = min(max(cx, cw / 2), BW - cw / 2); cy = min(max(cy, ch / 2), BH - ch / 2)
+    img = BG["beach"].resize((W, H), Image.BILINEAR, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2))
+    img = to_img(np.asarray(img, float) * np.array([1.1, 0.85, 0.75]) * 0.9)     # luz de atardecer
+    d = ImageDraw.Draw(img); k = W / cw
+    mx, my, s = (960 - cx) * k + W / 2, (1500 - cy) * k + H / 2, 280 * k
+    man_lying(d, mx, my, s)
+    up = 0 if wide else math.sin(min(1, max(0, (p - 0.15) / 0.55)) * math.pi)                      # sube… y cae
+    ang = math.radians(200 - 110 * up) if p < 0.7 else math.radians(200)
+    sx, sy = mx + 0.02 * s, my - 0.4 * s
+    d.line([sx, sy, sx + 0.55 * s * math.cos(ang), sy + 0.55 * s * math.sin(ang)], fill=(14, 14, 18), width=int(s * 0.07))
+    # pareja de testigos a lo lejos
+    for j, x in enumerate((180, 240)):
+        hh = (150 + j * 10) * k; y0 = (1180 - cy) * k + H / 2; x = (x + 60 - cx) * k + W / 2
+        d.ellipse([x - 14 * k, y0 - hh, x + 14 * k, y0 - hh + 30 * k], fill=(10, 10, 12)); d.rectangle([x - 18 * k, y0 - hh + 28 * k, x + 18 * k, y0], fill=(10, 10, 12))
+    if wide and p > 0.3:
+        dd = ImageDraw.Draw(img, "RGBA"); a = int(255 * min(1, (p - 0.3) / 0.2))
+        text_c(dd, 330, "30 NOV · 19:00", F_MED, (255, 255, 255, a), 6); text_c(dd, 440, "LA NOCHE ANTERIOR", F_SM, RED + (a,), 5)
+    return img
+
+# ---------------------------------------------------------------- la maleta y el nombre
+def suitcase_frame(t, p):
+    a = grad((10, 9, 8), (26, 22, 18), W, H); a = light(a, W / 2, 800, 500, 600, (50, 38, 22))
+    img = to_img(a); d = ImageDraw.Draw(img, "RGBA")
+    d.rectangle([0, 1400, W, H], fill=(20, 17, 14))
+    op = ease((p - 0.2) / 0.4)
+    # tapa (se abre hacia arriba)
+    lid_h = 520 * (1 - op) + 120 * op
+    d.rounded_rectangle([150, 880, 930, 1400], 30, fill=(96, 62, 36), outline=(50, 30, 18), width=8)
+    d.rounded_rectangle([150, 880 - lid_h, 930, 900], 30, fill=(110, 72, 42), outline=(50, 30, 18), width=8)
+    d.rounded_rectangle([450, 830 - lid_h * (1 - op), 630, 880 - lid_h * (1 - op)], 20, outline=(40, 26, 16), width=14)
+    if op > 0.3:   # ropa doblada sin etiquetas
+        for k, c in enumerate([(200, 196, 186), (60, 64, 80), (150, 40, 40), (210, 206, 196)]):
+            d.rectangle([200 + k * 12, 940 + k * 90, 880 - k * 12, 1020 + k * 90], fill=c)
+            d.rectangle([500, 950 + k * 90, 580, 990 + k * 90], fill=(0, 0, 0, 0), outline=(30, 30, 30), width=3)
+    for x in (200, 860): d.rectangle([x - 20, 1110, x + 20, 1170], fill=(170, 150, 90))
+    if p > 0.65:
+        a2 = int(255 * min(1, (p - 0.65) / 0.15))
+        text_c(d, 360, "ESTACIÓN DE ADELAIDA", F_SM, (255, 255, 255, a2), 5)
+    return img
+def keane_frame(t, p):
+    img = cam(BG["wool"], p, (1.2, 1.35, 0, 0))
+    img = to_img(np.asarray(img, float) * np.array([0.7, 0.75, 1.0]))
+    lab = Image.new("RGBA", (700, 240), (0, 0, 0, 0)); dl = ImageDraw.Draw(lab)
+    dl.rectangle([0, 0, 699, 239], fill=(236, 232, 220, 255))
+    n = int(len("T. KEANE") * min(1, p / 0.35))
+    f = ImageFont.truetype(MONO, 120); dl.text((350 - dl.textlength("T. KEANE", font=f) / 2, 50), "T. KEANE"[:n], font=f, fill=(25, 25, 40, 255))
+    lab = lab.rotate(4, expand=True, resample=Image.BICUBIC)
+    img.paste(lab, (int(W / 2 - lab.width / 2), 700), lab)
+    d = ImageDraw.Draw(img, "RGBA")
+    if p > 0.5:
+        a = int(255 * min(1, (p - 0.5) / 0.15))
+        text_c(d, 380, "¿QUIÉN ES?", F_MED, RED + (a,), 6)
+    return img
+
+# ---------------------------------------------------------------- el militar y el libro intacto
+def soldier_frame(t, p):
+    a = grad((20, 24, 18), (40, 44, 32), W, H); a = light(a, W / 2, 700, 420, 800, (50, 50, 30))
+    img = to_img(a); d = ImageDraw.Draw(img, "RGBA")
+    cx = W / 2; col = (20, 22, 16)
+    d.ellipse([cx - 115, 470, cx + 115, 730], fill=col)
+    d.polygon([(cx - 210, 520), (cx + 210, 520), (cx + 150, 430), (cx - 150, 430)], fill=(30, 34, 22))     # gorra
+    d.rectangle([cx - 230, 515, cx + 230, 545], fill=(24, 26, 18))
+    d.polygon([(cx - 400, 1900), (cx - 340, 860), (cx - 80, 760), (cx + 80, 760), (cx + 340, 860), (cx + 400, 1900)], fill=col)
+    for k in range(4): d.ellipse([cx - 12, 900 + k * 120, cx + 12, 924 + k * 120], fill=(150, 130, 70))
+    d.rectangle([cx + 120, 900, cx + 260, 950], fill=(150, 30, 30)); d.rectangle([cx + 120, 950, cx + 260, 975], fill=(40, 80, 140))
+    text_c(d, 1080, "ALF BOXALL", F_SM, (220, 210, 180), 5)
+    if t > caption_start("¿ES EL MUERTO"):
+        text_c(d, 240, "¿ES EL MUERTO?", F_MED, RED, 6)
+    return img
+T_VIVO, T_INTACTO = None, None
+def book_intact_frame(t, p):
+    img = to_img(paper_tex(W, H, 33, ((230, 222, 198), (205, 194, 166))))
+    d = ImageDraw.Draw(img, "RGBA")
+    d.line([0, 0, 60, H], fill=(150, 140, 120), width=4)
+    fi = ImageFont.truetype(SERIF_I, 52)
+    r = np.random.default_rng(2)
+    for k in range(9):
+        y = 300 + k * 82; w = r.uniform(500, 820)
+        d.line([140, y, 140 + w, y], fill=(120, 110, 95), width=10)
+    f = ImageFont.truetype(SERIF_I, 120)
+    text_c(d, 1080, "Tamám Shud", f, (25, 20, 18))
+    if t >= T_VIVO:   # sello: Boxall está vivo
+        sc = 1 + 1.2 * max(0, 1 - (t - T_VIVO) / 0.2)
+        st = Image.new("RGBA", (760, 200), (0, 0, 0, 0)); ds = ImageDraw.Draw(st)
+        ds.rounded_rectangle([8, 8, 752, 192], 16, outline=(30, 140, 60, 235), width=12)
+        fz = ImageFont.truetype(FONT, 110); ds.text((380 - ds.textlength("¡VIVO!", font=fz) / 2, 34), "¡VIVO!", font=fz, fill=(30, 140, 60, 235))
+        st = st.resize((int(760 * sc), int(200 * sc))).rotate(-8, expand=True)
+        img.paste(st, (int(W / 2 - st.width / 2), int(560 - st.height / 2)), st)
+    if t >= T_INTACTO:   # círculo rojo alrededor: la página sigue ahí
+        a = min(1, (t - T_INTACTO) / 0.8)
+        d.arc([180, 1030, 900, 1260], 0, int(360 * a), fill=RED, width=10)
+        if a >= 1: text_c(d, 1600, "PÁGINA ENTERA", F_SM, RED, 4)
+    return img
+
 # ---------------------------------------------------------------- partículas
 DROPS = rng.random((220, 4))
 def draw_rain(img, t, k=1.0):
@@ -412,6 +511,7 @@ def draw_dust(img, t):
         d.ellipse([xx - r, yy - r, xx + r, yy + r], fill=(255, 235, 200, int(40 + s * 80)))
 
 # ---------------------------------------------------------------- fondos
+T_VIVO, T_INTACTO = caption_start("VIVO"), caption_start("CON SU LIBRO")
 print("generando fondos", flush=True)
 BG = {"beach": bg_beach(), "beach_fog": bg_beach(True), "wool": bg_wool(), "trousers": bg_trousers(), "book": bg_book(),
       "house": bg_house(), "page": bg_page(), "report": to_img(paper_tex(BW, BH, 5))}
@@ -424,7 +524,8 @@ def shot_frame(name, t, a, b):
     p = min(max((t - a) / (b - a), 0.0), 1.0)
     F = {"label_tear": label_frame, "pocket": pocket_frame, "suit": suit_frame, "poison": poison_frame, "autopsy": autopsy_frame,
          "car": car_frame, "phone": phone_frame, "house": house_frame, "code": code_frame, "code_zoom": code_zoom_frame,
-         "code_glow": code_glow_frame, "dna": dna_frame, "name": name_frame, "bust": bust_frame, "end_card": end_frame}
+         "code_glow": code_glow_frame, "arm": arm_frame, "arm_wide": lambda t, p: arm_frame(t, p, True), "suitcase": suitcase_frame, "keane": keane_frame,
+         "soldier": soldier_frame, "book_intact": book_intact_frame, "dna": dna_frame, "name": name_frame, "bust": bust_frame, "end_card": end_frame}
     if name in F:
         img = F[name](t, p)
         if name in ("suit", "bust", "book", "autopsy", "name", "code"): draw_dust(img, t)

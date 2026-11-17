@@ -1,6 +1,6 @@
 # El hombre de Somerton (1948) — misterio real sin resolver
 
-Vídeo vertical 9:16 de ~50 s con voz en off masculina en español de España, música de misterio, efectos y subtítulos.
+Vídeo vertical 9:16 de ~75 s con voz en off masculina en español de España, música de misterio, efectos y subtítulos.
 Misma estructura que `videos/paso-dyatlov` (ver su README): `script_data.py`, `tts.py`, `audio.py`, `render.py`, `build.sh`.
 
 ## Usar otra voz (p. ej. la de CapCut/ElevenLabs de tus otros vídeos)

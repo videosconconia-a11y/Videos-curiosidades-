@@ -15,6 +15,15 @@
   https://www.yourlifechoices.com.au/crime/sa-police-report-to-coroner-into-somerton-man-case-complete-very-soon/ ·
   https://ciphermysteries.com/2022/07/26/somerton-man-identified-as-carl-charles-webb-but-mystery-still-intact
 
+- La noche anterior (30 nov., ~19:00) varios testigos vieron a un hombre tumbado en ese punto que levantó el brazo
+  derecho y lo dejó caer; cigarro sin encender tras la oreja y otro sobre el cuello del abrigo —
+  https://en.wikipedia.org/wiki/Somerton_Man · https://www.smithsonianmag.com/history/the-enduring-mystery-somerton-man-one-of-australias-most-puzzling-cold-cases-50795611/
+- Maleta en la consigna de la estación de Adelaida: etiquetas quitadas salvo el nombre «T. Keane» (y «Kean») —
+  https://www.mentalfloss.com/history/mystery/mysterious-death-somerton-man
+- La enfermera («Jestyn») había regalado un *Rubaiyat* a Alf Boxall; la policía creyó que podía ser el muerto, pero
+  Boxall estaba vivo en Sídney y conservaba su ejemplar completo —
+  https://www.eleceng.adelaide.edu.au/personal/dabbott/wiki/index.php/List_of_facts_on_the_Taman_Shud_Case_that_are_often_misreported
+
 ## Precisiones
 - «Tamám shud» se traduce como «se acabó / terminado» (última frase del *Rubaiyat*).
 - No se cuenta que la enfermera «se desmayara» al ver el busto: es un dato muy repetido pero dudoso.

@@ -112,6 +112,11 @@ for name in ("code_zoom", "code_glow"):
     a0, b0 = shot_start(name)
     add(np.sign(np.sin(2 * np.pi * 50 * t)) * 0.3 * seg(a0, b0, 0.05) * (0.6 + 0.4 * (rng.random(N) > 0.5)), 0.05)
 
+# --- cierres de la maleta
+a0, b0 = shot_start("suitcase")
+for f in (0.2, 0.26):
+    add(at(a0 + (b0 - a0) * f, hp(rng.standard_normal(int(0.012 * SR)), 0.3) * np.exp(-np.arange(int(0.012 * SR)) / 100)), 0.6)
+
 # --- woosh en cada corte
 for (a, b, s) in shot_timeline()[1:]:
     x = rng.standard_normal(N); m = np.exp(-((t - a) / 0.13) ** 2)

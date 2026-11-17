@@ -7,7 +7,9 @@ python3 audio.py
 python3 -c "from script_data import write_srt; write_srt('subtitulos.srt')"
 N=$(python3 -c "from script_data import SCENES; print(len(SCENES))")
 # render en paralelo (2 procesos)
-python3 render.py video $(seq 0 2 $((N-1))) & python3 render.py video $(seq 1 2 $((N-1))); wait
+python3 render.py video $(seq 0 2 $((N-1))) & P1=$!
+python3 render.py video $(seq 1 2 $((N-1)))
+wait $P1   # falla si el otro proceso ha fallado
 for i in $(seq 0 $((N-1))); do printf "file 'scene_%02d.mp4'\n" "$i"; done > list.txt
 ffmpeg -y -loglevel error -f concat -safe 0 -i list.txt -c copy video_only.mp4
 ffmpeg -y -loglevel error -i video_only.mp4 -i mix.wav -map 0:v -map 1:a -c:v libx264 -preset veryfast \

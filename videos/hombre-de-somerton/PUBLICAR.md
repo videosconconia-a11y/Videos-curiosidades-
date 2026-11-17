@@ -4,7 +4,7 @@
 
 **Descripción:**
 Australia, 1948. Un hombre aparece muerto sin ninguna herida y con todas las etiquetas de su ropa arrancadas.
-En un bolsillo secreto llevaba dos palabras: «Tamám Shud», «se acabó». Y en un libro, un código que nadie ha descifrado.
+En un bolsillo secreto llevaba dos palabras: «Tamám Shud», «se acabó». Su maleta, otro nombre falso. Un militar que «resucita». Y un código que nadie ha descifrado.
 Caso real: el hombre de Somerton. ¿Espía, amante… o algo peor? 👇
 
 **Hashtags:**

@@ -1,6 +1,6 @@
 # Instrucciones para Claude
 
-Este repositorio genera vídeos cortos de curiosidades en español de España (9:16, 45–60 s).
+Este repositorio genera vídeos cortos de curiosidades en español de España (9:16, 45–80 s; máximo 1 min 20 s).
 
 ## Al crear un vídeo nuevo
 1. Copia `videos/rana-de-bosque` a `videos/<tema>` y reescribe `script_data.py`.
