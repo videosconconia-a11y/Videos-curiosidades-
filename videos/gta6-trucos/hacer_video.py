@@ -32,6 +32,9 @@ SEGMENTOS = [
      "¿CUÁL PRUEBAS PRIMERO?", "",
      [(NGT, 4.0, 6.5, CA)]),
 ]
+NOMBRE, BORRADOR = "final_9x16", False
+if len(sys.argv) > 4:  # guion alternativo: define SEGMENTOS, NOMBRE y BORRADOR
+    exec(open(sys.argv[4], encoding="utf-8").read())
 PAUSA = 0.25
 # 1) Voz por segmento
 durs, wavs = [], []
@@ -65,14 +68,16 @@ for si, (_t, rot, cod, _c) in enumerate(SEGMENTOS):
     en = f"enable='between(t,{t0:.3f},{t1:.3f})'"
     pop = f"fontsize='if(lt(t-{t0:.3f},0.15),{{s}}*(0.7+2*(t-{t0:.3f})),{{s}})'"
     txt.append(f"drawtext=fontfile={F}:text='{esc(rot)}':fontcolor=#FFD400:borderw=6:bordercolor=black:"
-               f"fontsize=64:x=(w-tw)/2:y=330:{en}")
+               f"fontsize={min(64, int(1550/max(1,len(rot))))}:x=(w-tw)/2:y=330:{en}")
     if cod:
         txt.append(f"drawtext=fontfile={F}:text='{esc(cod)}':fontcolor=white:borderw=8:bordercolor=black:"
-                   f"fontsize=88:x=(w-tw)/2:y=420:{en}")
+                   f"fontsize={min(88, int(1550/max(1,len(cod))))}:x=(w-tw)/2:y=420:{en}")
     t0 = t1
 f.append("[cine]split[a][b];[a]scale=-2:1920:flags=bicubic,crop=1080:1920,boxblur=30:3,"
          "eq=brightness=-0.15:saturation=1.1[bg];[b]scale=-2:680:flags=lanczos,crop=1080:680,"
          "unsharp=5:5:0.4[fg];[bg][fg]overlay=0:(H-h)/2," + ",".join(txt) +
+         (f",drawtext=fontfile={F}:text='BORRADOR':fontcolor=white@0.55:fontsize=34:x=w-tw-30:y=h-80"
+            if BORRADOR else "") +
          f",fade=t=out:st={total-0.6:.3f}:d=0.6,setsar=1,format=yuv420p[v]")
 # 4) Audio de voz (con pausas) y masterizado
 for i, w in enumerate(wavs):
@@ -83,7 +88,7 @@ f.append("".join(f"[a{i}]" for i in range(len(wavs))) + f"concat=n={len(wavs)}:v
          "equalizer=f=3500:t=q:w=1:g=2,loudnorm=I=-14:TP=-1[aout]")
 cmd += ["-filter_complex", ";".join(f), "-map", "[v]", "-map", "[aout]", "-c:v", "libx264",
         "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
-        "-movflags", "+faststart", "-t", f"{total:.3f}", f"{OUT}/final_9x16.mp4"]
+        "-movflags", "+faststart", "-t", f"{total:.3f}", f"{OUT}/{NOMBRE}.mp4"]
 print(f"{len(SEGMENTOS)} segmentos, {total:.1f} s")
 subprocess.run(cmd, check=True)
 # 5) Subtítulos .srt
@@ -94,4 +99,4 @@ t0, out = 0.0, []
 for i, (txt_, *_r) in enumerate(SEGMENTOS):
     out.append(f"{i+1}\n{ts(t0)} --> {ts(t0+durs[i]-PAUSA)}\n{txt_}\n")
     t0 += durs[i]
-open(f"{OUT}/subtitulos.srt", "w").write("\n".join(out))
+open(f"{OUT}/{NOMBRE}.srt", "w").write("\n".join(out))
