@@ -1,6 +1,7 @@
 # Narración con IA + tiempos por palabra (faster-whisper) para sincronizar subtítulos e imágenes.
 #   TTS_ENGINE=openai python3 voice.py   -> OpenAI gpt-4o-mini-tts, español de España enérgico (por defecto)
 #   TTS_ENGINE=piper  python3 voice.py   -> Piper es_ES-davefx-medium (sin conexión)
+#   TTS_ENGINE=files  python3 voice.py   -> procesa voice/raw/*.wav (voice_chatterbox.py, gratis)
 # La clave de OpenAI se lee de OPENAI_API_KEY (en la nube la inyecta el proxy del entorno).
 import os, sys, json, wave, subprocess, urllib.request
 import numpy as np
@@ -42,9 +43,14 @@ if ENGINE == "piper":
     pv = PiperVoice.load(os.environ.get("PIPER_VOICE", "/tmp/claude-0/voices/es_ES-davefx-medium.onnx"))
     pcfg = SynthesisConfig(length_scale=0.93, noise_scale=0.62, noise_w_scale=0.85)   # más ágil y expresiva
 
+TEMPO = float(os.environ.get("TTS_TEMPO", 1.0))   # >1 acelera sin cambiar el tono
+
 def synth(text, path):
     tmp = path + ".raw.wav"
-    if ENGINE == "openai":
+    if ENGINE == "files":     # audios ya generados (p. ej. voice_chatterbox.py) en voice/raw/
+        import shutil; shutil.copy(os.path.join(OUT, "raw", os.path.basename(path)), tmp)
+        chain = (f"rubberband=tempo={TEMPO}:pitchq=quality," if TEMPO != 1.0 else "") + CHAIN_OPENAI
+    elif ENGINE == "openai":
         tts_openai(text, tmp); chain = CHAIN_OPENAI
     else:
         with wave.open(tmp, "wb") as w: pv.synthesize_wav(text, w, syn_config=pcfg)
