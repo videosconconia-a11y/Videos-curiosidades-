@@ -25,7 +25,7 @@ LINES = [
       shots=[dict(img="Raul_Bautista_01", fx=0.55, e="step", n=2),
              dict(img="Raul_Bautista_04", fx=0.45, e="zoom", w=5),
              dict(img="Raul_Bautista_02", fx=0.42, e="zoom", w=12),
-             dict(img="Port_Gellhorn_03", fx=0.42, e="circle", t=(0.37, 0.55), w=17)]),
+             dict(img="Port_Gellhorn_03", fx=0.42, e="circle", t=(0.41, 0.47), w=17)]),
  dict(tts="Paso tres: ese botín no vale nada hasta que se lo vendes a un perista. Hay uno para joyas, otro para el oro, otro para la droga... y se desbloquean con la historia.",
       caps="*PASO* *3:* ese *botín* no vale *nada* hasta que se lo vendes a un *perista.* Hay uno para *joyas,* otro para el *oro,* otro para la *droga...* y se *desbloquean* con la *historia.*",
       shots=[dict(img="Port_Gellhorn_02", fx=0.42, e="step", n=3),
