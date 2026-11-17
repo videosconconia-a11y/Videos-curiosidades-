@@ -286,6 +286,56 @@ def rays_layer(t, col, n=16, cx=W / 2, cy=H * 0.42, alpha=60):
     arr = np.zeros((H, W, 4), np.uint8); arr[..., :3] = col; arr[..., 3] = (m * alpha).astype(np.uint8)
     return Image.fromarray(arr)
 
+# ------------------------------------------------------------------ official Rockstar images (assets/official, see fetch_official.sh)
+OFFDIR = os.path.join(HERE, "assets", "official")
+FOCAL = {}
+for ln in open(os.path.join(HERE, "official_images.txt")):
+    if ln.strip() and not ln.startswith("#"):
+        k_, _, fx = ln.split()[:3]; FOCAL[k_] = float(fx)
+def _load(k):
+    f = os.path.join(OFFDIR, k + ".jpg")
+    if not os.path.exists(f): return None
+    im = Image.open(f).convert("RGB"); sc = max(2300 / im.height, 1300 / im.width)
+    return im.resize((int(im.width * sc), int(im.height * sc)), Image.LANCZOS)
+OFF = {k: _load(k) for k in FOCAL}
+HAVE_OFF = all(v is not None for v in OFF.values())
+def photo(key, p, z0=1.0, z1=1.15, dx=0.0, dy=0.0, dark=1.0, blur=0, focal=None, size=(W, H)):
+    """Ken-Burns crop of an official image to `size` (default full 9:16 frame)."""
+    im = OFF.get(key); w_, h_ = size
+    if im is None: return Image.new("RGBA", size, (20, 10, 30, 255))
+    p = min(max(p, 0), 1); z = z0 + (z1 - z0) * (ease(p) * .5 + p * .5)
+    ch = im.height / z; cw = ch * w_ / h_
+    if cw > im.width: cw = im.width / z; ch = cw * h_ / w_
+    fx = FOCAL.get(key, .5) if focal is None else focal
+    cx = im.width * fx + dx * (p - .5) * cw * 0.3; cy = im.height / 2 + dy * (p - .5) * (im.height - ch)
+    cx = min(max(cx, cw / 2), im.width - cw / 2); cy = min(max(cy, ch / 2), im.height - ch / 2)
+    v = im.resize(size, Image.BILINEAR, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2)).convert("RGBA")
+    if blur: v = v.filter(ImageFilter.GaussianBlur(blur))
+    if dark != 1.0:
+        a_ = np.asarray(v).astype(np.float32); a_[..., :3] *= dark; v = to_img(a_)
+    return v
+def framed(img, key, x, y, w, h, p, age, rot=0, label=None, border=WHITE):
+    """photo card that slides/scales in"""
+    if age < 0: return
+    e = back(age / 0.3)
+    card = photo(key, p, 1.0, 1.12, 0.5, 0, size=(w, h))
+    lay = rgba(); lay.paste(card, (int(x), int(y))); dl = ImageDraw.Draw(lay)
+    dl.rectangle([x, y, x + w, y + h], outline=border + (255,), width=8)
+    if label:
+        tw = dl.textlength(label, font=MONT(28, 800))
+        dl.rectangle([x, y + h - 48, x + tw + 26, y + h], fill=(0, 0, 0, 220)); dl.text((x + 13, y + h - 42), label, font=MONT(28, 800), fill=WHITE + (255,))
+    if rot: lay = lay.rotate(rot, Image.BICUBIC, center=(x + w / 2, y + h / 2))
+    glow_paste(img, scaled_layer(lay, max(.01, e), x + w / 2, y + h / 2), 20, 0.5)
+# thumbnails for the "90 clips" grid: random crops of every official image
+_rt = np.random.default_rng(31); TILES = []
+_keys = [k for k in FOCAL if OFF.get(k) is not None]
+for i_ in range(90):
+    k_ = _keys[i_ % len(_keys)] if _keys else None
+    if k_ is None: TILES.append(Image.new("RGB", (108, 62), (40, 20, 50))); continue
+    im_ = OFF[k_]; cw_ = im_.width * _rt.uniform(.25, .5); ch_ = cw_ * 62 / 108
+    x_ = _rt.uniform(0, im_.width - cw_); y_ = _rt.uniform(0, im_.height - ch_)
+    TILES.append(im_.resize((108, 62), Image.BILINEAR, box=(x_, y_, x_ + cw_, y_ + ch_)))
+
 # ------------------------------------------------------------------ shots
 GRAIN = [(np.random.default_rng(k).standard_normal((H // 2, W // 2)) * 6) for k in range(4)]
 VIG = np.clip(1.18 - (((XX - W / 2) / (W * 0.62)) ** 2 + ((YY - H / 2) / (H * 0.62)) ** 2) * 0.55, 0.3, 1)[..., None].astype(np.float32)
@@ -296,8 +346,9 @@ FEED = np.random.default_rng(9).random((12, 4))
 BILLS = np.random.default_rng(12).random((40, 4))
 CONF = np.random.default_rng(13).random((90, 5))
 
+NUM_BG = {5: "trailer2", 4: "trailer1", 3: "gr_gator", 2: "cover", 1: "vc_night"}
 def num_card(img, t, age, n, col):
-    img.paste(BG_PURPLE)
+    img.paste(photo(NUM_BG[n], min(1, age / 1.5), 1.05, 1.25, dark=0.5, blur=4))
     img.alpha_composite(rays_layer(t, col, 14, alpha=70))
     s = back(age / 0.35) if age < 0.35 else 1 + 0.02 * math.sin(age * 6)
     lay = rgba(); d = ImageDraw.Draw(lay)
@@ -319,8 +370,10 @@ def draw_shot(name, t, a, b, seg):
     def bgcam(bg, z0, z1, dx=0, dy=0): img.paste(cam(bg, p, z0, z1, dx, dy).convert("RGBA"))
 
     if name == "hook_city":
-        bgcam(BG_SUN, 1.0, 1.32, 0.2, 0.25)
-        img.alpha_composite(rays_layer(t, (255, 160, 80), 10, cy=H * 0.53, alpha=25))
+        img.paste(photo("rooftop", p, 1.0, 1.18, 0, 0.6))
+        g_ = rgba(); dg_ = ImageDraw.Draw(g_)
+        for y_ in range(0, 900, 12): dg_.rectangle([0, y_, W, y_ + 12], fill=(10, 0, 30, int(150 * (1 - y_ / 900))))
+        img.alpha_composite(g_)
         s = back(age / 0.4) if age < 0.4 else 1 + 0.03 * age
         lay = rgba(); d = ImageDraw.Draw(lay)
         text_c(d, W / 2, 470, "GTA 6", ANTON(330), WHITE + (255,), 16, (60, 0, 80, 255))
@@ -330,7 +383,7 @@ def draw_shot(name, t, a, b, seg):
         if age > 0.35:
             text_c(d, W / 2, 720, "SECRETS", ANTON(130), PINK + (255,), 10, (30, 0, 40, 255))
     elif name == "hook_five":
-        bgcam(BG_NIGHT_BLUR, 1.1, 1.25)
+        img.paste(photo("hero", p, 1.0, 1.15, 0.5, 0, dark=0.55))
         d = ImageDraw.Draw(img)
         for k in range(5):
             ak = age - k * 0.1
@@ -338,8 +391,10 @@ def draw_shot(name, t, a, b, seg):
             e = back(ak / 0.3)
             x = W / 2 + (k - 2) * 190; y = 640 + abs(k - 2) * 40
             lay = rgba(); dl = ImageDraw.Draw(lay)
-            dl.rounded_rectangle([x - 85, y - 130, x + 85, y + 130], 22, fill=(20, 6, 40, 255), outline=[CYAN, PINK, GOLD, GREEN, ORANGE][k] + (255,), width=8)
-            text_c(dl, x, y - 10, "?" if age < 1.2 + k * 0.05 else str(5 - k), ANTON(150), WHITE + (255,))
+            th_ = photo(["trailer2", "trailer1", "gr_gator", "cover", "masked"][k], 0.5, 1.0, 1.0, dark=0.55, size=(170, 260))
+            lay.paste(th_, (int(x - 85), int(y - 130)))
+            dl.rounded_rectangle([x - 85, y - 130, x + 85, y + 130], 22, outline=[CYAN, PINK, GOLD, GREEN, ORANGE][k] + (255,), width=8)
+            text_c(dl, x, y - 10, "?" if age < 1.2 + k * 0.05 else str(5 - k), ANTON(150), WHITE + (255,), 8, (0, 0, 0, 255))
             lay = lay.rotate((k - 2) * -7, Image.BICUBIC, center=(x, y + 200))
             lay = scaled_layer(lay, max(0.01, e), x, y)
             glow_paste(img, lay, 18, 0.9)
@@ -349,13 +404,13 @@ def draw_shot(name, t, a, b, seg):
         n = int(name[3:]); col = {5: CYAN, 4: GREEN, 3: ORANGE, 2: PINK, 1: GOLD}[n]
         num_card(img, t, age, n, col)
     elif name == "film_strip":
-        bgcam(BG_NIGHT_BLUR, 1.0, 1.1)
+        img.paste(photo("trailer2", p, 1.0, 1.15, 0, 0.3, dark=0.75))
         lay = rgba(); d = ImageDraw.Draw(lay)
         y0 = 360; hh = 560; off = -(age * 420) % 520
         d.rectangle([-10, y0, W + 10, y0 + hh], fill=(12, 10, 14, 255))
         for k in range(-1, 4):
             x = k * 520 + off - 260
-            fr = cam(BG_SUN if k % 2 else BG_NIGHT, 0.3 + k * 0.17, 1.6, 1.9, 0.5, 0.3).resize((460, 440))
+            fr = photo(["vc_marina", "jason_action", "gr_airboat", "keys", "lucia_gun"][k + 1], 0.5, 1.0, 1.0, size=(460, 440))
             lay.paste(fr.convert("RGBA"), (int(x + 30), y0 + 60))
             for hy in (y0 + 15, y0 + hh - 45):
                 for hx in range(0, 520, 70):
@@ -366,8 +421,7 @@ def draw_shot(name, t, a, b, seg):
         text_c(d, W / 2, 280, "TRAILER 2", ANTON(150), WHITE + (255,), 10, (0, 0, 0, 255))
         stamp(img, W / 2, 1060, "100% IN-GAME", ANTON(120), GREEN, age - 0.9, rot=-6)
     elif name == "console":
-        bgcam(BG_TEAL, 1.0, 1.0)
-        img.alpha_composite(rays_layer(t, CYAN, 12, cy=700, alpha=35))
+        img.paste(photo("jason_drive", p, 1.0, 1.15, -0.5, 0, dark=0.55))
         s = eout(age / 0.4) * 0.15 + 0.85 + 0.04 * p
         lay = rgba(); d = ImageDraw.Draw(lay)
         # generic gamepad silhouette
@@ -391,8 +445,8 @@ def draw_shot(name, t, a, b, seg):
     elif name == "split_half":
         d = ImageDraw.Draw(img)
         prog = eout(age / 0.35)
-        left = cam(BG_SUN, 0.3 + p * 0.2, 1.4, 1.5, -0.5, 0.2).convert("RGBA")
-        right = cam(BG_NIGHT, 0.6, 1.6, 1.8, 0.5, 0.1).convert("RGBA")
+        left = photo("jason_action", p, 1.0, 1.12, 0.3, 0)
+        right = photo("vc_incar", p, 1.05, 1.15, -0.3, 0)
         mask = Image.new("L", (W, H), 0); dm = ImageDraw.Draw(mask)
         xm = W / 2
         dm.polygon([(0, 0), (xm + 140, 0), (xm - 140, H), (0, H)], fill=255)
@@ -413,8 +467,9 @@ def draw_shot(name, t, a, b, seg):
                 text_c(dl, cx, 590, lab, ANTON(90), WHITE + (255,), 8, (0, 0, 0, 255))
                 glow_paste(img, scaled_layer(lay, max(.01, e), cx, 480), 16, 0.8)
     elif name == "leak_alert":
-        bgcam(BG_RED, 1, 1)
-        fr = cam(BG_SUN, 0.5, 1.2, 1.3).convert("RGBA").filter(ImageFilter.GaussianBlur(9)).resize((820, 1100))
+        img.paste(photo("trailer1", p, 1.2, 1.3, dark=0.35, blur=12))
+        img.alpha_composite(Image.new("RGBA", (W, H), (120, 0, 10, 90)))
+        fr = photo("trailer1", p, 1.0, 1.08, size=(820, 1100))
         img.paste(fr, (130, 260))
         d = ImageDraw.Draw(img)
         d.rectangle([130, 260, 950, 1360], outline=RED, width=10)
@@ -429,8 +484,7 @@ def draw_shot(name, t, a, b, seg):
             lay = lay.transform((W, H), Image.AFFINE, (1, 0, -(1 - e) * 900, 0, 1, 0))
             img.alpha_composite(lay)
     elif name == "views_counter":
-        bgcam(BG_PURPLE, 1, 1)
-        draw_grid(img, t, PINK, 1150, 1.2, 120)
+        img.paste(photo("jl_club", p, 1.0, 1.15, 0.4, 0, dark=0.4))
         d = ImageDraw.Draw(img)
         v = 90_000_000 * eout(min(1, age / 1.6))
         lay = rgba(); dl = ImageDraw.Draw(lay)
@@ -449,8 +503,8 @@ def draw_shot(name, t, a, b, seg):
         if age > 0.6:
             stamp(img, W / 2, 900, "IN 24 HOURS", ANTON(110), CYAN, age - 0.6, rot=0, box=False)
     elif name == "trophy":
-        bgcam(BG_GOLD, 1, 1)
-        img.alpha_composite(rays_layer(t, GOLD, 18, cy=640, alpha=60))
+        img.paste(photo("vc_sign", p, 1.0, 1.15, 0.6, 0, dark=0.6))
+        img.alpha_composite(rays_layer(t, GOLD, 18, cy=640, alpha=45))
         e = back(age / 0.4)
         lay = rgba(); dl = ImageDraw.Draw(lay)
         cx, cy = W / 2, 640
@@ -473,30 +527,34 @@ def draw_shot(name, t, a, b, seg):
         if age > 0.35:
             text_c(d, W / 2, 1080, "WORLD RECORD", ANTON(140), WHITE + (255,), 10, (60, 30, 0, 255))
     elif name == "florida_map":
-        bgcam(BG_TEAL, 1, 1)
-        draw_grid(img, t * 0.5, CYAN, 0, 0.4, 40)
+        img.paste(photo("gr_gator", p, 1.0, 1.15, -0.4, 0, dark=0.8))
+        P_SCALE = 0.42
         # stylised Florida-like peninsula (Leonida is Rockstar's fictional Florida)
         P = [(220, 300), (700, 300), (720, 340), (770, 360), (800, 420), (820, 520), (850, 620), (880, 720), (900, 820), (905, 920),
              (880, 1010), (840, 1060), (800, 1080), (770, 1050), (730, 980), (690, 900), (660, 820), (620, 740), (590, 660),
              (560, 590), (520, 520), (470, 470), (400, 430), (330, 410), (260, 400), (220, 380)]
+        tf = lambda x, y: (560 + (x - 220) * 0.6, 400 + (y - 300) * 0.6)
+        P = [tf(*q) for q in P]
         lay = rgba(); dl = ImageDraw.Draw(lay)
+        dl.rounded_rectangle([520, 360, 1040, 900], 30, fill=(0, 0, 0, 150), outline=(255, 255, 255, 160), width=3)
         k = max(2, int(len(P) * eout(age / 0.7)))
         dl.polygon(P, fill=(255, 45, 149, int(60 * min(1, age / 0.7))))
         dl.line(P[:k] + ([P[0]] if k == len(P) else []), fill=PINK + (255,), width=10, joint="curve")
         glow_paste(img, lay, 18, 1.1)
         d = ImageDraw.Draw(img)
-        for i, (px, py) in enumerate([(820, 900), (760, 520), (420, 420), (650, 760), (860, 1040)]):
+        for i, (px, py) in enumerate([tf(*q) for q in [(820, 900), (760, 520), (420, 420), (650, 760), (860, 1040)]]):
             ak = age - 0.5 - i * 0.18
             if ak < 0: continue
             e = back(ak / 0.25)
             lay = rgba(); dl = ImageDraw.Draw(lay)
-            dl.ellipse([px - 30, py - 90, px + 30, py - 30], fill=GOLD + (255,)); dl.polygon([(px - 26, py - 50), (px + 26, py - 50), (px, py)], fill=GOLD + (255,))
-            dl.ellipse([px - 12, py - 72, px + 12, py - 48], fill=(40, 10, 0, 255))
+            dl.ellipse([px - 20, py - 60, px + 20, py - 20], fill=GOLD + (255,)); dl.polygon([(px - 17, py - 33), (px + 17, py - 33), (px, py)], fill=GOLD + (255,))
+            dl.ellipse([px - 8, py - 48, px + 8, py - 32], fill=(40, 10, 0, 255))
             glow_paste(img, scaled_layer(lay, max(.01, e), px, py), 10, 0.8)
         text_c(d, W / 2, 1230, "FLORIDA MAN ENERGY", ANTON(105), WHITE + (255,), 8, (0, 0, 0, 255))
         text_c(d, W / 2, 260, "TRAILER 1", ANTON(110), GOLD + (255,), 8, (0, 0, 0, 255))
+        tg_ = "OFFICIAL SCREENSHOT · GRASSRIVERS"; d.rectangle([40, 1080, 60 + d.textlength(tg_, font=MONT(28, 800)), 1128], fill=(0, 0, 0, 200)); d.text((50, 1088), tg_, font=MONT(28, 800), fill=WHITE)
     elif name == "phone_feed":
-        bgcam(BG_PURPLE, 1, 1)
+        img.paste(photo("vc_beach", p, 1.1, 1.2, dark=0.4, blur=10))
         lay = rgba(); d = ImageDraw.Draw(lay)
         x0, y0, x1, y1 = 240, 170, 840, 1340
         phone_frame(d, x0, y0, x1, y1)
@@ -506,7 +564,10 @@ def draw_shot(name, t, a, b, seg):
             yy = k * 330 - off + 100
             fx, fy, fs, fc = FEED[k]
             col = tuple(int(c) for c in np.array([PINK, CYAN, ORANGE, GREEN][k % 4]) * 0.6)
-            ds.rounded_rectangle([24, yy, scr.width - 24, yy + 300], 26, fill=col + (255,))
+            fk_ = ["gr_gator2", "pg_bbq", "amb_bikers", "jl_bar", "vc_beach", "gr_gator"][k]
+            ph_ = photo(fk_, 0.5, 1.0, 1.0, size=(scr.width - 48, 300))
+            mk_ = Image.new("L", ph_.size, 0); ImageDraw.Draw(mk_).rounded_rectangle([0, 0, ph_.width, 300], 26, fill=255)
+            scr.paste(ph_, (24, int(yy)), mk_)
             ds.polygon([(scr.width / 2 - 30, yy + 110), (scr.width / 2 - 30, yy + 190), (scr.width / 2 + 40, yy + 150)], fill=(255, 255, 255, 230))
             ds.text((44, yy + 240), f"{int(1 + fx * 40)}.{int(fs * 9)}M views", font=MONT(34), fill=(255, 255, 255, 255))
         m = Image.new("L", scr.size, 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, scr.width, scr.height], 52, fill=255)
@@ -521,18 +582,12 @@ def draw_shot(name, t, a, b, seg):
             hx, hyy, r_ = x, 1300 - hy, 26
             d.ellipse([hx - r_ * 2, hyy - r_, hx, hyy + r_], fill=PINK); d.ellipse([hx, hyy - r_, hx + r_ * 2, hyy + r_], fill=PINK)
             d.polygon([(hx - r_ * 2 + 3, hyy + 8), (hx + r_ * 2 - 3, hyy + 8), (hx, hyy + r_ * 2.6)], fill=PINK)
-        stamp(img, W / 2, 1180, "REAL VIRAL CLIPS", ANTON(100), GOLD, age - 0.7, rot=-5)
+        stamp(img, W / 2, 1180, "MATCHED TO REAL CLIPS", ANTON(90), GOLD, age - 0.7, rot=-5)
     elif name == "hammers":
-        bgcam(BG_SUN_BLUR, 1.2, 1.35, 0, 0.3)
+        img.paste(photo("redcar", p, 1.0, 1.15, 0.3, 0, dark=0.85))
         lay = rgba(); d = ImageDraw.Draw(lay)
         # car silhouette
         cx, cy = W / 2, 980
-        d.rounded_rectangle([cx - 400, cy - 60, cx + 400, cy + 120], 60, fill=(30, 10, 50, 255))
-        d.polygon([(cx - 240, cy - 60), (cx - 150, cy - 220), (cx + 170, cy - 220), (cx + 280, cy - 60)], fill=(30, 10, 50, 255))
-        d.polygon([(cx - 200, cy - 70), (cx - 135, cy - 195), (cx + 10, cy - 195), (cx + 10, cy - 70)], fill=(120, 200, 255, 255))
-        d.polygon([(cx + 30, cy - 70), (cx + 30, cy - 195), (cx + 160, cy - 195), (cx + 240, cy - 70)], fill=(120, 200, 255, 255))
-        for wx in (-250, 250):
-            d.ellipse([cx + wx - 85, cy + 50, cx + wx + 85, cy + 220], fill=(8, 4, 12, 255)); d.ellipse([cx + wx - 40, cy + 95, cx + wx + 40, cy + 175], fill=(90, 90, 110, 255))
         # cracks after hits
         hits = [0.35, 0.75, 1.15, 1.55]
         nh = sum(1 for hh in hits if age > hh)
@@ -555,26 +610,27 @@ def draw_shot(name, t, a, b, seg):
             img.alpha_composite(hl)
         d = ImageDraw.Draw(img)
         text_c(d, W / 2, 300, "x2 HAMMERS", ANTON(140), GOLD + (255,), 10, (0, 0, 0, 255))
-        text_c(d, W / 2, 1270, "REAL 2020 VIRAL VIDEO", MONT(52), WHITE + (255,), 4, (0, 0, 0, 255))
+        text_c(d, W / 2, 1220, "PARODY OF A REAL 2020 VIRAL VIDEO", MONT(42), WHITE + (255,), 4, (0, 0, 0, 255))
     elif name in ("game_box", "box_open"):
-        bgcam(BG_NIGHT_BLUR, 1.05, 1.15)
-        img.alpha_composite(rays_layer(t, PINK, 12, cy=760, alpha=30))
+        img.paste(photo("preload", p, 1.1, 1.2, dark=0.45, blur=8))
+        img.alpha_composite(rays_layer(t, PINK, 12, cy=760, alpha=25))
         lay = rgba(); d = ImageDraw.Draw(lay)
         cx, cy = W / 2, 760
         if name == "game_box":
             sw = abs(math.cos((1 - eout(age / 0.7)) * math.pi * 1.5)) * 0.25 + 0.75 if age < 0.7 else 1
             bw, bh = int(560 * sw), 760
-            art = cam(BG_SUN, 0.5, 1.5, 1.6).resize((bw - 40, bh - 150))
+            art = photo("lockload", 0.5, 1.0, 1.0, size=(bw - 40, bh - 150))
             d.rounded_rectangle([cx - bw / 2, cy - bh / 2, cx + bw / 2, cy + bh / 2], 20, fill=(20, 40, 160, 255))
             d.rectangle([cx - bw / 2, cy - bh / 2, cx + bw / 2, cy - bh / 2 + 90], fill=(10, 30, 120, 255))
             lay.paste(art.convert("RGBA"), (int(cx - bw / 2 + 20), int(cy - bh / 2 + 110)))
             text_c(d, cx, cy - bh / 2 + 45, "PHYSICAL EDITION", ANTON(int(54 * sw)), WHITE + (255,))
-            text_c(d, cx, cy + 40, "GTA 6", ANTON(int(170 * sw)), WHITE + (255,), 8, (60, 0, 80, 255))
+            text_c(d, cx, cy + 250, "GTA 6", ANTON(int(120 * sw)), WHITE + (255,), 8, (60, 0, 80, 255))
             glow_paste(img, scaled_layer(lay, 0.9 + 0.1 * eout(age / 0.5), cx, cy), 30, 0.5)
         else:
             # open case: left inside cover, right empty disc hub
             d.rounded_rectangle([90, cy - 380, 540, cy + 380], 20, fill=(20, 40, 160, 255))
             d.rounded_rectangle([110, cy - 360, 520, cy + 360], 14, fill=(230, 235, 245, 255))
+            lay.paste(photo("trailer2", 0.5, 1.0, 1.0, size=(410, 720)), (110, int(cy - 360)))
             d.rounded_rectangle([540, cy - 380, 990, cy + 380], 20, fill=(20, 40, 160, 255))
             d.rounded_rectangle([560, cy - 360, 970, cy + 360], 14, fill=(10, 20, 80, 255))
             d.ellipse([765 - 180, cy - 180, 765 + 180, cy + 180], outline=(60, 80, 160, 255), width=6)
@@ -590,23 +646,25 @@ def draw_shot(name, t, a, b, seg):
                 d2.line([765 + 170 * k, cy - 170 * k, 765 - 170 * k, cy + 170 * k], fill=RED, width=26)
             stamp(img, W / 2, 1270, "NO DISC", ANTON(170), RED, age - 0.7, rot=-6)
     elif name == "code_card":
-        bgcam(BG_PURPLE, 1, 1)
-        draw_grid(img, t, CYAN, 1200, 1.0, 90)
+        img.paste(photo("cover", p, 1.0, 1.1, dark=0.8))
         lay = rgba(); d = ImageDraw.Draw(lay)
         e = back(age / 0.35)
-        d.rounded_rectangle([120, 480, 960, 1000], 40, fill=(250, 250, 255, 255))
-        d.rectangle([120, 560, 960, 620], fill=(30, 30, 40, 255))
+        d.rounded_rectangle([120, 560, 960, 1080], 40, fill=(250, 250, 255, 255))
+        d.rectangle([120, 640, 960, 700], fill=(30, 30, 40, 255))
         code = "XKQ7-9VLP-2RT4-M8ZD"; k = int(len(code) * min(1, age / 1.0))
-        text_c(d, W / 2, 760, code[:k] + ("_" if int(t * 6) % 2 else " ") * (k < len(code)), font("Montserrat-VF.ttf", 70), (20, 20, 30, 255))
-        text_c(d, W / 2, 900, "REDEEM ON YOUR CONSOLE STORE", MONT(34), (90, 90, 110, 255))
+        text_c(d, W / 2, 840, code[:k] + ("_" if int(t * 6) % 2 else " ") * (k < len(code)), font("Montserrat-VF.ttf", 70), (20, 20, 30, 255))
+        text_c(d, W / 2, 980, "REDEEM ON YOUR CONSOLE STORE", MONT(34), (90, 90, 110, 255))
         glow_paste(img, scaled_layer(lay, max(.01, e), W / 2, 740), 30, 0.5)
         d = ImageDraw.Draw(img)
-        text_c(d, W / 2, 300, "JUST A CODE", ANTON(150), GOLD + (255,), 10, (0, 0, 0, 255))
+        text_c(d, W / 2, 470, "JUST A CODE", ANTON(150), GOLD + (255,), 10, (0, 0, 0, 255))
         if age > 1.0:
-            stamp(img, W / 2, 1180, "ROCKSTAR CONFIRMED", ANTON(110), GREEN, age - 1.0, rot=-4, box=True)
+            stamp(img, W / 2, 1200, "ROCKSTAR CONFIRMED", ANTON(110), GREEN, age - 1.0, rot=-4, box=True)
     elif name == "hacker_terminal":
-        img.paste(BG_GREEN)
+        ph_ = np.asarray(photo("masked", p, 1.0, 1.15, 0.3, 0)).astype(np.float32)
+        ph_[..., 0] *= 0.45; ph_[..., 2] *= 0.5; ph_[..., 1] *= 0.85
+        img.paste(to_img(ph_))
         d = ImageDraw.Draw(img)
+        d.rectangle([40, 950, W - 40, 1460], fill=(0, 10, 4, 200))
         mf = MONT(40, 600)
         n = int(age * 9)
         lines = CODE_LINES[: min(len(CODE_LINES), n)]
@@ -614,26 +672,19 @@ def draw_shot(name, t, a, b, seg):
             c = RED if ln.startswith("!!") else GREEN
             d.text((70, 980 + i * 52), ln, font=mf, fill=c)
         # hooded silhouette with screen glow
-        lay = rgba(); dl = ImageDraw.Draw(lay)
-        dl.ellipse([340, 300, 740, 760], fill=(4, 10, 6, 255))
-        dl.polygon([(200, 960), (360, 600), (720, 600), (880, 960)], fill=(4, 10, 6, 255))
-        dl.ellipse([440, 470, 640, 700], fill=(0, 0, 0, 255))
-        for ex in (500, 580):
-            dl.ellipse([ex - 12, 560, ex + 12, 576], fill=GREEN + (255,))
-        glow_paste(img, lay, 40, 0.0)
-        img.alpha_composite(lay)
         d = ImageDraw.Draw(img)
         text_c(d, W / 2, 290, "2022", ANTON(170), GREEN + (255,), 8, (0, 0, 0, 255))
         stamp(img, W / 2, 860, "TEEN HACKER", ANTON(110), RED, age - 0.9, rot=-5)
     elif name == "clips_grid":
-        img.paste(BG_RED)
+        img.paste(photo("vc_night", p, 1.1, 1.2, dark=0.3, blur=6))
+        img.alpha_composite(Image.new("RGBA", (W, H), (120, 0, 10, 80)))
         d = ImageDraw.Draw(img)
         n = int(90 * eout(min(1, age / 1.4)))
         cols, cw, ch = 9, 108, 62
         for i in range(n):
             r_, c_ = divmod(i, cols)
             x = 54 + c_ * (cw + 6); y = 370 + r_ * (ch + 6)
-            tile = cam(BG_NIGHT if (i * 7) % 3 else BG_SUN, (i * 0.137) % 1, 2.5, 2.6, 0.8, 0.8).resize((cw, ch))
+            tile = TILES[i]
             img.paste(tile.convert("RGBA"), (int(x), int(y)))
             d.polygon([(x + 44, y + 17), (x + 44, y + 45), (x + 68, y + 31)], fill=(255, 255, 255, 200))
         lay = rgba(); dl = ImageDraw.Draw(lay)
@@ -641,14 +692,10 @@ def draw_shot(name, t, a, b, seg):
         glow_paste(img, lay, 20, 0.8)
         text_c(d, W / 2, 280, "EARLY DEV FOOTAGE", ANTON(100), GOLD + (255,), 8, (0, 0, 0, 255))
     elif name == "hotel_tv":
-        img.paste(dark_bg((30, 20, 40), (10, 6, 14)))
+        img.paste(photo("hotel", p, 1.0, 1.12, 0, 0, dark=0.7))
         d = ImageDraw.Draw(img)
-        # wall, bed, TV
-        d.rectangle([0, 1100, W, H], fill=(40, 26, 30))
-        d.rounded_rectangle([60, 1180, 760, 1460], 30, fill=(230, 230, 240)); d.rounded_rectangle([60, 1120, 300, 1220], 30, fill=(250, 250, 255))
-        d.rectangle([40, 1300, 780, 1480], fill=(90, 40, 60))
         z = 1 + 0.12 * ease(p)
-        tvx0, tvy0, tvx1, tvy1 = 260, 380, 980, 800
+        tvx0, tvy0, tvx1, tvy1 = 120, 640, 960, 1110
         d.rectangle([tvx0 - 14, tvy0 - 14, tvx1 + 14, tvy1 + 14], fill=(10, 10, 12))
         d.rectangle([tvx0, tvy0, tvx1, tvy1], fill=(4, 20, 8))
         mf = MONT(30, 600)
@@ -659,14 +706,14 @@ def draw_shot(name, t, a, b, seg):
         g = rgba(); ImageDraw.Draw(g).rectangle([tvx0, tvy0, tvx1, tvy1], fill=GREEN + (90,))
         glow_paste(img, g, 80, 1.0, core=False)
         d = ImageDraw.Draw(img)
-        d.rectangle([600, 820, 640, 1000], fill=(20, 14, 18)); d.rectangle([470, 990, 770, 1020], fill=(20, 14, 18))
+
         img2 = img.resize((int(W * z), int(H * z)), Image.BILINEAR).crop((int((W * z - W) / 2), int((H * z - H) * 0.3), int((W * z - W) / 2) + W, int((H * z - H) * 0.3) + H))
         img.paste(img2)
         d = ImageDraw.Draw(img)
         text_c(d, W / 2, 290, "HOTEL ROOM", ANTON(140), WHITE + (255,), 10, (0, 0, 0, 255))
-        stamp(img, 820, 1080, "ON BAIL", ANTON(100), GOLD, age - 0.8, rot=8)
+        stamp(img, 800, 1180, "ON BAIL", ANTON(100), GOLD, age - 0.8, rot=8)
     elif name == "firestick":
-        img.paste(dark_bg((10, 14, 30), (2, 3, 8)))
+        img.paste(photo("raul_screens", p, 1.0, 1.12, dark=0.42))
         img.alpha_composite(rays_layer(t, ORANGE, 12, cy=760, alpha=30))
         s = 0.7 + 0.35 * eout(age / 0.5) + 0.05 * p
         lay = rgba(); d = ImageDraw.Draw(lay)
@@ -687,9 +734,9 @@ def draw_shot(name, t, a, b, seg):
         text_c(d, W / 2, 300, "A FIRE STICK", ANTON(150), ORANGE + (255,), 10, (0, 0, 0, 255))
         text_c(d, W / 2, 440, "+ THE HOTEL TV", ANTON(100), WHITE + (255,), 8, (0, 0, 0, 255))
     elif name == "money":
-        img.paste(BG_GREEN)
+        img.paste(photo("vc_money", p, 1.0, 1.18, 0.4, 0, dark=0.8))
         d = ImageDraw.Draw(img)
-        for (bx, by, bs, br) in BILLS:
+        for (bx, by, bs, br) in BILLS[:16]:
             y = (by * 600 + age * (400 + bs * 500)) % (H + 300) - 200
             x = bx * W
             bill = rgba(220, 110); db = ImageDraw.Draw(bill)
@@ -703,7 +750,7 @@ def draw_shot(name, t, a, b, seg):
         text_c(dl, W / 2, 870, "COST TO ROCKSTAR", ANTON(100), WHITE + (255,), 8, (0, 0, 0, 255))
         glow_paste(img, lay, 26, 1.0)
     elif name == "gavel":
-        img.paste(dark_bg((40, 20, 10), (8, 4, 2)))
+        img.paste(photo("lucia_prison", p, 1.0, 1.15, 0.3, 0, dark=0.7))
         d = ImageDraw.Draw(img)
         d.rounded_rectangle([200, 1020, 880, 1090], 20, fill=(110, 60, 30))
         d.ellipse([380, 960, 700, 1040], fill=(140, 80, 40))
@@ -725,7 +772,7 @@ def draw_shot(name, t, a, b, seg):
         if age > gt + 0.3:
             text_c(d, W / 2, 1240, "LONDON · NOV 16, 2026", MONT(50), GOLD + (255,), 4, (0, 0, 0, 255))
     elif name == "release_date":
-        bgcam(BG_SUN, 1.25, 1.05, -0.2, -0.2)
+        img.paste(photo("jl_sunset", p, 1.15, 1.0, -0.4, 0))
         e = back(age / 0.4)
         lay = rgba(); dl = ImageDraw.Draw(lay)
         cx, cy = W / 2, 620
@@ -740,7 +787,7 @@ def draw_shot(name, t, a, b, seg):
         if age > 0.3:
             text_c(d, W / 2, 1040, "PS5 · XBOX SERIES X|S", MONT(54), WHITE + (255,), 5, (0, 0, 0, 255))
     elif name == "comments":
-        bgcam(BG_NIGHT_BLUR, 1.05, 1.2)
+        img.paste(photo("preload", p, 1.0, 1.12, 0.5, 0, dark=0.45))
         d = ImageDraw.Draw(img)
         opts = [("#5", "IN-GAME TRAILER", CYAN), ("#4", "RECORD LEAK", GREEN), ("#3", "FLORIDA CLIPS", ORANGE), ("#2", "NO DISC", PINK), ("#1", "FIRE STICK HACK", GOLD)]
         for i, (n, lab, col) in enumerate(opts):
@@ -871,6 +918,8 @@ def frame(t, fi):
             d.rounded_rectangle([W - 70 - tw - ex, 85, W - 40, 145], 30, fill=(GREEN if "CONF" in tag else ORANGE) + (230,))
             d.text((W - 55 - tw, 96), tag, font=MONT(30), fill=(10, 10, 10, 255))
             if ex: d.line([(W - 92 - tw, 115), (W - 82 - tw, 127), (W - 64 - tw, 102)], fill=(10, 10, 10, 255), width=6)
+    if HAVE_OFF:
+        d.text((40, H - 70), "IMAGES © ROCKSTAR GAMES · FAN-MADE, NOT AFFILIATED", font=MONT(24, 700), fill=(230, 230, 230, 220))
     pw = W * min(1, t / TOTAL)
     d.rectangle([0, 0, pw, 10], fill=PINK + (255,))
     return out.convert("RGB")

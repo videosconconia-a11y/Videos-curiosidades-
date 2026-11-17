@@ -15,7 +15,7 @@ Vertical 9:16 · 1080×1920 · 30 fps · ~59 s · H.264 + AAC 256k, loudness-nor
 
 Fonts: Anton, Bebas Neue and Montserrat (SIL OFL), in `fonts/`.
 
-**Copyright:** the video uses no Rockstar trailer footage, screenshots or logos, and no third-party music or samples. Everything is generated here. If you have rights-cleared official material, such as Rockstar press-kit images, you can swap it into the backgrounds in `render.py` (`BG_SUN` / `BG_NIGHT`).
+**Images:** every scene uses **official Rockstar Games images** from rockstargames.com/VI (31 images: the key art, the Trailer 1 and Trailer 2 posters, the cover logo, and screenshots of Vice City, Grassrivers, the Leonida Keys, Port Gellhorn, Ambrosia, Mount Kalaga, characters and cars). Each image was picked to match the narration. For example, the "first trailer leaked" line sits over the Trailer 1 poster, "five million dollars" over the money-pile screenshot, "teen hacker" over the masked character, "hotel" over the Ocean View Hotel and "pleaded guilty" over Lucia in a prison jumpsuit. The "90 clips" grid is built from crops of these images. On screen: "IMAGES © ROCKSTAR GAMES · FAN-MADE, NOT AFFILIATED". The images are **not stored in git**: `official_images.txt` lists them and `./fetch_official.sh` downloads them, and `build.sh` runs it automatically when they are missing. Rockstar publishes this material for promotion and media. Using it in a commentary Short is common practice but it is not a licence, so keep the credit. The music and SFX are original and synthesised here.
 
 ## Fact check (verified 17 Nov 2026)
 **#5 — Trailer 2 was captured entirely in-game on PS5, with equal parts gameplay and cutscenes.** Rockstar confirmed this on X, and the end card reads "Captured on PS5."
