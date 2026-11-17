@@ -28,11 +28,14 @@ efectos de sonido y subtítulos sincronizados.
 ## Uso
 
 ```bash
-pip install numpy pillow scipy piper-tts torch diffusers transformers accelerate
+pip install numpy pillow scipy piper-tts pyworld "setuptools<81" torch diffusers transformers accelerate
 cd videos/rana-de-bosque
 ./build.sh
 ```
 
 Necesita `ffmpeg` (con `rubberband`). La voz se descarga sola la primera vez desde las *releases* de
 sherpa-onnx en GitHub (modelos Piper). Las fuentes Poppins (OFL) están en `assets/fonts/`.
-Variables opcionales: `VOICE=sharvard` (otra voz es_ES), `VOICE_SPEED=0.9` (menor = más rápido), `JOBS=4`.
+Voz por defecto: estilo **viral** (español de España, enérgica y natural: más rápida, con más entonación y
+pausas cortas). Variables opcionales: `VOICE_STYLE=documental` (la voz anterior, grave y pausada),
+`VOICE_SPEED=0.76` (menor = más rápido), `VOICE_EXPRESSION=1.35` (mayor = más entonación),
+`VOICE=sharvard` (otra voz es_ES), `JOBS=4`.

@@ -68,6 +68,6 @@ USFWS (dominio público).
 
 ## Voz, música y tipografía
 - Voz: [Piper TTS](https://github.com/rhasspy/piper), voz `es_ES-davefx-medium` (modelo empaquetado por
-  [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models)), procesada con ffmpeg (tono, EQ y compresión).
+  [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models)), con estilo «viral» (más rápida, entonación ampliada con el vocoder WORLD) y procesada con ffmpeg (EQ y compresión).
 - Música y efectos: sintetizados por código (`audio.py`), sin material de terceros.
 - Tipografía: Poppins (SIL Open Font License, `assets/fonts/OFL.txt`).

@@ -12,7 +12,7 @@ import json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 TIMING = os.path.join(HERE, "build", "timing.json")
 
-LEAD_IN = 0.25    # silencio antes de la primera palabra
+LEAD_IN = 0.1     # silencio antes de la primera palabra (el gancho entra ya)
 TAIL = 1.6        # cola final (música + cartel) tras la última palabra
 
 SCENES = [
