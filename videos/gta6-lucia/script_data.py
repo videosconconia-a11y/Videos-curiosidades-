@@ -1,0 +1,33 @@
+# "5 THINGS YOU DIDN'T KNOW ABOUT LUCIA IN GTA 6!" — narration, keywords, shots (cue word = shot starts when spoken)
+SEGMENTS = [
+    dict(id="hook", pause=0.2,
+         say="You think you know Lucia? Here are five details you probably missed.",
+         hl={"lucia", "five", "details", "missed"},
+         shots=[("hook_face", None), ("hook_five", "here")]),
+    dict(id="f1", pause=0.25,
+         say="Number one. Rockstar says her father taught her to fight... as soon as she could walk. That's why she hits like this.",
+         hl={"one", "father", "fight", "walk", "hits"},
+         shots=[("n1", None), ("father", "rockstar"), ("punch", "that's")]),
+    dict(id="f2", pause=0.25,
+         say="Number two. Fighting for her family landed her in the Leonida Penitentiary. And what got her out? Not a lawyer. Sheer luck.",
+         hl={"two", "family", "leonida", "penitentiary", "luck"},
+         shots=[("n2", None), ("prison", "fighting"), ("luck", "not")]),
+    dict(id="f3", pause=0.25,
+         say="Number three. Her family's story starts in Liberty City. Yes, that Liberty City. Her mom has dreamed of the good life ever since, and Lucia wants to make it real.",
+         hl={"three", "family's", "liberty", "city", "mom", "dreamed", "good", "life"},
+         shots=[("n3", None), ("liberty", "her"), ("pool", "mom"), ("real", "and")]),
+    dict(id="f4", pause=0.25,
+         say="Number four. Rockstar says meeting Lucia could be the best, or the worst thing that ever happened to Jason. And she's committed to her plan, no matter what it takes.",
+         hl={"four", "best", "worst", "jason", "plan", "no", "matter"},
+         shots=[("n4", None), ("duo", "rockstar"), ("worst", "worst"), ("plan", "she's")]),
+    dict(id="f5", pause=0.3,
+         say="And number five is the biggest. The very first words in the very first G T A 6 trailer? Her name. Lucia Caminos. The first female lead of a modern G T A.",
+         hl={"five", "biggest", "first", "words", "trailer", "name", "lucia", "caminos", "female", "lead"},
+         shots=[("n5", None), ("trailer1", "very"), ("her_name", "her"), ("female_lead", "female")]),
+    dict(id="outro", pause=0.35,
+         say="Is Lucia going to become the most iconic G T A protagonist ever? Tell me in the comments!",
+         hl={"lucia", "iconic", "protagonist", "ever", "comments"},
+         shots=[("question", None)]),
+]
+DISPLAY = {}
+TITLE = "5 Things You Didn't Know About LUCIA in GTA 6 🤯 #gta6"
