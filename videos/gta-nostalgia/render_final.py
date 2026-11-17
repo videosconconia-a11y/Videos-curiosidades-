@@ -34,6 +34,8 @@ SHOTS = [  # (clip, inicio, fin, recorte, factor tiempo)
     (NGT,  4.00, 6.50, CA, 1.2),   # ciudad de noche (final)
 ]
 XF = 0.3
+# Transiciones con desenfoque de movimiento (whip): índice de la escena que entra -> (ventana s, radio máx)
+WHIP = {1: (1.8, 140), 8: (0.7, 70), 10: (0.7, 70), 13: (0.7, 70), 15: (0.7, 70)}
 G = ("scale=1920:816:flags=lanczos,hqdn3d=1.5:1.5:3:3,unsharp=5:5:0.7:5:5:0.0,"
      "eq=contrast=1.06:saturation=1.1,setsar=1,fps=60,format=yuv420p")
 cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-stats"]
@@ -42,17 +44,36 @@ for i, (c, a, b, cr, k) in enumerate(SHOTS):
     cmd += ["-ss", str(a), "-to", str(b), "-i", c]
     f.append(f"[{i}:v]{cr},setpts={k}*(PTS-STARTPTS),{G}[s{i}]")
     durs.append((b - a) * k)
-last, off = "s0", durs[0]
+last, off, cuts = "s0", durs[0], {}
 for i in range(1, len(SHOTS)):
-    off -= XF
-    f.append(f"[{last}][s{i}]xfade=transition=fade:duration={XF}:offset={off:.3f}[x{i}]")
+    xf, tr = (0.25, "slideleft") if i in WHIP else (XF, "fade")
+    off -= xf
+    f.append(f"[{last}][s{i}]xfade=transition={tr}:duration={xf}:offset={off:.3f}[x{i}]")
+    if i in WHIP:
+        cuts[i] = off + xf / 2
     last, off = f"x{i}", off + durs[i]
 total = off
-f.append(f"[{last}]fade=t=in:d=0.6,fade=t=out:st={total-1.3:.3f}:d=1.3,split[w][v]")
-f.append("[v]scale=1080:460:flags=lanczos,pad=1080:1920:0:(oh-ih)/2:black,setsar=1[vert]")
+# Rampa del desenfoque: sube hasta el corte y vuelve a enfocar
+lines = []
+fr = 1 / 60
+for i, c in cuts.items():
+    w, rmax = WHIP[i]
+    t = c - w / 2
+    while t <= c + w / 2 + fr:
+        x = max(0.0, 1 - abs(t - c) / (w / 2))
+        shape = x ** 2
+        lines.append(f"{t:.4f} dblur@w radius {max(0.0, rmax*shape):.1f}, eq@w brightness {0.10*shape:.3f};")
+        t += fr
+open(f"{OUT}/whip_cmds.txt", "w").write("\n".join(lines) + "\n")
+en = "+".join(f"between(t,{c-WHIP[i][0]/2:.3f},{c+WHIP[i][0]/2:.3f})" for i, c in cuts.items())
+f.append(f"[{last}]sendcmd=f={OUT}/whip_cmds.txt,dblur@w=angle=0:radius=0:enable='{en}',"
+         f"eq@w=brightness=0,fade=t=in:d=0.6,fade=t=out:st={total-1.3:.3f}:d=1.3,split[w][v]")
+f.append("[v]split[va][vb];[va]scale=-2:1920:flags=bicubic,crop=1080:1920,boxblur=30:3,"
+         "eq=brightness=-0.12:saturation=1.1[bg];[vb]scale=-2:680:flags=lanczos,crop=1080:680,"
+         "unsharp=5:5:0.4[fg];[bg][fg]overlay=0:(H-h)/2,setsar=1,format=yuv420p[vert]")
 enc = ["-an", "-c:v", "libx264", "-preset", "slow", "-crf", "14", "-profile:v", "high",
        "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-t", f"{total:.3f}"]
 cmd += ["-filter_complex", ";".join(f), "-map", "[w]", *enc, f"{OUT}/final_cine.mp4",
-        "-map", "[vert]", *enc, f"{OUT}/final_9x16.mp4"]
+        "-map", "[vert]", *enc, f"{OUT}/final_vertical_completo.mp4"]
 print(f"{len(SHOTS)} escenas, {total:.1f} s")
 subprocess.run(cmd, check=True)
