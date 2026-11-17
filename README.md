@@ -9,6 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/armario-japon` | Historias reales: la mujer que vivió un año en un armario (Japón, 2008) | 65,7 s |
 
 ## Estructura de cada vídeo
 
