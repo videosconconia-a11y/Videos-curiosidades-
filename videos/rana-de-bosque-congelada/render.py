@@ -25,8 +25,8 @@ def p_hook_eye(lt, d):
     return grade(im, -0.4, 0.8)
 
 def p_hook_side(lt, d):
-    im = cam(load("frozen_side"), 1.05 + 0.18 * lt / d, 0.5 - 0.04 * lt / d, 0.5)
-    return grade(frost_overlay(im, 0.2, sparkle_t=lt), -0.3, 0.85)
+    im = cam(load("frozen_snow_wide"), 1.05 + 0.18 * lt / d, 0.5 - 0.04 * lt / d, 0.45)
+    return grade(frost_overlay(im, 0.2, sparkle_t=lt), -0.35, 0.8)
 
 def p_flatline(lt, d):
     bg = grade(cam(load("frozen_snow_wide"), 1.1 + 0.05 * lt / d), -0.6, 0.5, 0.8)
@@ -111,7 +111,7 @@ def p_heart_stop(lt, d):
     return ecg(im, lt + 0.9, beats=[x + 0.9 for x in beats], y=1300, amp=170, col=RED, label=None)
 
 def p_no_breath(lt, d):
-    im = grade(cam(load("frozen_side"), 1.35 + 0.1 * lt / d, 0.45, 0.5), -0.4, 0.7, 0.85)
+    im = grade(cam(load("close_frozen"), 1.3 + 0.1 * lt / d, 0.45, 0.5), -0.4, 0.7, 0.85)
     im = frost_overlay(im, 0.3, sparkle_t=lt)
     return over(im, text_layer([[("RESPIRACIÓN:", (230, 240, 255)), ("0", RED)]], 64, y=260, stroke=6, alpha=ease_out(lt / 0.3)))
 
@@ -215,12 +215,13 @@ def p_heart_back(lt, d):
     return ecg(im, lt + 0.9, beats=[x + 0.9 for x in beats], y=1300, amp=190, col=GREEN)
 
 def p_breathe(lt, d):
-    im = grade(cam(load("eye_alive"), 1.15 + 0.12 * lt / d + 0.012 * math.sin(lt * 4), 0.5, 0.48), 0.25, 1.05)
+    im = grade(cam(load("hero_wide"), 1.05 + 0.12 * lt / d + 0.006 * math.sin(lt * 4), 0.5, 0.52), 0.25, 1.05)
     return light_rays(im, lt, k=0.2)
 
 def p_leap(lt, d):
     p = ease_out(lt / d)
-    im = cam(load("leap"), 1.35 - 0.3 * p, 0.5 - 0.06 * p, 0.5)
+    im = cam(load("pond"), 1.0 + 0.35 * p, 0.5, 0.42 - 0.04 * p)   # empujón de cámara hacia la rana en la charca
+    sh = 10 * math.exp(-lt * 6); im = im.transform(im.size, Image.AFFINE, (1, 0, sh * math.sin(lt * 70), 0, 1, sh * math.cos(lt * 55)))
     im = grade(im, 0.2, 1.1)
     if lt < 0.35:  # desenfoque de movimiento al arrancar
         k = int(30 * (1 - lt / 0.35)) + 1
@@ -228,7 +229,7 @@ def p_leap(lt, d):
     return glow_bloom(im, 0.2)
 
 def p_pond(lt, d):
-    im = grade(cam(load("pond"), 1.0 + 0.12 * ease(lt / d), 0.5, 0.55), 0.2, 1.08)
+    im = grade(cam(load("spring_sunrise"), 1.25 - 0.15 * ease(lt / d), 0.5, 0.55), 0.25, 1.08)
     return light_rays(im, lt, k=0.25)
 
 def p_split(lt, d):

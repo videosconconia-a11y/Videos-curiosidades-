@@ -8,7 +8,8 @@ efectos de sonido y subtítulos sincronizados.
 
 | Carpeta | Tema | Duración |
 |---|---|---|
-| `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida (v1, sin voz) | 58,5 s |
+| `videos/rana-de-bosque-congelada` | La rana que se congela… y vuelve a la vida (v2: voz es-ES, imágenes fotorrealistas, animaciones científicas) | ≈ 79 s |
 
 ## Estructura de cada vídeo
 

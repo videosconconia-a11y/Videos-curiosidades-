@@ -61,6 +61,8 @@ def grade(im, temp=0.0, sat=1.0, bright=1.0, contrast=1.0):
     return img(a * bright)
 
 # ------------------------------------------------------------------ texturas de crecimiento (escarcha / deshielo)
+import functools
+@functools.lru_cache(maxsize=32)
 def fbm(w, h, seed, octaves=5, base=6):
     r = np.random.default_rng(seed); out = np.zeros((h, w), np.float32); amp = 1.0; tot = 0
     for o in range(octaves):
