@@ -29,7 +29,7 @@ USE_PIPER = os.environ.get("TTS_ENGINE") == "piper"
 
 def piper(text, path):
     # length_scale > 1 = más pausado; noise algo más alto = entonación menos plana
-    subprocess.run([sys.executable, "-m", "piper", "-m", PIPER_MODEL, "-f", path, "--length-scale", "0.98",
+    subprocess.run([sys.executable, "-m", "piper", "-m", PIPER_MODEL, "-f", path, "--length-scale", os.environ.get("TTS_SPEED", "0.95"),
                     "--noise-scale", "0.72", "--noise-w-scale", "0.85", "--sentence-silence", "0.25"],
                    input=text.encode(), check=True, capture_output=True)
 
@@ -43,6 +43,9 @@ def dur(path):
 
 def main():
     global USE_PIPER
+    if "--solo-medir" in sys.argv:   # voces externas ya colocadas en voz/escena_XX.wav
+        durs = [round(dur(os.path.join(OUT, f"escena_{i:02}.wav")), 3) for i in range(len(RAW))]
+        json.dump(durs, open(os.path.join(OUT, "timings.json"), "w")); print("total voz", sum(durs)); return
     only = [int(x) for x in sys.argv[1:]]
     durs = []
     for i, (n, _c, _v) in enumerate(RAW):

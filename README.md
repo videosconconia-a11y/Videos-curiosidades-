@@ -9,6 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/hombre-de-somerton` | Misterio real: el hombre de Somerton (1948), con voz en off | ~50 s |
 | `videos/paso-dyatlov` | Historia real de miedo: el paso Diátlov (1959), con voz en off | ~60 s |
 
 ## Estructura de cada vídeo
