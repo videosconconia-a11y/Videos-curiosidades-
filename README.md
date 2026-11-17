@@ -18,6 +18,13 @@ efectos de sonido y subtítulos sincronizados.
 - `build.sh` — genera todo: `final_9x16.mp4`, `subtitulos.srt` y la versión web.
 - `web/index.html` — reproductor con narración por voz del navegador (`speechSynthesis`) sincronizada por escenas.
 
+## Guía de estilo y medición
+
+- `GUIA_ESTILO.md`: reglas de guion, cámara y luz, con cifras objetivo.
+- `tools/medir.py`: mide un vídeo cuadro por cuadro (movimiento de cámara con correlación de fase, cortes,
+  brillo, contraste, saturación) y crea hojas de contactos. Sirve para comparar tu vídeo con un original.
+- `tools/ritmo.py`: palabras por segundo de cada escena del guion.
+
 ## Uso
 
 ```bash
@@ -26,7 +33,7 @@ cd videos/rana-de-bosque
 ./build.sh
 ```
 
-Necesita `ffmpeg` y la fuente Poppins Bold (cambia la ruta `FONT` en `render.py` si está en otro sitio).
+Necesita `ffmpeg`. Usa Poppins Bold si está instalada y, si no, Inter ExtraBold o DejaVu Sans Bold.
 
 ## Voz con IA
 

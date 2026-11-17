@@ -13,4 +13,5 @@ ffmpeg -y -loglevel error -i video_only.mp4 -i music_sfx.wav -map 0:v -map 1:a -
 ffmpeg -y -loglevel error -i final_9x16.mp4 -vf scale=720:1280 -c:v libx264 -preset veryfast -crf 27 -maxrate 1.9M \
   -bufsize 3.8M -c:a aac -b:a 128k -movflags +faststart web/rana.mp4
 rm -f scene_*.mp4 video_only.mp4 list.txt
+python3 ../../tools/medir.py final_9x16.mp4 --json medidas.json
 echo "Listo: final_9x16.mp4 y web/index.html"

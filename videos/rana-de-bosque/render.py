@@ -9,7 +9,9 @@ from script_data import SCENES, TOTAL, caption_timeline, shot_timeline
 W, H, FPS = 1080, 1920, 30
 BW, BH = 1300, 2310          # backgrounds drawn larger for camera moves
 rng = np.random.default_rng(3)
-FONT = "/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf"
+FONT = next((f for f in ["/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf",
+                          "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf",
+                          "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"] if os.path.exists(f)))
 F_CAP = ImageFont.truetype(FONT, 104)
 F_BIG = ImageFont.truetype(FONT, 330)
 F_MED = ImageFont.truetype(FONT, 92)
@@ -394,23 +396,46 @@ def caption_layer(t):
         out.paste(lay2, ((W - nw) // 2, (260 - nh) // 2)); lay = out
     return lay
 
+# ---------------------------------------------------------------- estilo (ver GUIA_ESTILO.md, comprobar con tools/medir.py)
+XF = 0.45            # fundido largo entre planos: la cámara "viaja" en vez de cortar
+LIVE_ZOOM = 1.045    # zoom base de la cámara viva (margen para derivar sin ver bordes)
+GAMMA = 1.18         # >1 oscurece medios tonos
+CONTRAST = 1.14      # contraste alrededor de PIVOT
+PIVOT = 105
+
+def live_cam(img, t):
+    """Cámara viva global: deriva y respiración lentas y continuas para que ningún cuadro quede quieto,
+    ni siquiera en gráficas o en la tarjeta final. Combina periodos distintos para que la velocidad
+    nunca llegue a cero a la vez en todos los ejes."""
+    z = LIVE_ZOOM + 0.025 * math.sin(2 * math.pi * t / 11.0) + 0.0012 * t
+    dx = 16 * math.sin(2 * math.pi * t / 13.0) + 9 * math.sin(2 * math.pi * t / 7.3 + 1.1)
+    dy = 12 * math.sin(2 * math.pi * t / 17.0 + 0.7) + 7 * math.sin(2 * math.pi * t / 5.9 + 2.3)
+    cw, ch = W / z, H / z
+    cx, cy = W / 2 + dx, H / 2 + dy
+    return img.resize((W, H), Image.BILINEAR, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2))
+
+def grade(arr):
+    arr = 255 * (np.clip(arr, 0, 255) / 255) ** GAMMA
+    return (arr - PIVOT) * CONTRAST + PIVOT
+
 def frame(t, fi):
     idx = [i for i, s in enumerate(SHOTS) if s[0] <= t < s[1]]
     i = idx[0] if idx else len(SHOTS) - 1
     a, b, name = SHOTS[i]
     img = shot_frame(name, t, a, b)
-    XF = 0.18
-    if i + 1 < len(SHOTS) and t > b - XF:      # quick crossfade into next shot
+    if i + 1 < len(SHOTS) and t > b - XF:      # crossfade suave al siguiente plano
         a2, b2, n2 = SHOTS[i + 1]
         nxt = shot_frame(n2, t, a2, b2)
-        img = Image.blend(img, nxt, (t - (b - XF)) / XF)
+        u = (t - (b - XF)) / XF
+        img = Image.blend(img, nxt, u * u * (3 - 2 * u))
+    img = live_cam(img, t)
     arr = np.asarray(img, float)
     arr = arr * VIG
     for h in HITS:                              # flash on reveals
         u = t - h
         if 0 <= u < 0.25: arr = arr + (1 - u / 0.25) * 140
     g = GRAIN[fi % 4]; arr += np.repeat(np.repeat(g, 2, 0), 2, 1)[..., None]
-    arr = (arr - 128) * 1.06 + 128               # a touch of contrast
+    arr = grade(arr)
     if t < 0.25: arr *= t / 0.25
     if t > TOTAL - 0.6: arr *= max(0, (TOTAL - t) / 0.6)
     img = to_img(arr)
