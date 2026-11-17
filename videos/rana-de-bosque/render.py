@@ -399,9 +399,9 @@ def caption_layer(t):
 # ---------------------------------------------------------------- estilo (ver GUIA_ESTILO.md, comprobar con tools/medir.py)
 XF = 0.45            # fundido largo entre planos: la cámara "viaja" en vez de cortar
 LIVE_ZOOM = 1.045    # zoom base de la cámara viva (margen para derivar sin ver bordes)
-GAMMA = 1.18         # >1 oscurece medios tonos
-CONTRAST = 1.14      # contraste alrededor de PIVOT
-PIVOT = 105
+GAMMA = 1.0          # >1 oscurece medios tonos (la rana ya mide brillo ~54: no oscurecer más)
+CONTRAST = 1.12      # contraste alrededor de PIVOT
+PIVOT = 80
 
 def live_cam(img, t):
     """Cámara viva global: deriva y respiración lentas y continuas para que ningún cuadro quede quieto,

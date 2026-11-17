@@ -49,8 +49,11 @@ python3 tools/medir.py videos/<tema>/final_9x16.mp4 [referencia.mp4] --hojas hoj
 | `camara_moviendose_pct` | ≥ 90 % |
 | `movimiento_medio_s` | ≥ 2 s |
 | `cortes` | lo menos posible (0–1 duros) |
-| `brillo` (0–255) | ≈ 70–95: oscuro, no apagado |
+| `brillo` (0–255) | igual o algo más oscuro que la referencia; sin referencia, entre 45 y 90 |
 | `contraste` (desv. típica de luminancia) | ≥ 50 |
+
+Ojo: «más oscuro» es relativo. La rana ya medía 54 de brillo, así que oscurecerla más la habría
+apagado. Antes de tocar la luz, mide.
 
 Si tienes un short de referencia, mídelo con la misma herramienta y compara las cifras. Cuando algo no
 se parezca, no digas «se ve feo»: busca qué número no cuadra y arréglalo.
