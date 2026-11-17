@@ -27,3 +27,13 @@ H.264 CRF 16 a 60 fps → `final_9x16.mp4`.
 - **Título:** Crecí en estas calles 🌆
 - **Descripción:** Los Santos de noche nunca pasa de moda. ¿Cuántas horas le echaste a GTA V? 👇
 - **Hashtags:** #gta5 #gtav #nostalgia #lossantos #gtaedit #foryoupage #parati
+
+## Fuentes de clips de uso libre (verificado en la descripción de cada vídeo, 17-11-2026)
+| Vídeo | Canal | Permiso | Crédito |
+|---|---|---|---|
+| https://www.youtube.com/watch?v=N7G7D7prUpA | TCL Depo | Grabación propia, uso libre, sin música del juego | No obligatorio |
+| https://www.youtube.com/watch?v=AA0a5Xc4JRo | Dope Gameplays | Uso libre, sin atribución | No obligatorio |
+| https://www.youtube.com/watch?v=8F2ZvtkVUcs | Dope Gameplays | Uso libre | **Sí**: citar el canal en la descripción |
+| https://www.youtube.com/watch?v=lVHdnEAld_Q | NCG | Reutilización permitida | **Sí**: citar el canal |
+
+Condición común: no resubirlos tal cual como «no copyright gameplay». Un edit propio sí está permitido.
