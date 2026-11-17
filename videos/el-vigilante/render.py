@@ -488,9 +488,6 @@ def end_card(t, p):
     d = ImageDraw.Draw(img)
     text_c(d, 380, "¿QUIÉN ERA", ImageFont.truetype(FONT, 140), (255, 255, 255), 8, w=BW)
     text_c(d, 540, "EL VIGILANTE?", ImageFont.truetype(FONT, 140), RED, 8, w=BW)
-    text_c(d, 1800, "TU TEORÍA EN COMENTARIOS", F_SM, (255, 255, 255), 4, w=BW)
-    yb = 1890 + 20 * math.sin(t * 7)
-    d.polygon([(600, yb), (700, yb), (650, yb + 60)], fill=RED)
     return arr(img)
 
 # ---------------------------------------------------------------- precálculo

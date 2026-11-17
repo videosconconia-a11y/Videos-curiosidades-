@@ -29,8 +29,7 @@ LINES = [
     ("La policía lo investigó, pero nunca descubrió quién era.", {"POLICÍA", "NUNCA"}, ["case_file"], 0.15, "n"),
     ("En 2019 vendieron la casa, perdiendo unos cuatrocientos mil dólares.", {"VENDIERON", "CUATROCIENTOS"}, ["sold"], 0.2, "n"),
     ("Y el Vigilante sigue sin tener nombre.", {"VIGILANTE", "NOMBRE"}, ["watcher_street"], 0.3, "n"),
-    ("¿Quién crees que era? Déjame tu teoría en los comentarios. Las mejores, las leo en la parte dos.",
-     {"TEORÍA", "COMENTARIOS", "PARTE"}, ["end_card"], 1.4, "n"),
+    ("¿Quién crees que era?", {"QUIÉN"}, ["end_card"], 2.2, "n"),
 ]
 
 LEAD = 0.15

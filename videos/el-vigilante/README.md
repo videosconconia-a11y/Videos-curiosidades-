@@ -1,13 +1,13 @@
 # El Vigilante (Westfield, Nueva Jersey, 2014) — caso real sin resolver
 
-89,3 s · 9:16 · voz neuronal es-ES **Álvaro** (Microsoft Edge TTS) · subtítulos karaoke palabra a palabra · sin etiqueta en pantalla.
+~84 s · 9:16 · voz neuronal es-ES **Álvaro** (Microsoft Edge TTS) · subtítulos karaoke palabra a palabra · sin etiqueta en pantalla.
 
 ## Novedades respecto a los vídeos anteriores
 - **Voz más natural:** `voice.py` usa `es-ES-AlvaroNeural` (la típica "voz de IA que suena normal"). Las citas de la carta
   van más lentas y graves, con algo de eco, para distinguirlas del narrador.
 - **Subtítulos sincronizados por palabra:** la voz devuelve el tiempo exacto de cada palabra; las palabras se encienden
   cuando se dicen, y las cifras se muestran con números (657, 1,3 MILLONES $, 400.000 $).
-- **Interacción:** encuesta a mitad del vídeo ("1 = me quedo / 2 = me voy") y cierre pidiendo teorías para una parte 2.
+- **Interacción:** encuesta a mitad del vídeo ("1 = me quedo / 2 = me voy") y cierre con la pregunta "¿Quién crees que era?".
 - La carta se escribe en pantalla a la vez que la voz la lee (con sonido de máquina de escribir).
 
 ## Generar
