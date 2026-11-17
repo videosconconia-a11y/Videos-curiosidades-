@@ -369,8 +369,8 @@ function camKeys() {
   const K = [];
   const k = (t, pos, tgt, fov = 50) => K.push({ t, pos, tgt, fov });
   let t;
-  t = 0;                        k(t, A(t).add(V(-1.4, 3.0, 9)), A(t).add(V(-4, 1.0, -260)), 34);
-  t = at('gancho', 0.55);        k(t, A(t).add(V(2.5, 4.2, 13)), A(t).add(V(-20, 0, -260)), 38);
+  t = 0;                        k(t, A(t).add(V(-0.5, 3.0, 9)), A(t).add(V(-4, 1.0, -260)), 34);
+  t = at('gancho', 0.55);        k(t, A(t).add(V(-1.6, 4.0, 13)), A(t).add(V(-8, 0.5, -260)), 38);
   t = at('gancho', 1);           k(t, A(t).add(V(-20, 9, 24)), V(-30, 2, -240), 52);
   t = at('macedonios', 0.35);    k(t, V(-20, 3.2, -22), V(-35, 2.2, 8), 46);
   t = at('macedonios', 1);       k(t, V(-120, 4.5, -26), V(-95, 2, 8), 48);
