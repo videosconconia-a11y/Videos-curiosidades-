@@ -33,15 +33,14 @@ CHAIN_OPENAI = ("highpass=f=75,equalizer=f=180:t=q:w=1:g=1.5,equalizer=f=3500:t=
                 "deesser=i=0.4,acompressor=threshold=-18dB:ratio=2.5:attack=6:release=100:makeup=2dB,aresample=48000")
 
 # ---------------------------------------------------------------- Piper (alternativa local)
-CHAIN_PIPER = ("highpass=f=70,rubberband=pitch=0.94:formant=preserved,"
-               "equalizer=f=120:t=q:w=1:g=3.5,equalizer=f=350:t=q:w=1.2:g=-2.5,"
-               "equalizer=f=3200:t=q:w=1.5:g=2,equalizer=f=9000:t=h:w=2000:g=1.5,deesser=i=0.5,"
-               "acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=3dB,"
-               "aecho=0.85:0.5:28|47:0.10|0.07,aresample=48000")
+# versión enérgica: sin bajar el tono, más presencia y brillo, compresión de locutor de redes
+CHAIN_PIPER = ("highpass=f=80,equalizer=f=150:t=q:w=1:g=1.5,equalizer=f=400:t=q:w=1.2:g=-2,"
+               "equalizer=f=3000:t=q:w=1.5:g=3,equalizer=f=8000:t=h:w=2000:g=2.5,deesser=i=0.5,"
+               "acompressor=threshold=-22dB:ratio=3.5:attack=5:release=90:makeup=4dB,aresample=48000")
 if ENGINE == "piper":
     from piper import PiperVoice, SynthesisConfig
     pv = PiperVoice.load(os.environ.get("PIPER_VOICE", "/tmp/claude-0/voices/es_ES-davefx-medium.onnx"))
-    pcfg = SynthesisConfig(length_scale=1.04, noise_scale=0.42, noise_w_scale=0.55)
+    pcfg = SynthesisConfig(length_scale=0.93, noise_scale=0.62, noise_w_scale=0.85)   # más ágil y expresiva
 
 def synth(text, path):
     tmp = path + ".raw.wav"

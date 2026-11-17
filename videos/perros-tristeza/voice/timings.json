@@ -1,120 +1,120 @@
 {
  "s00": {
-  "dur": 3.892,
+  "dur": 3.8,
   "words": [
    {
     "w": "Tu",
     "start": 0.0,
-    "end": 0.12
+    "end": 0.1
    },
    {
     "w": "perro",
-    "start": 0.12,
-    "end": 0.42
+    "start": 0.1,
+    "end": 0.38
    },
    {
     "w": "podría",
-    "start": 0.42,
-    "end": 0.72
+    "start": 0.38,
+    "end": 0.64
    },
    {
     "w": "saber",
-    "start": 0.72,
-    "end": 1.04
+    "start": 0.64,
+    "end": 1.0
    },
    {
     "w": "que",
-    "start": 1.04,
-    "end": 1.2
+    "start": 1.0,
+    "end": 1.16
    },
    {
     "w": "estás",
-    "start": 1.2,
-    "end": 1.36
+    "start": 1.16,
+    "end": 1.32
    },
    {
     "w": "triste…",
-    "start": 1.36,
+    "start": 1.32,
     "end": 1.82
    },
    {
     "w": "¡incluso",
     "start": 1.82,
-    "end": 2.24
+    "end": 2.16
    },
    {
     "w": "antes",
-    "start": 2.24,
-    "end": 2.42
+    "start": 2.16,
+    "end": 2.34
    },
    {
     "w": "de",
-    "start": 2.42,
-    "end": 2.58
+    "start": 2.34,
+    "end": 2.5
    },
    {
     "w": "que",
-    "start": 2.58,
-    "end": 2.64
+    "start": 2.5,
+    "end": 2.56
    },
    {
     "w": "tú",
-    "start": 2.64,
-    "end": 2.82
+    "start": 2.56,
+    "end": 2.74
    },
    {
     "w": "mismo",
-    "start": 2.82,
-    "end": 2.96
+    "start": 2.74,
+    "end": 2.86
    },
    {
     "w": "te",
-    "start": 2.96,
-    "end": 3.16
+    "start": 2.86,
+    "end": 3.1
    },
    {
     "w": "des",
-    "start": 3.16,
-    "end": 3.3
+    "start": 3.1,
+    "end": 3.22
    },
    {
     "w": "cuenta!",
-    "start": 3.3,
-    "end": 3.46
+    "start": 3.22,
+    "end": 3.38
    }
   ]
  },
  "s01": {
-  "dur": 3.027,
+  "dur": 3.041,
   "words": [
    {
     "w": "Aunque",
     "start": 0.0,
-    "end": 0.26
+    "end": 0.38
    },
    {
     "w": "sonrías.",
-    "start": 0.26,
-    "end": 0.84
+    "start": 0.38,
+    "end": 0.98
    },
    {
     "w": "Aunque",
-    "start": 1.4,
-    "end": 1.78
+    "start": 1.26,
+    "end": 1.76
    },
    {
     "w": "digas",
-    "start": 1.78,
-    "end": 2.26
+    "start": 1.76,
+    "end": 2.24
    },
    {
     "w": "que",
-    "start": 2.26,
-    "end": 2.36
+    "start": 2.24,
+    "end": 2.34
    },
    {
     "w": "estás",
-    "start": 2.36,
+    "start": 2.34,
     "end": 2.54
    },
    {
@@ -125,91 +125,91 @@
   ]
  },
  "s02": {
-  "dur": 4.076,
+  "dur": 3.949,
   "words": [
    {
     "w": "No",
     "start": 0.0,
-    "end": 0.14
+    "end": 0.16
    },
    {
     "w": "es",
-    "start": 0.14,
-    "end": 0.26
+    "start": 0.16,
+    "end": 0.28
    },
    {
     "w": "magia.",
-    "start": 0.26,
-    "end": 0.78
+    "start": 0.28,
+    "end": 0.76
    },
    {
     "w": "Es",
-    "start": 1.26,
-    "end": 1.38
+    "start": 1.24,
+    "end": 1.36
    },
    {
     "w": "ciencia.",
-    "start": 1.38,
-    "end": 1.8
+    "start": 1.36,
+    "end": 1.78
    },
    {
     "w": "Y",
-    "start": 2.28,
-    "end": 2.52
+    "start": 2.22,
+    "end": 2.44
    },
    {
     "w": "te",
-    "start": 2.52,
-    "end": 2.64
+    "start": 2.44,
+    "end": 2.58
    },
    {
     "w": "lee",
-    "start": 2.64,
-    "end": 2.76
+    "start": 2.58,
+    "end": 2.66
    },
    {
     "w": "por",
-    "start": 2.76,
-    "end": 2.94
+    "start": 2.66,
+    "end": 2.82
    },
    {
     "w": "tres",
-    "start": 2.94,
-    "end": 3.2
+    "start": 2.82,
+    "end": 3.1
    },
    {
     "w": "vías",
-    "start": 3.2,
-    "end": 3.54
+    "start": 3.1,
+    "end": 3.4
    },
    {
     "w": "a",
-    "start": 3.54,
-    "end": 3.62
+    "start": 3.4,
+    "end": 3.5
    },
    {
     "w": "la",
-    "start": 3.62,
-    "end": 3.7
+    "start": 3.5,
+    "end": 3.58
    },
    {
     "w": "vez.",
-    "start": 3.7,
-    "end": 3.88
+    "start": 3.58,
+    "end": 3.76
    }
   ]
  },
  "s03": {
-  "dur": 6.172,
+  "dur": 6.115,
   "words": [
    {
-    "w": "Primera.",
+    "w": "Primera,",
     "start": 0.0,
-    "end": 0.44
+    "end": 0.38
    },
    {
-    "w": "Tu",
-    "start": 0.58,
+    "w": "tu",
+    "start": 0.44,
     "end": 0.62
    },
    {
@@ -219,88 +219,88 @@
    },
    {
     "w": "Distinguen",
-    "start": 1.46,
-    "end": 1.88
+    "start": 1.44,
+    "end": 1.84
    },
    {
     "w": "un",
-    "start": 1.88,
-    "end": 1.96
+    "start": 1.84,
+    "end": 1.9
    },
    {
     "w": "rostro",
-    "start": 1.96,
+    "start": 1.9,
     "end": 2.3
    },
    {
     "w": "feliz",
     "start": 2.3,
-    "end": 2.5
+    "end": 2.48
    },
    {
     "w": "de",
-    "start": 2.5,
+    "start": 2.48,
     "end": 2.66
    },
    {
     "w": "uno",
     "start": 2.66,
-    "end": 2.78
+    "end": 2.82
    },
    {
     "w": "enfadado…",
-    "start": 2.78,
-    "end": 3.3
+    "start": 2.82,
+    "end": 3.34
    },
    {
     "w": "viendo",
-    "start": 3.3,
-    "end": 3.48
+    "start": 3.34,
+    "end": 3.5
    },
    {
     "w": "solo",
-    "start": 3.48,
-    "end": 3.74
+    "start": 3.5,
+    "end": 3.78
    },
    {
     "w": "la",
-    "start": 3.74,
-    "end": 3.9
+    "start": 3.78,
+    "end": 3.96
    },
    {
-    "w": "mitad.",
-    "start": 3.9,
-    "end": 4.12
+    "w": "mitad…",
+    "start": 3.96,
+    "end": 4.6
    },
    {
-    "w": "Los",
-    "start": 4.58,
-    "end": 4.74
+    "w": "los",
+    "start": 4.6,
+    "end": 4.76
    },
    {
     "w": "ojos,",
-    "start": 4.74,
-    "end": 5.04
+    "start": 4.76,
+    "end": 5.06
    },
    {
     "w": "o",
     "start": 5.44,
-    "end": 5.56
+    "end": 5.54
    },
    {
     "w": "la",
-    "start": 5.56,
-    "end": 5.66
+    "start": 5.54,
+    "end": 5.64
    },
    {
     "w": "boca.",
-    "start": 5.66,
-    "end": 5.88
+    "start": 5.64,
+    "end": 5.86
    }
   ]
  },
  "s04": {
-  "dur": 4.504,
+  "dur": 4.491,
   "words": [
    {
     "w": "Y",
@@ -310,66 +310,66 @@
    {
     "w": "al",
     "start": 0.1,
-    "end": 0.18
+    "end": 0.2
    },
    {
     "w": "mirarte,",
-    "start": 0.18,
-    "end": 0.58
+    "start": 0.2,
+    "end": 0.62
    },
    {
     "w": "suelen",
-    "start": 0.8,
-    "end": 1.18
+    "start": 0.84,
+    "end": 1.16
    },
    {
     "w": "fijarse",
-    "start": 1.18,
+    "start": 1.16,
     "end": 1.6
    },
    {
     "w": "en",
     "start": 1.6,
-    "end": 1.72
+    "end": 1.7
    },
    {
     "w": "el",
-    "start": 1.72,
-    "end": 1.78
+    "start": 1.7,
+    "end": 1.8
    },
    {
     "w": "lado",
-    "start": 1.78,
-    "end": 1.94
+    "start": 1.8,
+    "end": 1.98
    },
    {
     "w": "derecho",
-    "start": 1.94,
-    "end": 2.3
+    "start": 1.98,
+    "end": 2.34
    },
    {
     "w": "de",
-    "start": 2.3,
-    "end": 2.48
+    "start": 2.34,
+    "end": 2.5
    },
    {
     "w": "tu",
-    "start": 2.48,
-    "end": 2.64
+    "start": 2.5,
+    "end": 2.66
    },
    {
     "w": "cara…",
-    "start": 2.64,
-    "end": 2.86
+    "start": 2.66,
+    "end": 2.9
    },
    {
     "w": "el",
-    "start": 2.86,
-    "end": 2.94
+    "start": 2.9,
+    "end": 2.92
    },
    {
     "w": "que",
-    "start": 2.94,
+    "start": 2.92,
     "end": 3.06
    },
    {
@@ -380,22 +380,22 @@
    {
     "w": "delata",
     "start": 3.22,
-    "end": 3.56
+    "end": 3.54
    },
    {
     "w": "las",
-    "start": 3.56,
-    "end": 3.74
+    "start": 3.54,
+    "end": 3.7
    },
    {
     "w": "emociones.",
-    "start": 3.74,
-    "end": 4.22
+    "start": 3.7,
+    "end": 4.2
    }
   ]
  },
  "s05": {
-  "dur": 5.436,
+  "dur": 5.113,
   "words": [
    {
     "w": "Segunda,",
@@ -404,178 +404,178 @@
    },
    {
     "w": "tu",
-    "start": 0.58,
-    "end": 0.74
+    "start": 0.64,
+    "end": 0.7
    },
    {
     "w": "voz.",
-    "start": 0.74,
-    "end": 0.96
+    "start": 0.7,
+    "end": 0.9
    },
    {
     "w": "En",
-    "start": 1.48,
-    "end": 1.66
+    "start": 1.28,
+    "end": 1.48
    },
    {
     "w": "escáneres",
-    "start": 1.66,
-    "end": 2.22
+    "start": 1.48,
+    "end": 2.04
    },
    {
     "w": "cerebrales,",
-    "start": 2.22,
-    "end": 2.82
+    "start": 2.04,
+    "end": 2.6
    },
    {
     "w": "su",
-    "start": 3.1,
-    "end": 3.22
+    "start": 2.84,
+    "end": 2.98
    },
    {
     "w": "cerebro",
-    "start": 3.22,
-    "end": 3.6
+    "start": 2.98,
+    "end": 3.34
    },
    {
     "w": "separa",
-    "start": 3.6,
-    "end": 4.0
+    "start": 3.34,
+    "end": 3.74
    },
    {
     "w": "qué",
-    "start": 4.0,
-    "end": 4.12
+    "start": 3.74,
+    "end": 3.84
    },
    {
-    "w": "dices",
-    "start": 4.12,
-    "end": 4.36
+    "w": "dices…",
+    "start": 3.84,
+    "end": 4.24
    },
    {
     "w": "de",
-    "start": 4.36,
-    "end": 4.52
+    "start": 4.24,
+    "end": 4.26
    },
    {
     "w": "cómo",
-    "start": 4.52,
-    "end": 4.7
+    "start": 4.26,
+    "end": 4.42
    },
    {
     "w": "lo",
-    "start": 4.7,
-    "end": 4.84
+    "start": 4.42,
+    "end": 4.54
    },
    {
     "w": "dices.",
-    "start": 4.84,
-    "end": 5.14
+    "start": 4.54,
+    "end": 4.84
    }
   ]
  },
  "s07": {
-  "dur": 7.806,
+  "dur": 7.483,
   "words": [
    {
     "w": "Y",
     "start": 0.0,
-    "end": 0.1
-   },
-   {
-    "w": "a",
-    "start": 0.1,
-    "end": 0.2
-   },
-   {
-    "w": "tercera,",
-    "start": 0.2,
-    "end": 0.56
+    "end": 0.12
    },
    {
     "w": "la",
-    "start": 0.74,
-    "end": 0.82
+    "start": 0.12,
+    "end": 0.22
+   },
+   {
+    "w": "tercera,",
+    "start": 0.22,
+    "end": 0.58
+   },
+   {
+    "w": "la",
+    "start": 0.78,
+    "end": 0.86
    },
    {
     "w": "más",
-    "start": 0.82,
-    "end": 1.0
+    "start": 0.86,
+    "end": 1.02
    },
    {
     "w": "asombrosa,",
-    "start": 1.0,
-    "end": 1.6
+    "start": 1.02,
+    "end": 1.56
    },
    {
     "w": "el",
-    "start": 1.86,
-    "end": 1.98
+    "start": 1.84,
+    "end": 1.94
    },
    {
     "w": "olfato.",
-    "start": 1.98,
-    "end": 2.38
+    "start": 1.94,
+    "end": 2.3
    },
    {
     "w": "Tiene",
-    "start": 2.92,
-    "end": 3.2
+    "start": 2.76,
+    "end": 3.06
    },
    {
     "w": "hasta",
-    "start": 3.2,
-    "end": 3.38
+    "start": 3.06,
+    "end": 3.22
    },
    {
     "w": "trescientos",
-    "start": 3.38,
-    "end": 4.0
+    "start": 3.22,
+    "end": 3.86
    },
    {
     "w": "millones",
-    "start": 4.0,
-    "end": 4.18
+    "start": 3.86,
+    "end": 4.04
    },
    {
     "w": "de",
-    "start": 4.18,
-    "end": 4.5
+    "start": 4.04,
+    "end": 4.3
    },
    {
     "w": "receptores",
-    "start": 4.5,
-    "end": 5.04
+    "start": 4.3,
+    "end": 4.82
    },
    {
     "w": "olfativos.",
-    "start": 5.04,
-    "end": 5.54
+    "start": 4.82,
+    "end": 5.34
    },
    {
     "w": "Tú,",
-    "start": 6.16,
-    "end": 6.48
+    "start": 5.96,
+    "end": 6.16
    },
    {
     "w": "unos",
-    "start": 6.58,
-    "end": 6.78
+    "start": 6.3,
+    "end": 6.48
    },
    {
     "w": "seis",
-    "start": 6.78,
-    "end": 7.02
+    "start": 6.48,
+    "end": 6.7
    },
    {
     "w": "millones.",
-    "start": 7.02,
-    "end": 7.36
+    "start": 6.7,
+    "end": 7.02
    }
   ]
  },
  "s08": {
-  "dur": 7.27,
+  "dur": 7.229,
   "words": [
    {
     "w": "En",
@@ -585,132 +585,132 @@
    {
     "w": "dos",
     "start": 0.14,
-    "end": 0.26
+    "end": 0.24
    },
    {
     "w": "mil",
-    "start": 0.26,
-    "end": 0.4
+    "start": 0.24,
+    "end": 0.38
    },
    {
     "w": "veintidós,",
-    "start": 0.4,
-    "end": 1.16
+    "start": 0.38,
+    "end": 1.04
    },
    {
     "w": "unos",
-    "start": 1.24,
-    "end": 1.42
+    "start": 1.16,
+    "end": 1.28
    },
    {
     "w": "perros",
-    "start": 1.42,
-    "end": 1.8
+    "start": 1.28,
+    "end": 1.7
    },
    {
     "w": "detectaron",
-    "start": 1.8,
-    "end": 2.34
+    "start": 1.7,
+    "end": 2.22
    },
    {
     "w": "el",
-    "start": 2.34,
-    "end": 2.48
+    "start": 2.22,
+    "end": 2.36
    },
    {
     "w": "olor",
-    "start": 2.48,
-    "end": 2.68
+    "start": 2.36,
+    "end": 2.58
    },
    {
     "w": "del",
-    "start": 2.68,
-    "end": 2.84
+    "start": 2.58,
+    "end": 2.72
    },
    {
     "w": "estrés",
-    "start": 2.84,
-    "end": 3.1
+    "start": 2.72,
+    "end": 2.94
    },
    {
     "w": "humano,",
-    "start": 3.1,
-    "end": 3.4
+    "start": 2.94,
+    "end": 3.26
    },
    {
     "w": "en",
-    "start": 3.74,
-    "end": 3.88
+    "start": 3.58,
+    "end": 3.76
    },
    {
     "w": "sudor",
-    "start": 3.88,
-    "end": 4.32
+    "start": 3.76,
+    "end": 4.22
    },
    {
     "w": "y",
-    "start": 4.32,
-    "end": 4.46
+    "start": 4.22,
+    "end": 4.34
    },
    {
     "w": "aliento,",
-    "start": 4.46,
-    "end": 4.74
+    "start": 4.34,
+    "end": 4.64
    },
    {
     "w": "con",
-    "start": 4.9,
-    "end": 5.0
+    "start": 4.84,
+    "end": 4.96
    },
    {
     "w": "casi",
-    "start": 5.0,
-    "end": 5.24
+    "start": 4.96,
+    "end": 5.16
    },
    {
     "w": "un",
-    "start": 5.24,
-    "end": 5.38
+    "start": 5.16,
+    "end": 5.36
    },
    {
     "w": "noventa",
-    "start": 5.38,
+    "start": 5.36,
     "end": 5.76
    },
    {
     "w": "y",
     "start": 5.76,
-    "end": 5.82
+    "end": 5.84
    },
    {
     "w": "cuatro",
-    "start": 5.82,
-    "end": 6.0
+    "start": 5.84,
+    "end": 6.02
    },
    {
     "w": "por",
-    "start": 6.0,
-    "end": 6.34
+    "start": 6.02,
+    "end": 6.3
    },
    {
     "w": "ciento",
-    "start": 6.34,
-    "end": 6.58
+    "start": 6.3,
+    "end": 6.52
    },
    {
     "w": "de",
-    "start": 6.58,
-    "end": 6.8
+    "start": 6.52,
+    "end": 6.72
    },
    {
     "w": "acierto.",
-    "start": 6.8,
-    "end": 7.12
+    "start": 6.72,
+    "end": 7.06
    }
   ]
  },
  "s09": {
-  "dur": 2.726,
+  "dur": 2.614,
   "words": [
    {
     "w": "Puedes",
@@ -725,182 +725,182 @@
    {
     "w": "una",
     "start": 0.72,
-    "end": 0.88
+    "end": 0.86
    },
    {
     "w": "sonrisa…",
-    "start": 0.88,
-    "end": 1.48
+    "start": 0.86,
+    "end": 1.52
    },
    {
     "w": "pero",
-    "start": 1.48,
-    "end": 1.64
+    "start": 1.52,
+    "end": 1.56
    },
    {
     "w": "tu",
-    "start": 1.64,
-    "end": 1.82
+    "start": 1.56,
+    "end": 1.78
    },
    {
     "w": "olor",
-    "start": 1.82,
-    "end": 2.08
+    "start": 1.78,
+    "end": 1.98
    },
    {
     "w": "no",
-    "start": 2.08,
-    "end": 2.16
+    "start": 1.98,
+    "end": 2.08
    },
    {
     "w": "finge.",
-    "start": 2.16,
-    "end": 2.58
+    "start": 2.08,
+    "end": 2.44
    }
   ]
  },
  "s10": {
-  "dur": 7.843,
+  "dur": 7.689,
   "words": [
    {
-    "w": "¿Y",
+    "w": "Y",
     "start": 0.0,
     "end": 0.12
    },
    {
     "w": "por",
     "start": 0.12,
-    "end": 0.32
+    "end": 0.3
    },
    {
     "w": "qué",
-    "start": 0.32,
-    "end": 0.46
+    "start": 0.3,
+    "end": 0.44
    },
    {
     "w": "se",
-    "start": 0.46,
+    "start": 0.44,
     "end": 0.58
    },
    {
     "w": "acercan?",
     "start": 0.58,
-    "end": 0.98
+    "end": 1.0
    },
    {
     "w": "En",
-    "start": 1.5,
-    "end": 1.66
+    "start": 1.48,
+    "end": 1.62
    },
    {
     "w": "un",
-    "start": 1.66,
-    "end": 1.78
+    "start": 1.62,
+    "end": 1.74
    },
    {
     "w": "experimento,",
-    "start": 1.78,
-    "end": 2.8
+    "start": 1.74,
+    "end": 2.72
    },
    {
     "w": "los",
     "start": 2.8,
-    "end": 2.96
+    "end": 2.9
    },
    {
     "w": "perros",
-    "start": 2.96,
-    "end": 3.3
+    "start": 2.9,
+    "end": 3.2
    },
    {
     "w": "acudían",
-    "start": 3.3,
-    "end": 3.74
+    "start": 3.2,
+    "end": 3.66
    },
    {
     "w": "más",
-    "start": 3.74,
-    "end": 3.92
+    "start": 3.66,
+    "end": 3.82
    },
    {
     "w": "a",
-    "start": 3.92,
-    "end": 4.08
+    "start": 3.82,
+    "end": 3.98
    },
    {
     "w": "alguien",
-    "start": 4.08,
-    "end": 4.26
+    "start": 3.98,
+    "end": 4.16
    },
    {
     "w": "que",
-    "start": 4.26,
-    "end": 4.44
+    "start": 4.16,
+    "end": 4.34
    },
    {
     "w": "lloraba",
-    "start": 4.44,
+    "start": 4.34,
+    "end": 4.72
+   },
+   {
+    "w": "que",
+    "start": 4.72,
     "end": 4.88
    },
    {
-    "w": "que",
-    "start": 4.88,
-    "end": 5.08
-   },
-   {
     "w": "a",
-    "start": 5.08,
-    "end": 5.16
+    "start": 4.88,
+    "end": 4.96
    },
    {
     "w": "alguien",
-    "start": 5.16,
-    "end": 5.36
+    "start": 4.96,
+    "end": 5.18
    },
    {
     "w": "que",
-    "start": 5.36,
-    "end": 5.52
+    "start": 5.18,
+    "end": 5.38
    },
    {
     "w": "hablaba",
-    "start": 5.52,
-    "end": 5.9
+    "start": 5.38,
+    "end": 5.68
    },
    {
     "w": "o",
-    "start": 5.9,
-    "end": 6.04
+    "start": 5.68,
+    "end": 5.86
    },
    {
     "w": "tarareaba…",
-    "start": 6.04,
-    "end": 6.52
+    "start": 5.86,
+    "end": 6.34
    },
    {
     "w": "aunque",
-    "start": 6.52,
-    "end": 6.66
+    "start": 6.34,
+    "end": 6.52
    },
    {
     "w": "fuera",
-    "start": 6.66,
-    "end": 6.94
+    "start": 6.52,
+    "end": 6.76
    },
    {
     "w": "un",
-    "start": 6.94,
-    "end": 7.06
+    "start": 6.76,
+    "end": 6.92
    },
    {
     "w": "desconocido.",
-    "start": 7.06,
-    "end": 7.7
+    "start": 6.92,
+    "end": 7.5
    }
   ]
  },
  "s11": {
-  "dur": 8.193,
+  "dur": 7.858,
   "words": [
    {
     "w": "Influye",
@@ -910,191 +910,191 @@
    {
     "w": "el",
     "start": 0.44,
-    "end": 0.54
+    "end": 0.56
    },
    {
     "w": "contagio",
-    "start": 0.54,
+    "start": 0.56,
     "end": 1.02
    },
    {
     "w": "emocional",
     "start": 1.02,
-    "end": 1.46
+    "end": 1.42
    },
    {
     "w": "y",
-    "start": 1.46,
-    "end": 1.62
+    "start": 1.42,
+    "end": 1.56
    },
    {
     "w": "miles",
-    "start": 1.62,
-    "end": 1.84
+    "start": 1.56,
+    "end": 1.8
    },
    {
     "w": "de",
-    "start": 1.84,
-    "end": 2.0
+    "start": 1.8,
+    "end": 1.94
    },
    {
     "w": "años",
-    "start": 2.0,
-    "end": 2.2
+    "start": 1.94,
+    "end": 2.18
    },
    {
     "w": "juntos.",
-    "start": 2.2,
-    "end": 2.62
+    "start": 2.18,
+    "end": 2.52
    },
    {
     "w": "Cuando",
-    "start": 3.32,
-    "end": 3.58
+    "start": 3.16,
+    "end": 3.44
    },
    {
     "w": "os",
-    "start": 3.58,
-    "end": 3.8
+    "start": 3.44,
+    "end": 3.64
    },
    {
     "w": "miráis",
-    "start": 3.8,
-    "end": 4.16
+    "start": 3.64,
+    "end": 3.98
    },
    {
     "w": "a",
-    "start": 4.16,
-    "end": 4.28
+    "start": 3.98,
+    "end": 4.12
    },
    {
     "w": "los",
-    "start": 4.28,
-    "end": 4.38
+    "start": 4.12,
+    "end": 4.24
    },
    {
     "w": "ojos,",
-    "start": 4.38,
-    "end": 4.66
+    "start": 4.24,
+    "end": 4.48
    },
    {
     "w": "a",
-    "start": 5.06,
-    "end": 5.14
+    "start": 4.8,
+    "end": 4.92
    },
    {
     "w": "los",
-    "start": 5.14,
-    "end": 5.3
+    "start": 4.92,
+    "end": 5.08
    },
    {
     "w": "dos",
-    "start": 5.3,
-    "end": 5.46
+    "start": 5.08,
+    "end": 5.24
    },
    {
     "w": "os",
-    "start": 5.46,
-    "end": 5.66
+    "start": 5.24,
+    "end": 5.4
    },
    {
     "w": "sube",
-    "start": 5.66,
-    "end": 5.9
+    "start": 5.4,
+    "end": 5.68
    },
    {
     "w": "la",
-    "start": 5.9,
-    "end": 6.02
+    "start": 5.68,
+    "end": 5.82
    },
    {
     "w": "oxitocina,",
-    "start": 6.02,
-    "end": 6.66
+    "start": 5.82,
+    "end": 6.48
    },
    {
     "w": "la",
-    "start": 7.08,
-    "end": 7.16
+    "start": 6.78,
+    "end": 6.86
    },
    {
     "w": "hormona",
-    "start": 7.16,
-    "end": 7.5
+    "start": 6.86,
+    "end": 7.18
    },
    {
     "w": "del",
-    "start": 7.5,
-    "end": 7.68
+    "start": 7.18,
+    "end": 7.36
    },
    {
     "w": "vínculo.",
-    "start": 7.68,
-    "end": 8.02
+    "start": 7.36,
+    "end": 7.66
    }
   ]
  },
  "s12": {
-  "dur": 2.863,
+  "dur": 2.65,
   "words": [
    {
     "w": "No",
     "start": 0.0,
-    "end": 0.18
+    "end": 0.14
    },
    {
     "w": "leen",
-    "start": 0.18,
-    "end": 0.44
+    "start": 0.14,
+    "end": 0.4
    },
    {
     "w": "tu",
-    "start": 0.44,
-    "end": 0.58
+    "start": 0.4,
+    "end": 0.52
    },
    {
     "w": "mente.",
-    "start": 0.58,
-    "end": 0.84
+    "start": 0.52,
+    "end": 0.78
    },
    {
     "w": "Pero",
-    "start": 1.26,
-    "end": 1.64
+    "start": 1.16,
+    "end": 1.5
    },
    {
     "w": "leen",
-    "start": 1.64,
-    "end": 2.0
+    "start": 1.5,
+    "end": 1.82
    },
    {
     "w": "todo",
-    "start": 2.0,
-    "end": 2.12
+    "start": 1.82,
+    "end": 1.94
    },
    {
     "w": "lo",
-    "start": 2.12,
-    "end": 2.28
+    "start": 1.94,
+    "end": 2.08
    },
    {
     "w": "demás.",
-    "start": 2.28,
-    "end": 2.48
+    "start": 2.08,
+    "end": 2.28
    }
   ]
  },
  "s13": {
-  "dur": 6.328,
+  "dur": 6.325,
   "words": [
    {
     "w": "Así",
     "start": 0.0,
-    "end": 0.2
+    "end": 0.22
    },
    {
     "w": "que",
-    "start": 0.2,
+    "start": 0.22,
     "end": 0.36
    },
    {
@@ -1105,182 +1105,182 @@
    {
     "w": "próxima",
     "start": 0.46,
-    "end": 0.76
+    "end": 0.7
    },
    {
     "w": "vez",
-    "start": 0.76,
-    "end": 1.06
+    "start": 0.7,
+    "end": 0.98
    },
    {
     "w": "que",
-    "start": 1.06,
-    "end": 1.2
+    "start": 0.98,
+    "end": 1.12
    },
    {
     "w": "tu",
-    "start": 1.2,
-    "end": 1.4
+    "start": 1.12,
+    "end": 1.32
    },
    {
     "w": "perro",
-    "start": 1.4,
-    "end": 1.66
+    "start": 1.32,
+    "end": 1.56
    },
    {
     "w": "se",
-    "start": 1.66,
-    "end": 1.8
+    "start": 1.56,
+    "end": 1.7
    },
    {
     "w": "acerque",
-    "start": 1.8,
-    "end": 2.16
+    "start": 1.7,
+    "end": 2.04
    },
    {
     "w": "a",
-    "start": 2.16,
-    "end": 2.28
+    "start": 2.04,
+    "end": 2.14
    },
    {
     "w": "ti",
-    "start": 2.28,
-    "end": 2.44
+    "start": 2.14,
+    "end": 2.28
    },
    {
     "w": "cuando",
-    "start": 2.44,
-    "end": 2.68
+    "start": 2.28,
+    "end": 2.5
    },
    {
     "w": "estés",
-    "start": 2.68,
-    "end": 3.04
+    "start": 2.5,
+    "end": 2.9
    },
    {
     "w": "teniendo",
-    "start": 3.04,
-    "end": 3.44
+    "start": 2.9,
+    "end": 3.32
    },
    {
     "w": "un",
-    "start": 3.44,
-    "end": 3.58
+    "start": 3.32,
+    "end": 3.48
    },
    {
     "w": "mal",
-    "start": 3.58,
-    "end": 3.76
+    "start": 3.48,
+    "end": 3.66
    },
    {
     "w": "día…",
-    "start": 3.76,
-    "end": 4.08
+    "start": 3.66,
+    "end": 3.98
    },
    {
     "w": "quizá",
-    "start": 4.08,
-    "end": 4.36
+    "start": 3.98,
+    "end": 4.22
    },
    {
     "w": "haya",
-    "start": 4.36,
-    "end": 4.56
+    "start": 4.22,
+    "end": 4.42
    },
    {
     "w": "notado",
-    "start": 4.56,
-    "end": 4.94
+    "start": 4.42,
+    "end": 4.86
    },
    {
     "w": "mucho",
-    "start": 4.94,
-    "end": 5.16
+    "start": 4.86,
+    "end": 5.08
    },
    {
     "w": "más",
-    "start": 5.16,
-    "end": 5.38
+    "start": 5.08,
+    "end": 5.32
    },
    {
     "w": "de",
-    "start": 5.38,
-    "end": 5.52
+    "start": 5.32,
+    "end": 5.46
    },
    {
     "w": "lo",
+    "start": 5.46,
+    "end": 5.52
+   },
+   {
+    "w": "que",
     "start": 5.52,
     "end": 5.58
    },
    {
-    "w": "que",
-    "start": 5.58,
-    "end": 5.62
-   },
-   {
     "w": "imaginas.",
-    "start": 5.62,
-    "end": 6.06
+    "start": 5.58,
+    "end": 6.04
    }
   ]
  },
  "s14": {
-  "dur": 4.117,
+  "dur": 4.072,
   "words": [
    {
-    "w": "Tu",
+    "w": "¿Tu",
     "start": 0.0,
-    "end": 0.12
+    "end": 0.1
    },
    {
     "w": "perro",
-    "start": 0.12,
-    "end": 0.38
+    "start": 0.1,
+    "end": 0.36
    },
    {
     "w": "también",
-    "start": 0.38,
-    "end": 0.64
+    "start": 0.36,
+    "end": 0.68
    },
    {
     "w": "sabe",
-    "start": 0.64,
-    "end": 0.88
+    "start": 0.68,
+    "end": 0.9
    },
    {
     "w": "cuándo",
-    "start": 0.88,
-    "end": 1.28
+    "start": 0.9,
+    "end": 1.32
    },
    {
     "w": "estás",
-    "start": 1.28,
-    "end": 1.4
+    "start": 1.32,
+    "end": 1.46
    },
    {
-    "w": "triste.",
-    "start": 1.4,
-    "end": 1.76
+    "w": "triste?",
+    "start": 1.46,
+    "end": 1.72
    },
    {
     "w": "Cuéntamelo",
-    "start": 2.46,
-    "end": 2.98
+    "start": 2.42,
+    "end": 2.94
    },
    {
     "w": "en",
-    "start": 2.98,
-    "end": 3.1
+    "start": 2.94,
+    "end": 3.06
    },
    {
     "w": "los",
-    "start": 3.1,
-    "end": 3.2
+    "start": 3.06,
+    "end": 3.18
    },
    {
     "w": "comentarios.",
-    "start": 3.2,
-    "end": 3.64
+    "start": 3.18,
+    "end": 3.58
    }
   ]
  }
