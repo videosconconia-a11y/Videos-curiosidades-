@@ -1,6 +1,6 @@
-# Short: Cómo ganar dinero en GTA 6 (versión pre-lanzamiento)
+# Short: Cómo ganar dinero en GTA 6
 
-- **Formato:** MP4 vertical 1080×1920, 30 fps, ~52 s, voz en castellano de España, subtítulos palabra a palabra.
+- **Formato:** MP4 vertical 1080×1920, 30 fps, ~49 s, voz en castellano de España, subtítulos palabra a palabra.
 - **Generar:** `./build.sh` → `final_9x16.mp4` + `subtitulos_gta6_dinero.srt`.
 - **Archivos:** `script_data.py` (guion, subtítulos y planos), `tts.py` (voz), `audio.py` (música, efectos y ducking),
   `render.py` (fotogramas), `img/` (capturas oficiales; no se suben al repositorio).
@@ -12,9 +12,9 @@ rockstargames.com y entrevistas con prensa). No da cifras de dinero, misiones ni
 han publicado. Los contadores ($1.000.000 → $0 y $0 → $1.000.000) son animaciones de ejemplo y no prometen ninguna
 cantidad ni ningún plazo. Si al jugar algún dato cambia, hay que actualizar el guion.
 
-**Corrección del encargo:** el título pedido ("Haz tu primer millón en menos de una hora", etc.) no se puede cumplir
-sin inventar datos, así que el gancho es "Si no haces esto en GTA 6 puedes perder TODO tu dinero". Ese gancho sí se
-cumple: el error de morir con el efectivo encima.
+**Gancho:** "Todo lo que tienes que saber para hacerte rico en GTA 6" + "quédate hasta el final, porque hay un error
+que te puede dejar sin nada" (se cumple con el error de morir con el efectivo encima). Por petición del usuario no hay
+rótulo de crédito ni etiqueta superior dentro del vídeo; el crédito a Rockstar va en la descripción.
 
 ## Datos usados y fuentes
 | Dato del vídeo | Fuentes |
@@ -44,8 +44,7 @@ la Ultimate Edition solo dan acceso, no se pueden comprar), trucos de dinero y c
 
 ## Imágenes
 Solo hay capturas y arte oficiales descargados de rockstargames.com/VI (galería, personajes, "Only in Leonida",
-Ultimate Edition). No se ha usado nada del hackeo de 2022. En pantalla aparece siempre el crédito
-"Imágenes © Rockstar Games · vídeo fan, no afiliado".
+Ultimate Edition). No se ha usado nada del hackeo de 2022. El crédito "Imágenes © Rockstar Games · vídeo fan, no afiliado" va en la descripción.
 
 ## Voz y audio
 - Voz: Microsoft Edge TTS `es-ES-AlvaroNeural` (masculina, castellano peninsular) a velocidad +22 %. "GTA 6" se

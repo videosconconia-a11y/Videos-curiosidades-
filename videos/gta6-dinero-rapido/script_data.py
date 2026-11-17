@@ -1,4 +1,4 @@
-# Guion del Short "Cómo ganar dinero en GTA 6" (versión pre-lanzamiento: solo mecánicas confirmadas).
+# Guion del Short "Cómo ganar dinero en GTA 6" (mecánicas confirmadas por Rockstar).
 # tts:   texto que lee la voz (con ajustes de pronunciación: "GTA seis").
 # caps:  subtítulos palabra a palabra; *palabra* = clave en amarillo. Mismo nº de palabras que tts.
 # shots: planos. img = archivo en img/, fx = centro horizontal del encuadre (0–1),
@@ -7,14 +7,14 @@
 import json, os
 
 LINES = [
- dict(tts="Si no haces esto en GTA seis... puedes perder TODO tu dinero.",
-      caps="Si no haces esto en *GTA* *6*... puedes *perder* *TODO* tu *dinero.*",
+ dict(tts="Todo lo que tienes que saber para hacerte rico en GTA seis.",
+      caps="*Todo* lo que tienes que *saber* para hacerte *rico* en *GTA* *6.*",
       shots=[dict(img="mediaDesktop", fx=0.5, e="hook"),
-             dict(img="Jason_Duval_Video_Clip", fx=0.68, e="counter_down", w=7)]),
- dict(tts="Esto es lo que Rockstar ya ha enseñado sobre cómo hacerse rico en Leonida.",
-      caps="Esto es lo que *Rockstar* ya ha enseñado sobre cómo hacerse *rico* en *Leonida.*",
+             dict(img="Vice_City_18", fx=0.12, e="counter_up", w=8)]),
+ dict(tts="Y quédate hasta el final, porque hay un error que te puede dejar sin nada.",
+      caps="Y *quédate* hasta el *final,* porque hay un *error* que te puede dejar *sin* *nada.*",
       shots=[dict(img="Vice_City_27", fx=0.5, e="pan"),
-             dict(img="Vice_City_18", fx=0.12, e="counter_up", w=9)]),
+             dict(img="Jason_Duval_Video_Clip", fx=0.68, e="counter_down", w=8)]),
  dict(tts="Paso uno: empieza por lo pequeño. Tiendas y gasolineras... dinero en efectivo, directo al bolsillo.",
       caps="*PASO* *1:* empieza por lo pequeño. *Tiendas* y *gasolineras...* dinero en *efectivo,* directo al bolsillo.",
       shots=[dict(img="Jason_and_Lucia_15", fx=0.55, e="step", n=1),
@@ -45,10 +45,9 @@ LINES = [
              dict(img="Lucia_Caminos_14", fx=0.4, e="zoom", w=8),
              dict(img="Jason_Duval_11", fx=0.45, e="counter_down", w=14),
              dict(img="Vice_City_18", fx=0.12, e="zoom", w=20)]),
- dict(tts="Esto es lo confirmado antes del lanzamiento. ¿Cuánto dinero llevas tú? Te leo en comentarios.",
-      caps="Esto es lo *confirmado* antes del *lanzamiento.* ¿Cuánto *dinero* llevas *tú?* Te leo en *comentarios.*",
-      shots=[dict(img="Jason_Lucia_Lock_And_Load_phone", fx=0.5, e="zoom"),
-             dict(img="Jason_Lucia_Rooftop_portrait", fx=0.5, e="end", w=7)]),
+ dict(tts="¿Cuánto dinero llevas tú? Te leo en comentarios.",
+      caps="¿Cuánto *dinero* llevas *tú?* Te leo en *comentarios.*",
+      shots=[dict(img="Jason_Lucia_Lock_And_Load_phone", fx=0.5, e="end")]),
 ]
 GAP = 0.30    # silencio entre frases (s)
 LEAD = 0.15   # silencio inicial

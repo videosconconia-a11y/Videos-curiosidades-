@@ -77,10 +77,11 @@ def draw_overlays(img, shot, t, to_screen, p):
     if e == "hook":
         a = ease(dt / 0.25)
         f1 = font(ANTON, 120 * (1.3 - 0.3 * a)); f2 = font(ANTON, 150 * (1.3 - 0.3 * a))
-        text_c(d, (W / 2, 330), "PUEDES PERDER", f1, WHITE, 10)
-        tw = d.textlength("TODO TU DINERO", font=f2)
-        d.rectangle([W / 2 - tw / 2 - 24, 430, W / 2 + tw / 2 + 24, 620], fill=RED + (235,))
-        text_c(d, (W / 2, 522), "TODO TU DINERO", f2, YEL, 10)
+        text_c(d, (W / 2, 250), "TODO LO QUE", f1, WHITE, 10)
+        text_c(d, (W / 2, 395), "TIENES QUE SABER", f1, WHITE, 10)
+        tw = d.textlength("DINERO EN GTA 6", font=f2)
+        d.rectangle([W / 2 - tw / 2 - 24, 480, W / 2 + tw / 2 + 24, 670], fill=RED + (235,))
+        text_c(d, (W / 2, 572), "DINERO EN GTA 6", f2, YEL, 10)
     if e == "warn":
         a = 0.5 + 0.5 * math.sin(dt * 14)
         d.rectangle([0, 0, W, H], outline=RED + (int(200 * a),), width=26)
@@ -138,12 +139,6 @@ def draw_overlays(img, shot, t, to_screen, p):
             d.rounded_rectangle([W / 2 - 360, 640, W / 2 + 360, 760], 60, fill=RED + (int(240 * k),))
             text_c(d, (W / 2, 700), "TE LEO EN COMENTARIOS", font(ANTON, 64), WHITE, 0)
 
-    # etiqueta superior fija (honestidad: info previa al lanzamiento)
-    if e not in ("hook",) and t > 2.0:
-        tag = "GTA VI · LO CONFIRMADO POR ROCKSTAR"
-        f = font(INTER, 30); tw = d.textlength(tag, font=f)
-        d.rounded_rectangle([W / 2 - tw / 2 - 20, 110, W / 2 + tw / 2 + 20, 162], 26, fill=(0, 0, 0, 150))
-        d.text((W / 2, 136), tag, font=f, fill=WHITE, anchor="mm")
 
 def draw_captions(img, t):
     d = ImageDraw.Draw(img, "RGBA")
@@ -191,7 +186,6 @@ def render(t):
     img, to_screen, p = frame_bg(shot, t)
     draw_overlays(img, shot, t, to_screen, p)
     draw_captions(img, t)
-    credit(img)
     # destello en cada corte
     dt = t - shot["a"]
     if dt < 0.1 and shot is not SHOTS[0]:
