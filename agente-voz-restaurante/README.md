@@ -34,6 +34,14 @@ española (Polly Lucía). Claude lleva la conversación y usa las herramientas d
 
 ## 2. Configurar el restaurante
 
+Ahora mismo **`restaurante.yaml` está preparado para La Posada de Paco Benítez (Melilla)**. Los datos marcados
+✅ salen de fuentes públicas y los marcados ⚠️ PENDIENTE (horario, mesas, móvil del encargado, días de cierre,
+precios…) **hay que confirmarlos con el restaurante** antes de atender llamadas reales. Mientras un dato no
+esté en el archivo, el asistente dice que no lo sabe en vez de inventárselo.
+
+En `ejemplos/casa-ejemplo.yaml` hay otro ejemplo completo (con terraza y precios) que sirve de plantilla.
+Para usar otro archivo: `RESTAURANTE_CONFIG=ejemplos/casa-ejemplo.yaml`.
+
 Edita **`restaurante.yaml`**. Ahí van:
 
 - nombre, dirección, teléfono y web,
@@ -57,8 +65,9 @@ cp .env.example .env          # y pon tu ANTHROPIC_API_KEY
 python -m agente_voz.chat     # conversación escrita, como si fuera una llamada
 ```
 
-Ejemplo de lo que puedes probar: *"Hola, quería mesa para cuatro el sábado por la noche"*, *"¿tenéis opciones sin gluten?"*,
-*"quiero cancelar mi reserva"*, *"somos quince personas"* (debe pasarte con el encargado).
+Ejemplo de lo que puedes probar con La Posada: *"Hola, quería mesa para cuatro el sábado por la noche"*,
+*"¿cuál es el plato estrella?"* (debe decir el rape a la Rusadir), *"¿tenéis menú del día?"* (debe decir que no
+tiene ese dato, sin inventárselo), *"quiero cancelar mi reserva"*, *"somos quince personas"*.
 
 Pruebas automáticas (no gastan API): `pytest -q`.
 

@@ -25,7 +25,8 @@ def proximo(dia_semana: int) -> str:
 
 @pytest.fixture
 def restaurante():
-    return cargar_restaurante()
+    # Las pruebas usan siempre el ejemplo genérico, así no dependen del restaurante configurado.
+    return cargar_restaurante(Path(__file__).resolve().parent.parent / "ejemplos" / "casa-ejemplo.yaml")
 
 
 @pytest.fixture

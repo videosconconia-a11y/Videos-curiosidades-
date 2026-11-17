@@ -1,0 +1,86 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  CONFIGURACIÓN DEL RESTAURANTE
+#  Edita este archivo con los datos reales. Todo lo que pongas aquí es lo que
+#  el asistente sabe. Si algo no está aquí, el asistente dirá que no lo sabe
+#  y ofrecerá pasar la llamada a una persona.
+# ─────────────────────────────────────────────────────────────────────────────
+
+restaurante:
+  nombre: "Casa Ejemplo"
+  direccion: "Calle Mayor 12, 28013 Madrid"
+  como_llegar: "A dos minutos andando del metro Sol (líneas 1, 2 y 3)."
+  telefono_publico: "+34 910 000 000"
+  web: "www.casaejemplo.es"
+  zona_horaria: "Europe/Madrid"
+
+# Número al que se pasa la llamada cuando hace falta una persona
+# (grupos grandes, quejas, eventos, o si el cliente lo pide). Déjalo vacío
+# si no queréis transferencias.
+telefono_personal: "+34600000000"
+
+# Horario de reservas. Para cada día: lista de turnos con la primera y la
+# última hora a la que se puede SENTAR a comer. Día sin turnos = cerrado.
+horario:
+  lunes: []
+  martes:
+    - {nombre: comida, desde: "13:00", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:00", hasta: "22:45"}
+  miercoles:
+    - {nombre: comida, desde: "13:00", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:00", hasta: "22:45"}
+  jueves:
+    - {nombre: comida, desde: "13:00", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:00", hasta: "22:45"}
+  viernes:
+    - {nombre: comida, desde: "13:00", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:00", hasta: "23:15"}
+  sabado:
+    - {nombre: comida, desde: "13:00", hasta: "16:00"}
+    - {nombre: cena,   desde: "20:00", hasta: "23:15"}
+  domingo:
+    - {nombre: comida, desde: "13:00", hasta: "16:00"}
+
+# Días concretos cerrados (festivos, vacaciones…). Formato AAAA-MM-DD.
+dias_cerrados:
+  - "2026-12-25"
+  - "2027-01-01"
+
+reservas:
+  intervalo_minutos: 15          # cada cuánto se ofrecen horas (13:00, 13:15…)
+  duracion_minutos: 105          # cuánto ocupa una mesa una reserva normal
+  duracion_grupo_minutos: 135    # duración para grupos de 7 o más
+  max_personas_telefono: 10      # más personas → se pasa a una persona
+  antelacion_minima_minutos: 30  # no reservar para dentro de menos de esto
+  antelacion_maxima_dias: 60     # no reservar más allá de esto
+  # Mesas: id, capacidad mínima y máxima, y zona.
+  mesas:
+    - {id: S1, min: 1, max: 2, zona: salon}
+    - {id: S2, min: 1, max: 2, zona: salon}
+    - {id: S3, min: 2, max: 4, zona: salon}
+    - {id: S4, min: 2, max: 4, zona: salon}
+    - {id: S5, min: 2, max: 4, zona: salon}
+    - {id: S6, min: 4, max: 6, zona: salon}
+    - {id: T1, min: 1, max: 2, zona: terraza}
+    - {id: T2, min: 2, max: 4, zona: terraza}
+    - {id: T3, min: 2, max: 4, zona: terraza}
+  # Mesas que se pueden juntar para grupos (se ocupan todas a la vez).
+  combinaciones:
+    - {mesas: [S4, S5], min: 5, max: 8, zona: salon}
+    - {mesas: [S6, S5], min: 7, max: 10, zona: salon}
+    - {mesas: [T2, T3], min: 5, max: 8, zona: terraza}
+
+# Información que el asistente puede contar. Escribe en frases normales.
+informacion: |
+  Cocina mediterránea de mercado con producto de temporada.
+  Precio medio por persona: unos 35 euros sin bebida. Menú del día de martes a viernes al mediodía: 18 euros.
+  Platos estrella: arroz meloso de carabineros, croquetas de jamón, pulpo a la brasa y tarta de queso.
+  Hay opciones vegetarianas y veganas (señaladas en la carta). Podemos adaptar platos sin gluten; la cocina no es 100 % libre de trazas.
+  Información de alérgenos: la carta indica los 14 alérgenos; para alergias graves, recomendamos avisar al hacer la reserva.
+  Terraza climatizada de octubre a abril. La terraza no se puede garantizar si llueve mucho: se reubica en el salón si hay sitio.
+  Se admiten perros pequeños en la terraza, no en el salón.
+  Tenemos tronas para bebés y el local es accesible en silla de ruedas, con baño adaptado.
+  No hay parking propio; el más cercano es el parking público de Plaza Mayor (a 3 minutos).
+  Pago con tarjeta, efectivo y Bizum. No aceptamos cheques restaurante.
+  Política de reservas: se guarda la mesa 15 minutos. Si van a llegar tarde o a cancelar, rogamos que llamen.
+  Para grupos de más de 10 personas, eventos o menús cerrados, les atiende el encargado.
+  También hacemos comida para llevar los fines de semana (se encarga por teléfono con una persona).

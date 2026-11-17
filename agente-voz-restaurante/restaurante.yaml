@@ -1,86 +1,94 @@
 # ─────────────────────────────────────────────────────────────────────────────
-#  CONFIGURACIÓN DEL RESTAURANTE
-#  Edita este archivo con los datos reales. Todo lo que pongas aquí es lo que
-#  el asistente sabe. Si algo no está aquí, el asistente dirá que no lo sabe
-#  y ofrecerá pasar la llamada a una persona.
+#  LA POSADA DE PACO BENÍTEZ · MELILLA
+#
+#  ✅ = dato sacado de fuentes públicas (prensa y guías gastronómicas).
+#  ⚠️ PENDIENTE = propuesta razonable que el restaurante TIENE QUE CONFIRMAR
+#     antes de que el asistente coja llamadas de verdad.
+#  Todo lo que el asistente cuenta sale de este archivo: si un dato está mal
+#  aquí, se lo dirá mal al cliente.
 # ─────────────────────────────────────────────────────────────────────────────
 
 restaurante:
-  nombre: "Casa Ejemplo"
-  direccion: "Calle Mayor 12, 28013 Madrid"
-  como_llegar: "A dos minutos andando del metro Sol (líneas 1, 2 y 3)."
-  telefono_publico: "+34 910 000 000"
-  web: "www.casaejemplo.es"
-  zona_horaria: "Europe/Madrid"
+  nombre: "La Posada de Paco Benítez"                                   # ✅
+  direccion: "Calle Guerrero Romero 5, esquina con Calle Alférez Díaz Otero, 52006 Melilla"  # ✅
+  como_llegar: ""                     # ⚠️ PENDIENTE (una referencia o el parking más cercano)
+  telefono_publico: "+34 952 68 16 29"  # ✅ aparece en una sola guía: confirmarlo
+  web: ""                             # ⚠️ PENDIENTE (web o Instagram, si hay)
+  zona_horaria: "Europe/Madrid"       # Melilla tiene la misma hora que la península
 
-# Número al que se pasa la llamada cuando hace falta una persona
-# (grupos grandes, quejas, eventos, o si el cliente lo pide). Déjalo vacío
-# si no queréis transferencias.
-telefono_personal: "+34600000000"
+# ⚠️ PENDIENTE: móvil de Paco o del encargado, al que se pasan las llamadas
+# (grupos, eventos, quejas…). Mientras esté vacío, el asistente NO transfiere
+# y pide que llamen más tarde en horario de servicio.
+telefono_personal: ""
 
-# Horario de reservas. Para cada día: lista de turnos con la primera y la
-# última hora a la que se puede SENTAR a comer. Día sin turnos = cerrado.
+# ⚠️ PENDIENTE: horario propuesto (el típico de un restaurante en España).
+# Para cada turno, la primera y la última hora a la que se puede sentar a comer.
 horario:
-  lunes: []
+  lunes:
+    - {nombre: comida, desde: "13:30", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:30", hasta: "23:00"}
   martes:
-    - {nombre: comida, desde: "13:00", hasta: "15:30"}
-    - {nombre: cena,   desde: "20:00", hasta: "22:45"}
+    - {nombre: comida, desde: "13:30", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:30", hasta: "23:00"}
   miercoles:
-    - {nombre: comida, desde: "13:00", hasta: "15:30"}
-    - {nombre: cena,   desde: "20:00", hasta: "22:45"}
+    - {nombre: comida, desde: "13:30", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:30", hasta: "23:00"}
   jueves:
-    - {nombre: comida, desde: "13:00", hasta: "15:30"}
-    - {nombre: cena,   desde: "20:00", hasta: "22:45"}
+    - {nombre: comida, desde: "13:30", hasta: "15:30"}
+    - {nombre: cena,   desde: "20:30", hasta: "23:00"}
   viernes:
-    - {nombre: comida, desde: "13:00", hasta: "15:30"}
-    - {nombre: cena,   desde: "20:00", hasta: "23:15"}
+    - {nombre: comida, desde: "13:30", hasta: "16:00"}
+    - {nombre: cena,   desde: "20:30", hasta: "23:30"}
   sabado:
-    - {nombre: comida, desde: "13:00", hasta: "16:00"}
-    - {nombre: cena,   desde: "20:00", hasta: "23:15"}
+    - {nombre: comida, desde: "13:30", hasta: "16:00"}
+    - {nombre: cena,   desde: "20:30", hasta: "23:30"}
   domingo:
-    - {nombre: comida, desde: "13:00", hasta: "16:00"}
+    - {nombre: comida, desde: "13:30", hasta: "16:00"}
 
-# Días concretos cerrados (festivos, vacaciones…). Formato AAAA-MM-DD.
+# ⚠️ PENDIENTE: días que cierra (vacaciones, Navidad, festivos de Melilla…). AAAA-MM-DD.
 dias_cerrados:
   - "2026-12-25"
   - "2027-01-01"
 
 reservas:
-  intervalo_minutos: 15          # cada cuánto se ofrecen horas (13:00, 13:15…)
-  duracion_minutos: 105          # cuánto ocupa una mesa una reserva normal
-  duracion_grupo_minutos: 135    # duración para grupos de 7 o más
-  max_personas_telefono: 10      # más personas → se pasa a una persona
-  antelacion_minima_minutos: 30  # no reservar para dentro de menos de esto
-  antelacion_maxima_dias: 60     # no reservar más allá de esto
-  # Mesas: id, capacidad mínima y máxima, y zona.
+  intervalo_minutos: 15
+  duracion_minutos: 105
+  duracion_grupo_minutos: 135
+  max_personas_telefono: 10       # más personas → lo lleva Paco o el encargado
+  antelacion_minima_minutos: 30
+  antelacion_maxima_dias: 60
+  # ⚠️ PENDIENTE: distribución de mesas de ejemplo (50 plazas).
+  # Cambiadla por las mesas reales. Si hay terraza o reservado, añadid mesas
+  # con zona: terraza o zona: reservado.
   mesas:
-    - {id: S1, min: 1, max: 2, zona: salon}
-    - {id: S2, min: 1, max: 2, zona: salon}
-    - {id: S3, min: 2, max: 4, zona: salon}
-    - {id: S4, min: 2, max: 4, zona: salon}
-    - {id: S5, min: 2, max: 4, zona: salon}
-    - {id: S6, min: 4, max: 6, zona: salon}
-    - {id: T1, min: 1, max: 2, zona: terraza}
-    - {id: T2, min: 2, max: 4, zona: terraza}
-    - {id: T3, min: 2, max: 4, zona: terraza}
-  # Mesas que se pueden juntar para grupos (se ocupan todas a la vez).
+    - {id: M1,  min: 1, max: 2, zona: salon}
+    - {id: M2,  min: 1, max: 2, zona: salon}
+    - {id: M3,  min: 1, max: 2, zona: salon}
+    - {id: M4,  min: 2, max: 4, zona: salon}
+    - {id: M5,  min: 2, max: 4, zona: salon}
+    - {id: M6,  min: 2, max: 4, zona: salon}
+    - {id: M7,  min: 2, max: 4, zona: salon}
+    - {id: M8,  min: 2, max: 4, zona: salon}
+    - {id: M9,  min: 2, max: 4, zona: salon}
+    - {id: M10, min: 4, max: 6, zona: salon}
+    - {id: M11, min: 4, max: 6, zona: salon}
+    - {id: M12, min: 6, max: 8, zona: salon}
   combinaciones:
-    - {mesas: [S4, S5], min: 5, max: 8, zona: salon}
-    - {mesas: [S6, S5], min: 7, max: 10, zona: salon}
-    - {mesas: [T2, T3], min: 5, max: 8, zona: terraza}
+    - {mesas: [M8, M9],   min: 5, max: 8,  zona: salon}
+    - {mesas: [M10, M11], min: 7, max: 10, zona: salon}
+    - {mesas: [M12, M9],  min: 8, max: 10, zona: salon}
 
-# Información que el asistente puede contar. Escribe en frases normales.
+# Lo que el asistente puede contar: solo hechos publicados (✅). Lo demás, no lo sabe.
 informacion: |
-  Cocina mediterránea de mercado con producto de temporada.
-  Precio medio por persona: unos 35 euros sin bebida. Menú del día de martes a viernes al mediodía: 18 euros.
-  Platos estrella: arroz meloso de carabineros, croquetas de jamón, pulpo a la brasa y tarta de queso.
-  Hay opciones vegetarianas y veganas (señaladas en la carta). Podemos adaptar platos sin gluten; la cocina no es 100 % libre de trazas.
-  Información de alérgenos: la carta indica los 14 alérgenos; para alergias graves, recomendamos avisar al hacer la reserva.
-  Terraza climatizada de octubre a abril. La terraza no se puede garantizar si llueve mucho: se reubica en el salón si hay sitio.
-  Se admiten perros pequeños en la terraza, no en el salón.
-  Tenemos tronas para bebés y el local es accesible en silla de ruedas, con baño adaptado.
-  No hay parking propio; el más cercano es el parking público de Plaza Mayor (a 3 minutos).
-  Pago con tarjeta, efectivo y Bizum. No aceptamos cheques restaurante.
-  Política de reservas: se guarda la mesa 15 minutos. Si van a llegar tarde o a cancelar, rogamos que llamen.
-  Para grupos de más de 10 personas, eventos o menús cerrados, les atiende el encargado.
-  También hacemos comida para llevar los fines de semana (se encarga por teléfono con una persona).
+  Restaurante de cocina tradicional en el centro de Melilla, conocido sobre todo por la buena carne,
+  el pescado fresco y el marisco, además de jamón y quesos de calidad.
+  Platos más pedidos y recomendados: el rape a la Rusadir, que es el plato estrella de la casa;
+  la corvina a la crema de gambas; y el solomillo, una receta que viene del anterior local de Paco, La Choza.
+  Según el mercado hay pescados como el rape, la corvina o el lenguado.
+  El local tiene una decoración rústica, con aperos de labranza antiguos.
+  El propietario es Paco Benítez.
+  Conviene reservar, sobre todo los fines de semana, porque suele llenarse.
+  Datos que todavía NO tienes y que nunca debes inventar: precios, carta completa, menú del día,
+  alérgenos de cada plato, opciones sin gluten, terraza, aparcamiento, accesibilidad, mascotas y formas de pago.
+  Si preguntan por algo de esto, di con amabilidad que no tienes ese dato y que el personal se lo
+  confirma en el restaurante o llamando en horario de servicio; si es por una alergia, anótalo en la reserva.

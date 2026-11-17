@@ -4,6 +4,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY agente_voz ./agente_voz
 COPY restaurante.yaml .
+COPY ejemplos ./ejemplos
 ENV BASE_DATOS=/datos/reservas.db
 VOLUME ["/datos"]
 EXPOSE 8000
