@@ -199,8 +199,8 @@ def text_c(d, y, s, font, fill, stroke=0, sc=(0, 0, 0)):
 
 def ecg(img, t, beats, flat_after=None, color=(60, 255, 120)):
     d = ImageDraw.Draw(img, "RGBA")
-    for gy in range(0, H, 90): d.line([0, gy, W, gy], fill=(30, 80, 50, 60))
-    for gx in range(0, W, 90): d.line([gx, 0, gx, H], fill=(30, 80, 50, 60))
+    for gy in range(0, H, 90): d.line([0, gy, W, gy], fill=(40, 110, 70, 120))
+    for gx in range(0, W, 90): d.line([gx, 0, gx, H], fill=(40, 110, 70, 120))
     pts = []
     win = 3.0
     for i in range(0, W, 3):
@@ -398,18 +398,19 @@ def caption_layer(t):
 
 # ---------------------------------------------------------------- estilo (ver GUIA_ESTILO.md, comprobar con tools/medir.py)
 XF = 0.45            # fundido largo entre planos: la cámara "viaja" en vez de cortar
-LIVE_ZOOM = 1.045    # zoom base de la cámara viva (margen para derivar sin ver bordes)
+LIVE_ZOOM = 1.07     # zoom base de la cámara viva (margen para derivar sin ver bordes)
 GAMMA = 1.0          # >1 oscurece medios tonos (la rana ya mide brillo ~54: no oscurecer más)
 CONTRAST = 1.12      # contraste alrededor de PIVOT
 PIVOT = 80
 
 def live_cam(img, t):
     """Cámara viva global: deriva y respiración lentas y continuas para que ningún cuadro quede quieto,
-    ni siquiera en gráficas o en la tarjeta final. Combina periodos distintos para que la velocidad
-    nunca llegue a cero a la vez en todos los ejes."""
-    z = LIVE_ZOOM + 0.025 * math.sin(2 * math.pi * t / 11.0) + 0.0012 * t
-    dx = 16 * math.sin(2 * math.pi * t / 13.0) + 9 * math.sin(2 * math.pi * t / 7.3 + 1.1)
-    dy = 12 * math.sin(2 * math.pi * t / 17.0 + 0.7) + 7 * math.sin(2 * math.pi * t / 5.9 + 2.3)
+    ni siquiera en gráficas o en la tarjeta final."""
+    # deriva en elipse: la velocidad nunca baja de ~6 px/s, así que la cámara no se para nunca
+    w = 2 * math.pi / 21.0
+    z = LIVE_ZOOM + 0.02 * math.sin(2 * math.pi * t / 11.0)
+    dx = 20 * math.cos(w * t)
+    dy = 26 * math.sin(w * t)
     cw, ch = W / z, H / z
     cx, cy = W / 2 + dx, H / 2 + dy
     return img.resize((W, H), Image.BILINEAR, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2))

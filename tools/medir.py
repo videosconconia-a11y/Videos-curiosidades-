@@ -71,7 +71,9 @@ def analyse(path, fps=30, sheets=None, every=2.0):
         sat.append(float(np.mean((mx - mn) / (mx + 1e-3))))
         if lum_prev is not None:
             diff = float(np.abs(lum - lum_prev).mean())
-            if diff > CUT_DIFF:
+            # un destello cambia el brillo pero conserva la estructura; un corte cambia la estructura
+            ncc = float(np.corrcoef(lum_prev.ravel(), lum.ravel())[0, 1]) if lum.std() > 1 and lum_prev.std() > 1 else 1.0  # fundido desde/hacia negro: no es corte
+            if diff > CUT_DIFF and ncc < 0.6:
                 cuts.append(i / fps); motion.append(None)
             else:
                 dy, dx, _ = phase_shift(lum_prev, lum)
@@ -92,6 +94,15 @@ def analyse(path, fps=30, sheets=None, every=2.0):
         if mv: cur += 1
         elif cur: runs.append(cur); cur = 0
     if cur: runs.append(cur)
+    # tramos quietos (inicio, fin) en segundos, para saber qué plano arreglar
+    still, k, idx = [], 0, [i + 1 for i, v in enumerate(motion) if v is not None]
+    flags = [v >= MOVE_PX for v in m]
+    while k < len(flags):
+        if not flags[k]:
+            j = k
+            while j + 1 < len(flags) and not flags[j + 1]: j += 1
+            still.append((round(idx[k] / fps, 2), round((idx[j] + 1) / fps, 2))); k = j + 1
+        else: k += 1
     n = len(bright)
     return {
         "video": os.path.basename(path), "segundos": round(n / fps, 2), "cuadros": n,
@@ -99,6 +110,7 @@ def analyse(path, fps=30, sheets=None, every=2.0):
         "movimiento_medio_s": round(float(np.mean(runs)) / fps, 2) if runs else 0.0,
         "tramos_quietos": int(sum(1 for k in range(1, len(moving)) if not moving[k] and moving[k - 1]) + (0 if not moving or moving[0] else 1)),
         "velocidad_media_px": round(float(np.mean(m)), 3) if m else 0.0,
+        "quietos_s": still,
         "cortes": len(cuts), "cortes_s": [round(c, 2) for c in cuts],
         "brillo": round(float(np.mean(bright)), 1),
         "contraste": round(float(np.mean(contrast)), 1),
