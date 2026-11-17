@@ -1,0 +1,85 @@
+{
+ "txt2img": [
+  {
+   "name": "close_frozen",
+   "seed": 3,
+   "prompt": "macro wildlife photograph of a wood frog (Lithobates sylvaticus), brown frog with dark mask stripe through the eye, lying on dead oak leaves on the forest floor, its whole body covered in white frost and ice crystals, frozen solid, cold blue morning light, shallow depth of field, National Geographic, ultra detailed, 8k"
+  },
+  {
+   "name": "hero_alive",
+   "seed": 11,
+   "prompt": "close-up of a wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges, sitting on wet brown fallen oak and maple leaves on the forest floor, autumn, soft overcast light, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "eye_alive",
+   "seed": 5,
+   "prompt": "extreme close-up of the eye and head of a wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges, golden iris, shiny moist skin, side view, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "hide_leaves",
+   "seed": 21,
+   "prompt": "a wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges half hidden under a pile of fallen brown leaves on the forest floor at dusk, first snowflakes falling, cold blue light, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "frost_leaves",
+   "seed": 4,
+   "prompt": "close-up of fallen oak leaves on the forest floor covered with delicate white hoarfrost ice crystals, early winter morning, blue cold light, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "frozen_snow_wide",
+   "seed": 8,
+   "prompt": "a frozen wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges lying motionless on frozen leaf litter partly covered by snow, whole body coated in white frost, winter forest floor, cold desaturated blue light, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "frozen_side",
+   "seed": 2,
+   "prompt": "side view close-up of a frozen wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges encased in thin clear ice and frost crystals, motionless, icy leaf litter, cold blue light, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "alaska_night",
+   "seed": 7,
+   "prompt": "snowy boreal spruce forest in Alaska at night, deep snow, green aurora borealis in the starry sky, extremely cold, cinematic landscape photograph, ultra detailed"
+  },
+  {
+   "name": "spring_sunrise",
+   "seed": 9,
+   "prompt": "spring sunrise in a deciduous forest, melting snow patches on the forest floor, water droplets, warm golden sunbeams through the trees, mist, cinematic landscape photograph, ultra detailed"
+  },
+  {
+   "name": "pond",
+   "seed": 13,
+   "prompt": "a wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges at the edge of a vernal pool in early spring, sitting in shallow water among dead leaves, warm sunlight, reflections, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "leap",
+   "seed": 17,
+   "prompt": "a wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges jumping in mid-air over a forest pond in spring, legs fully extended, water droplets, motion, sunlight, high speed wildlife photograph, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "final_ice_sun",
+   "seed": 19,
+   "prompt": "a wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges sitting on a melting patch of ice and snow in a spring forest, warm golden sunlight backlight, water droplets glistening, hopeful, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  },
+  {
+   "name": "hero_wide",
+   "seed": 23,
+   "prompt": "a wood frog (Lithobates sylvaticus), tan-brown frog with a dark brown mask stripe through the eye, white upper lip stripe, dorsolateral ridges on mossy forest floor among fallen leaves, low angle, beautiful sunlit spring forest background with bokeh, wildlife macro photograph, National Geographic, sharp focus, ultra detailed, natural light, shallow depth of field"
+  }
+ ],
+ "img2img": [
+  {
+   "name": "hero_frozen",
+   "src": "hero_alive",
+   "strength": 0.5,
+   "seed": 1,
+   "prompt": "wildlife macro photograph of a frozen wood frog, its whole body and skin covered in white frost and tiny ice crystals, frozen solid, frosty fallen leaves covered in hoarfrost, cold blue winter light, ultra detailed"
+  },
+  {
+   "name": "close_alive",
+   "src": "close_frozen",
+   "strength": 0.5,
+   "seed": 2,
+   "prompt": "wildlife macro photograph of a living wood frog with moist shiny brown skin and dark mask stripe through the eye, no frost, no ice, on wet brown bark and green moss in warm golden spring sunlight, ultra detailed"
+  }
+ ]
+}
