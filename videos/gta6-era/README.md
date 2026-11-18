@@ -45,7 +45,7 @@ creator's footage, face, branding or script, and publish it on launch night, whe
 ✅ Feb 4, 2022 — Rockstar confirms GTA 6
 🏆 Dec 2023 — Trailer 1: 90M views in 24h (Guinness World Record)
 ⏳ Fall 2025 → May 26, 2026 → Nov 19, 2026
-🌴 Tonight — it's finally here
+🌴 Nov 19, 2026 — it's finally here
 
 Where were you when GTA 5 came out? Tell me below 👇
 Subscribe for daily GTA 6 secrets 🌴
