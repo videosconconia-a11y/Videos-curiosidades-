@@ -1,0 +1,33 @@
+# "GTA 6 Pre-Orders Hit $1.5 BILLION?!" — breaking-news Short. Figures = Sensor Tower ESTIMATES (as of Nov 17, 2026).
+SEGMENTS = [
+    dict(id="hook", pause=0.15,
+         say="Breaking news. GTA six hasn't even launched, and it's already a billion-dollar game.",
+         hl={"breaking", "news", "launched", "billion-dollar"},
+         shots=[("hook", None), ("hook2", "and")]),
+    dict(id="s1", pause=0.15,
+         say="Market tracker Sensor Tower estimates nearly sixteen million digital pre-orders on PlayStation and Xbox.",
+         hl={"sensor", "tower", "estimates", "sixteen", "million", "pre-orders"},
+         shots=[("source", None), ("preorders", "nearly")]),
+    dict(id="s2", pause=0.15,
+         say="That's around one point five billion dollars, before anyone has played a single mission.",
+         hl={"one", "point", "five", "billion", "dollars", "single", "mission"},
+         shots=[("dollars", None), ("nobody", "before")]),
+    dict(id="s3", pause=0.15,
+         say="And about three out of four of those pre-orders are on PS5.",
+         hl={"three", "four", "ps5"},
+         shots=[("ps5", None)]),
+    dict(id="s4", pause=0.2,
+         say="Now, these numbers are not official. Take-Two has only said pre-orders are tracking well above expectations.",
+         hl={"not", "official", "take-two", "above", "expectations"},
+         shots=[("unconfirmed", None), ("taketwo", "take-two")]),
+    dict(id="s5", pause=0.25,
+         say="So here's the real question. In 2013, GTA five made over eight hundred million dollars on day one. Can GTA six beat it?",
+         hl={"real", "question", "eight", "hundred", "million", "day", "one", "beat"},
+         shots=[("question", None), ("gta5", "in"), ("record", "can")]),
+    dict(id="outro", pause=0.15,
+         say="Drop your day-one guess in the comments. Closest guess gets pinned.",
+         hl={"day-one", "guess", "comments", "pinned"},
+         shots=[("outro", None)]),
+]
+DISPLAY = {"PS5": "PS5"}
+TITLE = "GTA 6 Pre-Orders Hit $1.5 BILLION?! 🤯 #gta6 #viral #shorts #gaming #gta"
