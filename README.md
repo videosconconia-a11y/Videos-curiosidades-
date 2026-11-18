@@ -9,7 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
-| `videos/gta-6-iceberg` | El iceberg de GTA 6 (formato iceberg, voz IA Piper es_ES con ducking) | 59,8 s |
+| `videos/gta-6-iceberg` | El iceberg de GTA 6 (formato iceberg, voz IA Piper es_ES con ducking) | 59,7 s |
 
 ## Estructura de cada vídeo
 

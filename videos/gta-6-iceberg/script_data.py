@@ -7,36 +7,36 @@ import json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 SCRIPT = [
-    ("Trece años. Es lo que ha tardado GTA 6… y su iceberg esconde datos que casi nadie conoce.",
-     ["*13 AÑOS*", "ES LO QUE", "HA TARDADO", "*GTA 6*", "Y SU *ICEBERG*", "ESCONDE DATOS", "QUE CASI NADIE", "*CONOCE*"],
+    ("Trece años esperando GTA 6. Y su iceberg… os va a dejar flipando.",
+     ["*13 AÑOS*", "ESPERANDO", "*GTA 6*", "Y SU *ICEBERG*", "OS VA A DEJAR", "*FLIPANDO*"],
      ["hook_13", "iceberg_reveal"]),
     ("Nivel uno. Sale el diecinueve de noviembre, en PlayStation 5 y Xbox Series. ¿Y en PC? Ni fecha.",
-     ["*NIVEL 1*", "SALE EL", "*19 DE NOVIEMBRE*", "DE 2026", "PS5 Y", "XBOX SERIES", "¿EN PC?", "*NI FECHA*"],
+     ["*NIVEL 1*", "SALE EL", "*19 DE NOVIEMBRE*", "EN PS5 Y", "XBOX SERIES", "¿Y EN PC?", "*NI FECHA*"],
      ["level_1", "calendar", "consoles"]),
-    ("Nivel dos. Vuelve Vice City, pero dentro de Leonida, un estado inventado inspirado en Florida.",
-     ["*NIVEL 2*", "VUELVE", "*VICE CITY*", "DENTRO DE", "*LEONIDA*", "UN ESTADO", "INVENTADO", "COMO *FLORIDA*"],
+    ("Nivel dos. Vuelve Vice City, pero ojo: dentro de Leonida, un estado inventado inspirado en Florida.",
+     ["*NIVEL 2*", "VUELVE", "*VICE CITY*", "PERO *OJO*:", "DENTRO DE", "*LEONIDA*", "UN ESTADO", "INVENTADO", "COMO *FLORIDA*"],
      ["level_2", "city", "map"]),
-    ("Nivel tres. Por primera vez, una pareja protagonista: Lucía y Jason, dos criminales al estilo Bonnie y Clyde.",
-     ["*NIVEL 3*", "POR PRIMERA VEZ", "UNA *PAREJA*", "PROTAGONISTA", "*LUCÍA* Y *JASON*", "DOS CRIMINALES", "AL ESTILO", "*BONNIE Y CLYDE*"],
+    ("Nivel tres. Por primera vez, dos protagonistas: Lucía y Jason, una pareja criminal al más puro estilo Bonnie y Clyde.",
+     ["*NIVEL 3*", "POR PRIMERA VEZ", "*DOS* PROTAGONISTAS", "*LUCÍA* Y *JASON*", "PAREJA CRIMINAL", "AL MÁS PURO", "ESTILO", "*BONNIE Y CLYDE*"],
      ["level_3", "duo"]),
     ("Nivel cuatro. La espera más larga de la saga: del tres al cuatro, siete años; del cuatro al cinco, cinco… y ahora, trece.",
      ["*NIVEL 4*", "LA ESPERA", "MÁS *LARGA*", "DEL III AL IV", "*7 AÑOS*", "DEL IV AL V", "*5 AÑOS*", "Y AHORA…", "*13 AÑOS*"],
      ["level_4", "timeline", "timeline_13"]),
-    ("Nivel cinco. Su primer tráiler se filtró y salió antes de hora… y aun así batió un récord mundial: noventa millones de visitas en YouTube en un día.",
-     ["*NIVEL 5*", "SU PRIMER TRÁILER", "SE *FILTRÓ*", "Y SALIÓ ANTES", "Y AUN ASÍ", "*RÉCORD MUNDIAL*", "*90 MILLONES*", "EN YOUTUBE", "EN UN DÍA"],
+    ("Nivel cinco. Su primer tráiler se filtró y salió antes de tiempo… y aun así batió un récord mundial: noventa millones de visitas en YouTube en un día.",
+     ["*NIVEL 5*", "SU PRIMER TRÁILER", "SE *FILTRÓ*", "Y SALIÓ", "ANTES DE TIEMPO", "Y AUN ASÍ", "*RÉCORD MUNDIAL*", "*90 MILLONES*", "EN YOUTUBE", "EN UN DÍA"],
      ["level_5", "leak", "stat_90"]),
-    ("Nivel seis. El segundo, según Rockstar: cuatrocientos setenta y cinco millones de visitas en veinticuatro horas, sumando todas las plataformas.",
-     ["*NIVEL 6*", "EL SEGUNDO,", "SEGÚN ROCKSTAR:", "*475 MILLONES*", "DE VISITAS", "*EN 24 HORAS*", "SUMANDO TODAS", "LAS PLATAFORMAS"],
+    ("Nivel seis. El segundo, según Rockstar: cuatrocientos setenta y cinco millones de visitas en veinticuatro horas, en todas las plataformas.",
+     ["*NIVEL 6*", "EL SEGUNDO,", "SEGÚN ROCKSTAR:", "*475 MILLONES*", "DE VISITAS", "*EN 24 HORAS*", "EN TODAS LAS", "PLATAFORMAS"],
      ["level_6", "stat_475", "stat_475b"]),
-    ("Y nivel siete, el fondo: el GTA 5 ha vendido más de doscientos treinta millones de copias. Ese es el listón que tiene que superar.",
-     ["Y *NIVEL 7*", "EL *FONDO*", "GTA V", "HA VENDIDO", "*+230 MILLONES*", "DE COPIAS", "ESE ES", "EL *LISTÓN*", "A SUPERAR"],
+    ("Y nivel siete, el fondo: el GTA 5 ha vendido, más de doscientos treinta millones de copias. Casi nada. Ese es el listón.",
+     ["Y *NIVEL 7*", "EL *FONDO*", "GTA V", "HA VENDIDO", "*+230 MILLONES*", "DE COPIAS", "*CASI NADA*", "ESE ES", "EL *LISTÓN*"],
      ["level_7", "stat_230", "boxes"]),
-    ("¿Lo jugarás el primer día… o esperarás al PC? Te leo en comentarios.",
-     ["¿LO JUGARÁS", "EL *PRIMER DÍA*…", "O ESPERARÁS", "AL *PC*?", "TE LEO EN", "*COMENTARIOS*"],
+    ("Y vosotros, ¿lo vais a jugar el primer día… o esperáis al PC? ¡Os leo en comentarios!",
+     ["Y *VOSOTROS*", "¿LO VAIS A JUGAR", "EL *PRIMER DÍA*…", "O ESPERÁIS", "AL *PC*?", "OS LEO EN", "*COMENTARIOS*"],
      ["end_q", "end_card"]),
 ]
 
-LEAD, GAP, TAIL = 0.15, 0.26, 0.85   # silencio al principio, entre escenas y al final
+LEAD, GAP, TAIL = 0.15, 0.22, 0.8   # silencio al principio, entre escenas y al final
 
 def _durations():
     p = os.path.join(HERE, "voice", "timings.json")

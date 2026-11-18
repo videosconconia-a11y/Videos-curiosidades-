@@ -436,7 +436,7 @@ def shot_frame(name, t, a, b):
             scaled_text(img, W / 2, 420, "¿DÍA 1", F(170), PINK + (255,), pop(p, 0.18), 30, 8)
             if p > 0.35: scaled_text(img, W / 2, 680, "O PC?", F(170), TEAL + (255,), pop(p - 0.35, 0.18), 30, 8)
         else:
-            text_c(d, 220, "COMENTA", F_MED, WHITE, 6)
+            text_c(d, 220, "¡COMENTAD!", F_MED, WHITE, 6)
             badge(d, W / 2 - 230, 520, "DÍA 1", F(84), PINK + (255,))
             badge(d, W / 2 + 230, 520, "PC", F(84), (0, 170, 160, 255))
             cx = W / 2; yb = 700 + 18 * math.sin(t * 8)

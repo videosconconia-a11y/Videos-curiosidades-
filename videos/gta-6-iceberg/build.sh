@@ -2,7 +2,10 @@
 # Genera el vídeo completo: voz IA → música+efectos+ducking → escenas → unión → subtítulos → versión web.
 set -euo pipefail
 cd "$(dirname "$0")"
-if python3 -c "import piper" 2>/dev/null; then python3 tts.py; else echo "AVISO: sin Piper (pip install piper-tts); vídeo sin voz"; fi
+# La voz solo se regenera si cambia el guion (Piper varía un poco la duración en cada pasada)
+if [ ! -f voice/timings.json ] || [ script_data.py -nt voice/timings.json ] || [ tts.py -nt voice/timings.json ]; then
+  if python3 -c "import piper" 2>/dev/null; then python3 tts.py; else echo "AVISO: sin Piper (pip install piper-tts); vídeo sin voz"; fi
+fi
 python3 audio.py
 python3 -c "from script_data import write_srt; write_srt('subtitulos_gta6_iceberg.srt')"
 N=$(python3 -c "from script_data import SCENES; print(len(SCENES))")

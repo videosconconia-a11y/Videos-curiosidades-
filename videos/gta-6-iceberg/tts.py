@@ -7,7 +7,7 @@ from script_data import SCRIPT
 
 VOICE_DIR = os.path.join(HERE, "voice")
 MODEL = sys.argv[1] if len(sys.argv) > 1 else os.path.join(VOICE_DIR, "es_ES-davefx-medium.onnx")
-LENGTH_SCALE = os.environ.get("TTS_SPEED", "0.86")   # <1 = más rápido (ritmo de short)
+LENGTH_SCALE = os.environ.get("TTS_SPEED", "0.83")   # <1 = más rápido (ritmo de short)
 URL = "https://huggingface.co/rhasspy/piper-voices/resolve/main/es/es_ES/davefx/medium/es_ES-davefx-medium.onnx"
 
 os.makedirs(VOICE_DIR, exist_ok=True)
@@ -16,7 +16,7 @@ if not os.path.exists(MODEL):
         subprocess.run(["curl", "-sSfL", "-o", MODEL + ext, URL + ext], check=True)
 
 # Pronunciación: Piper lee en español; los nombres en inglés se escriben "como suenan".
-SPOKEN = [("GTA 6", "ge te a seis"), ("GTA 5", "ge te a cinco"), ("PlayStation 5", "Pléisteishon cinco"),
+SPOKEN = [("GTA 6.", "ge te a, seis."), ("GTA 6", "ge te a seis"), ("GTA 5", "ge te a cinco"), ("PlayStation 5", "Pléisteishon cinco"),
           ("Xbox", "Équisbox"), ("PC", "pecé"), ("Vice City", "Váis Síti"), ("Jason", "Yéison"),
           ("Bonnie y Clyde", "Bóni y Cláid"), ("Guinness", "Guínes"), ("YouTube", "Yutúb"), ("Rockstar", "Rócstar"),
           ("tráiler", "tréiler"), ("iceberg", "áisberg")]
