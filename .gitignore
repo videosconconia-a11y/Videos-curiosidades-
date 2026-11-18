@@ -3,3 +3,6 @@
 *.part.mp4
 still_*.jpg
 __pycache__/
+**/voice/*.onnx
+**/voice/*.onnx.json
+build.log

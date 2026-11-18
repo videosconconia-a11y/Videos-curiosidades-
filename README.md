@@ -9,6 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/gta-6-iceberg` | El iceberg de GTA 6 (formato iceberg, voz IA Piper es_ES con ducking) | 59,8 s |
 
 ## Estructura de cada vídeo
 
@@ -29,6 +30,12 @@ cd videos/rana-de-bosque
 Necesita `ffmpeg` y la fuente Poppins Bold (cambia la ruta `FONT` en `render.py` si está en otro sitio).
 
 ## Voz con IA
+
+`videos/gta-6-iceberg` ya lleva voz: `tts.py` la genera con Piper (`pip install piper-tts`, voz `es_ES-davefx-medium`,
+se descarga sola), los tiempos de cada escena se ajustan a la duración real de la voz y `audio.py` baja la música
+mientras habla (ducking). Copia esa carpeta como plantilla para vídeos con voz.
+
+Análisis de estrategia en `analisis/`.
 
 El vídeo final no lleva narración grabada. Opciones:
 1. Generar la voz (ElevenLabs, CapCut, Piper TTS…) con el texto de `script_data.py` y mezclarla con ffmpeg.
