@@ -1,9 +1,9 @@
-# Playbook — @LeonidoMillonario (fan page de GTA 6)
+# Playbook — @LeonidaMillonario (fan page de GTA 6)
 
 ## Cuenta
-- **Usuario:** @LeonidoMillonario (es un guiño a Leonida, el estado ficticio donde transcurre GTA VI).
+- **Usuario:** @LeonidaMillonario (Leonida es el estado ficticio donde transcurre GTA VI).
 - **Nombre visible:** ⚠️ «GTAV» NO se recomienda: es el nombre de un juego de Rockstar, puede parecer cuenta oficial
-  (riesgo de suplantación o de denuncia por marca) y además la página es de GTA 6. Propuesta: **«Leonido Millonario · GTA 6»**.
+  (riesgo de suplantación o de denuncia por marca) y además la página es de GTA 6. Propuesta: **«Leonida Millonario · GTA 6»**.
 - **Bio:** «Noticias, trucos y los mejores clips de GTA 6 en español 🌴 Fan page. No afiliada a Rockstar Games.»
 - **Idioma:** español de España. Voz: Álvaro (voz neuronal es-ES), limpia y natural.
 - **Zona horaria:** Europe/Madrid (pendiente de confirmar).

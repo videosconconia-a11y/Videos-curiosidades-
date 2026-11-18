@@ -1,6 +1,6 @@
 # GTA 6: ya hay gente jugando (y tú todavía no)
 
-Vídeo 9:16 de 59 s para @LeonidoMillonario. Imágenes oficiales de Rockstar Games (rockstargames.com/VI, carpeta `img/`),
+Vídeo 9:16 de 59 s para @LeonidaMillonario. Imágenes oficiales de Rockstar Games (rockstargames.com/VI, carpeta `img/`),
 voz neuronal es-ES «Álvaro» (Microsoft, vía `edge-tts`), música synthwave original generada en `audio.py` con ducking (unos −11 dB bajo la voz).
 
 - `./build.sh` → `final_9x16.mp4` (necesita red para la voz; `pip install edge-tts scipy`)

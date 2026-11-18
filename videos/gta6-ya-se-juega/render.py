@@ -18,7 +18,7 @@ def font(size, w="Black"):
 F_CAP = font(92); F_STAT = font(200); F_STAT2 = font(150); F_SUB = font(56, "Bold"); F_TAG = font(38, "Bold")
 F_CLOCK = font(150); F_PLACE = font(48, "Bold"); F_SMALL = font(30, "SemiBold")
 YEL = (255, 214, 0); PINK = (255, 64, 160); CYAN = (60, 230, 255); WHITE = (255, 255, 255)
-HANDLE = "@LeonidoMillonario"
+HANDLE = "@LeonidaMillonario"
 
 _cache = {}
 def load(name):
@@ -140,7 +140,12 @@ def chrome(img, tnow):
     tw = d.textlength(tag, font=F_TAG)
     d.rounded_rectangle([W / 2 - tw / 2 - 26, 150, W / 2 + tw / 2 + 26, 212], 31, fill=PINK + (230,))
     d.text((W / 2, 181), tag, font=F_TAG, fill=WHITE, anchor="mm")
-    d.text((W / 2, 1585), "Imágenes: Rockstar Games · " + HANDLE, font=F_SMALL, fill=(255, 255, 255, 170), anchor="mm")
+    # crédito de imágenes solo en la parte central del vídeo (la cuenta solo aparece al final)
+    a, b = TOTAL * 0.42, TOTAL * 0.58
+    al = min(1, max(0, (tnow - a) / 0.4), max(0, (b - tnow) / 0.4))
+    if al > 0:
+        d.text((W / 2, 1585), "Imágenes: Rockstar Games", font=F_SUB, fill=(255, 255, 255, int(230 * al)), anchor="mm",
+               stroke_width=4, stroke_fill=(0, 0, 0, int(230 * al)))
     # barra de progreso del vídeo (retención)
     d.rectangle([0, H - 8, W * tnow / TOTAL, H], fill=YEL + (255,))
 
