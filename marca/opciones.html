@@ -1,0 +1,49 @@
+<!doctype html><html><body style="margin:0">
+<canvas id="o1" width="1024" height="1024"></canvas><canvas id="o2" width="1024" height="1024"></canvas><canvas id="o3" width="1024" height="1024"></canvas>
+<script>
+const INK2='#141010';
+function sunset(g){ const gr=g.createRadialGradient(512,600,60,512,560,700); gr.addColorStop(0,'#ffcf6a'); gr.addColorStop(0.45,'#e0563a'); gr.addColorStop(1,'#241440'); g.fillStyle=gr; g.fillRect(0,0,1024,1024); }
+function q(g,x,y,s,fill='#ffd040'){ g.save(); g.translate(x,y); g.scale(s,s); g.font='900 220px Arial Black, Arial, sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.lineJoin='round'; g.lineWidth=26; g.strokeStyle=INK2; g.strokeText('?',0,0); g.fillStyle=fill; g.fillText('?',0,0); g.restore(); }
+// ---- Opción 1: el caballo de Troya ante las murallas al atardecer
+{ const g=document.getElementById('o1').getContext('2d'); sunset(g);
+  g.fillStyle='#2a1838'; g.strokeStyle=INK2; g.lineWidth=10;                    // murallas en silueta
+  g.beginPath(); g.moveTo(0,700); for(let x=0;x<=1024;x+=64){ g.lineTo(x,640); g.lineTo(x,620); g.lineTo(x+32,620); g.lineTo(x+32,640);} g.lineTo(1024,1024); g.lineTo(0,1024); g.closePath(); g.fill();
+  g.fillRect(140,560,90,160); g.fillRect(800,540,90,180);
+  g.fillStyle='#3a2448'; g.fillRect(0,780,1024,244);
+  const h=woodenHorse(false); g.drawImage(h,150,170,720,720);
+  q(g,820,230,0.9);
+}
+// ---- Opción 2: moneda antigua de oro con casco y greca
+{ const g=document.getElementById('o2').getContext('2d');
+  g.fillStyle='#1c1430'; g.fillRect(0,0,1024,1024);
+  const gr=g.createRadialGradient(430,400,40,512,512,460); gr.addColorStop(0,'#fff0a8'); gr.addColorStop(0.5,'#e2ae3e'); gr.addColorStop(1,'#8a5a14');
+  g.beginPath(); g.arc(512,512,440,0,7); g.fillStyle=gr; g.fill(); g.lineWidth=22; g.strokeStyle=INK2; g.stroke();
+  g.beginPath(); g.arc(512,512,370,0,7); g.lineWidth=10; g.strokeStyle='#6a4210'; g.stroke();
+  g.save(); g.translate(512,512); g.strokeStyle='#6a4210'; g.lineWidth=9;          // greca griega en el borde
+  for(let k=0;k<36;k++){ g.save(); g.rotate(k/36*Math.PI*2); g.beginPath(); g.moveTo(-14,-430); g.lineTo(-14,-392); g.lineTo(18,-392); g.lineTo(18,-418); g.lineTo(2,-418); g.lineTo(2,-404); g.stroke(); g.restore(); }
+  g.restore();
+  g.save(); g.translate(500,560); g.globalAlpha=1; helmet(g,0.95,'#c8902a'); g.restore();
+  q(g,700,330,0.8,'#fff3c8');
+}
+// ---- Opción 3: reloj de arena con una espada, sobre pergamino
+{ const g=document.getElementById('o3').getContext('2d');
+  const gr=g.createRadialGradient(512,512,80,512,512,720); gr.addColorStop(0,'#f6e6c0'); gr.addColorStop(1,'#b8925a'); g.fillStyle=gr; g.fillRect(0,0,1024,1024);
+  g.strokeStyle='rgba(90,60,20,0.25)'; g.lineWidth=3; for(let k=0;k<40;k++){ g.beginPath(); const y=Math.random()*1024; g.moveTo(0,y); g.bezierCurveTo(300,y+20,700,y-20,1024,y+10); g.stroke(); }
+  g.save(); g.translate(512,512); g.rotate(-0.6);                                   // espada cruzada
+  g.lineJoin='round'; g.lineWidth=16; g.strokeStyle=INK2;
+  g.beginPath(); g.moveTo(-20,-420); g.lineTo(0,-470); g.lineTo(20,-420); g.lineTo(20,250); g.lineTo(-20,250); g.closePath(); g.fillStyle='#d8dce8'; g.fill(); g.stroke();
+  g.beginPath(); g.roundRect(-110,250,220,36,10); g.fillStyle='#b8862e'; g.fill(); g.stroke();
+  g.beginPath(); g.roundRect(-22,286,44,120,10); g.fillStyle='#6b3a1a'; g.fill(); g.stroke();
+  g.restore();
+  g.lineJoin='round'; g.lineWidth=18; g.strokeStyle=INK2;                          // reloj de arena
+  g.beginPath(); g.roundRect(330,170,364,46,12); g.fillStyle='#7a4a22'; g.fill(); g.stroke();
+  g.beginPath(); g.roundRect(330,808,364,46,12); g.fill(); g.stroke();
+  g.beginPath(); g.moveTo(370,216); g.bezierCurveTo(370,420,500,450,500,512); g.bezierCurveTo(500,574,370,604,370,808); g.lineTo(654,808); g.bezierCurveTo(654,604,524,574,524,512); g.bezierCurveTo(524,450,654,420,654,216); g.closePath();
+  g.fillStyle='rgba(200,230,255,0.55)'; g.fill(); g.stroke();
+  g.fillStyle='#e8a83a'; g.beginPath(); g.moveTo(420,330); g.bezierCurveTo(440,420,500,450,505,505); g.lineTo(519,505); g.bezierCurveTo(524,450,584,420,604,330); g.closePath(); g.fill();
+  g.beginPath(); g.moveTo(390,800); g.bezierCurveTo(420,690,480,660,512,650); g.bezierCurveTo(544,660,604,690,634,800); g.closePath(); g.fill();
+  g.fillRect(508,505,8,150);
+  q(g,790,240,0.8);
+}
+window.DONE=true;
+</script></body></html>
