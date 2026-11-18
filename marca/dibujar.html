@@ -1,0 +1,61 @@
+<!doctype html><html><body style="margin:0;background:#000">
+<canvas id="a" width="1024" height="1024"></canvas>
+<canvas id="b" width="2560" height="1440"></canvas>
+<script>
+const INK='#141010';
+function helmet(g, s){                       // casco corintio de perfil (mirando a la izquierda), estilo tinta
+  g.save(); g.scale(s,s); g.lineJoin='round'; g.lineCap='round';
+  // penacho
+  g.beginPath(); g.moveTo(-40,-250); g.bezierCurveTo(60,-380,260,-360,330,-220); g.bezierCurveTo(300,-120,250,-60,200,-20);
+  g.bezierCurveTo(220,-120,170,-220,40,-210); g.closePath(); g.fillStyle='#d8202a'; g.fill(); g.lineWidth=16; g.strokeStyle=INK; g.stroke();
+  g.strokeStyle='rgba(90,0,10,0.55)'; g.lineWidth=8; for(let k=0;k<7;k++){ g.beginPath(); g.moveTo(0+k*35,-250+k*4); g.quadraticCurveTo(120+k*30,-300+k*20,240+k*12,-170+k*30); g.stroke(); }
+  // soporte del penacho
+  g.beginPath(); g.roundRect(-20,-240,70,50,10); g.fillStyle='#b8862e'; g.fill(); g.lineWidth=14; g.strokeStyle=INK; g.stroke();
+  // calota y carrilleras
+  g.beginPath(); g.moveTo(-190,-20); g.bezierCurveTo(-200,-170,-90,-220,30,-215); g.bezierCurveTo(170,-210,240,-110,230,20);
+  g.lineTo(220,150); g.bezierCurveTo(200,240,130,250,90,230); g.lineTo(80,120); g.bezierCurveTo(60,90,20,90,0,110);
+  g.lineTo(-10,250); g.bezierCurveTo(-60,270,-120,250,-130,200); g.lineTo(-150,60); g.lineTo(-200,40); g.closePath();
+  const gr=g.createLinearGradient(-200,-200,230,250); gr.addColorStop(0,'#ffe08a'); gr.addColorStop(0.5,'#e8b040'); gr.addColorStop(1,'#a8701e');
+  g.fillStyle=gr; g.fill(); g.lineWidth=18; g.strokeStyle=INK; g.stroke();
+  // ranura de los ojos (en T)
+  g.beginPath(); g.moveTo(-185,10); g.bezierCurveTo(-120,-15,-40,-10,20,20); g.lineTo(20,55); g.bezierCurveTo(-40,30,-100,30,-140,45);
+  g.lineTo(-150,60); g.closePath(); g.fillStyle='#120b08'; g.fill(); g.lineWidth=12; g.stroke();
+  g.beginPath(); g.moveTo(-70,40); g.lineTo(-60,230); g.lineTo(-20,240); g.lineTo(-30,45); g.closePath(); g.fill(); g.stroke();
+  // brillo y sombra de cómic
+  g.globalAlpha=0.5; g.fillStyle='#fff6d0'; g.beginPath(); g.ellipse(-60,-150,90,26,-0.25,0,7); g.fill();
+  g.globalAlpha=0.28; g.fillStyle='#5a3000'; g.beginPath(); g.moveTo(130,-150); g.bezierCurveTo(230,-60,230,80,210,170); g.bezierCurveTo(180,240,120,240,100,200); g.lineTo(95,120); g.bezierCurveTo(150,40,160,-60,130,-150); g.fill();
+  g.globalAlpha=1;
+  // remaches
+  for(let k=0;k<6;k++){ g.beginPath(); g.arc(120+k*0,-120+k*40,9,0,7); g.fillStyle='#fff0b0'; g.fill(); g.lineWidth=5; g.stroke(); }
+  g.restore();
+}
+function bg(g,w,h,cx,cy,r){
+  const gr=g.createRadialGradient(cx,cy*0.9,r*0.1,cx,cy,r); gr.addColorStop(0,'#ffb35c'); gr.addColorStop(0.45,'#d8503a'); gr.addColorStop(1,'#2a1648');
+  g.fillStyle=gr; g.fillRect(0,0,w,h);
+  g.save(); g.globalAlpha=0.12; g.strokeStyle='#fff'; g.lineWidth=6;            // rayos de sol de cómic
+  for(let k=0;k<24;k++){ const a=k/24*Math.PI*2; g.beginPath(); g.moveTo(cx,cy); g.lineTo(cx+Math.cos(a)*r*2,cy+Math.sin(a)*r*2); g.stroke(); }
+  g.restore();
+}
+function qmark(g,x,y,s){                    // interrogación dorada (la paradoja)
+  g.save(); g.translate(x,y); g.scale(s,s); g.font='900 220px Arial Black, Arial, sans-serif'; g.textAlign='center'; g.textBaseline='middle';
+  g.lineWidth=26; g.strokeStyle=INK; g.strokeText('?',0,0); g.fillStyle='#ffd040'; g.fillText('?',0,0); g.restore();
+}
+// ---------------- avatar 1024 (zona segura circular)
+{ const g=document.getElementById('a').getContext('2d');
+  bg(g,1024,1024,512,540,620);
+  g.save(); g.translate(500,560); helmet(g,1.25); g.restore();
+  qmark(g,770,300,1.0);
+}
+// ---------------- banner 2560x1440 (zona segura 1546x423 en el centro)
+{ const g=document.getElementById('b').getContext('2d');
+  bg(g,2560,1440,1280,760,1500);
+  g.save(); g.translate(760,760); helmet(g,0.62); g.restore();
+  g.textAlign='left'; g.textBaseline='middle'; g.lineJoin='round';
+  g.font='900 112px Arial Black, Arial, sans-serif'; g.lineWidth=22; g.strokeStyle=INK;
+  g.strokeText('PARADOJAS',990,670); g.fillStyle='#ffffff'; g.fillText('PARADOJAS',990,670);
+  g.font='900 76px Arial Black, Arial, sans-serif'; g.lineWidth=18;
+  g.strokeText('DE LA HISTORIA',995,780); g.fillStyle='#ffd040'; g.fillText('DE LA HISTORIA',995,780);
+  g.font='700 40px Arial, sans-serif'; g.lineWidth=10; g.strokeText('Historias reales que parecen imposibles',1000,865); g.fillStyle='#fff3e0'; g.fillText('Historias reales que parecen imposibles',1000,865);
+}
+window.DONE=true;
+</script></body></html>
