@@ -33,8 +33,8 @@ Las cifras de esta guía son las que da ese vídeo; no las hemos medido sobre aq
   día de campo»). Los originales son más oscuros, con más contraste y con colores saturados: luces
   cálidas y sombras azules frías.
 - **Fondo desenfocado** detrás del sujeto, para llevar la mirada directamente a él.
-- **Las cifras, discretas** y en la parte de arriba. Nada de recuadros ni subrayados con aire de
-  presentación de clase.
+- **Sin texto en pantalla salvo los subtítulos.** Ni etiquetas arriba, ni cifras sueltas, ni tarjeta
+  final con texto: los datos van en la voz y en los subtítulos (con la palabra clave resaltada).
 
 ## 3. Comprobar con números
 

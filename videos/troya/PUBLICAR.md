@@ -15,8 +15,9 @@ Fuentes: Homero (Ilíada, Odisea), Virgilio (Eneida, libro II), Britannica.
 #Troya #CaballoDeTroya #Historia #MitologíaGriega #Curiosidades #Shorts
 
 ## TikTok
+**Descripción:**
 Los troyanos metieron a sus enemigos en la ciudad… ellos mismos 🤯🐴 ¿Crees que el caballo existió? 👇
 
-#troya #caballodetroya #historia #mitologiagriega #curiosidades #sabiasque #historiatiktok #aprendecontiktok
+**5 hashtags:** #troya #caballodetroya #historia #mitologiagriega #curiosidades
 
 Al publicar en TikTok, activa «Contenido generado por IA» (la voz es sintética).

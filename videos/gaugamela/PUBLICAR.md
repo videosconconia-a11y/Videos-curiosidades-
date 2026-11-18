@@ -13,3 +13,9 @@ Fuentes: Arriano, *Anábasis de Alejandro* (libro III); World History Encycloped
 
 **Hashtags:**
 #AlejandroMagno #Historia #Gaugamela #Curiosidades #HistoriaAntigua #Persia #Estrategia #SabíasQue #Shorts #Reels #TikTokHistoria
+
+## TikTok
+**Descripción:**
+Ganó la batalla más importante de su vida… alejándose del enemigo 🤯⚔️ ¿Quién fue el peor enemigo de Darío? 👇
+
+**5 hashtags:** #alejandromagno #historia #historiaantigua #batallas #curiosidades

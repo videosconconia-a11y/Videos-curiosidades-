@@ -1,5 +1,5 @@
-"""Posproducción: toma escena3d.mp4 (render 3D) y añade subtítulos, cifras discretas, viñeta, grano,
-desenfoque suave en los bordes y la tarjeta final. Mezcla con mezcla.wav → final_9x16.mp4.
+"""Posproducción: toma escena3d.mp4 (render 3D) y añade subtítulos (único texto en pantalla), viñeta,
+grano y desenfoque suave en los bordes. Mezcla con mezcla.wav → final_9x16.mp4.
 Uso: python3 post.py            (vídeo completo)
      python3 post.py stills t1 t2 …"""
 import math, os, subprocess, sys
@@ -15,8 +15,6 @@ FONT = next(f for f in ["/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf
                         "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf",
                         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"] if os.path.exists(f))
 F_CAP = ImageFont.truetype(FONT, 100)
-F_TOP = ImageFont.truetype(FONT, 54)
-F_END = ImageFont.truetype(FONT, 84)
 GOLD = (255, 204, 64)
 SC = {s[2]: (a, b, v) for (a, b, v), s in zip(TIMES, SCENES)}
 CAPS = caption_timeline()
@@ -54,29 +52,6 @@ def caption_layer(t):
         out.paste(l2, ((W - nw) // 2, (240 - nh) // 2)); lay = out
     return lay
 
-def top_label(d, t):
-    """Etiqueta discreta arriba: qué parte es leyenda y qué parte es arqueología."""
-    spans = [("LEYENDA", (255, 214, 140), SC['asedio'][0] + 0.3, SC['ruinas'][0] - 0.2),
-             ("ARQUEOLOGÍA", (150, 230, 160), SC['ruinas'][0] + 0.4, SC['final'][0] - 0.1),
-             ("LA ILÍADA", (190, 170, 255), SC['final'][0] + 0.3, SC['final'][2] + 3.2)]
-    for s, col, t0, t1 in spans:
-        if t0 < t < t1:
-            al = int(255 * min(1, (t - t0) / 0.4) * min(1, (t1 - t) / 0.4))
-            w = d.textlength(s, font=F_TOP)
-            d.text(((W - w) / 2, 150), s, font=F_TOP, fill=col + (al,), stroke_width=6, stroke_fill=(10, 8, 8, al))
-
-def end_card(img, t):
-    a = SC['final'][2] + 4.6
-    if t < a: return img
-    u = min(1, (t - a) / 0.5)
-    arr = np.asarray(img, np.float32) * (1 - 0.35 * u)
-    img = Image.fromarray(arr.astype(np.uint8)); d = ImageDraw.Draw(img, "RGBA")
-    w = d.textlength("COMENTA", font=F_END); al = int(255 * u)
-    d.text(((W - w) / 2, 330), "COMENTA", font=F_END, fill=(255, 255, 255, al), stroke_width=8, stroke_fill=(10, 8, 8, al))
-    cx, yb = W / 2, 450 + 16 * math.sin(t * 8)
-    d.polygon([(cx - 40, yb), (cx + 40, yb), (cx, yb + 54)], fill=GOLD + (int(255 * u),))
-    return img
-
 # cámara viva y contraste: ajustados midiendo con tools/medir.py (ver GUIA_ESTILO.md)
 CONTRAST, PIVOT = 1.32, 96
 
@@ -101,8 +76,7 @@ def process(img, t, fi):
     if t < 0.2: arr *= t / 0.2
     if t > TOTAL - 0.5: arr *= max(0, (TOTAL - t) / 0.5)
     img = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
-    img = end_card(img, t)
-    d = ImageDraw.Draw(img, "RGBA"); top_label(d, t)
+    # sin texto en pantalla salvo los subtítulos (ni etiquetas arriba ni tarjeta final con texto)
     cap = caption_layer(t)
     if cap is not None and t < TOTAL - 0.3: img.paste(cap, (0, 1250), cap)
     return img
