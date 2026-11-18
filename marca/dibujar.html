@@ -49,7 +49,15 @@ function qmark(g,x,y,s){                    // interrogación dorada (la paradoj
 // ---------------- banner 2560x1440 (zona segura 1546x423 en el centro)
 { const g=document.getElementById('b').getContext('2d');
   bg(g,2560,1440,1280,760,1500);
-  g.save(); g.translate(760,760); helmet(g,0.62); g.restore();
+  // moneda antigua (igual que el avatar elegido)
+  g.save(); g.translate(760,720); g.scale(0.42,0.42); g.translate(-512,-512);
+  { const gr=g.createRadialGradient(430,400,40,512,512,460); gr.addColorStop(0,'#fff0a8'); gr.addColorStop(0.5,'#e2ae3e'); gr.addColorStop(1,'#8a5a14');
+    g.beginPath(); g.arc(512,512,440,0,7); g.fillStyle=gr; g.fill(); g.lineWidth=22; g.strokeStyle=INK; g.stroke();
+    g.beginPath(); g.arc(512,512,370,0,7); g.lineWidth=10; g.strokeStyle='#6a4210'; g.stroke();
+    g.save(); g.translate(512,512); g.strokeStyle='#6a4210'; g.lineWidth=9;
+    for(let k=0;k<36;k++){ g.save(); g.rotate(k/36*Math.PI*2); g.beginPath(); g.moveTo(-14,-430); g.lineTo(-14,-392); g.lineTo(18,-392); g.lineTo(18,-418); g.lineTo(2,-418); g.lineTo(2,-404); g.stroke(); g.restore(); }
+    g.restore(); g.save(); g.translate(500,560); helmet(g,0.95); g.restore(); qmark(g,700,330,0.8); }
+  g.restore();
   g.textAlign='left'; g.textBaseline='middle'; g.lineJoin='round';
   g.font='900 112px Arial Black, Arial, sans-serif'; g.lineWidth=22; g.strokeStyle=INK;
   g.strokeText('PARADOJAS',990,670); g.fillStyle='#ffffff'; g.fillText('PARADOJAS',990,670);
