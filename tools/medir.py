@@ -18,6 +18,7 @@ import numpy as np
 AW, AH = 270, 480          # resolución de análisis (9:16)
 MOVE_PX = 0.04             # desplazamiento/zoom mínimo (px a 270x480) para contar como "cámara moviéndose"
 CUT_DIFF = 38.0            # diferencia media de luminancia que cuenta como corte
+ROI = (0.14, 0.62)         # franja vertical analizada para el movimiento (sin etiqueta de arriba ni subtítulos)
 
 
 def frames(path, fps):
@@ -69,6 +70,8 @@ def analyse(path, fps=30, sheets=None, every=2.0):
         bright.append(float(lum.mean())); contrast.append(float(lum.std()))
         mx, mn = x.max(2), x.min(2)
         sat.append(float(np.mean((mx - mn) / (mx + 1e-3))))
+        # el movimiento de cámara se mide solo en la imagen: fuera las franjas fijas de subtítulos y etiquetas
+        roi = lum[int(AH * ROI[0]):int(AH * ROI[1])]
         if lum_prev is not None:
             diff = float(np.abs(lum - lum_prev).mean())
             # un destello cambia el brillo pero conserva la estructura; un corte cambia la estructura
@@ -76,10 +79,10 @@ def analyse(path, fps=30, sheets=None, every=2.0):
             if diff > CUT_DIFF and ncc < 0.6:
                 cuts.append(i / fps); motion.append(None)
             else:
-                dy, dx, _ = phase_shift(lum_prev, lum)
-                z = zoom_change(lum_prev, lum)
+                dy, dx, _ = phase_shift(roi_prev, roi)
+                z = zoom_change(roi_prev, roi)
                 motion.append(float(np.hypot(dx, dy) + z))
-        lum_prev = lum
+        lum_prev = lum; roi_prev = roi
         if sheets:
             sheet_buf.append(f)
             if len(sheet_buf) == per_sheet:

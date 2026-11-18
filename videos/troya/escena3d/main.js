@@ -362,8 +362,8 @@ function camKeys() {
   t = at('gancho', 1);           k(t, V(70, 26, 122), V(0, 22, -360), 34);
   t = at('asedio', 0.55);        k(t, V(110, 40, -40), V(0, 14, -200), 44);
   t = at('asedio', 1);           k(t, V(30, 7, -120), V(-10, 18, -268), 44);
-  t = at('murallas', 0.5);       k(t, V(18, top + 2, -240), V(4, top + 20, -268), 52);
-  t = at('murallas', 1);         k(t, V(-22, top + 3, -236), V(-14, top + 24, -266), 54);
+  t = at('murallas', 0.5);       k(t, V(18, top + 2, -238), V(4, top + 11, -268), 52);
+  t = at('murallas', 1);         k(t, V(-22, top + 3, -234), V(-14, top + 13, -266), 54);
   t = at('retirada', 0.25);      k(t, V(-2, top + 20, -262), V(20, -40, 120), 46);
   t = at('retirada', 0.75);      k(t, V(10, top + 19, -256), V(120, -30, 420), 42);
   t = at('retirada', 1);         k(t, V(50, 30, 120), V(30, 6, 50), 48);
@@ -374,7 +374,7 @@ function camKeys() {
   t = at('brecha', 0.3);         k(t, V(90, 45, -110), V(BREACH.x, top + 4, BREACH.z), 50);
   t = at('brecha', 0.75);        k(t, V(70, 40, -170), V(BREACH.x, top + 2, BREACH.z), 46);
   t = at('brecha', 1);           k(t, V(36, top + 18, -290), V(PLAZA.x, top + 5, PLAZA.z), 48);
-  t = at('noche', 0.5);          k(t, V(16, top + 6, -312), V(PLAZA.x, top + 4, PLAZA.z), 48);
+  t = at('noche', 0.5);          k(t, V(9, top + 9, -316), V(PLAZA.x, top + 4, PLAZA.z), 50);
   t = at('noche', 1);            k(t, V(-22, top + 22, -322), V(0, top + 6, -264), 50);
   t = at('incendio', 0.12);      k(t, V(10, top + 48, -290), V(0, top + 6, -380), 50);
   t = at('incendio', 0.5);       k(t, V(120, 60, -110), V(0, top + 10, -370), 48);
@@ -399,6 +399,17 @@ function hermite(K, t, f) {
 }
 function cameraAt(t) {
   const p = hermite(KEYS, t, k => k.pos), g = hermite(KEYS, t, k => k.tgt), fv = hermite(KEYS, t, k => V(k.fov, 0, 0)).x;
+  // brecha: cámara que sigue al caballo mientras lo arrastran hasta la muralla abierta
+  const f0 = SC.brecha.a + 0.5, f1 = SC.brecha.b - 0.3;
+  const w = ease(clamp01((t - f0) / 1.0)) * ease(clamp01((f1 - t) / 1.0));
+  if (w > 0) {
+    const HP = horsePos(t), u = prog(t, 'brecha');
+    const dir = BREACH.clone().sub(HP).setY(0); const L = dir.length(); dir.normalize();
+    const side = V(-dir.z, 0, dir.x);
+    const fp = HP.clone().addScaledVector(dir, -24).addScaledVector(side, 7); fp.y = groundY(fp.x, fp.z) + 11;
+    const look = HP.clone().addScaledVector(dir, Math.min(L, 60)); look.y = groundY(look.x, look.z) + 6;
+    p.lerp(fp, w); g.lerp(look, w);
+  }
   p.x += Math.sin(t * 1.3) * 0.12; p.y += Math.sin(t * 1.7 + 1) * 0.08;
   const minY = Math.max(groundY(p.x, p.z), SEA_Y) + 1.4; if (p.y < minY) p.y = minY;
   camera.position.copy(p); camera.lookAt(g); camera.fov = fv; camera.updateProjectionMatrix(); camera.updateMatrixWorld();

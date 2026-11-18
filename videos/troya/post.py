@@ -81,9 +81,9 @@ def end_card(img, t):
 CONTRAST, PIVOT = 1.32, 96
 
 def live_cam(img, t):
-    z = 1.06 + 0.02 * math.sin(2 * math.pi * t / 11.0) + 0.0008 * t
-    dx = 14 * math.sin(2 * math.pi * t / 13.0) + 8 * math.sin(2 * math.pi * t / 7.3 + 1.1)
-    dy = 12 * math.sin(2 * math.pi * t / 17.0 + 0.7) + 7 * math.sin(2 * math.pi * t / 5.9 + 2.3)
+    z = 1.07 + 0.025 * math.sin(2 * math.pi * t / 9.0) + 0.0008 * t
+    dx = 18 * math.sin(2 * math.pi * t / 10.0) + 9 * math.sin(2 * math.pi * t / 6.1 + 1.1)
+    dy = 14 * math.sin(2 * math.pi * t / 13.0 + 0.7) + 8 * math.sin(2 * math.pi * t / 4.9 + 2.3)
     cw, ch = W / z, H / z
     return img.resize((W, H), Image.BILINEAR, box=(W / 2 + dx - cw / 2, H / 2 + dy - ch / 2, W / 2 + dx + cw / 2, H / 2 + dy + ch / 2))
 
@@ -96,7 +96,8 @@ def process(img, t, fi):
     for h in HITS:
         u = t - h
         if 0 <= u < 0.22: arr += (1 - u / 0.22) * 90
-    g = GRAIN[fi % 4]; arr += np.repeat(np.repeat(g, 2, 0), 2, 1)[..., None]
+    # grano que cambia en cada cuadro (como el de película): desplazamiento aleatorio de uno de los patrones
+    g = np.roll(GRAIN[fi % 4], (fi * 37 % 211, fi * 53 % 307), (0, 1)); arr += np.repeat(np.repeat(g, 2, 0), 2, 1)[..., None]
     if t < 0.2: arr *= t / 0.2
     if t > TOTAL - 0.5: arr *= max(0, (TOTAL - t) / 0.5)
     img = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))

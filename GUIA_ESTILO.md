@@ -55,5 +55,8 @@ python3 tools/medir.py videos/<tema>/final_9x16.mp4 [referencia.mp4] --hojas hoj
 Ojo: «más oscuro» es relativo. La rana ya medía 54 de brillo, así que oscurecerla más la habría
 apagado. Antes de tocar la luz, mide.
 
+`medir.py` mide el movimiento solo en la franja de imagen (14–62 % de la altura), sin los subtítulos ni
+las etiquetas fijas, que si no dominan la medida en los planos oscuros o de cielo.
+
 Si tienes un short de referencia, mídelo con la misma herramienta y compara las cifras. Cuando algo no
 se parezca, no digas «se ve feo»: busca qué número no cuadra y arréglalo.
