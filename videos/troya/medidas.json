@@ -3,56 +3,45 @@
     "video": "final_9x16.mp4",
     "segundos": 61.47,
     "cuadros": 1844,
-    "camara_moviendose_pct": 98.6,
-    "movimiento_medio_s": 7.55,
-    "tramos_quietos": 8,
-    "velocidad_media_px": 4.73,
+    "camara_moviendose_pct": 99.6,
+    "movimiento_medio_s": 20.22,
+    "tramos_quietos": 3,
+    "velocidad_media_px": 6.059,
     "quietos_s": [
       [
         0.03,
         0.07
       ],
       [
-        11.97,
-        12.07
-      ],
-      [
-        12.1,
-        12.23
-      ],
-      [
-        12.77,
-        12.8
-      ],
-      [
-        17.97,
-        18.13
-      ],
-      [
-        39.73,
-        39.77
-      ],
-      [
-        39.83,
-        40.13
+        18.03,
+        18.2
       ],
       [
         61.07,
         61.1
       ]
     ],
-    "cortes": 7,
+    "cortes": 16,
     "cortes_s": [
+      12.83,
+      12.87,
       18.23,
       18.27,
       18.3,
       18.43,
+      35.53,
+      35.57,
+      35.6,
+      35.63,
+      37.03,
+      37.07,
+      37.1,
       43.2,
       43.23,
       43.27
     ],
-    "brillo": 92.0,
-    "contraste": 45.6,
-    "saturacion": 0.582
+    "brillo": 90.7,
+    "contraste": 45.7,
+    "saturacion": 0.594
   }
 ]
