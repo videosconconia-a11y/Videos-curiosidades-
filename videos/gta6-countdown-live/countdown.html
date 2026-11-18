@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GTA 6 Countdown Live</title>
+<!-- 1920x1080 live-stream overlay for OBS (Browser Source → Local file). Original design for the GTA6 Secrets channel.
+     URL options:  ?subs=1234&goal=2000   (subscriber goal bar; update the number by hand)
+                   ?lang=es               (Spanish labels)
+     Unlock = 00:00 local time on 19 Nov 2026 in each time zone (PS5 / Xbox Series X|S). -->
+<style>
+@font-face { font-family: Anton; src: url(images/Anton-Regular.ttf); }
+@font-face { font-family: Mont; src: url(images/Montserrat-VF.ttf); font-weight: 100 900; }
+:root { --cyan:#00E5FF; --pink:#FF2D8C; --orange:#FF9500; --green:#34C759; --ink:#060914; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); color: #fff; font-family: Mont, sans-serif; }
+#bg { position: absolute; inset: 0; }
+#bg div { position: absolute; inset: -4%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2.5s ease; animation: kb 26s linear infinite alternate; }
+#bg div.on { opacity: 1; }
+@keyframes kb { from { transform: scale(1) translateX(0); } to { transform: scale(1.12) translateX(-2%); } }
+#shade { position: absolute; inset: 0; background:
+  linear-gradient(90deg, rgba(6,9,20,.92) 0%, rgba(6,9,20,.75) 42%, rgba(6,9,20,.35) 62%, rgba(6,9,20,.85) 100%),
+  linear-gradient(0deg, rgba(6,9,20,.9) 0%, rgba(6,9,20,0) 30%); }
+#scan { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 2px, transparent 2px 4px); pointer-events: none; }
+
+.live { position: absolute; left: 90px; top: 70px; display: flex; align-items: center; gap: 18px; font-weight: 800; letter-spacing: .3em; font-size: 26px; }
+.dot { width: 18px; height: 18px; border-radius: 50%; background: #FF3B30; box-shadow: 0 0 18px #FF3B30; animation: blink 1.2s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.badge { padding: 6px 14px; border: 2px solid rgba(255,255,255,.35); border-radius: 8px; font-size: 20px; letter-spacing: .2em; }
+
+#left { position: absolute; left: 90px; top: 210px; width: 980px; }
+#kicker { font-weight: 800; font-size: 30px; letter-spacing: .35em; color: var(--cyan); text-transform: uppercase; }
+#region { font-family: Anton; font-size: 120px; line-height: 1.05; margin-top: 18px; text-transform: uppercase;
+  background: linear-gradient(90deg, var(--orange), var(--pink)); -webkit-background-clip: text; color: transparent; transition: opacity .4s; }
+#big { font-family: Anton; font-size: 250px; line-height: 1; margin-top: 10px; letter-spacing: .02em; font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 40px rgba(255,45,140,.45); }
+#big span.sep { color: var(--pink); animation: blink 1s steps(1) infinite; }
+#units { display: flex; gap: 0; margin-top: 8px; font-weight: 700; letter-spacing: .4em; font-size: 22px; color: rgba(255,255,255,.7); }
+#units div { width: 330px; }
+#next { margin-top: 36px; font-size: 30px; font-weight: 600; color: rgba(255,255,255,.85); }
+#next b { color: var(--green); }
+
+#right { position: absolute; right: 70px; top: 70px; width: 700px; padding: 34px 40px; border-radius: 28px;
+  background: rgba(10,14,30,.62); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(14px); }
+#right h2 { font-weight: 800; font-size: 24px; letter-spacing: .28em; color: rgba(255,255,255,.75); margin-bottom: 18px; }
+.row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.09); font-size: 31px; font-weight: 700; }
+.row .t { font-variant-numeric: tabular-nums; font-weight: 800; }
+.row.done .n { color: rgba(255,255,255,.55); }
+.row.done .t { color: var(--green); letter-spacing: .08em; font-size: 26px; }
+.row.focus { background: linear-gradient(90deg, rgba(255,45,140,.22), transparent); margin: 0 -40px; padding: 12px 40px; }
+#prog { margin-top: 22px; font-weight: 700; font-size: 22px; letter-spacing: .15em; color: rgba(255,255,255,.75); }
+#bar { height: 10px; border-radius: 6px; background: rgba(255,255,255,.15); margin-top: 10px; overflow: hidden; }
+#bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--cyan), var(--green)); width: 0; transition: width 1s; }
+
+#chan { position: absolute; left: 90px; bottom: 120px; display: flex; align-items: center; gap: 24px; }
+#logo { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, var(--pink), var(--orange));
+  display: grid; place-items: center; font-family: Anton; font-size: 40px; box-shadow: 0 0 30px rgba(255,45,140,.5); }
+#chan .nm { font-family: Anton; font-size: 44px; letter-spacing: .04em; }
+#chan .sb { font-weight: 700; font-size: 24px; color: rgba(255,255,255,.8); margin-top: 4px; }
+#chan .sb b { color: var(--orange); font-size: 32px; }
+#goal { width: 480px; height: 8px; border-radius: 6px; background: rgba(255,255,255,.18); margin-top: 10px; overflow: hidden; }
+#goal i { display: block; height: 100%; background: linear-gradient(90deg, var(--orange), var(--pink)); }
+
+#ticker { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; background: rgba(0,0,0,.72); border-top: 2px solid var(--pink); overflow: hidden; display: flex; align-items: center; }
+#ticker .tag { flex: none; height: 100%; padding: 0 30px; display: grid; place-items: center; background: var(--pink); font-family: Anton; font-size: 34px; letter-spacing: .06em; z-index: 1; }
+#ticker .tr { white-space: nowrap; font-weight: 700; font-size: 30px; padding-left: 40px; animation: scroll 60s linear infinite; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+#foot { position: absolute; right: 70px; bottom: 84px; font-size: 17px; color: rgba(255,255,255,.6); text-align: right; line-height: 1.5; }
+
+#unlocked { position: absolute; inset: 0; display: none; place-items: center; text-align: center; background: radial-gradient(circle, rgba(52,199,89,.25), rgba(6,9,20,.9) 70%); }
+#unlocked h1 { font-family: Anton; font-size: 230px; line-height: .95; color: var(--green); text-shadow: 0 0 60px rgba(52,199,89,.7); animation: pulse 1s infinite alternate; }
+#unlocked p { font-weight: 800; font-size: 44px; letter-spacing: .25em; margin-top: 20px; }
+@keyframes pulse { to { transform: scale(1.04); } }
+</style>
+</head>
+<body>
+<div id="bg"></div><div id="shade"></div><div id="scan"></div>
+
+<div class="live"><div class="dot"></div><span id="lbLive">LIVE COUNTDOWN</span><span class="badge">PS5 · XBOX SERIES X|S</span></div>
+
+<div id="left">
+  <div id="kicker">GTA 6 unlocks in</div>
+  <div id="region">Spain</div>
+  <div id="big">00<span class="sep">:</span>00<span class="sep">:</span>00</div>
+  <div id="units"><div id="uH">HOURS</div><div id="uM">MINUTES</div><div id="uS">SECONDS</div></div>
+  <div id="next"></div>
+</div>
+
+<div id="right">
+  <h2 id="lbList">MIDNIGHT 19 NOV · LOCAL TIME</h2>
+  <div id="rows"></div>
+  <div id="prog"></div>
+  <div id="bar"><i></i></div>
+</div>
+
+<div id="chan">
+  <div id="logo">VI</div>
+  <div>
+    <div class="nm">GTA6 SECRETS</div>
+    <div class="sb"><b id="subs">—</b> <span id="lbSubs">SUBSCRIBERS</span> · <span id="lbGoal">GOAL</span> <span id="goalN"></span></div>
+    <div id="goal"><i></i></div>
+  </div>
+</div>
+
+<div id="foot">Images © Rockstar Games · fan-made stream, not affiliated<br>Unlock times = midnight local time (Rockstar)</div>
+
+<div id="ticker"><div class="tag">GTA 6</div><div class="tr" id="tr"></div></div>
+
+<div id="unlocked"><div><h1 id="lbOut">IT'S OUT!</h1><p id="lbOut2">GTA 6 IS PLAYABLE IN EVERY REGION</p></div></div>
+
+<script>
+const Q = new URLSearchParams(location.search);
+const ES = Q.get('lang') === 'es';
+// [label EN, label ES, IANA time zone]
+const REGIONS = [
+  ['New Zealand', 'Nueva Zelanda', 'Pacific/Auckland'],
+  ['Australia (Sydney)', 'Australia (Sídney)', 'Australia/Sydney'],
+  ['Japan', 'Japón', 'Asia/Tokyo'],
+  ['Spain · France · Germany', 'España · Francia · Alemania', 'Europe/Madrid'],
+  ['UK · Portugal', 'Reino Unido · Portugal', 'Europe/London'],
+  ['Brazil · Argentina', 'Brasil · Argentina', 'America/Sao_Paulo'],
+  ['Chile', 'Chile', 'America/Santiago'],
+  ['Venezuela', 'Venezuela', 'America/Caracas'],
+  ['USA East · Colombia · Peru', 'EE. UU. Este · Colombia · Perú', 'America/New_York'],
+  ['Mexico · USA Central', 'México · EE. UU. Centro', 'America/Mexico_City'],
+  ['USA West', 'EE. UU. Oeste', 'America/Los_Angeles'],
+];
+const T = ES ? {
+  kicker: 'GTA 6 se desbloquea en', live: 'CUENTA ATRÁS EN DIRECTO', list: 'MEDIANOCHE 19 NOV · HORA LOCAL', h: 'HORAS', m: 'MINUTOS', s: 'SEGUNDOS',
+  playing: '¡YA SE JUEGA!', prog: (a, b) => `REGIONES DESBLOQUEADAS ${a}/${b}`, next: (n) => `Próxima en desbloquear: <b>${n}</b>`, subs: 'SUSCRIPTORES', goal: 'META',
+  out: '¡YA ESTÁ!', out2: 'GTA 6 SE PUEDE JUGAR EN TODO EL MUNDO',
+  ticker: ['💬 COMENTA TU PAÍS', '👍 DALE LIKE SI YA TIENES LA PRE-CARGA', '🔔 SUSCRÍBETE A GTA6 SECRETS', '🌴 ¿JASON O LUCIA? VOTA EN EL CHAT', '🎮 ¿PS5 O XBOX? DÍNOSLO EN EL CHAT', '⏰ EL DESBLOQUEO ES A MEDIANOCHE HORA LOCAL']
+} : {
+  kicker: 'GTA 6 unlocks in', live: 'LIVE COUNTDOWN', list: 'MIDNIGHT 19 NOV · LOCAL TIME', h: 'HOURS', m: 'MINUTES', s: 'SECONDS',
+  playing: 'PLAYING NOW ✓', prog: (a, b) => `REGIONS UNLOCKED ${a}/${b}`, next: (n) => `Next to unlock: <b>${n}</b>`, subs: 'SUBSCRIBERS', goal: 'GOAL',
+  out: "IT'S OUT!", out2: 'GTA 6 IS PLAYABLE IN EVERY REGION',
+  ticker: ['💬 COMMENT YOUR COUNTRY', '👍 LIKE IF YOU PRE-LOADED', '🔔 SUBSCRIBE TO GTA6 SECRETS', '🌴 JASON OR LUCIA? VOTE IN CHAT', '🎮 PS5 OR XBOX? TELL US IN CHAT', '⏰ UNLOCK = MIDNIGHT LOCAL TIME']
+};
+const $ = (id) => document.getElementById(id);
+$('kicker').textContent = T.kicker; $('lbLive').textContent = T.live; $('lbList').textContent = T.list;
+$('uH').textContent = T.h; $('uM').textContent = T.m; $('uS').textContent = T.s; $('lbSubs').textContent = T.subs; $('lbGoal').textContent = T.goal;
+$('lbOut').textContent = T.out; $('lbOut2').textContent = T.out2;
+const tk = T.ticker.join('   ·   ') + '   ·   '; $('tr').textContent = tk + tk;
+
+// subscriber goal (manual)
+const subs = +(Q.get('subs') || 0), goal = +(Q.get('goal') || 0);
+if (subs) $('subs').textContent = subs.toLocaleString(ES ? 'es-ES' : 'en-US');
+if (goal) { $('goalN').textContent = goal.toLocaleString(ES ? 'es-ES' : 'en-US'); $('goal').firstElementChild.style.width = Math.min(100, subs / goal * 100) + '%'; }
+else { $('goal').style.display = 'none'; $('lbGoal').style.display = 'none'; }
+
+// exact UTC instant of 00:00 on 19 Nov 2026 in a time zone
+function offsetMin(tz, utcMs) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    .formatToParts(new Date(utcMs)).map(x => [x.type, x.value]));
+  return (Date.UTC(+p.year, p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - utcMs) / 60000;
+}
+function unlockAt(tz) {
+  const guess = Date.UTC(2026, 10, 19, 0, 0, 0);
+  let t = guess - offsetMin(tz, guess) * 60000;
+  return guess - offsetMin(tz, t) * 60000;
+}
+const R = REGIONS.map(([en, es, tz]) => ({ name: ES ? es : en, at: unlockAt(tz) })).sort((a, b) => a.at - b.at);
+$('rows').innerHTML = R.map((r, i) => `<div class="row" id="r${i}"><span class="n">${r.name}</span><span class="t"></span></div>`).join('');
+
+const pad = (n) => String(n).padStart(2, '0');
+function fmt(ms) { const s = Math.max(0, Math.floor(ms / 1000)); return [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60]; }
+
+// main countdown rotates between the regions still waiting (every 12 s), starting with the next one
+let rot = 0, lastSwitch = 0;
+function tick() {
+  const now = Date.now();
+  const waiting = R.map((r, i) => ({ ...r, i })).filter(r => r.at > now);
+  R.forEach((r, i) => {
+    const el = $('r' + i), t = el.querySelector('.t'), done = r.at <= now;
+    el.classList.toggle('done', done);
+    t.textContent = done ? T.playing : fmt(r.at - now).map(pad).join(':');
+  });
+  const doneN = R.length - waiting.length;
+  $('prog').textContent = T.prog(doneN, R.length); $('bar').firstElementChild.style.width = (doneN / R.length * 100) + '%';
+  if (!waiting.length) { $('unlocked').style.display = 'grid'; return; }
+  if (now - lastSwitch > 12000) { rot = (rot + 1) % Math.min(waiting.length, 4); lastSwitch = now; $('region').style.opacity = 0; setTimeout(() => $('region').style.opacity = 1, 350); }
+  const focus = waiting[Math.min(rot, waiting.length - 1)];
+  document.querySelectorAll('.row').forEach(e => e.classList.remove('focus')); $('r' + focus.i).classList.add('focus');
+  $('region').textContent = focus.name;
+  const [h, m, s] = fmt(focus.at - now);
+  $('big').innerHTML = `${pad(h)}<span class="sep">:</span>${pad(m)}<span class="sep">:</span>${pad(s)}`;
+  $('next').innerHTML = T.next(waiting[0].name);
+}
+// background slideshow (official images in ./images)
+const bg = $('bg'); const N = 8;
+for (let i = 1; i <= N; i++) { const d = document.createElement('div'); d.style.backgroundImage = `url(images/bg${i}.jpg)`; d.style.animationDelay = `-${i * 3}s`; bg.appendChild(d); }
+let cur = 0; bg.children[0].classList.add('on');
+setInterval(() => { bg.children[cur].classList.remove('on'); cur = (cur + 1) % N; bg.children[cur].classList.add('on'); }, 9000);
+tick(); setInterval(tick, 250);
+</script>
+</body>
+</html>
