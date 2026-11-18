@@ -11,6 +11,7 @@ efectos de sonido y subtítulos sincronizados.
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
 | `videos/hormigas-zombi` | El hongo que convierte hormigas en zombis (voz es-ES + imágenes IA) | 1:22 |
 | `videos/medusa-inmortal` | La medusa que vuelve a ser bebé (voz es-ES + imágenes IA) | 1:22 |
+| `videos/pulpo` | El pulpo: tres corazones, sangre azul y una madre récord (voz es-ES + imágenes IA) | 1:20 |
 
 ## Estructura de cada vídeo
 
