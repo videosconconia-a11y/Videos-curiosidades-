@@ -1,0 +1,834 @@
+{
+ "total": 59.346,
+ "scenes": [
+  {
+   "start": 0.0,
+   "voice_start": 0.15,
+   "voice_end": 6.198,
+   "words": [
+    {
+     "text": "Ahora",
+     "start": 0.25,
+     "end": 0.551
+    },
+    {
+     "text": "mismo",
+     "start": 0.562,
+     "end": 0.842
+    },
+    {
+     "text": "ya",
+     "start": 0.853,
+     "end": 0.953
+    },
+    {
+     "text": "hay",
+     "start": 0.964,
+     "end": 1.065
+    },
+    {
+     "text": "gente",
+     "start": 1.076,
+     "end": 1.355
+    },
+    {
+     "text": "jugando",
+     "start": 1.366,
+     "end": 1.757
+    },
+    {
+     "text": "a",
+     "start": 1.768,
+     "end": 1.812
+    },
+    {
+     "text": "GTA",
+     "start": 1.824,
+     "end": 2.17
+    },
+    {
+     "text": "6…",
+     "start": 2.181,
+     "end": 2.538
+    },
+    {
+     "text": "y",
+     "start": 2.795,
+     "end": 2.828
+    },
+    {
+     "text": "tú",
+     "start": 2.839,
+     "end": 2.951
+    },
+    {
+     "text": "todavía",
+     "start": 2.962,
+     "end": 3.33
+    },
+    {
+     "text": "no.",
+     "start": 3.341,
+     "end": 3.632
+    },
+    {
+     "text": "Te",
+     "start": 4.394,
+     "end": 4.528
+    },
+    {
+     "text": "explico",
+     "start": 4.539,
+     "end": 4.952
+    },
+    {
+     "text": "por",
+     "start": 4.963,
+     "end": 5.119
+    },
+    {
+     "text": "qué.",
+     "start": 5.13,
+     "end": 5.421
+    }
+   ],
+   "end": 6.308
+  },
+  {
+   "start": 6.308,
+   "voice_start": 6.418,
+   "voice_end": 14.506,
+   "words": [
+    {
+     "text": "Rockstar",
+     "start": 6.518,
+     "end": 7.087
+    },
+    {
+     "text": "lo",
+     "start": 7.098,
+     "end": 7.176
+    },
+    {
+     "text": "ha",
+     "start": 7.188,
+     "end": 7.221
+    },
+    {
+     "text": "confirmado:",
+     "start": 7.232,
+     "end": 7.857
+    },
+    {
+     "text": "GTA",
+     "start": 8.159,
+     "end": 8.493
+    },
+    {
+     "text": "6",
+     "start": 8.505,
+     "end": 8.739
+    },
+    {
+     "text": "sale",
+     "start": 8.75,
+     "end": 8.962
+    },
+    {
+     "text": "el",
+     "start": 8.973,
+     "end": 9.04
+    },
+    {
+     "text": "diecinueve",
+     "start": 9.052,
+     "end": 9.487
+    },
+    {
+     "text": "de",
+     "start": 9.498,
+     "end": 9.576
+    },
+    {
+     "text": "noviembre,",
+     "start": 9.587,
+     "end": 10.022
+    },
+    {
+     "text": "a",
+     "start": 10.257,
+     "end": 10.29
+    },
+    {
+     "text": "medianoche",
+     "start": 10.302,
+     "end": 10.837
+    },
+    {
+     "text": "hora",
+     "start": 10.848,
+     "end": 10.96
+    },
+    {
+     "text": "local,",
+     "start": 10.971,
+     "end": 11.317
+    },
+    {
+     "text": "en",
+     "start": 11.535,
+     "end": 11.769
+    },
+    {
+     "text": "PlayStation",
+     "start": 11.78,
+     "end": 12.372
+    },
+    {
+     "text": "5",
+     "start": 12.383,
+     "end": 12.718
+    },
+    {
+     "text": "y",
+     "start": 12.729,
+     "end": 12.807
+    },
+    {
+     "text": "Xbox",
+     "start": 12.818,
+     "end": 13.209
+    },
+    {
+     "text": "Series.",
+     "start": 13.22,
+     "end": 13.723
+    }
+   ],
+   "end": 14.616
+  },
+  {
+   "start": 14.616,
+   "voice_start": 14.726,
+   "voice_end": 22.646,
+   "words": [
+    {
+     "text": "Hora",
+     "start": 14.826,
+     "end": 15.06
+    },
+    {
+     "text": "local",
+     "start": 15.072,
+     "end": 15.384
+    },
+    {
+     "text": "significa",
+     "start": 15.395,
+     "end": 15.92
+    },
+    {
+     "text": "que",
+     "start": 15.931,
+     "end": 16.043
+    },
+    {
+     "text": "se",
+     "start": 16.054,
+     "end": 16.154
+    },
+    {
+     "text": "desbloquea",
+     "start": 16.165,
+     "end": 16.645
+    },
+    {
+     "text": "país",
+     "start": 16.656,
+     "end": 16.913
+    },
+    {
+     "text": "por",
+     "start": 16.924,
+     "end": 17.069
+    },
+    {
+     "text": "país,",
+     "start": 17.08,
+     "end": 17.426
+    },
+    {
+     "text": "según",
+     "start": 17.56,
+     "end": 17.873
+    },
+    {
+     "text": "su",
+     "start": 17.884,
+     "end": 17.984
+    },
+    {
+     "text": "reloj.",
+     "start": 17.996,
+     "end": 18.487
+    },
+    {
+     "text": "Y",
+     "start": 19.249,
+     "end": 19.405
+    },
+    {
+     "text": "el",
+     "start": 19.416,
+     "end": 19.517
+    },
+    {
+     "text": "primero",
+     "start": 19.528,
+     "end": 19.84
+    },
+    {
+     "text": "en",
+     "start": 19.851,
+     "end": 19.93
+    },
+    {
+     "text": "llegar",
+     "start": 19.941,
+     "end": 20.186
+    },
+    {
+     "text": "a",
+     "start": 20.197,
+     "end": 20.231
+    },
+    {
+     "text": "medianoche",
+     "start": 20.242,
+     "end": 20.901
+    },
+    {
+     "text": "es",
+     "start": 20.912,
+     "end": 21.034
+    },
+    {
+     "text": "Nueva",
+     "start": 21.046,
+     "end": 21.269
+    },
+    {
+     "text": "Zelanda.",
+     "start": 21.28,
+     "end": 21.86
+    }
+   ],
+   "end": 22.756
+  },
+  {
+   "start": 22.756,
+   "voice_start": 22.866,
+   "voice_end": 28.458,
+   "words": [
+    {
+     "text": "Allí",
+     "start": 22.963,
+     "end": 23.276
+    },
+    {
+     "text": "llegó",
+     "start": 23.287,
+     "end": 23.51
+    },
+    {
+     "text": "a",
+     "start": 23.521,
+     "end": 23.555
+    },
+    {
+     "text": "las",
+     "start": 23.566,
+     "end": 23.711
+    },
+    {
+     "text": "doce",
+     "start": 23.722,
+     "end": 23.934
+    },
+    {
+     "text": "del",
+     "start": 23.945,
+     "end": 24.057
+    },
+    {
+     "text": "mediodía,",
+     "start": 24.068,
+     "end": 24.548
+    },
+    {
+     "text": "hora",
+     "start": 24.827,
+     "end": 24.961
+    },
+    {
+     "text": "peninsular.",
+     "start": 24.972,
+     "end": 25.653
+    },
+    {
+     "text": "Doce",
+     "start": 26.42,
+     "end": 26.789
+    },
+    {
+     "text": "horas",
+     "start": 26.8,
+     "end": 27.023
+    },
+    {
+     "text": "antes",
+     "start": 27.034,
+     "end": 27.313
+    },
+    {
+     "text": "que",
+     "start": 27.325,
+     "end": 27.414
+    },
+    {
+     "text": "tú.",
+     "start": 27.425,
+     "end": 27.682
+    }
+   ],
+   "end": 28.568
+  },
+  {
+   "start": 28.568,
+   "voice_start": 28.678,
+   "voice_end": 34.51,
+   "words": [
+    {
+     "text": "En",
+     "start": 28.778,
+     "end": 28.957
+    },
+    {
+     "text": "la",
+     "start": 28.968,
+     "end": 29.057
+    },
+    {
+     "text": "península",
+     "start": 29.068,
+     "end": 29.537
+    },
+    {
+     "text": "podrás",
+     "start": 29.548,
+     "end": 29.883
+    },
+    {
+     "text": "jugar",
+     "start": 29.894,
+     "end": 30.14
+    },
+    {
+     "text": "a",
+     "start": 30.151,
+     "end": 30.173
+    },
+    {
+     "text": "las",
+     "start": 30.184,
+     "end": 30.34
+    },
+    {
+     "text": "doce",
+     "start": 30.352,
+     "end": 30.564
+    },
+    {
+     "text": "de",
+     "start": 30.575,
+     "end": 30.642
+    },
+    {
+     "text": "la",
+     "start": 30.653,
+     "end": 30.72
+    },
+    {
+     "text": "noche.",
+     "start": 30.731,
+     "end": 31.166
+    },
+    {
+     "text": "En",
+     "start": 31.928,
+     "end": 32.118
+    },
+    {
+     "text": "Canarias,",
+     "start": 32.129,
+     "end": 32.632
+    },
+    {
+     "text": "una",
+     "start": 32.821,
+     "end": 32.966
+    },
+    {
+     "text": "hora",
+     "start": 32.978,
+     "end": 33.134
+    },
+    {
+     "text": "después.",
+     "start": 33.145,
+     "end": 33.736
+    }
+   ],
+   "end": 34.62
+  },
+  {
+   "start": 34.62,
+   "voice_start": 34.73,
+   "voice_end": 46.778,
+   "words": [
+    {
+     "text": "Y",
+     "start": 34.83,
+     "end": 35.02
+    },
+    {
+     "text": "ojo:",
+     "start": 35.031,
+     "end": 35.355
+    },
+    {
+     "text": "pide",
+     "start": 35.611,
+     "end": 35.834
+    },
+    {
+     "text": "hasta",
+     "start": 35.846,
+     "end": 36.035
+    },
+    {
+     "text": "doscientos",
+     "start": 36.046,
+     "end": 36.515
+    },
+    {
+     "text": "doce",
+     "start": 36.526,
+     "end": 36.783
+    },
+    {
+     "text": "gigas",
+     "start": 36.794,
+     "end": 37.084
+    },
+    {
+     "text": "libres.",
+     "start": 37.096,
+     "end": 37.587
+    },
+    {
+     "text": "La",
+     "start": 38.349,
+     "end": 38.55
+    },
+    {
+     "text": "precarga",
+     "start": 38.561,
+     "end": 38.94
+    },
+    {
+     "text": "está",
+     "start": 38.951,
+     "end": 39.152
+    },
+    {
+     "text": "abierta",
+     "start": 39.163,
+     "end": 39.498
+    },
+    {
+     "text": "desde",
+     "start": 39.509,
+     "end": 39.744
+    },
+    {
+     "text": "el",
+     "start": 39.755,
+     "end": 39.833
+    },
+    {
+     "text": "diez",
+     "start": 39.844,
+     "end": 40.023
+    },
+    {
+     "text": "de",
+     "start": 40.034,
+     "end": 40.101
+    },
+    {
+     "text": "noviembre",
+     "start": 40.112,
+     "end": 40.514
+    },
+    {
+     "text": "si",
+     "start": 40.525,
+     "end": 40.637
+    },
+    {
+     "text": "lo",
+     "start": 40.648,
+     "end": 40.715
+    },
+    {
+     "text": "reservaste.",
+     "start": 40.726,
+     "end": 41.418
+    },
+    {
+     "text": "Si",
+     "start": 42.191,
+     "end": 42.447
+    },
+    {
+     "text": "aún",
+     "start": 42.459,
+     "end": 42.626
+    },
+    {
+     "text": "no",
+     "start": 42.637,
+     "end": 42.726
+    },
+    {
+     "text": "lo",
+     "start": 42.738,
+     "end": 42.827
+    },
+    {
+     "text": "has",
+     "start": 42.838,
+     "end": 42.938
+    },
+    {
+     "text": "precargado,",
+     "start": 42.95,
+     "end": 43.496
+    },
+    {
+     "text": "hazlo",
+     "start": 43.776,
+     "end": 44.021
+    },
+    {
+     "text": "ya,",
+     "start": 44.032,
+     "end": 44.244
+    },
+    {
+     "text": "o",
+     "start": 44.468,
+     "end": 44.512
+    },
+    {
+     "text": "a",
+     "start": 44.523,
+     "end": 44.557
+    },
+    {
+     "text": "medianoche",
+     "start": 44.568,
+     "end": 45.059
+    },
+    {
+     "text": "te",
+     "start": 45.07,
+     "end": 45.171
+    },
+    {
+     "text": "tocará",
+     "start": 45.182,
+     "end": 45.472
+    },
+    {
+     "text": "esperar.",
+     "start": 45.483,
+     "end": 46.008
+    }
+   ],
+   "end": 46.888
+  },
+  {
+   "start": 46.888,
+   "voice_start": 46.998,
+   "voice_end": 53.046,
+   "words": [
+    {
+     "text": "¿Y",
+     "start": 47.095,
+     "end": 47.24
+    },
+    {
+     "text": "en",
+     "start": 47.252,
+     "end": 47.374
+    },
+    {
+     "text": "PC?",
+     "start": 47.386,
+     "end": 47.821
+    },
+    {
+     "text": "De",
+     "start": 48.585,
+     "end": 48.775
+    },
+    {
+     "text": "momento,",
+     "start": 48.786,
+     "end": 49.222
+    },
+    {
+     "text": "a",
+     "start": 49.423,
+     "end": 49.478
+    },
+    {
+     "text": "esperar:",
+     "start": 49.489,
+     "end": 49.88
+    },
+    {
+     "text": "Rockstar",
+     "start": 50.092,
+     "end": 50.516
+    },
+    {
+     "text": "no",
+     "start": 50.527,
+     "end": 50.65
+    },
+    {
+     "text": "ha",
+     "start": 50.661,
+     "end": 50.706
+    },
+    {
+     "text": "anunciado",
+     "start": 50.717,
+     "end": 51.141
+    },
+    {
+     "text": "versión",
+     "start": 51.152,
+     "end": 51.521
+    },
+    {
+     "text": "para",
+     "start": 51.532,
+     "end": 51.677
+    },
+    {
+     "text": "ordenador.",
+     "start": 51.688,
+     "end": 52.257
+    }
+   ],
+   "end": 53.156
+  },
+  {
+   "start": 53.156,
+   "voice_start": 53.266,
+   "voice_end": 57.946,
+   "words": [
+    {
+     "text": "Así",
+     "start": 53.366,
+     "end": 53.656
+    },
+    {
+     "text": "que",
+     "start": 53.667,
+     "end": 53.768
+    },
+    {
+     "text": "dime:",
+     "start": 53.779,
+     "end": 54.08
+    },
+    {
+     "text": "¿te",
+     "start": 54.326,
+     "end": 54.415
+    },
+    {
+     "text": "quedas",
+     "start": 54.426,
+     "end": 54.683
+    },
+    {
+     "text": "despierto",
+     "start": 54.694,
+     "end": 55.085
+    },
+    {
+     "text": "a",
+     "start": 55.096,
+     "end": 55.118
+    },
+    {
+     "text": "las",
+     "start": 55.129,
+     "end": 55.263
+    },
+    {
+     "text": "doce…",
+     "start": 55.274,
+     "end": 55.576
+    },
+    {
+     "text": "o",
+     "start": 55.788,
+     "end": 55.81
+    },
+    {
+     "text": "lo",
+     "start": 55.821,
+     "end": 55.899
+    },
+    {
+     "text": "empiezas",
+     "start": 55.911,
+     "end": 56.29
+    },
+    {
+     "text": "mañana",
+     "start": 56.301,
+     "end": 56.58
+    },
+    {
+     "text": "con",
+     "start": 56.591,
+     "end": 56.759
+    },
+    {
+     "text": "calma?",
+     "start": 56.77,
+     "end": 57.183
+    }
+   ],
+   "end": 59.346
+  }
+ ]
+}
