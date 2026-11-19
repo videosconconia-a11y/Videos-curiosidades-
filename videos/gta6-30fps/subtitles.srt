@@ -1,0 +1,80 @@
+1
+00:00:00,160 --> 00:00:02,160
+GTA 6 is finally out.
+
+2
+00:00:02,160 --> 00:00:04,010
+And it has one big problem.
+
+3
+00:00:04,280 --> 00:00:06,355
+It runs at thirty frames per second.
+
+4
+00:00:06,355 --> 00:00:07,655
+On every console.
+
+5
+00:00:07,693 --> 00:00:09,580
+Even the PS5 Pro.
+
+6
+00:00:09,800 --> 00:00:11,775
+There's no sixty FPS mode.
+
+7
+00:00:11,812 --> 00:00:13,000
+Not even forty.
+
+8
+00:00:13,220 --> 00:00:16,045
+And Digital Foundry found the base PS5
+
+9
+00:00:16,045 --> 00:00:17,595
+can dip into the low twenties in
+
+10
+00:00:17,595 --> 00:00:18,745
+heavy action.
+
+11
+00:00:18,965 --> 00:00:20,990
+The reason? The CPU.
+
+12
+00:00:21,040 --> 00:00:22,165
+There's so much traffic,
+
+13
+00:00:22,165 --> 00:00:23,128
+crowds and physics,
+
+14
+00:00:23,128 --> 00:00:24,727
+that a faster mode would mean cutting
+
+15
+00:00:24,727 --> 00:00:25,340
+them.
+
+16
+00:00:25,560 --> 00:00:27,685
+But Digital Foundry still calls it the
+
+17
+00:00:27,685 --> 00:00:30,435
+most visually striking game of the generation.
+
+18
+00:00:30,705 --> 00:00:31,705
+So be honest.
+
+19
+00:00:31,705 --> 00:00:33,180
+Would you trade the crowds for sixty
+
+20
+00:00:33,180 --> 00:00:35,280
+FPS? Yes or no?
+

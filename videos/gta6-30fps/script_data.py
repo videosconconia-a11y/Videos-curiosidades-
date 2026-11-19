@@ -1,0 +1,33 @@
+# "The Biggest Problem With GTA 6…" — 30 FPS on every console. Facts: Digital Foundry launch analysis (secondary reports).
+SEGMENTS = [
+    dict(id="hook", pause=0.25,
+         say="GTA six is finally out. And it has one big problem.",
+         hl={"finally", "one", "big", "problem"},
+         shots=[("hook", None)]),
+    dict(id="s1", pause=0.2,
+         say="It runs at thirty frames per second. On every console. Even the PS5 Pro.",
+         hl={"thirty", "frames", "every", "console", "pro"},
+         shots=[("split", None), ("consoles", "on")]),
+    dict(id="s2", pause=0.2,
+         say="There's no sixty FPS mode. Not even forty.",
+         hl={"no", "sixty", "forty"},
+         shots=[("nomode", None)]),
+    dict(id="s3", pause=0.2,
+         say="And Digital Foundry found the base PS5 can dip into the low twenties in heavy action.",
+         hl={"digital", "foundry", "dip", "low", "twenties"},
+         shots=[("dip", None)]),
+    dict(id="s4", pause=0.2,
+         say="The reason? The CPU. There's so much traffic, crowds and physics, that a faster mode would mean cutting them.",
+         hl={"cpu", "traffic", "crowds", "physics", "cutting"},
+         shots=[("cpu", None), ("crowds", "so")]),
+    dict(id="s5", pause=0.25,
+         say="But Digital Foundry still calls it the most visually striking game of the generation.",
+         hl={"most", "visually", "striking", "generation"},
+         shots=[("beauty", None)]),
+    dict(id="outro", pause=0.3,
+         say="So be honest. Would you trade the crowds for sixty FPS? Yes or no?",
+         hl={"honest", "trade", "sixty", "yes", "no"},
+         shots=[("outro", None)]),
+]
+DISPLAY = {}
+TITLE = "The Biggest Problem With GTA 6… 😬 #gta6 #viral #shorts #gaming #gta"
