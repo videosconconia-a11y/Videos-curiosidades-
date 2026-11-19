@@ -10,6 +10,7 @@ efectos de sonido y subtítulos sincronizados.
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
 | `videos/gaugamela` | Alejandro Magno venció a un ejército el doble de grande… alejándose de él (2D en un mundo 3D) | 56,1 s |
+| `videos/cleopatra` | Cleopatra vivió más cerca del iPhone… que de las pirámides (camino del tiempo en 3D) | 61,1 s |
 | `videos/troya` | Diez años de batallas no abrieron Troya… un regalo lo hizo en una noche (2D en un mundo 3D) | 61,5 s |
 
 ## Estructura de cada vídeo
