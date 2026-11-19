@@ -1,0 +1,168 @@
+# Guion del vídeo largo "10 cosas del universo que parecen imposibles" (horizontal 16:9, ~7 min)
+# Cada escena: narración (lo que dice la voz) e imágenes IA (nombre, prompt) que se muestran mientras se narra.
+# Los tiempos y los subtítulos palabra a palabra se calculan a partir del audio real (timeline.py).
+
+SCENES = [
+    # ---------------- INTRO
+    dict(text="El universo está lleno de cosas que, si te las contara sin pruebas, pensarías que me las estoy inventando.",
+         images=[("intro_galaxy", "breathtaking spiral galaxy in deep space, billions of stars, cinematic wide shot"),
+                 ("intro_nebula", "colorful glowing nebula with pillars of gas and newborn stars, epic space photo")]),
+    dict(text="Hoy te traigo diez de ellas. Y te aviso: la número uno te va a cambiar la forma de mirar el cielo. Empezamos.",
+         images=[("intro_sky", "person standing on a hill at night looking up at the milky way, silhouette, awe"),
+                 ("intro_stars", "night sky full of stars over mountains, long exposure, magical")]),
+
+    # ---------------- 10. Estrella de neutrones
+    dict(text="Número diez. Una cucharadita que pesa más que una montaña.",
+         images=[("n10_spoon", "a small silver teaspoon holding a tiny glowing blue ball of star matter, dark background, surreal"),
+                 ("n10_mountain", "giant snowy mountain range at sunset, epic scale, cinematic")]),
+    dict(text="Cuando una estrella gigante muere, su núcleo puede colapsar y convertirse en una estrella de neutrones: una bola de unos veinte kilómetros de diámetro… con más masa que el Sol.",
+         images=[("n10_supernova", "massive star exploding in a brilliant supernova, shockwave of light, space"),
+                 ("n10_collapse", "glowing stellar core collapsing into a tiny dense bright sphere, energy waves"),
+                 ("n10_neutron", "neutron star, small extremely bright blue sphere with magnetic field lines, deep space")]),
+    dict(text="Es tan densa que una sola cucharadita de su materia pesaría alrededor de mil millones de toneladas.",
+         images=[("n10_density", "tiny glowing sphere crushing a huge pile of rocks beneath it, surreal weight, dramatic"),
+                 ("n10_scale", "small glowing ball on one side of a giant balance scale outweighing an entire mountain, surreal")]),
+    dict(text="Y algunas giran a una velocidad de locos: la más rápida que conocemos da setecientas dieciséis vueltas… por segundo. Y su gravedad es tan bestia que un objeto que dejaras caer desde un metro llegaría al suelo a unos siete millones de kilómetros por hora.",
+         images=[("n10_pulsar", "rapidly spinning pulsar emitting two bright beams of light like a lighthouse in space"),
+                 ("n10_gravity", "object falling at extreme speed onto the glowing surface of a neutron star, motion streaks, dramatic"),
+                 ("n10_spin", "neutron star spinning with motion blur and swirling light trails, energetic")]),
+
+    # ---------------- 9. Venus
+    dict(text="Número nueve. Un planeta donde un día dura más que un año.",
+         images=[("n9_venus", "planet Venus glowing yellow orange in black space, thick swirling clouds"),
+                 ("n9_clock", "golden pocket watch floating in front of a yellow cloudy planet, surreal space")]),
+    dict(text="Venus tarda doscientos veinticinco días en dar la vuelta al Sol… pero doscientos cuarenta y tres en girar una sola vez sobre sí mismo.",
+         images=[("n9_orbit", "small yellow planet orbiting a huge bright sun, glowing orbit path, solar system view"),
+                 ("n9_rotation", "close view of Venus rotating slowly, cloud bands, day and night terminator line")]),
+    dict(text="Además gira al revés que casi todos los planetas, así que allí el Sol sale por el oeste. Y en su superficie hay unos cuatrocientos sesenta grados: suficiente para fundir el plomo. Y su atmósfera es tan densa que la presión en el suelo es unas noventa veces la de la Tierra: como estar a casi un kilómetro bajo el mar.",
+         images=[("n9_sunrise", "huge blurry sun rising through thick orange haze over a volcanic rocky plain, alien world"),
+                 ("n9_surface", "scorching surface of Venus with cracked basalt rocks and glowing orange sky, heat haze"),
+                 ("n9_deep", "submarine in crushing deep dark ocean, pressure, deep blue darkness, cinematic"),
+                 ("n9_lead", "metal bar melting into glowing liquid on a hot rock, orange heat glow, macro")]),
+
+    # ---------------- 8. Nube de alcohol
+    dict(text="Número ocho. Una nube gigante de alcohol… que sabe a frambuesa.",
+         images=[("n8_cloud", "giant glowing pink and purple gas cloud in space, cosmic nebula, dreamy"),
+                 ("n8_raspberry", "fresh raspberries floating in space in front of a pink nebula, surreal, beautiful")]),
+    dict(text="Cerca del centro de nuestra galaxia hay una nube de gas y polvo llamada Sagitario B dos. Los astrónomos han detectado en ella alcohol etílico, el mismo de las bebidas. Y no es una nube pequeña: mide unos ciento cincuenta años luz de punta a punta.",
+         images=[("n8_center", "dense starry center of the milky way galaxy with dark dust clouds, deep space"),
+                 ("n8_telescope", "giant radio telescope dish under a starry night sky, pointing up"),
+                 ("n8_huge", "colossal dark and pink gas cloud in front of countless stars, enormous scale, space"),
+                 ("n8_molecules", "glowing molecules floating in a cosmic cloud, ball and stick models, space background")]),
+    dict(text="Y también formiato de etilo: una molécula que, aquí en la Tierra, ayuda a dar su sabor a las frambuesas. Así que, en cierto modo, el centro de la galaxia sabe a frambuesa.",
+         images=[("n8_glass", "a glass of red raspberry drink with the milky way reflected in it, surreal, cinematic"),
+                 ("n8_galaxy_taste", "spiral galaxy with a soft pink raspberry colored glow at its center, dreamy space art")]),
+
+    # ---------------- 7. Lluvia de diamantes
+    dict(text="Número siete. Lugares donde podría llover diamantes.",
+         images=[("n7_diamonds", "diamonds falling like rain through a dark blue planetary atmosphere, sparkling"),
+                 ("n7_neptune", "planet Neptune deep blue with white clouds in black space, realistic")]),
+    dict(text="En las profundidades de Urano y Neptuno hay una presión y una temperatura enormes. Los científicos creen que ahí el carbono se comprime hasta formar diamantes.",
+         images=[("n7_uranus", "planet Uranus pale cyan with faint rings, realistic space photo"),
+                 ("n7_pressure", "inside a giant blue planet, crushing pressure, glowing hot core, layers of gas"),
+                 ("n7_carbon", "black carbon crystals transforming into a sparkling diamond under pressure, glowing")]),
+    dict(text="Y no es solo teoría: en dos mil diecisiete, un equipo logró crear diminutos diamantes en un laboratorio imitando esas condiciones con láseres muy potentes. Esos diamantes se irían hundiendo poco a poco hacia el interior del planeta, como una lluvia que nunca llega a tocar el suelo.",
+         images=[("n7_laser", "powerful green laser beam hitting a tiny target in a high tech physics laboratory"),
+                 ("n7_rain", "a shower of glowing diamonds sinking toward the core of an ice giant planet, epic")]),
+
+    # ---------------- 6. Soldadura en frío
+    dict(text="Número seis. En el espacio, dos piezas de metal pueden quedarse pegadas para siempre… solo con tocarse.",
+         images=[("n6_metal", "two shiny metal plates touching in outer space with earth in the background"),
+                 ("n6_astronaut", "astronaut holding two metal tools in space, earth below, realistic")]),
+    dict(text="En la Tierra, los metales tienen una finísima capa de óxido por culpa del aire. En el vacío, si esa capa desaparece y dos metales iguales se tocan, sus átomos no saben de qué pieza son… y se fusionan.",
+         images=[("n6_oxide", "macro of a metal surface with a thin oxide layer, scientific, detailed texture"),
+                 ("n6_atoms", "glowing atoms of two metal surfaces merging together, scientific visualization"),
+                 ("n6_fused", "two metal pieces fused seamlessly into one, glowing seam, dark background")]),
+    dict(text="Se llama soldadura en frío. Ha dado verdaderos quebraderos de cabeza a los ingenieros de las naves espaciales… y ahora se estudia para reparar satélites en órbita. Por eso, en las naves se usan recubrimientos y lubricantes especiales, para que las piezas que se mueven no se queden atascadas.",
+         images=[("n6_satellite", "satellite with solar panels orbiting earth, sunlight, realistic"),
+                 ("n6_gears", "metal gears and hinges of a spacecraft mechanism in space, close-up, sunlight"),
+                 ("n6_repair", "robotic arm repairing a satellite in orbit above earth, futuristic, realistic")]),
+
+    # ---------------- 5. Luz del Sol
+    dict(text="Número cinco. La luz del Sol que te calienta hoy… empezó su viaje hace miles de años.",
+         images=[("n5_sunlight", "warm sunlight through tree leaves in a forest, golden hour, peaceful"),
+                 ("n5_sun", "the sun in extreme detail with solar flares and plasma, space photo")]),
+    dict(text="Esa luz tarda poco más de ocho minutos en llegar desde la superficie del Sol hasta tus ojos. Pero esa no es toda la historia.",
+         images=[("n5_travel", "beam of sunlight traveling through space from the sun to the earth, wide view"),
+                 ("n5_eye", "close-up of a human eye reflecting the sun, golden light")]),
+    dict(text="La energía nace en el núcleo, y allí dentro es tan denso que va rebotando de partícula en partícula. Para salir a la superficie puede tardar desde diez mil hasta más de cien mil años. Es decir, parte de la energía que hoy te calienta la piel empezó a salir del núcleo cuando nuestros antepasados todavía vivían en cuevas.",
+         images=[("n5_core", "cutaway of the sun showing its glowing white hot core and layers, scientific"),
+                 ("n5_bounce", "a single photon of light bouncing randomly through dense glowing plasma, zigzag path"),
+                 ("n5_ancient", "ancient people around a fire at night looking at the stars, prehistoric, cinematic")]),
+
+    # ---------------- 4. La Luna se aleja
+    dict(text="Número cuatro. La Luna se está escapando.",
+         images=[("n4_moon", "full moon rising over the ocean at night, huge and bright, cinematic"),
+                 ("n4_moon_space", "the moon and the earth in space, sunlight, realistic")]),
+    dict(text="Cada año se aleja de la Tierra unos tres coma ocho centímetros. Lo sabemos gracias a los espejos que dejaron los astronautas del Apolo: desde aquí les disparamos láseres y medimos cuánto tarda en volver la luz.",
+         images=[("n4_mirror", "retroreflector mirror panel on the grey lunar surface, earth in the black sky"),
+                 ("n4_laser", "green laser beam shooting from an observatory toward the moon at night"),
+                 ("n4_apollo", "astronaut on the moon next to a lunar module, earth rising, realistic")]),
+    dict(text="Es más o menos lo que te crecen las uñas en un año. Y hace miles de millones de años, la Luna estaba mucho más cerca y se veía enorme en el cielo. Y al alejarse, frena poco a poco el giro de la Tierra: hace cientos de millones de años, un día duraba bastante menos de veinticuatro horas.",
+         images=[("n4_nails", "close-up of human fingernails on a hand, soft light, macro"),
+                 ("n4_earth_spin", "earth spinning in space with a time lapse of day and night, motion, realistic"),
+                 ("n4_ancient_moon", "gigantic moon filling the sky over a primordial volcanic earth landscape, ancient")]),
+
+    # ---------------- 3. El agujero negro que canta
+    dict(text="Número tres. Un agujero negro que canta… la nota más grave del universo.",
+         images=[("n3_bh", "supermassive black hole with glowing accretion disk in the center of a galaxy cluster"),
+                 ("n3_sound", "sound waves rippling outward through glowing cosmic gas, concentric rings, space")]),
+    dict(text="En el centro del cúmulo de galaxias de Perseo hay un agujero negro gigantesco que genera ondas de presión en el gas que lo rodea. Son, literalmente, ondas de sonido.",
+         images=[("n3_cluster", "galaxy cluster with hundreds of galaxies and hot glowing gas, deep space"),
+                 ("n3_waves", "pressure waves spreading in purple glowing gas around a black hole, x-ray style image")]),
+    dict(text="Esa nota está cincuenta y siete octavas por debajo del do central de un piano. Ningún oído humano podría oírla. Para escucharla, la NASA tuvo que subirla millones de millones de veces. En el espacio vacío el sonido no viaja, pero en estas inmensas nubes de gas, sí.",
+         images=[("n3_piano", "close-up of piano keys in dramatic dark lighting, cinematic"),
+                 ("n3_nasa", "headphones in front of a screen showing a black hole and sound waveform, dark studio")]),
+
+    # ---------------- 2. Voyager 1
+    dict(text="Número dos. Un objeto humano que está a un día luz de distancia.",
+         images=[("n2_voyager", "Voyager space probe with a large dish antenna drifting in deep dark space"),
+                 ("n2_deep", "tiny space probe far from a distant faint sun, vast emptiness, stars")]),
+    dict(text="La sonda Voyager uno fue lanzada en mil novecientos setenta y siete. Pasó junto a Júpiter y Saturno y siguió su camino hacia la oscuridad.",
+         images=[("n2_launch", "1970s rocket launching with bright flames and smoke, vintage, cinematic"),
+                 ("n2_jupiter", "space probe flying past giant planet Jupiter with its great red spot"),
+                 ("n2_saturn", "space probe flying past Saturn and its rings, sunlight, realistic")]),
+    dict(text="Y justo esta semana ha hecho historia: está tan lejos que una señal de radio, viajando a la velocidad de la luz, tarda un día entero en llegar hasta ella. Casi veintiséis mil millones de kilómetros.",
+         images=[("n2_signal", "radio waves traveling across empty space from earth to a tiny probe, long distance"),
+                 ("n2_antenna", "giant deep space radio antenna dish at night under the milky way"),
+                 ("n2_record", "lonely space probe in interstellar space with the sun as a tiny star behind it")]),
+    dict(text="Lleva un disco de oro con sonidos y saludos de la Tierra, por si algún día alguien lo encuentra. Y lo más increíble: lleva casi medio siglo funcionando, con muchísima menos memoria que cualquier teléfono móvil de hoy.",
+         images=[("n2_record_gold", "golden record disc attached to a space probe, shiny gold, deep space"),
+                 ("n2_old_computer", "vintage 1970s computer with blinking lights in a dark room next to a modern smartphone"),
+                 ("n2_message", "golden disc floating among stars, message from earth, poetic, cinematic")]),
+
+    # ---------------- 1. Tamaño del universo
+    dict(text="Y número uno. El universo es más grande de lo que debería ser posible.",
+         images=[("n1_universe", "the observable universe as a vast cosmic web of glowing galaxies, epic"),
+                 ("n1_web", "cosmic web filaments of galaxies glowing blue and gold, deep space")]),
+    dict(text="Tiene unos trece mil ochocientos millones de años. Nada puede viajar más rápido que la luz. Así que, en teoría, no deberíamos poder ver nada a más de trece mil ochocientos millones de años luz.",
+         images=[("n1_bigbang", "the big bang explosion of light and energy, birth of the universe, cosmic"),
+                 ("n1_light", "beam of light racing through space past stars, motion streaks"),
+                 ("n1_edge", "the edge of the observable universe glowing, faint early galaxies, cosmic")]),
+    dict(text="Pero el universo observable mide unos noventa y tres mil millones de años luz de diámetro. ¿Cómo es posible?",
+         images=[("n1_sphere", "giant glowing sphere containing countless galaxies, observable universe concept art"),
+                 ("n1_question", "lone astronaut looking at a vast expanding universe, awe, cinematic")]),
+    dict(text="Porque el propio espacio se ha estado estirando mientras la luz viajaba. Las galaxias más lejanas no se mueven por el espacio más rápido que la luz: es el espacio entre nosotros el que se expande.",
+         images=[("n1_expand", "galaxies on a stretching grid of space moving apart, expansion of the universe visualization"),
+                 ("n1_balloon", "galaxies painted on an inflating balloon in space, expansion metaphor, surreal")]),
+    dict(text="Y ahí dentro hay más estrellas que granos de arena en todas las playas de la Tierra. Y aun así, lo que podemos ver podría ser solo una pequeña parte de todo lo que existe.",
+         images=[("n1_beach", "close-up of a hand holding sand on a beach at night under the milky way"),
+                 ("n1_stars", "billions of stars in a dense star field, deep space, overwhelming")]),
+
+    # ---------------- OUTRO
+    dict(text="Así que la próxima vez que mires al cielo por la noche, recuerda: estás viendo solo una pequeñísima parte de algo que parece imposible.",
+         images=[("outro_sky", "person lying on grass looking up at a sky full of stars and the milky way, peaceful"),
+                 ("outro_earth", "planet earth seen from space as a tiny blue dot among stars, humbling")]),
+    dict(text="¿Cuál de las diez te ha volado más la cabeza? Te leo en comentarios. Y si te ha gustado, suscríbete: aquí cada semana hay curiosidades nuevas.",
+         images=[("outro_galaxy", "majestic spiral galaxy in deep space, poster composition, cinematic"),
+                 ("outro_final", "beautiful colorful nebula with bright stars, end scene, epic and calm")]),
+]
+
+# Palabras a resaltar en amarillo en los subtítulos (sin acentos ni mayúsculas)
+HIGHLIGHT = {"diez", "nueve", "ocho", "siete", "seis", "cinco", "cuatro", "tres", "dos", "uno", "imposible",
+             "cucharadita", "montaña", "neutrones", "toneladas", "setecientas", "dieciseis", "segundo", "venus",
+             "dia", "año", "oeste", "plomo", "alcohol", "frambuesa", "frambuesas", "diamantes", "urano", "neptuno",
+             "laseres", "metal", "pegadas", "soldadura", "frio", "luz", "sol", "minutos", "mil", "años", "luna",
+             "centimetros", "espejos", "uñas", "canta", "grave", "perseo", "sonido", "octavas", "voyager",
+             "historia", "kilometros", "oro", "universo", "noventa", "expande", "estrellas", "arena", "comentarios",
+             "suscribete", "dentro", "cielo", "centro"}

@@ -1,0 +1,41 @@
+{
+ "text": "Número siete. Lugares donde podría llover diamantes.",
+ "dur": 4.92,
+ "words": [
+  {
+   "w": "Número",
+   "a": 0.1,
+   "b": 0.5625
+  },
+  {
+   "w": "siete",
+   "a": 0.575,
+   "b": 1.0125
+  },
+  {
+   "w": "Lugares",
+   "a": 1.875,
+   "b": 2.4125
+  },
+  {
+   "w": "donde",
+   "a": 2.425,
+   "b": 2.6625
+  },
+  {
+   "w": "podría",
+   "a": 2.675,
+   "b": 3.0125
+  },
+  {
+   "w": "llover",
+   "a": 3.025,
+   "b": 3.2875
+  },
+  {
+   "w": "diamantes",
+   "a": 3.3,
+   "b": 4.0375
+  }
+ ]
+}
