@@ -1,0 +1,754 @@
+{
+ "total": 54.282,
+ "scenes": [
+  {
+   "start": 0.0,
+   "voice_start": 0.15,
+   "voice_end": 5.526,
+   "words": [
+    {
+     "text": "Rockstar",
+     "start": 0.25,
+     "end": 0.775
+    },
+    {
+     "text": "ha",
+     "start": 0.786,
+     "end": 0.819
+    },
+    {
+     "text": "escondido",
+     "start": 0.83,
+     "end": 1.299
+    },
+    {
+     "text": "un",
+     "start": 1.31,
+     "end": 1.388
+    },
+    {
+     "text": "homenaje",
+     "start": 1.4,
+     "end": 1.779
+    },
+    {
+     "text": "a",
+     "start": 1.79,
+     "end": 1.835
+    },
+    {
+     "text": "Tommy",
+     "start": 1.846,
+     "end": 2.08
+    },
+    {
+     "text": "Vercetti",
+     "start": 2.091,
+     "end": 2.471
+    },
+    {
+     "text": "en",
+     "start": 2.482,
+     "end": 2.583
+    },
+    {
+     "text": "GTA",
+     "start": 2.594,
+     "end": 2.951
+    },
+    {
+     "text": "6…",
+     "start": 2.962,
+     "end": 3.319
+    },
+    {
+     "text": "y",
+     "start": 3.554,
+     "end": 3.576
+    },
+    {
+     "text": "no",
+     "start": 3.587,
+     "end": 3.71
+    },
+    {
+     "text": "es",
+     "start": 3.721,
+     "end": 3.844
+    },
+    {
+     "text": "el",
+     "start": 3.855,
+     "end": 3.933
+    },
+    {
+     "text": "único",
+     "start": 3.944,
+     "end": 4.19
+    },
+    {
+     "text": "secreto.",
+     "start": 4.201,
+     "end": 4.759
+    }
+   ],
+   "end": 5.636
+  },
+  {
+   "start": 5.636,
+   "voice_start": 5.746,
+   "voice_end": 14.074,
+   "words": [
+    {
+     "text": "Según",
+     "start": 5.843,
+     "end": 6.234
+    },
+    {
+     "text": "Rockstar,",
+     "start": 6.245,
+     "end": 6.692
+    },
+    {
+     "text": "estos",
+     "start": 6.926,
+     "end": 7.149
+    },
+    {
+     "text": "revólveres",
+     "start": 7.16,
+     "end": 7.618
+    },
+    {
+     "text": "vienen",
+     "start": 7.629,
+     "end": 7.886
+    },
+    {
+     "text": "de",
+     "start": 7.897,
+     "end": 7.964
+    },
+    {
+     "text": "la",
+     "start": 7.975,
+     "end": 8.075
+    },
+    {
+     "text": "finca",
+     "start": 8.087,
+     "end": 8.343
+    },
+    {
+     "text": "Vercetti.",
+     "start": 8.354,
+     "end": 8.879
+    },
+    {
+     "text": "Y",
+     "start": 9.644,
+     "end": 9.811
+    },
+    {
+     "text": "hay",
+     "start": 9.822,
+     "end": 9.945
+    },
+    {
+     "text": "un",
+     "start": 9.956,
+     "end": 10.034
+    },
+    {
+     "text": "estampado",
+     "start": 10.046,
+     "end": 10.537
+    },
+    {
+     "text": "para",
+     "start": 10.548,
+     "end": 10.704
+    },
+    {
+     "text": "las",
+     "start": 10.715,
+     "end": 10.894
+    },
+    {
+     "text": "armas",
+     "start": 10.905,
+     "end": 11.162
+    },
+    {
+     "text": "inspirado",
+     "start": 11.173,
+     "end": 11.653
+    },
+    {
+     "text": "en",
+     "start": 11.664,
+     "end": 11.753
+    },
+    {
+     "text": "su",
+     "start": 11.764,
+     "end": 11.865
+    },
+    {
+     "text": "mítica",
+     "start": 11.876,
+     "end": 12.2
+    },
+    {
+     "text": "camisa",
+     "start": 12.211,
+     "end": 12.546
+    },
+    {
+     "text": "de",
+     "start": 12.557,
+     "end": 12.635
+    },
+    {
+     "text": "palmeras.",
+     "start": 12.646,
+     "end": 13.293
+    }
+   ],
+   "end": 14.184
+  },
+  {
+   "start": 14.184,
+   "voice_start": 14.294,
+   "voice_end": 20.03,
+   "words": [
+    {
+     "text": "Porque",
+     "start": 14.394,
+     "end": 14.695
+    },
+    {
+     "text": "Vice",
+     "start": 14.707,
+     "end": 14.941
+    },
+    {
+     "text": "City",
+     "start": 14.952,
+     "end": 15.175
+    },
+    {
+     "text": "vuelve,",
+     "start": 15.186,
+     "end": 15.477
+    },
+    {
+     "text": "veinticuatro",
+     "start": 15.722,
+     "end": 16.247
+    },
+    {
+     "text": "años",
+     "start": 16.258,
+     "end": 16.481
+    },
+    {
+     "text": "después",
+     "start": 16.492,
+     "end": 16.805
+    },
+    {
+     "text": "del",
+     "start": 16.816,
+     "end": 16.939
+    },
+    {
+     "text": "GTA",
+     "start": 16.95,
+     "end": 17.285
+    },
+    {
+     "text": "Vice",
+     "start": 17.296,
+     "end": 17.541
+    },
+    {
+     "text": "City",
+     "start": 17.553,
+     "end": 17.787
+    },
+    {
+     "text": "original,",
+     "start": 17.798,
+     "end": 18.244
+    },
+    {
+     "text": "de",
+     "start": 18.479,
+     "end": 18.546
+    },
+    {
+     "text": "2002.",
+     "start": 18.557,
+     "end": 19.249
+    }
+   ],
+   "end": 20.14
+  },
+  {
+   "start": 20.14,
+   "voice_start": 20.25,
+   "voice_end": 27.81,
+   "words": [
+    {
+     "text": "El",
+     "start": 20.367,
+     "end": 20.501
+    },
+    {
+     "text": "estado",
+     "start": 20.512,
+     "end": 20.825
+    },
+    {
+     "text": "donde",
+     "start": 20.836,
+     "end": 21.059
+    },
+    {
+     "text": "pasa",
+     "start": 21.07,
+     "end": 21.316
+    },
+    {
+     "text": "todo,",
+     "start": 21.327,
+     "end": 21.617
+    },
+    {
+     "text": "Leonida,",
+     "start": 21.885,
+     "end": 22.342
+    },
+    {
+     "text": "tiene",
+     "start": 22.599,
+     "end": 22.789
+    },
+    {
+     "text": "apodo",
+     "start": 22.8,
+     "end": 23.079
+    },
+    {
+     "text": "oficial:",
+     "start": 23.09,
+     "end": 23.514
+    },
+    {
+     "text": "el",
+     "start": 23.738,
+     "end": 23.816
+    },
+    {
+     "text": "Goodtime",
+     "start": 23.827,
+     "end": 24.229
+    },
+    {
+     "text": "State.",
+     "start": 24.24,
+     "end": 24.686
+    },
+    {
+     "text": "El",
+     "start": 25.456,
+     "end": 25.657
+    },
+    {
+     "text": "estado",
+     "start": 25.668,
+     "end": 25.981
+    },
+    {
+     "text": "de",
+     "start": 25.992,
+     "end": 26.07
+    },
+    {
+     "text": "los",
+     "start": 26.081,
+     "end": 26.226
+    },
+    {
+     "text": "buenos",
+     "start": 26.238,
+     "end": 26.517
+    },
+    {
+     "text": "ratos.",
+     "start": 26.528,
+     "end": 27.019
+    }
+   ],
+   "end": 27.92
+  },
+  {
+   "start": 27.92,
+   "voice_start": 28.03,
+   "voice_end": 33.79,
+   "words": [
+    {
+     "text": "En",
+     "start": 28.127,
+     "end": 28.306
+    },
+    {
+     "text": "este",
+     "start": 28.317,
+     "end": 28.507
+    },
+    {
+     "text": "estudio",
+     "start": 28.518,
+     "end": 28.808
+    },
+    {
+     "text": "de",
+     "start": 28.819,
+     "end": 28.897
+    },
+    {
+     "text": "tatuajes",
+     "start": 28.909,
+     "end": 29.444
+    },
+    {
+     "text": "hay",
+     "start": 29.455,
+     "end": 29.556
+    },
+    {
+     "text": "más",
+     "start": 29.567,
+     "end": 29.712
+    },
+    {
+     "text": "de",
+     "start": 29.723,
+     "end": 29.801
+    },
+    {
+     "text": "cincuenta",
+     "start": 29.813,
+     "end": 30.203
+    },
+    {
+     "text": "diseños",
+     "start": 30.214,
+     "end": 30.627
+    },
+    {
+     "text": "hechos",
+     "start": 30.639,
+     "end": 30.862
+    },
+    {
+     "text": "por",
+     "start": 30.873,
+     "end": 31.007
+    },
+    {
+     "text": "FAILE,",
+     "start": 31.018,
+     "end": 31.364
+    },
+    {
+     "text": "un",
+     "start": 31.587,
+     "end": 31.665
+    },
+    {
+     "text": "colectivo",
+     "start": 31.676,
+     "end": 32.101
+    },
+    {
+     "text": "de",
+     "start": 32.112,
+     "end": 32.179
+    },
+    {
+     "text": "artistas",
+     "start": 32.19,
+     "end": 32.58
+    },
+    {
+     "text": "real.",
+     "start": 32.592,
+     "end": 33.016
+    }
+   ],
+   "end": 33.9
+  },
+  {
+   "start": 33.9,
+   "voice_start": 34.01,
+   "voice_end": 40.346,
+   "words": [
+    {
+     "text": "La",
+     "start": 34.11,
+     "end": 34.322
+    },
+    {
+     "text": "canción",
+     "start": 34.333,
+     "end": 34.657
+    },
+    {
+     "text": "del",
+     "start": 34.668,
+     "end": 34.791
+    },
+    {
+     "text": "tráiler",
+     "start": 34.802,
+     "end": 35.081
+    },
+    {
+     "text": "de",
+     "start": 35.092,
+     "end": 35.159
+    },
+    {
+     "text": "lanzamiento",
+     "start": 35.17,
+     "end": 35.706
+    },
+    {
+     "text": "es",
+     "start": 35.717,
+     "end": 35.829
+    },
+    {
+     "text": "inédita:",
+     "start": 35.84,
+     "end": 36.275
+    },
+    {
+     "text": "Justice,",
+     "start": 36.521,
+     "end": 37.068
+    },
+    {
+     "text": "con",
+     "start": 37.28,
+     "end": 37.447
+    },
+    {
+     "text": "Tame",
+     "start": 37.458,
+     "end": 37.648
+    },
+    {
+     "text": "Impala,",
+     "start": 37.659,
+     "end": 38.072
+    },
+    {
+     "text": "SZA",
+     "start": 38.239,
+     "end": 38.786
+    },
+    {
+     "text": "y",
+     "start": 38.797,
+     "end": 38.864
+    },
+    {
+     "text": "King",
+     "start": 38.876,
+     "end": 39.054
+    },
+    {
+     "text": "Gizzard.",
+     "start": 39.065,
+     "end": 39.579
+    }
+   ],
+   "end": 40.456
+  },
+  {
+   "start": 40.456,
+   "voice_start": 40.566,
+   "voice_end": 48.102,
+   "words": [
+    {
+     "text": "Y",
+     "start": 40.663,
+     "end": 40.808
+    },
+    {
+     "text": "el",
+     "start": 40.82,
+     "end": 40.92
+    },
+    {
+     "text": "primer",
+     "start": 40.931,
+     "end": 41.188
+    },
+    {
+     "text": "tráiler",
+     "start": 41.199,
+     "end": 41.512
+    },
+    {
+     "text": "hizo",
+     "start": 41.523,
+     "end": 41.69
+    },
+    {
+     "text": "noventa",
+     "start": 41.701,
+     "end": 42.025
+    },
+    {
+     "text": "y",
+     "start": 42.036,
+     "end": 42.081
+    },
+    {
+     "text": "tres",
+     "start": 42.092,
+     "end": 42.304
+    },
+    {
+     "text": "millones",
+     "start": 42.315,
+     "end": 42.661
+    },
+    {
+     "text": "de",
+     "start": 42.672,
+     "end": 42.739
+    },
+    {
+     "text": "visitas",
+     "start": 42.75,
+     "end": 43.197
+    },
+    {
+     "text": "en",
+     "start": 43.208,
+     "end": 43.308
+    },
+    {
+     "text": "YouTube",
+     "start": 43.32,
+     "end": 43.643
+    },
+    {
+     "text": "en",
+     "start": 43.654,
+     "end": 43.744
+    },
+    {
+     "text": "24 horas.",
+     "start": 43.755,
+     "end": 44.782
+    },
+    {
+     "text": "Récord",
+     "start": 45.546,
+     "end": 45.993
+    },
+    {
+     "text": "para",
+     "start": 46.004,
+     "end": 46.171
+    },
+    {
+     "text": "un",
+     "start": 46.182,
+     "end": 46.272
+    },
+    {
+     "text": "vídeo",
+     "start": 46.283,
+     "end": 46.562
+    },
+    {
+     "text": "no",
+     "start": 46.573,
+     "end": 46.685
+    },
+    {
+     "text": "musical.",
+     "start": 46.696,
+     "end": 47.321
+    }
+   ],
+   "end": 48.212
+  },
+  {
+   "start": 48.212,
+   "voice_start": 48.322,
+   "voice_end": 52.882,
+   "words": [
+    {
+     "text": "¿Cuál",
+     "start": 48.422,
+     "end": 48.668
+    },
+    {
+     "text": "de",
+     "start": 48.679,
+     "end": 48.746
+    },
+    {
+     "text": "estos",
+     "start": 48.757,
+     "end": 48.98
+    },
+    {
+     "text": "secretos",
+     "start": 48.991,
+     "end": 49.404
+    },
+    {
+     "text": "no",
+     "start": 49.415,
+     "end": 49.505
+    },
+    {
+     "text": "conocías?",
+     "start": 49.516,
+     "end": 50.174
+    },
+    {
+     "text": "Te",
+     "start": 50.934,
+     "end": 51.056
+    },
+    {
+     "text": "leo",
+     "start": 51.068,
+     "end": 51.257
+    },
+    {
+     "text": "en",
+     "start": 51.268,
+     "end": 51.335
+    },
+    {
+     "text": "comentarios.",
+     "start": 51.347,
+     "end": 52.094
+    }
+   ],
+   "end": 54.282
+  }
+ ]
+}

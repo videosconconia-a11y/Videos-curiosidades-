@@ -4,6 +4,7 @@
 - [x] «Ya hay gente jugando a GTA 6 (y tú todavía no)»: horas, precarga, 212 GB. → `videos/gta6-ya-se-juega`
 - [ ] «YA ESTÁ AQUÍ»: publicación de lanzamiento a las 00:00 en cuanto se desbloquee en España.
 - [ ] HOW TO: cómo liberar 212 GB en PS5 / Xbox en 3 pasos.
+- [x] «Los secretos de GTA 6 (homenaje a Tommy Vercetti)» → `videos/gta6-secretos`
 - [ ] «Lo primero que tienes que hacer en GTA 6»: solo cuando haya imágenes reales del juego.
 - [ ] Clips de streamers de zonas horarias tempranas (con crédito y sin spoilers de la historia).
 
