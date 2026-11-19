@@ -12,6 +12,8 @@ SEGMENTS = [
          hl={"whole", "office", "sick."}, shots=[("office", None)]),
     dict(id="outro", pause=0.3, say="Be honest. Did you skip work or school for GTA six? Comment below.",
          hl={"skip", "work", "school", "comment"}, shots=[("outro", None)]),
+    dict(id="follow", pause=0.4, say="And follow for more videos!",
+         hl={"follow", "more", "videos!"}, shots=[("follow", None)]),
 ]
 DISPLAY = {}
 TITLE = "POV: GTA 6 Came Out and You Have Work 😂 #gta6 #animation #shorts #gaming #gta"

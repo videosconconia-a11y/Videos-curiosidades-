@@ -330,6 +330,18 @@ def draw_scene(name, t, a, b):
         character(d, name, t, age, x=300, base=1760, k=.8, stage="adult", mood="excited")
         character(d, name, t, age, x=790, base=1760, k=.8, stage="boss", mood="excited")
         bubble(d, 540, 330, "Did YOU skip work?", age / .3, MS(PW(52), 900))
+    elif name == "follow":
+        wall(d, (255, 214, 0), (255, 170, 0))
+        k = back(min(1, age / .35)); bw, bh = 760 * k, 210 * k
+        d.rounded_rectangle([P(540 - bw / 2), P(560 - bh / 2), P(540 + bw / 2), P(560 + bh / 2)], radius=PW(60 * k + 1), fill=RED, outline=OUT, width=PW(10))
+        if k > .7:
+            tx(d, 540, 495, "FOLLOW", ANTON(PW(130)), WHITE, 6)
+        tx(d, 540, 730, "for more videos!", MS(PW(64), 900), OUT)
+        bx, by = 540, 330; sw = math.sin(t * 14) * 12
+        d.polygon([(P(bx - 60 + sw), P(by + 50)), (P(bx + 60 + sw), P(by + 50)), (P(bx + 45 + sw * .6), P(by - 30)), (P(bx + sw * .3), P(by - 70)), (P(bx - 45 + sw * .6), P(by - 30))], fill=(255, 255, 255), outline=OUT)
+        el(d, (bx - 14 + sw, by + 50, bx + 14 + sw, by + 78), WHITE, 6)
+        character(d, name, t, age, x=280, base=1760, k=.8, stage="adult", mood="excited")
+        character(d, name, t, age, x=800, base=1760, k=.8, stage="boss", mood="excited")
     return img.resize((W, H), Image.LANCZOS)
 
 # ---------------------------------------------------------------- captions (cartoon style: white, thick outline, yellow keyword)

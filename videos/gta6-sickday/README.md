@@ -1,6 +1,6 @@
 # GTA 6 — "POV: GTA 6 Came Out and You Have Work 😂" (original CARTOON skit with a twist)
 
-`final_9x16.mp4`: 1080×1920, 30 fps, 19.6 s, −14 LUFS. `subtitles.srt` holds the subtitles. Build: `./build.sh`.
+`final_9x16.mp4`: 1080×1920, 30 fps, 21.7 s (ends with a "FOLLOW for more videos!" card), −14 LUFS. `subtitles.srt` holds the subtitles. Build: `./build.sh`.
 Same character and engine as `../gta6-cartoon` (series look), all drawn by code: no game footage, no Rockstar art or logos.
 
 ## Why this idea

@@ -84,6 +84,7 @@ sfx(cough(), .8, .3, RD.word_time("boss", "cough,") - .05)
 sfx(ding(), .35, 0, RD.word_time("boss", "me") - .05)
 sfx(tumble(), .5, 0, st("office")); sfx(trombone(), .35, 0, st("office") + .3)
 sfx(pop(), .4, 0, st("outro") + .05); sfx(ding(), .3, 0, st("outro") + .3)
+sfx(pop(), .45, 0, st("follow") + .05); sfx(ding(), .4, 0, st("follow") + .3)
 v, vsr = sf.read(os.path.join(HERE, "voice.wav")); v = resample_poly(v, SR, vsr)
 voice = np.zeros(N); voice[: min(N, len(v))] = v[:N]
 voice = hp(voice, 90); voice = voice + .25 * hp(voice, 3000)
