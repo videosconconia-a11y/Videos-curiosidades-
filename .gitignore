@@ -5,3 +5,5 @@ still_*.jpg
 __pycache__/
 node_modules/
 tramos/
+tramos.log
+render*.log
