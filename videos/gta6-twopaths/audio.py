@@ -32,7 +32,7 @@ put(np.sin(2 * np.pi * np.cumsum(300 + 900 * np.sin(2 * np.pi * 6 * tt)) / SR) *
 d = RD.T_EDIT - RD.T_PUSH + .3; n = int(d * SR); tt = np.arange(n) / SR
 put((hp(rng.standard_normal(n), 1500) * (tt / d) ** 3 * .6 + np.sin(2 * np.pi * np.cumsum(120 + 1500 * (tt / d) ** 2) / SR) * (tt / d) ** 2 * .5), RD.T_PUSH, .6)
 # ---- part 2
-E0 = RD.T_EDIT; BEAT = RD.BEAT; END = RD.T_EDIT + RD.EDIT_LEN
+E0 = RD.T_EDIT; BEAT = RD.MUSIC_BEAT; END = RD.T_EDIT + RD.EDIT_LEN
 def boom(dur=2.5):
     n = int(dur * SR); tt = np.arange(n) / SR
     return np.sin(2 * np.pi * np.cumsum(30 + 90 * np.exp(-tt * 6)) / SR) * np.exp(-tt * 1.6) + lp(rng.standard_normal(n), 400) * np.exp(-tt * 4) * .8
@@ -50,9 +50,10 @@ def braam(root, d=1.8):
 roots = [38, 34, 36, 33]
 put(boom(), E0, 1.0); put(cym(2.5), E0, .5)
 b = 0; x = E0
+FAST = E0 + sum(RD.CUTS[:4])
 while x < END - .01:
     put(kick(), x, .9)
-    if b % 2 == 1: put(tom(110), x, .55, -.3); put(tom(80), x + BEAT / 2, .45, .3)
+    if b % 2 == 1 or x > FAST: put(tom(110), x, .55, -.3); put(tom(80), x + BEAT / 2, .45, .3)
     if b % 4 == 0: put(braam(roots[(b // 4) % 4]), x, .35)
     for s16 in range(4):                                    # string ostinato
         n = int(BEAT / 4 * SR); m = roots[(b // 4) % 4] + 24 + [0, 7, 12, 7][s16]

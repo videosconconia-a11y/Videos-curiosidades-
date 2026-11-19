@@ -1,6 +1,6 @@
 # GTA 6 — "Two Paths" meme → epic GTA 6 edit
 
-`final_9x16.mp4`: 1080×1920, 30 fps, 20 s, −14 LUFS. No voice; original epic score. Build: `./build.sh`
+`final_9x16.mp4`: 1080×1920, 30 fps, 26.3 s, −14 LUFS. No voice; original epic score. Build: `./build.sh`
 (official images in `assets/official`, not in git — Vice City / Leonida / character art from rockstargames.com/VI).
 
 ## Prompt
@@ -8,7 +8,7 @@
 > billboard "FORTNITE" with "TOKEN PIRATA" underneath (blue tag "EVERYONE"). One guy in a red hoodie (red tag "ME", yellow
 > ring) walks with them, gets a "?!", then breaks away and sprints down the LEFT path (dust puffs, speed lines) under a
 > glowing pink billboard "GTA 6", while the crowd turns to look. The camera pushes into the glowing left path → white flash.
-> Part 2 (7–20 s): epic GTA 6 edit — hard cuts on a 120 BPM grid (1 beat, then a double-time burst), zoom punch and
+> Part 2 (7–26 s): epic GTA 6 edit — cut rhythm measured from the user's reference edit (4 long shots ~1.8 s with a translucent "GTA VI" title, then a burst of ~0.45 s cuts). The reference clip itself (another creator's TikTok, with watermark) is NOT used, zoom punch and
 > 1-frame flash on every cut, RGB split on the fast cuts, cinematic letterbox, warm/teal grade; "WELCOME TO LEONIDA" on
 > the first shot; ends on Jason & Lucia key art with "GTA VI" glowing pink + FOLLOW button.
 > Sound: light walking tune and footsteps, record scratch when ME breaks away, riser into the flash, BOOM, drums, brass

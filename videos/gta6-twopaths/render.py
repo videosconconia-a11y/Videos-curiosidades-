@@ -24,14 +24,16 @@ def ein(p): p = min(max(p, 0), 1); return p ** 3
 def back(p, s=1.7): p = min(max(p, 0), 1) - 1; return 1 + p * p * ((s + 1) * p + s)
 
 T_SPLIT, T_PUSH, T_EDIT = 3.0, 5.4, 7.0                  # hero breaks away / camera push / edit starts
-BEAT = 0.5
+BEAT = 1.0                                              # CUTS are already in seconds
+MUSIC_BEAT = 60 / 128
 EDIT = ["Vice_City_15", "Leonida_Keys_01", "Jason_and_Lucia_16", "Vice_City_17", "Mount_Kalaga_National_Park_04", "Grassrivers_04",
         "ULTIMATE_EDITION_SQUALO_01", "Vice_City_08", "Lucia_Caminos_13", "Jason_Duval_17", "Vice_City_01", "Leonida_Keys_05",
         "ULTIMATE_EDITION_GROTTI_CHEETAH_01", "Jason_and_Lucia_14", "Vice_City_26", "Vice_City_02", "Vice_City_24",
         "VINTAGE_VICE_CITY_PACK_02", "Leonida_Keys_04", "Vice_City_06", "Jason_Lucia_Rooftop_portrait", "GTAVI_Launch_Trailer_poster"]
 FOCAL = {"Lucia_Caminos_13": .32, "Jason_Duval_17": .35, "Vice_City_24": .35, "Jason_and_Lucia_16": .55, "Vice_City_06": .42}
 # cut lengths in beats: steady, then a double-time burst, then the final hold
-CUTS = [2, 1, 1, 1, 1, 1, 1, 2, .5, .5, .5, .5, 1, 1, 1, .5, .5, .5, .5, 1, 2]
+# cut rhythm copied from the user's reference edit (scene-cut analysis): 4 long shots ~1.8 s, then a burst of ~0.45 s cuts
+CUTS = [1.87, 1.80, 1.80, 1.47, .47, .47, .90, .47, .43, .47, .47, .43, .47, .43, .47, .44, .47, .47, .47, .45, 1.6]
 TITLE_DUR = 3.0
 EDIT_LEN = sum(CUTS) * BEAT
 TOTAL = T_EDIT + EDIT_LEN + TITLE_DUR
@@ -180,12 +182,16 @@ def part2(t):
         v = v.resize((W, H), Image.BICUBIC, box=((W - cw) / 2, (H - ch) / 2, (W + cw) / 2, (H + ch) / 2))
     arr = grade(np.asarray(v, np.float32))
     if age < 1 / FPS + 1e-6: arr = arr * 1.25 + 25                 # 1-frame flash
+    if i < 4:                                                       # translucent "GTA VI" title over the long shots (like the reference)
+        lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dl = ImageDraw.Draw(lay); f = ANTON(230); s_ = "GTA VI"
+        dl.text((W / 2 - dl.textlength(s_, font=f) / 2, 760), s_, font=f, fill=(255, 120, 190, 120))
+        im_ = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).convert("RGBA"); im_.alpha_composite(lay); arr = np.asarray(im_.convert("RGB"), np.float32)
     if age < .1 and CUTS[i] <= .5:                                  # RGB split on the fast cuts
         s = int(18 * (1 - age / .1)); arr[..., 0] = np.roll(arr[..., 0], s, 1); arr[..., 2] = np.roll(arr[..., 2], -s, 1)
     if t - T_EDIT < .35: arr = arr + (255 - arr) * (1 - (t - T_EDIT) / .35)   # out of the white flash
     img = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)); d = ImageDraw.Draw(img)
     bar = 130; d.rectangle([0, 0, W, bar], fill=(0, 0, 0)); d.rectangle([0, H - bar, W, H], fill=(0, 0, 0))   # letterbox
-    if i == 0:
+    if i == 99:
         k = eout(age / .4); f = ANTON(96); s = "WELCOME TO LEONIDA"; w = d.textlength(s, font=f)
         d.text((W / 2 - w / 2, 1450 + (1 - k) * 40), s, font=f, fill=(255, 255, 255, int(255 * k)), stroke_width=6, stroke_fill=INK)
     d.text((30, 30), "IMAGES © ROCKSTAR GAMES · FAN EDIT", font=MS(22, 700), fill=(220, 220, 220))
