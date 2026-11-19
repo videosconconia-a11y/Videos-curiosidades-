@@ -10,22 +10,22 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from script_data import TIMES, TOTAL, SCENES, caption_timeline  # noqa: E402
 
-W, H, FPS = 1080, 1920, 30
+W, H, FPS = 1920, 1080, 30                     # vídeo largo en horizontal
 FONT = next(f for f in ["/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf",
                         "/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf",
                         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"] if os.path.exists(f))
-F_CAP = ImageFont.truetype(FONT, 100)
+F_CAP = ImageFont.truetype(FONT, 76)
 GOLD = (255, 204, 64)
 SC = {s[2]: (a, b, v) for (a, b, v), s in zip(TIMES, SCENES)}
 CAPS = caption_timeline()
-HITS = [SC['caballo'][0], SC['brecha'][0], SC['incendio'][0], SC['final'][0]]
+HITS = [SC['truco'][0], SC['kerkoporta'][0], SC['caida'][0]]
 
 rng = np.random.default_rng(3)
 GRAIN = [rng.standard_normal((H // 2, W // 2)).astype(np.float32) * 6 for _ in range(4)]
 yy, xx = np.mgrid[0:H, 0:W]
 r = np.sqrt(((xx - W / 2) / (W * 0.62)) ** 2 + ((yy - H / 2) / (H * 0.6)) ** 2)
 VIG = np.clip(1.12 - r ** 2 * 0.5, 0.35, 1).astype(np.float32)[..., None]
-BLUR_MASK = np.clip((np.abs(yy - H * 0.52) / H - 0.30) / 0.16, 0, 1).astype(np.float32)[..., None]   # bordes arriba/abajo
+BLUR_MASK = np.clip((np.abs(yy - H * 0.5) / H - 0.38) / 0.12, 0, 1).astype(np.float32)[..., None]    # solo el borde de arriba y abajo
 
 def caption_layer(t):
     cur = [c for c in CAPS if c[0] <= t < c[1]]
@@ -40,7 +40,7 @@ def caption_layer(t):
         if "*" in w[1:] and (w.endswith("*") or w[-2:-1] == "*"): hl = False
     lay = Image.new("RGBA", (W, 240), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
     full = " ".join(p[0] for p in parts); font = F_CAP
-    while d.textlength(full, font=font) > W - 100: font = ImageFont.truetype(FONT, font.size - 6)
+    while d.textlength(full, font=font) > W - 400: font = ImageFont.truetype(FONT, font.size - 6)
     x = (W - d.textlength(full, font=font)) / 2
     for i, (wd, h) in enumerate(parts):
         txt = wd + (" " if i < len(parts) - 1 else "")
@@ -78,7 +78,7 @@ def process(img, t, fi):
     img = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
     # sin texto en pantalla salvo los subtítulos (ni etiquetas arriba ni tarjeta final con texto)
     cap = caption_layer(t)
-    if cap is not None and t < TOTAL - 0.3: img.paste(cap, (0, 1250), cap)
+    if cap is not None and t < TOTAL - 0.3: img.paste(cap, (0, 820), cap)
     return img
 
 def frames(path):

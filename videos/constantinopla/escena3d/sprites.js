@@ -311,3 +311,116 @@ export function sail() {
   g.strokeStyle = INK; g.lineWidth = 10; g.strokeRect(8, 8, 240, 240);
   return c;
 }
+
+// ================================================================== Constantinopla 1453
+export function janissary(frame = 0) {
+  const [c, g] = canvas(256, 512);
+  const legs = frame ? [[-14, 14], [14, -14]] : [[-6, 6], [6, -6]];
+  for (const [dx, a] of legs) { g.save(); g.translate(128 + dx, 392); g.rotate(a * Math.PI / 180); rrect(g, -12, 0, 24, 96, 9, '#b8862e'); rrect(g, -15, 82, 30, 18, 6, '#3a2214', 5); g.restore(); }
+  poly(g, [[84, 230], [172, 230], [190, 420], [66, 420]], '#2a4a9a');                      // kaftán azul
+  shadeClip(g, gg => { gg.moveTo(84, 230); gg.lineTo(172, 230); gg.lineTo(190, 420); gg.lineTo(66, 420); }, 'rgba(0,0,30,0.25)', gg => gg.fillRect(132, 220, 70, 210));
+  rrect(g, 76, 300, 104, 14, 6, '#d8202a', 4);                                               // fajín rojo
+  g.save(); g.translate(176, 250); g.rotate(-0.35); rrect(g, -10, 0, 20, 80, 9, '#c88c5c'); rrect(g, -4, -150, 8, 230, 3, '#7a4f25', 4); poly(g, [[0, -175], [12, -150], [-12, -150]], '#d0d0d0', 4); g.restore();
+  rrect(g, 62, 250, 22, 80, 9, '#c88c5c');
+  ell(g, 128, 196, 28, 32, '#c88c5c');
+  shape(g, '#1a1410', gg => { gg.moveTo(104, 212); gg.quadraticCurveTo(128, 236, 152, 212); gg.lineTo(146, 220); gg.quadraticCurveTo(128, 230, 110, 220); }, 3);   // bigote
+  shape(g, '#f6f2e8', gg => { gg.moveTo(98, 176); gg.lineTo(102, 60); gg.quadraticCurveTo(128, 40, 150, 60); gg.lineTo(158, 176); });   // börk blanco alto
+  shape(g, '#f6f2e8', gg => { gg.moveTo(150, 70); gg.quadraticCurveTo(200, 110, 190, 200); gg.quadraticCurveTo(176, 140, 146, 110); });  // caída del börk
+  rrect(g, 94, 166, 68, 16, 6, '#e8c050', 4);
+  ell(g, 116, 196, 4, 5, INK, 0, 1);
+  return c;
+}
+export function byzantine(cloak = '#8a1d4a') {
+  const [c, g] = canvas(256, 512);
+  rrect(g, 100, 400, 22, 92, 8, '#6a5a4a'); rrect(g, 136, 400, 22, 92, 8, '#5a4a3a');
+  shape(g, cloak, gg => { gg.moveTo(84, 230); gg.quadraticCurveTo(40, 340, 60, 430); gg.lineTo(196, 430); gg.quadraticCurveTo(214, 340, 172, 230); });   // capa
+  rrect(g, 86, 226, 84, 140, 16, '#9aa0aa');                                                 // lorica de láminas
+  g.save(); g.beginPath(); g.roundRect(86, 226, 84, 140, 16); g.clip(); g.strokeStyle = 'rgba(40,40,50,0.55)'; g.lineWidth = 3;
+  for (let y = 236; y < 366; y += 12) for (let x = 86 + (y / 12 % 2) * 6; x < 172; x += 12) { g.beginPath(); g.arc(x, y, 6, 0, Math.PI); g.stroke(); } g.restore();
+  rrect(g, 166, 50, 9, 420, 4, '#7a4f25', 5); poly(g, [[170, 30], [182, 58], [158, 58]], '#d0d0d0', 4);
+  ell(g, 128, 190, 28, 32, '#d99a68');
+  shape(g, '#a8acb4', gg => { gg.moveTo(96, 196); gg.quadraticCurveTo(96, 140, 128, 138); gg.quadraticCurveTo(160, 140, 160, 196); gg.lineTo(150, 176); gg.lineTo(106, 176); });   // casco
+  poly(g, [[124, 140], [132, 140], [130, 120]], '#d8202a', 3);
+  ell(g, 116, 192, 4, 5, INK, 0, 1);
+  ell(g, 96, 330, 58, 58, '#d8202a');                                                         // escudo redondo
+  g.strokeStyle = '#f0c040'; g.lineWidth = 9; g.beginPath(); g.moveTo(96, 290); g.lineTo(96, 370); g.moveTo(58, 330); g.lineTo(134, 330); g.stroke();
+  g.strokeStyle = INK; g.lineWidth = LW; g.beginPath(); g.arc(96, 330, 58, 0, 7); g.stroke();
+  return c;
+}
+export function genoese() {
+  const [c, g] = canvas(256, 512);
+  rrect(g, 100, 400, 22, 92, 8, '#3a3a4a'); rrect(g, 136, 400, 22, 92, 8, '#2a2a3a');
+  rrect(g, 84, 228, 90, 190, 14, '#f4f0e6');                                                 // sobreveste blanca
+  g.fillStyle = '#d8202a'; g.fillRect(118, 236, 22, 172); g.fillRect(90, 300, 78, 22);      // cruz roja de Génova
+  g.strokeStyle = INK; g.lineWidth = LW; g.beginPath(); g.roundRect(84, 228, 90, 190, 14); g.stroke();
+  ell(g, 128, 192, 28, 32, '#e0a878');
+  shape(g, '#8a8e98', gg => { gg.moveTo(92, 186); gg.quadraticCurveTo(100, 140, 128, 140); gg.quadraticCurveTo(156, 140, 164, 186); gg.lineTo(176, 190); gg.lineTo(80, 190); });   // capelina
+  ell(g, 118, 196, 4, 5, INK, 0, 1);
+  rrect(g, 40, 262, 140, 12, 5, '#6b4220', 4);                                                // ballesta
+  g.strokeStyle = '#3a2a1a'; g.lineWidth = 6; g.beginPath(); g.arc(46, 268, 34, -1.2, 1.2); g.stroke();
+  rrect(g, 150, 250, 24, 30, 8, '#e0a878', 4);
+  return c;
+}
+export function emperor() {
+  const [c, g] = canvas(256, 512);
+  poly(g, [[86, 220], [170, 220], [196, 496], [60, 496]], '#6a1f7a');
+  shadeClip(g, gg => { gg.moveTo(86, 220); gg.lineTo(170, 220); gg.lineTo(196, 496); gg.lineTo(60, 496); }, 'rgba(0,0,0,0.25)', gg => gg.fillRect(130, 210, 80, 300));
+  rrect(g, 108, 220, 40, 270, 6, '#e8c050', 4);                                                // loros dorado
+  for (let y = 240; y < 480; y += 30) ell(g, 128, y, 8, 8, '#b02a2a', 0, 3);
+  rrect(g, 64, 236, 22, 90, 10, '#d99a68'); rrect(g, 172, 236, 22, 90, 10, '#d99a68');
+  ell(g, 128, 180, 30, 34, '#d99a68');
+  shape(g, '#3a2414', gg => { gg.moveTo(98, 190); gg.quadraticCurveTo(128, 260, 158, 190); gg.lineTo(150, 200); gg.quadraticCurveTo(128, 222, 106, 200); });
+  shape(g, '#e8c050', gg => { gg.moveTo(94, 160); gg.lineTo(96, 116); gg.quadraticCurveTo(128, 96, 160, 116); gg.lineTo(162, 160); });   // corona
+  for (let x = 104; x < 160; x += 14) ell(g, x, 136, 5, 5, x % 28 ? '#2a6ab8' : '#b02a2a', 0, 2);
+  g.strokeStyle = '#f4f0e0'; g.lineWidth = 4; for (const x of [98, 158]) { g.beginPath(); g.moveTo(x, 160); g.lineTo(x, 200); g.stroke(); ell(g, x, 204, 4, 4, '#f4f0e0', 0, 2); }   // pendilia
+  ell(g, 116, 180, 4, 5, INK, 0, 1);
+  return c;
+}
+export function engineer() {
+  const [c, g] = canvas(256, 512);
+  rrect(g, 100, 400, 24, 92, 8, '#5a4030'); rrect(g, 136, 400, 24, 92, 8, '#4a3020');
+  rrect(g, 80, 226, 96, 186, 16, '#8a6a4a');
+  rrect(g, 96, 260, 64, 160, 10, '#3a2a1a');                                                    // mandil de cuero
+  rrect(g, 60, 240, 24, 90, 10, '#d99a68'); rrect(g, 172, 240, 24, 90, 10, '#d99a68');
+  rrect(g, 176, 310, 46, 16, 4, '#5a5a62', 4); rrect(g, 210, 296, 20, 44, 4, '#5a5a62', 4);    // martillo
+  ell(g, 128, 186, 30, 34, '#d99a68');
+  shape(g, '#c8661a', gg => { gg.moveTo(96, 190); gg.quadraticCurveTo(128, 290, 160, 190); gg.lineTo(152, 202); gg.quadraticCurveTo(128, 226, 104, 202); });   // barba pelirroja
+  shape(g, '#3a2a20', gg => { gg.moveTo(94, 176); gg.quadraticCurveTo(100, 140, 128, 140); gg.quadraticCurveTo(160, 140, 164, 176); });
+  ell(g, 116, 184, 4, 5, INK, 0, 1);
+  return c;
+}
+export function scholar() {
+  const [c, g] = canvas(256, 512);
+  poly(g, [[88, 220], [168, 220], [190, 496], [66, 496]], '#2a4a7a');
+  rrect(g, 70, 280, 116, 70, 8, '#8a3a1a');                                                      // pila de libros
+  for (let k = 0; k < 3; k++) { g.strokeStyle = '#f4e8c8'; g.lineWidth = 5; g.beginPath(); g.moveTo(76, 296 + k * 20); g.lineTo(180, 296 + k * 20); g.stroke(); }
+  g.strokeStyle = INK; g.lineWidth = LW; g.strokeRect(70, 280, 116, 70);
+  ell(g, 128, 180, 30, 34, '#d99a68');
+  shape(g, '#d8d8d8', gg => { gg.moveTo(98, 190); gg.quadraticCurveTo(128, 280, 158, 190); gg.lineTo(150, 200); gg.quadraticCurveTo(128, 222, 106, 200); });
+  shape(g, '#3a3a4a', gg => { gg.moveTo(94, 170); gg.quadraticCurveTo(128, 110, 162, 170); });
+  ell(g, 116, 180, 4, 5, INK, 0, 1);
+  return c;
+}
+export function ox(frame = 0) {
+  const [c, g] = canvas(512, 320);
+  const legs = frame ? [[150, 8], [190, -8], [330, 6], [370, -6]] : [[150, -6], [190, 6], [330, -8], [370, 8]];
+  for (const [x, a] of legs) { g.save(); g.translate(x, 200); g.rotate(a * Math.PI / 180); rrect(g, -14, 0, 28, 100, 9, '#6a4a2a'); g.restore(); }
+  ell(g, 270, 170, 150, 70, '#8a6238');
+  shadeClip(g, gg => gg.ellipse(270, 170, 150, 70, 0, 0, 7), 'rgba(0,0,0,0.2)', gg => gg.fillRect(110, 200, 330, 60));
+  ell(g, 110, 150, 52, 44, '#8a6238');
+  shape(g, '#f4f0e0', gg => { gg.moveTo(98, 112); gg.quadraticCurveTo(70, 70, 40, 84); gg.quadraticCurveTo(66, 92, 86, 124); }, 5);   // cuerno
+  rrect(g, 100, 100, 160, 20, 8, '#6b4220', 4);                                                    // yugo
+  ell(g, 86, 150, 5, 6, INK, 0, 1);
+  return c;
+}
+export function flagTex(kind = 'otomana') {
+  const [c, g] = canvas(256, 160);
+  if (kind === 'otomana') {
+    g.fillStyle = '#c8202a'; g.fillRect(0, 0, 256, 160);
+    g.fillStyle = '#f4f0e6'; g.beginPath(); g.arc(110, 80, 46, 0, 7); g.fill(); g.fillStyle = '#c8202a'; g.beginPath(); g.arc(126, 80, 38, 0, 7); g.fill();
+  } else {
+    g.fillStyle = '#e8c050'; g.fillRect(0, 0, 256, 160);
+    g.fillStyle = '#8a1d4a'; g.fillRect(112, 0, 32, 160); g.fillRect(0, 64, 256, 32);
+  }
+  return c;
+}

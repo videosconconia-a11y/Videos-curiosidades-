@@ -28,9 +28,12 @@ def add(x, gain=1.0, pan=0.0, at=0.0):
     L[i0:i0 + n] += x[:n] * gain * (1 - pan); R[i0:i0 + n] += x[:n] * gain * (1 + pan)
 
 # ------------------------------------------------------------------ intensidad de la historia (0..1)
-KEYS = [(0, 0.6), (SC['asedio'][0], 0.7), (SC['murallas'][0], 0.6), (SC['retirada'][0], 0.3), (SC['caballo'][0], 0.45),
-        (SC['aviso'][0], 0.55), (SC['brecha'][0], 0.5), (SC['noche'][0], 0.3), (SC['incendio'][0], 1.0),
-        (SC['ruinas'][0], 0.3), (SC['final'][0], 0.25), (TOTAL, 0.15)]
+INT = {'gancho': 0.8, 'gancho2': 0.55, 'ciudad': 0.4, 'murallas': 0.45, 'imperio': 0.35, 'sultan': 0.55, 'fortaleza': 0.6, 'orban': 0.45,
+       'canon': 0.65, 'asedio': 0.75, 'bombardeo': 0.9, 'reparar': 0.4, 'cadena': 0.45, 'genoveses': 0.85, 'truco': 0.7, 'cuerno': 0.6,
+       'minas': 0.5, 'presagios': 0.35, 'asalto': 1.0, 'giustiniani': 0.9, 'kerkoporta': 0.95, 'emperador': 0.9, 'caida': 0.5,
+       'despues': 0.35, 'final': 0.3}
+KEYS = [(SC[n][0], v) for n, v in INT.items()] + [(TOTAL, 0.15)]
+KEYS.sort()
 inten = np.interp(t, [k[0] for k in KEYS], [k[1] for k in KEYS])
 
 # ------------------------------------------------------------------ bordón y cuerdas (re menor)
@@ -80,35 +83,37 @@ def whoosh(dur=1.2):
         fc = 300 + 3500 * np.sin(np.pi * i / n) ** 2
         out[i:i + blk] = lp(x[i:i + blk], fc, 1)
     return out * np.sin(np.pi * tt / dur) ** 2
-for name, g in [('gancho', 0.9), ('caballo', 0.7), ('brecha', 0.9), ('incendio', 1.0), ('final', 0.6)]:
-    add(boom(), g * 0.8, 0, max(0, SC[name][0] - 0.02))
-for name in ['asedio', 'murallas', 'retirada', 'caballo', 'aviso', 'brecha', 'noche', 'incendio', 'ruinas', 'final']:
-    add(whoosh(), 0.18, 0, SC[name][0] - 0.6)
-# olas en la playa (retirada → aviso y final)
-surf = lp(rng.standard_normal(N), 700) * (0.55 + 0.45 * np.sin(2 * np.pi * t / 5.5) ** 2)
-surf_env = seg(SC['retirada'][0], SC['brecha'][0] + 0.5, 1.0) + seg(SC['final'][0], TOTAL, 1.0)
-add(surf * surf_env, 0.22, -0.2); add(surf[::-1] * surf_env, 0.22, 0.2)
-# la muralla se derrumba
-a0 = SC['brecha'][0] + 0.3; i0 = int(a0 * SR); n = int(2.5 * SR)
-rub = lp(rng.standard_normal(n), 260) * np.exp(-np.arange(n) / SR * 1.4)
-for k in range(30):
-    j = int(rng.random() * n * 0.7); m = int(0.06 * SR)
-    rub[j:j + m] += lp(rng.standard_normal(m), 1200) * np.exp(-np.arange(m) / SR * 60) * 0.8
-add(rub, 0.9, 0, a0)
-# gentío celebrando en la plaza
-a, b, _ = SC['noche']
+import json as _json
+_tl = _json.load(open(os.path.join(HERE, 'escena3d', 'timeline.json')))
+_S = {x['name']: x for x in _tl['scenes']}
+def P(n, u): return _S[n]['a'] + u * (_S[n]['b'] - _S[n]['a'])
+# cañonazos (mismos instantes que en la escena 3D)
+SHOTS = [P('gancho', 0.55), P('canon', 0.92), P('asedio', 0.15)] + [P('bombardeo', 0.1 + k * 0.25) for k in range(4)] + [P('asalto', 0.1)]
+for s_ in SHOTS:
+    add(boom(3.0), 1.0, 0, s_); add(lp(rng.standard_normal(int(1.5 * SR)), 1800) * np.exp(-np.arange(int(1.5 * SR)) / SR * 6), 0.5, 0, s_)
+for name, g in [('truco', 0.7), ('presagios', 0.5), ('kerkoporta', 0.8), ('caida', 0.7), ('final', 0.5)]:
+    add(boom(), g * 0.7, 0, max(0, SC[name][0] - 0.02))
+for name in INT:
+    if name != 'gancho': add(whoosh(), 0.16, 0, SC[name][0] - 0.6)
+# gentío de soldados durante el asedio y el asalto
 crowd = np.zeros(N)
-for f in (520, 760, 1100):
-    crowd += lp(hp(rng.standard_normal(N), f * 0.7), f * 1.3) * (0.6 + 0.4 * np.sin(2 * np.pi * t * (0.7 + f / 3000)))
-add(crowd * seg(a - 0.3, a + (b - a) * 0.45, 0.6), 0.35)
-# fuego crepitando
-a, b, _ = SC['incendio']
+for f in (420, 650, 980):
+    crowd += lp(hp(rng.standard_normal(N), f * 0.7), f * 1.3) * (0.6 + 0.4 * np.sin(2 * np.pi * t * (0.5 + f / 4000)))
+add(crowd * (seg(SC['asedio'][0], SC['bombardeo'][1], 1.5) * 0.5 + seg(SC['asalto'][0], SC['emperador'][1], 1.0)), 0.3)
+# fuego del asalto
+a, b, _ = SC['asalto']; b = SC['emperador'][1]
 crack = np.zeros(N)
-for k in range(260):
-    at = a + rng.random() * (b - a + 2); j = int(at * SR); m = int(0.03 * SR)
+for k in range(700):
+    at_ = a + rng.random() * (b - a); j = int(at_ * SR); m = int(0.03 * SR)
     if j + m < N: crack[j:j + m] += hp(rng.standard_normal(m), 1800) * np.exp(-np.arange(m) / SR * 120)
-roar = lp(rng.standard_normal(N), 200) * seg(a - 0.3, b + 1.5, 0.8)
-add(crack, 0.25, 0.25); add(roar, 0.8)
+add(crack, 0.22, 0.25); add(lp(rng.standard_normal(N), 200) * seg(a - 0.3, b + 1, 0.8), 0.7)
+# tormenta de los presagios: lluvia y truenos
+a = P('presagios', 0.8); b = SC['asalto'][0] + 1
+add(hp(lp(rng.standard_normal(N), 6000), 1200) * seg(a, b, 0.8), 0.18)
+for k in range(3): add(boom(4.0), 0.5, 0.3 * (k - 1), a + 0.8 + k * 2.4)
+# olas en las escenas de mar
+for n in ['cadena', 'genoveses', 'cuerno', 'despues']:
+    add(lp(rng.standard_normal(N), 700) * (0.55 + 0.45 * np.sin(2 * np.pi * t / 5.5) ** 2) * seg(SC[n][0], SC[n][1], 1.0), 0.2)
 
 music = np.stack([L, R], 1)
 music = np.tanh(music / (np.abs(music).max() + 1e-9) * 1.6) * 0.55   # saturación suave
