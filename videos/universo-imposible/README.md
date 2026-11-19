@@ -6,7 +6,8 @@ en `render.py`, imágenes de 1024×576 y pausas de 0,5 s entre escenas (`GAP`).
 
 | Archivo | Qué es |
 |---|---|
-| `universo_imposible_youtube.mp4` | **Vídeo final para descargar** |
+| `universo_imposible_github.mp4` | **Vídeo final para descargar** (1080p, 85 MB) |
+| `universo_imposible_youtube.mp4` | Versión de más calidad (252 MB, no se sube al repo; se envía aparte) |
 | `subtitulos_universo_imposible.srt` | Subtítulos (se pueden subir a YouTube) |
 | `PUBLICAR.md` | Título, descripción con capítulos y hashtags |
 

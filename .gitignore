@@ -11,3 +11,5 @@ videos/*/video_only.mp4
 __pycache__/
 videos/*/final_9x16.mp4
 videos/*/assets/candidatas/
+videos/*/final_16x9.mp4
+videos/*/*_youtube.mp4
