@@ -13,6 +13,7 @@ efectos de sonido y subtítulos sincronizados.
 | `videos/medusa-inmortal` | La medusa que vuelve a ser bebé (voz es-ES + imágenes IA) | 1:22 |
 | `videos/pulpo` | El pulpo: tres corazones, sangre azul y una madre récord (voz es-ES + imágenes IA) | 1:20 |
 | `videos/tardigrado` | El tardígrado: el animal casi indestructible (voz es-ES + imágenes IA) | 1:17 |
+| `videos/agujero-negro` | ¿Qué te pasaría si cayeras en un agujero negro? (voz es-ES + imágenes IA) | 1:22 |
 
 ## Estructura de cada vídeo
 
