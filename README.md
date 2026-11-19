@@ -12,6 +12,7 @@ efectos de sonido y subtítulos sincronizados.
 | `videos/hormigas-zombi` | El hongo que convierte hormigas en zombis (voz es-ES + imágenes IA) | 1:22 |
 | `videos/medusa-inmortal` | La medusa que vuelve a ser bebé (voz es-ES + imágenes IA) | 1:22 |
 | `videos/pulpo` | El pulpo: tres corazones, sangre azul y una madre récord (voz es-ES + imágenes IA) | 1:20 |
+| `videos/tardigrado` | El tardígrado: el animal casi indestructible (voz es-ES + imágenes IA) | 1:17 |
 
 ## Estructura de cada vídeo
 
