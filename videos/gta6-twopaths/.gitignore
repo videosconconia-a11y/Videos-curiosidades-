@@ -1,0 +1,7 @@
+assets/official/*.jpg
+part_*.mp4
+parts.txt
+video_only.mp4
+mix.wav
+still_*.jpg
+__pycache__/
