@@ -284,7 +284,8 @@ function camKeys() {
   t = at('turistas', 0.25);       k(t, V(48, 4, 10), V(16, 4, -32), 46);
   t = at('turistas', 0.7);        k(t, V(30, 3, 2), V(8, 10, -60), 50);
   t = at('turistas', 1);          k(t, V(10, 14, 26), V(0, 22, -80), 50);
-  t = at('alejandro', 0.45);      k(t, V(X_ALEX + 12, 3.6, 13), V(X_ALEX, 3, 2), 44);
+  t = at('alejandro', 0.4);       k(t, V(X_ALEX + 13, 3.8, 14), V(X_ALEX + 3, 3, 0), 44);
+  t = at('alejandro', 0.75);      k(t, V(X_ALEX + 22, 3.8, 14), V(X_ALEX + 11, 3, 0), 44);
   t = at('alejandro', 1);         k(t, V(C - 14, 4, 15), V(C + 9, 2.6, 4), 44);
   t = at('plutarco', 0.5);        k(t, V(C + 5.5, 2.3, 10.5), V(C + 9, 2.4, 4), 40);
   t = at('plutarco', 1);          k(t, V(C + 12.5, 2.6, 11), V(C + 9, 2.4, 4), 40);

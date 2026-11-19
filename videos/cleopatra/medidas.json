@@ -1,0 +1,34 @@
+[
+  {
+    "video": "final_9x16.mp4",
+    "segundos": 61.13,
+    "cuadros": 1834,
+    "camara_moviendose_pct": 99.4,
+    "movimiento_medio_s": 20.21,
+    "tramos_quietos": 3,
+    "velocidad_media_px": 8.791,
+    "quietos_s": [
+      [
+        0.03,
+        0.07
+      ],
+      [
+        33.0,
+        33.03
+      ],
+      [
+        33.1,
+        33.4
+      ]
+    ],
+    "cortes": 3,
+    "cortes_s": [
+      15.97,
+      47.33,
+      47.4
+    ],
+    "brillo": 133.5,
+    "contraste": 53.7,
+    "saturacion": 0.495
+  }
+]
