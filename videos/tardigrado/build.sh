@@ -9,7 +9,7 @@ if [ "$(ls assets/img/*.png 2>/dev/null | grep -v -E '_[ab]\.png$' | wc -l)" -lt
   HF_HUB_DISABLE_XET=1 IMG_W=640 IMG_H=1024 python3 gen_images_local.py   # imágenes IA que falten
 fi
 python3 audio.py                           # música suave + voz con ducking -> mix.wav
-python3 -c "from timeline import write_srt; write_srt('subtitulos_venus.srt')"
+python3 -c "from timeline import write_srt; write_srt('subtitulos_tardigrado.srt')"
 python3 render.py video                    # -> video_only.mp4
 ffmpeg -y -loglevel error -i video_only.mp4 -i mix.wav -map 0:v -map 1:a -c:v libx264 -preset slow -crf 21 -maxrate 12M -bufsize 24M -pix_fmt yuv420p -c:a aac -b:a 192k \
   -shortest -movflags +faststart final_9x16.mp4

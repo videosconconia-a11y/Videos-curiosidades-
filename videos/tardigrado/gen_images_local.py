@@ -7,7 +7,7 @@ sys.path.insert(0, HERE)
 from script_data import SCENES
 
 OUT = os.path.join(HERE, "assets", "img"); os.makedirs(OUT, exist_ok=True)
-STYLE = "cinematic space photography, ultra realistic, dramatic light, highly detailed, epic"
+STYLE = "cinematic macro microscope photography, ultra realistic, dramatic light, shallow depth of field, detailed"
 W, H = int(os.environ.get("IMG_W", 576)), int(os.environ.get("IMG_H", 1024))
 STEPS = int(os.environ.get("STEPS", 4))
 
