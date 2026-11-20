@@ -1,0 +1,53 @@
+[
+  {
+    "video": "final_9x16.mp4",
+    "segundos": 61.0,
+    "cuadros": 1830,
+    "camara_moviendose_pct": 99.5,
+    "movimiento_medio_s": 8.64,
+    "tramos_quietos": 7,
+    "velocidad_media_px": 5.095,
+    "quietos_s": [
+      [
+        0.03,
+        0.07
+      ],
+      [
+        18.6,
+        18.7
+      ],
+      [
+        18.8,
+        18.83
+      ],
+      [
+        19.17,
+        19.2
+      ],
+      [
+        21.3,
+        21.33
+      ],
+      [
+        43.93,
+        43.97
+      ],
+      [
+        47.27,
+        47.3
+      ]
+    ],
+    "cortes": 6,
+    "cortes_s": [
+      27.33,
+      27.37,
+      27.4,
+      47.03,
+      53.37,
+      53.4
+    ],
+    "brillo": 101.5,
+    "contraste": 55.9,
+    "saturacion": 0.661
+  }
+]
