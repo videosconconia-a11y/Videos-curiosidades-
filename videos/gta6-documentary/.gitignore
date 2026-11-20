@@ -1,0 +1,8 @@
+assets/official/*.jpg
+*.mp4
+parts.txt
+mix.wav
+voice.wav
+still_*.jpg
+__pycache__/
+build.log

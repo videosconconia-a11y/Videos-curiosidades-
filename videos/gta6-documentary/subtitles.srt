@@ -1,0 +1,728 @@
+1
+00:00:00,160 --> 00:00:01,810
+On November nineteenth,
+
+2
+00:00:01,848 --> 00:00:04,723
+twenty twenty-six, a video game did something
+
+3
+00:00:04,723 --> 00:00:06,585
+no game had ever done.
+
+4
+00:00:06,955 --> 00:00:09,730
+Critics gave it a ninety-nine on Metacritic,
+
+5
+00:00:09,768 --> 00:00:12,655
+tying the highest score ever recorded.
+
+6
+00:00:12,755 --> 00:00:15,005
+Market trackers estimate it made more than
+
+7
+00:00:15,005 --> 00:00:17,742
+two billion dollars in its first twenty-four
+
+8
+00:00:17,742 --> 00:00:18,705
+hours.
+
+9
+00:00:19,075 --> 00:00:20,225
+But to get here,
+
+10
+00:00:20,262 --> 00:00:22,900
+Rockstar Games spent thirteen years,
+
+11
+00:00:22,938 --> 00:00:24,887
+survived one of the biggest leaks in
+
+12
+00:00:24,887 --> 00:00:28,075
+gaming history, delayed the game twice,
+
+13
+00:00:28,100 --> 00:00:30,350
+and spent what analysts believe is more
+
+14
+00:00:30,350 --> 00:00:32,100
+than a billion dollars.
+
+15
+00:00:32,470 --> 00:00:34,182
+This is the story of the biggest
+
+16
+00:00:34,182 --> 00:00:36,270
+gamble in entertainment history.
+
+17
+00:00:36,295 --> 00:00:37,770
+And how it paid off.
+
+18
+00:00:39,690 --> 00:00:41,915
+To understand GTA 6,
+
+19
+00:00:41,915 --> 00:00:43,740
+you have to understand the monster it
+
+20
+00:00:43,740 --> 00:00:44,965
+had to beat.
+
+21
+00:00:45,040 --> 00:00:47,427
+Grand Theft Auto five came out on
+
+22
+00:00:47,427 --> 00:00:50,490
+September seventeenth, twenty thirteen.
+
+23
+00:00:50,860 --> 00:00:52,835
+It made more than eight hundred million
+
+24
+00:00:52,835 --> 00:00:54,510
+dollars on day one,
+
+25
+00:00:54,523 --> 00:00:56,685
+and one billion dollars in just three
+
+26
+00:00:56,685 --> 00:00:59,772
+days, the fastest any entertainment product had
+
+27
+00:00:59,772 --> 00:01:00,985
+ever done it.
+
+28
+00:01:00,985 --> 00:01:02,885
+And it never stopped selling.
+
+29
+00:01:02,922 --> 00:01:04,485
+By twenty twenty-six,
+
+30
+00:01:04,522 --> 00:01:06,835
+Take-Two reported more than two hundred and
+
+31
+00:01:06,835 --> 00:01:08,885
+thirty million copies shipped,
+
+32
+00:01:08,922 --> 00:01:11,810
+across three generations of consoles.
+
+33
+00:01:12,180 --> 00:01:14,380
+Then came GTA Online,
+
+34
+00:01:14,392 --> 00:01:16,630
+a money machine that kept players busy
+
+35
+00:01:16,630 --> 00:01:18,130
+for over a decade.
+
+36
+00:01:18,130 --> 00:01:19,605
+And in twenty eighteen,
+
+37
+00:01:19,642 --> 00:01:21,505
+Red Dead Redemption two,
+
+38
+00:01:21,505 --> 00:01:23,855
+which has sold more than eighty-seven million
+
+39
+00:01:23,855 --> 00:01:26,842
+copies. Rockstar was no longer just a
+
+40
+00:01:26,842 --> 00:01:29,205
+studio. It was a giant.
+
+41
+00:01:29,205 --> 00:01:30,867
+And every year without a sequel,
+
+42
+00:01:30,867 --> 00:01:33,180
+the expectations only grew.
+
+43
+00:01:35,100 --> 00:01:36,400
+Behind the scenes,
+
+44
+00:01:36,437 --> 00:01:38,250
+Rockstar was changing.
+
+45
+00:01:38,275 --> 00:01:39,550
+In twenty eighteen,
+
+46
+00:01:39,550 --> 00:01:42,800
+the studio faced public criticism over crunch,
+
+47
+00:01:42,850 --> 00:01:45,612
+the long overtime hours developers had worked
+
+48
+00:01:45,612 --> 00:01:46,875
+on its games.
+
+49
+00:01:47,245 --> 00:01:48,995
+In July twenty twenty-two,
+
+50
+00:01:49,057 --> 00:01:51,757
+a Bloomberg report by Jason Schreier described
+
+51
+00:01:51,757 --> 00:01:54,120
+a company trying to change its culture,
+
+52
+00:01:54,120 --> 00:01:56,170
+and a development that was moving slower
+
+53
+00:01:56,170 --> 00:01:59,020
+than expected. It also revealed the game's
+
+54
+00:01:59,020 --> 00:02:01,570
+biggest twist: for the first time,
+
+55
+00:02:01,582 --> 00:02:04,195
+Grand Theft Auto would star a woman.
+
+56
+00:02:04,232 --> 00:02:05,545
+A Latina lead,
+
+57
+00:02:05,545 --> 00:02:08,170
+in a Bonnie and Clyde style duo.
+
+58
+00:02:08,540 --> 00:02:11,390
+Rockstar itself had only said one thing.
+
+59
+00:02:11,452 --> 00:02:13,015
+On February fourth,
+
+60
+00:02:13,052 --> 00:02:15,902
+twenty twenty-two, it confirmed that development of
+
+61
+00:02:15,902 --> 00:02:17,990
+the next Grand Theft Auto was well
+
+62
+00:02:17,990 --> 00:02:19,090
+underway.
+
+63
+00:02:21,010 --> 00:02:23,185
+Then, in September twenty twenty-two,
+
+64
+00:02:23,235 --> 00:02:25,060
+the unthinkable happened.
+
+65
+00:02:25,430 --> 00:02:27,892
+A hacker broke into Rockstar's systems and
+
+66
+00:02:27,892 --> 00:02:30,630
+posted around ninety clips of early,
+
+67
+00:02:30,642 --> 00:02:33,980
+unfinished GTA 6 footage online.
+
+68
+00:02:34,005 --> 00:02:35,430
+It was one of the biggest leaks
+
+69
+00:02:35,430 --> 00:02:37,605
+the industry had ever seen.
+
+70
+00:02:37,705 --> 00:02:40,730
+Rockstar said it was extremely disappointed,
+
+71
+00:02:40,730 --> 00:02:42,930
+but that development would continue.
+
+72
+00:02:43,300 --> 00:02:45,500
+The hacker was Arion Kurtaj,
+
+73
+00:02:45,537 --> 00:02:47,875
+a teenager from the United Kingdom.
+
+74
+00:02:47,900 --> 00:02:49,787
+In twenty twenty-three he was ordered to
+
+75
+00:02:49,787 --> 00:02:51,950
+stay in a secure hospital.
+
+76
+00:02:51,950 --> 00:02:53,625
+And on November sixteenth,
+
+77
+00:02:53,637 --> 00:02:57,125
+twenty twenty-six, just three days before launch,
+
+78
+00:02:57,150 --> 00:03:00,150
+he pleaded guilty at Woolwich Crown Court.
+
+79
+00:03:00,187 --> 00:03:03,350
+His sentencing is set for November twenty-third.
+
+80
+00:03:05,270 --> 00:03:07,670
+Rockstar planned to reveal the first trailer
+
+81
+00:03:07,670 --> 00:03:08,920
+on December fifth,
+
+82
+00:03:08,932 --> 00:03:11,770
+twenty twenty-three. But it leaked again,
+
+83
+00:03:11,807 --> 00:03:13,995
+so Rockstar released it early,
+
+84
+00:03:13,995 --> 00:03:16,070
+on the night of December fourth.
+
+85
+00:03:16,440 --> 00:03:17,890
+In twenty-four hours,
+
+86
+00:03:17,890 --> 00:03:20,027
+it was watched more than ninety million
+
+87
+00:03:20,027 --> 00:03:23,015
+times. Guinness World Records named it the
+
+88
+00:03:23,015 --> 00:03:25,340
+most viewed non-music video in its first
+
+89
+00:03:25,340 --> 00:03:26,790
+day on YouTube,
+
+90
+00:03:26,815 --> 00:03:28,902
+and the most viewed video game reveal
+
+91
+00:03:28,902 --> 00:03:31,515
+ever. Vice City was back.
+
+92
+00:03:31,885 --> 00:03:33,785
+Then the waiting started again.
+
+93
+00:03:33,822 --> 00:03:35,810
+A second trailer would only arrive in
+
+94
+00:03:35,810 --> 00:03:37,310
+May twenty twenty-five,
+
+95
+00:03:37,347 --> 00:03:39,360
+almost a year and a half later.
+
+96
+00:03:39,360 --> 00:03:40,922
+And between those two trailers,
+
+97
+00:03:40,922 --> 00:03:42,985
+the internet did what it does best.
+
+98
+00:03:43,022 --> 00:03:44,535
+Every Rockstar post,
+
+99
+00:03:44,535 --> 00:03:48,110
+every screenshot, every tiny detail was analysed
+
+100
+00:03:48,110 --> 00:03:51,035
+frame by frame by millions of fans.
+
+101
+00:03:51,097 --> 00:03:52,635
+The joke became a meme of its
+
+102
+00:03:52,635 --> 00:03:55,585
+own: things that will happen before GTA
+
+103
+00:03:55,585 --> 00:03:56,410
+six.
+
+104
+00:03:58,330 --> 00:04:01,355
+The release window was fall twenty twenty-five.
+
+105
+00:04:01,355 --> 00:04:03,155
+But in May twenty twenty-five,
+
+106
+00:04:03,192 --> 00:04:06,055
+Rockstar moved the game to May twenty-sixth,
+
+107
+00:04:06,092 --> 00:04:07,580
+twenty twenty-six.
+
+108
+00:04:07,950 --> 00:04:09,025
+Then, in November,
+
+109
+00:04:09,025 --> 00:04:10,250
+it slipped again,
+
+110
+00:04:10,250 --> 00:04:12,075
+to November nineteenth.
+
+111
+00:04:12,150 --> 00:04:14,300
+Rockstar said it needed the extra time
+
+112
+00:04:14,300 --> 00:04:16,475
+to deliver the level of quality players
+
+113
+00:04:16,475 --> 00:04:19,000
+expect. We are very sorry that this
+
+114
+00:04:19,000 --> 00:04:20,900
+is later than you expected,
+
+115
+00:04:20,900 --> 00:04:22,375
+the studio wrote.
+
+116
+00:04:22,437 --> 00:04:25,312
+Take-Two's stock dropped nearly eight percent after
+
+117
+00:04:25,312 --> 00:04:26,275
+hours.
+
+118
+00:04:28,195 --> 00:04:30,770
+So what exactly were fans waiting for?
+
+119
+00:04:30,832 --> 00:04:32,895
+Rockstar's answer was Leonida,
+
+120
+00:04:32,895 --> 00:04:34,795
+its version of Florida.
+
+121
+00:04:34,882 --> 00:04:36,770
+At its heart is Vice City,
+
+122
+00:04:36,795 --> 00:04:38,970
+the neon city first seen in twenty
+
+123
+00:04:38,970 --> 00:04:42,020
+oh two, rebuilt for a new generation.
+
+124
+00:04:42,390 --> 00:04:44,890
+Around it, the state stretches out: the
+
+125
+00:04:44,890 --> 00:04:46,815
+islands of the Leonida Keys,
+
+126
+00:04:46,815 --> 00:04:48,690
+the swamps of the Grassrivers,
+
+127
+00:04:48,690 --> 00:04:51,365
+the industrial docks of Port Gellhorn,
+
+128
+00:04:51,365 --> 00:04:53,490
+the small town of Ambrosia,
+
+129
+00:04:53,515 --> 00:04:55,852
+and the forests of Mount Kalaga National
+
+130
+00:04:55,852 --> 00:04:56,715
+Park.
+
+131
+00:04:57,085 --> 00:04:58,410
+And at the center of it all
+
+132
+00:04:58,410 --> 00:05:01,185
+are Jason Duval and Lucia Caminos.
+
+133
+00:05:01,235 --> 00:05:03,647
+Lucia, whose fight for her family once
+
+134
+00:05:03,647 --> 00:05:06,260
+landed her in the Leonida Penitentiary.
+
+135
+00:05:06,335 --> 00:05:09,072
+Jason, a former soldier who just wants
+
+136
+00:05:09,072 --> 00:05:10,460
+an easy life.
+
+137
+00:05:10,460 --> 00:05:12,385
+And, in Rockstar's own words,
+
+138
+00:05:12,385 --> 00:05:14,160
+meeting Lucia could be the best,
+
+139
+00:05:14,160 --> 00:05:15,160
+or the worst,
+
+140
+00:05:15,210 --> 00:05:17,260
+thing that ever happened to him.
+
+141
+00:05:19,180 --> 00:05:20,417
+So how much did all of this
+
+142
+00:05:20,417 --> 00:05:22,930
+cost? The honest answer is,
+
+143
+00:05:22,942 --> 00:05:25,380
+nobody outside Rockstar knows.
+
+144
+00:05:25,417 --> 00:05:27,730
+Take-Two has never published a budget.
+
+145
+00:05:28,100 --> 00:05:31,137
+Analysts estimate development alone at somewhere between
+
+146
+00:05:31,137 --> 00:05:32,575
+one and one and a half billion
+
+147
+00:05:32,575 --> 00:05:35,125
+dollars. A Citi analyst put it at
+
+148
+00:05:35,125 --> 00:05:37,425
+around one point four billion.
+
+149
+00:05:37,462 --> 00:05:41,187
+For comparison, GTA 5 reportedly cost about
+
+150
+00:05:41,187 --> 00:05:43,250
+two hundred and sixty-five million,
+
+151
+00:05:43,250 --> 00:05:47,100
+including marketing. When Business Insider asked Take-Two's
+
+152
+00:05:47,100 --> 00:05:48,975
+CEO Strauss Zelnick,
+
+153
+00:05:48,975 --> 00:05:51,825
+he would only say: it was expensive.
+
+154
+00:05:53,745 --> 00:05:55,545
+And then, launch week.
+
+155
+00:05:55,582 --> 00:05:58,020
+Before anyone had played a single mission,
+
+156
+00:05:58,057 --> 00:06:01,532
+Sensor Tower estimated nearly sixteen million digital
+
+157
+00:06:01,532 --> 00:06:04,945
+pre-orders, worth about one point five billion
+
+158
+00:06:04,945 --> 00:06:05,970
+dollars.
+
+159
+00:06:06,340 --> 00:06:07,965
+The reviews arrived.
+
+160
+00:06:08,040 --> 00:06:09,865
+Ninety-nine on Metacritic,
+
+161
+00:06:09,865 --> 00:06:12,665
+with more than a hundred perfect scores.
+
+162
+00:06:12,740 --> 00:06:15,127
+Digital Foundry called it the single most
+
+163
+00:06:15,127 --> 00:06:17,815
+visually striking game of the generation,
+
+164
+00:06:17,852 --> 00:06:19,940
+even if it runs at thirty frames
+
+165
+00:06:19,940 --> 00:06:22,190
+per second on every console.
+
+166
+00:06:22,560 --> 00:06:23,910
+And on launch day,
+
+167
+00:06:23,972 --> 00:06:27,722
+Sensor Tower estimated around twenty-four million copies
+
+168
+00:06:27,722 --> 00:06:29,635
+and more than two point three billion
+
+169
+00:06:29,635 --> 00:06:31,810
+dollars in twenty-four hours.
+
+170
+00:06:31,860 --> 00:06:33,535
+These are estimates.
+
+171
+00:06:33,585 --> 00:06:36,710
+Rockstar hasn't confirmed its own numbers yet.
+
+172
+00:06:36,710 --> 00:06:38,510
+But if they are even close,
+
+173
+00:06:38,547 --> 00:06:41,110
+GTA 6 just had the biggest launch
+
+174
+00:06:41,110 --> 00:06:42,835
+in entertainment history.
+
+175
+00:06:44,755 --> 00:06:46,692
+Thirteen years. Two delays.
+
+176
+00:06:46,692 --> 00:06:49,067
+One leak. And maybe the most expensive
+
+177
+00:06:49,067 --> 00:06:50,455
+game ever made.
+
+178
+00:06:50,455 --> 00:06:51,880
+Was it worth the wait?
+
+179
+00:06:52,250 --> 00:06:53,650
+Tell me in the comments what you
+
+180
+00:06:53,650 --> 00:06:56,150
+think of GTA 6 so far.
+
+181
+00:06:56,150 --> 00:06:57,800
+And if you want more stories like
+
+182
+00:06:57,800 --> 00:07:01,075
+this, subscribe. I'll see you in Leonida.
+
