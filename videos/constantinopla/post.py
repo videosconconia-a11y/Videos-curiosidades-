@@ -103,10 +103,10 @@ if __name__ == "__main__":
     out = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
                             "-i", "-", "-i", os.path.join(HERE, "mezcla.wav"), "-map", "0:v", "-map", "1:a",
                             "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-maxrate", "12M", "-bufsize", "24M", "-pix_fmt", "yuv420p",
-                            "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", os.path.join(HERE, "final_9x16.mp4")],
+                            "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", os.path.join(HERE, "final_16x9.mp4")],
                            stdin=subprocess.PIPE)
     for fi, img in enumerate(frames(src)):
         out.stdin.write(process(img, fi / FPS, fi).tobytes())
         if fi % 300 == 0: print("post", fi, flush=True)
     out.stdin.close(); out.wait()
-    print("final_9x16.mp4 listo")
+    print("final_16x9.mp4 listo")
