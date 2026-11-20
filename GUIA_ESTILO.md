@@ -60,3 +60,11 @@ las etiquetas fijas, que si no dominan la medida en los planos oscuros o de ciel
 
 Si tienes un short de referencia, mídelo con la misma herramienta y compara las cifras. Cuando algo no
 se parezca, no digas «se ve feo»: busca qué número no cuadra y arréglalo.
+
+## 4. Publicación en YouTube
+
+- **Shorts:** siempre 5 hashtags y el primero es **#shorts**; los otros 4 dependen del tema del vídeo
+  (p. ej. `#shorts #historia #juliocesar #roma #piratas`). Nunca `#parati` ni `#fyp` (son de TikTok).
+- **Vídeos largos (16:9):** 5 hashtags del tema, **sin #shorts** (no son Shorts), título propio y capítulos en la
+  descripción.
+- Título, descripción breve con la pregunta final y fuentes en `PUBLICAR.md` de cada vídeo.
