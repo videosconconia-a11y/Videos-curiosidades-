@@ -1,7 +1,8 @@
 # Texto para publicar — Constantinopla 1453 (vídeo largo)
 
 ## YouTube (vídeo normal, 16:9, 6:14)
-**Título:** La ciudad que NADIE podía conquistar… y el cañón que se le ofreció PRIMERO a ella | Constantinopla 1453
+**Título:** Constantinopla 1453: la ciudad invencible cayó por un cañón que pudo ser SUYO
+(YouTube admite como máximo 100 caracteres en el título)
 
 **Descripción:**
 Durante mil años, ningún ejército atravesó por tierra las murallas de Constantinopla. En 1453 cayeron… y el cañón gigante que las derribó se lo habían ofrecido primero al propio emperador, que no pudo pagarlo.
