@@ -41,9 +41,9 @@ const MOODS = {
   violet: { sun: 0xff8a70, si: 2.2, sky: 0x2a1a50, hor: 0xff7a5a, gnd: 0x2a2838, hs: 0xb080c0, fog: 0x7a5070, exp: 1.02, dir: [0.7, 0.18, -0.7] },
 };
 const MK = [['gancho', 0, 'dawn'], ['gancho', 1, 'dawn'], ['orden', 0.4, 'day'], ['panfletos', 1, 'day'], ['truco', 0.4, 'dusk'], ['truco', 1, 'dusk'],
-  ['anos', 0.1, 'day'], ['anos', 1, 'night'], ['solo', 0.3, 'rain'], ['solo', 1, 'rain'], ['suzuki', 0.3, 'day'], ['exige', 0.5, 'dusk'],
-  ['rendicion', 0.3, 'golden'], ['rendicion', 1, 'golden'], ['final', 0.4, 'violet']];
-const MOOD_KEYS = MK.map(([n, u, m]) => [at(n, u), m]); MOOD_KEYS.push([TL.total + 1, 'violet']);
+  ['anos', 0.1, 'day'], ['anos', 1, 'dusk'], ['solo', 0.3, 'rain'], ['solo', 1, 'rain'], ['suzuki', 0.3, 'day'], ['exige', 0.5, 'dusk'],
+  ['rendicion', 0.3, 'golden'], ['rendicion', 1, 'golden'], ['final', 0.4, 'golden']];
+const MOOD_KEYS = MK.map(([n, u, m]) => [at(n, u), m]); MOOD_KEYS.push([TL.total + 1, 'golden']);
 const tc1 = new THREE.Color(), tc2 = new THREE.Color();
 const mixCol = (a, b, u) => tc1.set(a).lerp(tc2.set(b), u).clone();
 function mood(t) {
@@ -209,15 +209,15 @@ function camKeys() {
   k('panfletos', 0.6, V(ON.x + 3, y0 + 3, ON.z + 10), V(ON.x, y0 + 3.2, ON.z), 44);
   k('truco', 0.6, V(ON.x - 1, y0 + 2.2, ON.z + 6), V(ON.x, y0 + 2.2, ON.z), 38);
   k('anos', 0.2, V(ON.x + 6, y0 + 3, ON.z + 14), V(ON.x, y0 + 7, ON.z - 30), 48);
-  k('anos', 0.7, V(ON.x + 4, y0 + 2.5, ON.z + 12), V(ON.x - 10, y0 + 40, ON.z - 80), 50);
+  k('anos', 0.7, V(ON.x + 4, y0 + 2.8, ON.z + 12), V(ON.x - 8, y0 + 16, ON.z - 80), 50);
   k('anos', 1, V(ON.x + 3, y0 + 3, ON.z + 10), V(ON.x, y0 + 2, ON.z), 44);
   k('solo', 0.6, V(ON.x - 6, y0 + 4.5, ON.z + 12), V(ON.x, y0 + 2, ON.z), 44);
   k('suzuki', 0.5, V(ON.x + 9, y0 + 3.5, ON.z + 12), V(ON.x + 3.5, y0 + 2, ON.z), 42);
   k('exige', 0.6, V(ON.x + 1, y0 + 2.3, ON.z + 7), V(ON.x, y0 + 2.2, ON.z), 38);
   k('rendicion', 0.5, V(ON.x + 4, y0 + 3, ON.z + 11), V(ON.x + 2, y0 + 2, ON.z), 42);
   k('rendicion', 1, V(ON.x + 2.5, y0 + 2.4, ON.z + 7), V(ON.x + 2, y0 + 1.8, ON.z), 40);
-  k('final', 0.5, V(ON.x + 10, y0 + 18, ON.z + 30), V(ON.x, y0 + 2, ON.z), 44);
-  K.push({ t: TL.total, pos: V(ON.x + 16, y0 + 34, ON.z + 44), tgt: V(ON.x, y0 + 2, ON.z), fov: 46 });
+  k('final', 0.5, V(ON.x + 5, y0 + 5, ON.z + 15), V(ON.x + 2, y0 + 2, ON.z), 42);
+  K.push({ t: TL.total, pos: V(ON.x + 8, y0 + 9, ON.z + 24), tgt: V(ON.x + 2, y0 + 2, ON.z), fov: 44 });
   return K;
 }
 let KEYS = null;
@@ -247,7 +247,7 @@ window.renderAt = function (t) {
   // los años pasan: ciclo rápido de días y noches
   const au = clamp01((t - SC.anos.a) / (SC.anos.b - SC.anos.a));
   let dn = 1;
-  if (au > 0 && au < 1) { dn = 0.5 + 0.5 * Math.cos(au * Math.PI * 2 * 4); const N = MOODS.night, D = M;
+  if (au > 0 && au < 1) { dn = 0.45 + 0.55 * (0.5 + 0.5 * Math.cos(au * Math.PI * 2 * 4));   /* noches claras: que se vea el paso del tiempo */ const N = MOODS.night, D = M;
     M = { ...D, sun: D.sun.clone().lerp(new THREE.Color(N.sun), 1 - dn), si: lerp(N.si, D.si, dn), sky: D.sky.clone().lerp(new THREE.Color(N.sky), 1 - dn), hor: D.hor.clone().lerp(new THREE.Color(N.hor), 1 - dn),
       hs: D.hs.clone().lerp(new THREE.Color(N.hs), 1 - dn), fog: D.fog.clone().lerp(new THREE.Color(N.fog), 1 - dn), dir: V(Math.cos(au * 25.1), 0.55, Math.sin(au * 25.1)).normalize() }; }
   sun.color.copy(M.sun); sun.intensity = M.si; hemi.color.copy(M.hs); hemi.groundColor.copy(M.gnd);
