@@ -9,6 +9,7 @@ efectos de sonido y subtítulos sincronizados.
 | Carpeta | Tema | Duración |
 |---|---|---|
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
+| `videos/melilla-2050` | Anuncio TikTok: tarjetas NFC para reseñas de Google (Melilla 2050) — fotos reales de Commons + voz Piper | 40 s |
 
 ## Estructura de cada vídeo
 
