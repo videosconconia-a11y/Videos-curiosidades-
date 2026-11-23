@@ -132,39 +132,35 @@ def glow_paste(base, lay, r=18, k=1.0):
 def rgba(size=(W, H)): return Image.new("RGBA", size, (0, 0, 0, 0))
 
 # ------------------------------------------------------------------ tarjeta NFC
-CW, CH = 1400, 884                    # proporción tarjeta de crédito (85,6 x 54 mm)
+CW, CH = 1000, 1000                   # placa NFC cuadrada (producto real)
+PRODUCT = os.path.join(HERE, "producto", "placa_nfc_original.jpg")
+PLATE_CORNERS = [(68, 297), (758, 275), (757, 1013), (70, 1062)]   # esquinas de la placa frontal en la foto
+def _coeffs(dst, src):
+    A, B = [], []
+    for (x, y), (u, v) in zip(dst, src):
+        A.append([x, y, 1, 0, 0, 0, -u * x, -u * y]); B.append(u)
+        A.append([0, 0, 0, x, y, 1, -v * x, -v * y]); B.append(v)
+    return np.linalg.solve(np.array(A, float), np.array(B, float)).tolist()
 def card_textures():
-    yy, xx = np.mgrid[0:CH, 0:CW]
-    base = np.zeros((CH, CW, 3))
-    base += np.array([8, 10, 22]) + (xx / CW)[..., None] * np.array([10, 18, 40]) + (yy / CH)[..., None] * np.array([6, 0, 18])
-    # hilos holográficos
-    for k in range(9):
-        c = 300 + k * 120 + 60 * np.sin(xx / 180 + k)
-        base += np.exp(-((yy - c) / 3.0) ** 2)[..., None] * np.array([20, 80, 110]) * 0.35
-    front = to_img(base).convert("RGBA"); d = ImageDraw.Draw(front)
-    # borde holográfico
-    for i in range(6):
-        col = (int(40 + i * 30), int(235 - i * 25), 255, 255 - i * 35)
-        d.rounded_rectangle([4 + i, 4 + i, CW - 5 - i, CH - 5 - i], 70 - i, outline=col, width=2)
-    # chip / icono NFC
-    nfc_icon(d, 1130, 250, 260, GOLD + (255,))
-    draw_text(d, (90, 90), "MELILLA · NFC", font(FM, 46), CYAN + (255,), sp=6)
-    draw_text(d, (86, 300), "TOCA AQUÍ", font(FB, 170), WHITE + (255,))
-    draw_text(d, (92, 490), "con tu móvil y déjanos", font(FXB, 64), (200, 220, 240, 255))
-    draw_text(d, (92, 565), "tu reseña en Google", font(FXB, 64), (200, 220, 240, 255))
-    for k in range(5): star(d, 125 + k * 92, 735, 40, GOLD + (255,))
-    # teléfono pequeño con ondas
-    d.rounded_rectangle([1150, 610, 1250, 800], 18, outline=WHITE + (255,), width=7)
-    for k in range(3):
-        r = 40 + k * 32; d.arc([1060 - r, 705 - r, 1060 + r, 705 + r], 140, 220, fill=CYAN + (255,), width=8)
-    mask = Image.new("L", (CW, CH), 0); ImageDraw.Draw(mask).rounded_rectangle([0, 0, CW - 1, CH - 1], 72, fill=255)
+    """Cara frontal = foto real de la placa (enderezada). Trasera = adhesivo 3M de doble cara."""
+    im = Image.open(PRODUCT).convert("RGB")
+    front = im.transform((CW, CH), Image.PERSPECTIVE, _coeffs([(0, 0), (CW, 0), (CW, CH), (0, CH)], PLATE_CORNERS), Image.BICUBIC)
+    front = ImageEnhance.Contrast(front).enhance(1.05).convert("RGBA")
+    mask = Image.new("L", (CW, CH), 0); ImageDraw.Draw(mask).rounded_rectangle([3, 3, CW - 4, CH - 4], 46, fill=255)
+    d = ImageDraw.Draw(front)                                   # canto de metacrilato
+    d.rounded_rectangle([3, 3, CW - 4, CH - 4], 46, outline=(235, 245, 255, 255), width=5)
     front.putalpha(mask)
-    backa = np.zeros((CH, CW, 3)) + np.array([10, 12, 26])
-    backa += (np.sin(xx / 14 + yy / 30) > 0.92)[..., None] * np.array([20, 60, 80])
-    backi = to_img(backa).convert("RGBA"); d = ImageDraw.Draw(backi)
-    nfc_icon(d, CW / 2, CH / 2 - 40, 360, CYAN + (255,))
-    ctext(d, CH / 2 + 200, "UN TOQUE · UNA RESEÑA", font(FM, 52), WHITE + (255,), cx=CW / 2)
-    d.rounded_rectangle([4, 4, CW - 5, CH - 5], 70, outline=CYAN + (255,), width=4)
+    backi = Image.new("RGBA", (CW, CH), (238, 240, 244, 255)); d = ImageDraw.Draw(backi)
+    blue = (25, 80, 200, 255)
+    for r in range(7):
+        for c in range(3):
+            x = 40 + c * 330 + (110 if r % 2 else 0); y = 40 + r * 140
+            lab = rgba((300, 90)); dl = ImageDraw.Draw(lab)
+            dl.text((0, 0), "3M", font=font(FB, 64), fill=blue); dl.text((105, 4), "9448A", font=font(FXB, 30), fill=blue)
+            dl.text((105, 42), "Double Coated Tissue Tape", font=font(FXB, 16), fill=blue)
+            if r % 2: lab = lab.rotate(180)
+            backi.alpha_composite(lab, (int(x), int(y)))
+    d.rounded_rectangle([3, 3, CW - 4, CH - 4], 46, outline=(225, 235, 250, 255), width=5)
     backi.putalpha(mask)
     return front, backi
 CARD_F, CARD_B = card_textures()
@@ -450,9 +446,9 @@ def shot(name, t, a, b):
         # la tarjeta desciende girando y queda flotando
         q = eout((t - 6.4) / 1.75)
         cy = -400 + (820 + 1300 * 0) * q + 400 * q + 20 * math.sin(t * 2.2)
-        cy = -400 + 1270 * q + 18 * math.sin(t * 2.2)
+        cy = -500 + 1300 * q + 18 * math.sin(t * 2.2)
         yaw = (1 - q) * 720 + 18 * math.sin(t * 1.3)
-        put_card(img, W / 2, cy, 760, yaw=yaw, pitch=12 + 6 * math.sin(t * 1.7), roll=-4, shine=((t - 8.1) / 1.2) if t > 8.1 else None, glow=1.4)
+        put_card(img, W / 2, cy, 700, yaw=yaw, pitch=12 + 6 * math.sin(t * 1.7), roll=-4, shine=((t - 8.1) / 1.2) if t > 8.1 else None, glow=1.4)
         hud(img, t, "OBJETO DETECTADO · PLAZA DE ESPAÑA", rec=False); return img
     if name == "tap":
         bg = photo("tap_bg", "night").filter(ImageFilter.GaussianBlur(14))
@@ -468,7 +464,7 @@ def shot(name, t, a, b):
             d.line([0, y, W, y], fill=CYAN + (60,), width=3)
         img.alpha_composite(lay)
         # tarjeta tumbada sobre el mostrador
-        put_card(img, W / 2, 1500, 860, yaw=0, pitch=60, roll=0, shine=((t - 10) / 1.2) % 1.6, glow=1.0 + (1.5 if 11.2 < t < 11.6 else 0))
+        put_card(img, W / 2, 1500, 760, yaw=0, pitch=60, roll=0, shine=((t - 10) / 1.2) % 1.6, glow=1.0 + (1.5 if 11.2 < t < 11.6 else 0))
         # el móvil baja hasta tocarla (11,2 s) y luego sube mostrando las reseñas
         tap = 11.2
         if t < tap: q = eout((t - 10.0) / 1.2); y = 2100 + (1020 - 2100) * q; state = "scan"; sp = (t - 10) / 1.2
@@ -498,13 +494,13 @@ def shot(name, t, a, b):
         return img
     if name == "m_card":
         img = Image.new("RGBA", (W, H), (4, 8, 20, 255)); particles(img, t, 90, MAG, 11, True, 7)
-        put_card(img, W / 2, H / 2 + 300, 1300 - 300 * p, yaw=150 + 60 * p, pitch=10, roll=78, shine=p * 1.3, glow=1.6)
+        put_card(img, W / 2, H / 2 + 330, 760 - 120 * p, yaw=150 + 60 * p, pitch=10, roll=8, shine=p * 1.3, glow=1.6)
         return img
     if name == "news":
         return news(t, p)
     if name == "card_glitch":
         img = Image.new("RGBA", (W, H), (0, 0, 0, 255))
-        put_card(img, W / 2, H / 2, 1000 + 200 * p, yaw=10 * math.sin(t * 40), pitch=0, roll=-90, glow=2.0)
+        put_card(img, W / 2, H / 2, 900 + 150 * p, yaw=10 * math.sin(t * 40), pitch=0, roll=0, glow=2.0)
         return glitch(img, t, 1.0)
     if name.startswith("o_"):
         k = ["o_vieja", "o_asamblea", "o_faro", "o_parque", "o_casino", "o_cala"].index(name)
@@ -579,42 +575,45 @@ def finale(t, p):
     particles(img, t, 90, CYAN, 21, True, 6)
     if t0 < 3.3:                                # gira en el aire y crece hasta llenar la pantalla
         q = t0 / 3.3; grow = q ** 3
-        width = 620 + 3400 * grow
-        put_card(img, W / 2, H / 2 - 80, width, yaw=720 * eout(q) , pitch=14 * (1 - q), roll=90 * ease((q - 0.55) / 0.45),
+        width = 560 + 2600 * grow
+        put_card(img, W / 2, H / 2 - 80 + 80 * grow, width, yaw=720 * eout(q), pitch=14 * (1 - q), roll=0,
                  shine=(q * 2) % 1, glow=1.6)
         return img
     # tarjeta a pantalla completa (cara frontal, en vertical) y textos finales
     t1 = t0 - 3.3
-    full = CARD_F.rotate(90, expand=True)                    # 884 x 1400
+    full = CARD_F
     sc = max(W / full.size[0], H / full.size[1]) * (1.12 - 0.06 * min(1, t1 / 4.7))
     full = full.resize((int(full.size[0] * sc), int(full.size[1] * sc)), Image.BICUBIC)
     img2 = Image.new("RGBA", (W, H), (0, 0, 0, 255))
     img2.alpha_composite(full, (int(W / 2 - full.size[0] / 2), int(H / 2 - full.size[1] / 2)))
     img2 = img2.filter(ImageFilter.GaussianBlur(5)); img2.alpha_composite(Image.new("RGBA", (W, H), (0, 0, 15, 200)))
     particles(img2, t, 60, GOLD, 31, True, 5)
+    q0 = eout(t1 / 0.5)
+    put_card(img2, W / 2, 1010 + 40 * (1 - q0), 470 + 90 * (1 - q0), yaw=10 * math.sin(t * 1.4), pitch=6, roll=0,
+             shine=(t1 / 1.6) % 1.4, glow=1.4)
     lay = rgba(); d = ImageDraw.Draw(lay)
     for i, s in enumerate(["EL FUTURO", "DE TU NEGOCIO", "ESTÁ A", "UN TOQUE"]):
         q = back((t1 - i * 0.14) / 0.35)
         if t1 - i * 0.14 < 0: continue
         big = i == 3
-        f = fit_font(d, s, FB, 200 if big else 118, W - 80)
+        f = fit_font(d, s, FB, 180 if big else 104, W - 80)
         sub = rgba((W, 240)); ds = ImageDraw.Draw(sub)
         ctext(ds, 10, s, f, (CYAN if big else WHITE) + (255,), stroke=6, sf=(0, 0, 0, 255))
         sc2 = max(0.05, q); sub = sub.resize((int(W * sc2), int(240 * sc2)))
-        lay.alpha_composite(sub, (int(W / 2 - sub.size[0] / 2), int(360 + [0, 140, 280, 400][i] + 120 - sub.size[1] / 2)))
+        lay.alpha_composite(sub, (int(W / 2 - sub.size[0] / 2), int(150 + [0, 120, 240, 360][i] + 120 - sub.size[1] / 2)))
     if t1 > 1.4:
         q = eout((t1 - 1.4) / 0.4)
-        y = 1150 + (1 - q) * 80
+        y = 1300 + (1 - q) * 80
         d.rounded_rectangle([90, y, W - 90, y + 150], 75, fill=GOLD + (int(255 * q),))
         ctext(d, y + 34, "CONSIGUE TU TARJETA NFC", fit_font(d, "CONSIGUE TU TARJETA NFC", FB, 66, W - 260), (10, 10, 20, int(255 * q)))
     if t1 > 2.3:
         q = eout((t1 - 2.3) / 0.4); pulse = 1 + 0.04 * math.sin(t * 8)
-        y = 1360 + (1 - q) * 80
+        y = 1475 + (1 - q) * 80
         sub = rgba((W, 140)); ds = ImageDraw.Draw(sub)
         ds.rounded_rectangle([120, 10, W - 120, 130], 60, outline=CYAN + (255,), width=6, fill=(5, 20, 35, 220))
         # sobre de mensaje
         ds.rectangle([175, 45, 255, 100], outline=WHITE + (255,), width=5); ds.line([175, 45, 215, 78, 255, 45], fill=WHITE + (255,), width=5)
-        ctext(ds, 36, "ESCRÍBENOS POR PRIVADO", font(FB, 56), WHITE + (255,), cx=W / 2 + 50)
+        ctext(ds, 40, "ESCRÍBENOS POR PRIVADO", fit_font(ds, "ESCRÍBENOS POR PRIVADO", FB, 56, W - 470), WHITE + (255,), cx=W / 2 + 60)
         sub = sub.resize((int(W * pulse), int(140 * pulse)))
         a = np.asarray(sub).copy(); a[..., 3] = (a[..., 3] * q).astype(np.uint8); sub = Image.fromarray(a, "RGBA")
         lay.alpha_composite(sub, (int(W / 2 - sub.size[0] / 2), int(y)))

@@ -1,7 +1,8 @@
 # MELILLA 2050 – El futuro ha llegado
 
 Anuncio vertical (9:16, 40 s, 1080×1920, 30 fps) para TikTok de tarjetas NFC para conseguir reseñas de Google,
-de una empresa de Melilla. Mezcla ciencia ficción, informativo de última hora, HUD de videojuego, documental de
+de una empresa de Melilla. La tarjeta que aparece es **el producto real** (placa cuadrada «¡Apreciaríamos tu reseña en Google!»,
+foto en `producto/placa_nfc_original.jpg`), enderezada y animada en 3D; su trasera muestra el adhesivo 3M de doble cara. Mezcla ciencia ficción, informativo de última hora, HUD de videojuego, documental de
 Melilla, publicidad de lujo y humor absurdo.
 
 - `final_9x16.mp4` — vídeo final con voz, música y efectos.
@@ -45,7 +46,8 @@ Somos de Melilla y apostamos por los negocios de aquí: cafeterías, barberías,
 - La presentadora es un holograma inventado; no representa a ninguna persona real ni cadena de televisión.
 - Lectura NFC: funciona con móviles con NFC (Android con NFC activado; iPhone XS o posterior lee etiquetas NFC sin abrir ninguna app).
   Recomendable que la tarjeta lleve también un código QR para móviles sin NFC.
-- Si la empresa tiene nombre/logo, añádelo en la tarjeta (`card_textures()` en `render.py`) y en el plano final.
+- La placa se recorta de `producto/placa_nfc_original.jpg` con las esquinas de `PLATE_CORNERS` en `render.py`; para usar otra foto del producto, cambia la imagen y esas 4 esquinas.
+- Si la empresa tiene nombre/logo, se puede añadir en el plano final.
 - Google no permite ofrecer incentivos a cambio de reseñas: conviene recordárselo a los clientes del negocio.
 
 ## Fotos (todas de Wikimedia Commons, licencias libres)
