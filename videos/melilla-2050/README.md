@@ -17,7 +17,7 @@ Melilla, publicidad de lujo y humor absurdo.
 | 3–6 s | Caos | Restaurante, mercado, barbería y comercios; buscador escribiendo torpemente, «?» volando y ventanas de error absurdas («Cliente.exe ha dejado de responder») |
 | 6–10 s | Aparición | Plaza de España de noche: un haz de luz y la tarjeta NFC desciende girando; ondas al aterrizar |
 | 10–14 s | El poder | La mano acerca el móvil a la tarjeta → anillos de escáner, «bip» NFC, se abre la página de reseñas y se rellenan las estrellas |
-| 14–19 s | Montage | Playa de los Cárabos, Puerta de la Marina, Casa Tortosa, barbería, restaurante, tienda, tarjeta — con «MÁS FÁCIL / MÁS CÓMODO / MÁS TECNOLÓGICO» |
+| 14–19 s | Montage | Playa de los Cárabos, Puerta de la Marina, Casa Tortosa, barbería, restaurante, tienda, foto del producto — con «MÁS FÁCIL / MÁS CÓMODO / MÁS TECNOLÓGICO» |
 | 19–25 s | Giro | Plató «M50 NOTICIAS» con presentadora holográfica, rótulo de última hora y un rótulo inferior absurdo; corte brusco con glitch a la tarjeta |
 | 25–32 s | Orgullo local | Melilla la Vieja, Palacio de la Asamblea, Faro, Parque Hernández, Casino Militar, playa de Trápana, con la tarjeta integrada |
 | 32–40 s | Final | La tarjeta gira, llena la pantalla: «EL FUTURO DE TU NEGOCIO ESTÁ A UN TOQUE» + «CONSIGUE TU TARJETA NFC» + «ESCRÍBENOS POR PRIVADO» |
@@ -25,8 +25,9 @@ Melilla, publicidad de lujo y humor absurdo.
 25 planos en 40 s (un cambio de plano o de texto cada 0,6–2,5 s), 22 fotos reales distintas, ninguna repetida.
 
 ## Voz
-- Narrador: Piper TTS `es_ES-davefx-medium` (español de España), bajado de tono, comprimido y con reverberación → grave y misterioso.
-- Presentadora del informativo: Piper `es_ES-sharvard-medium` (voz F), ecualizada como de plató.
+- Narrador: **Kokoro TTS, voz `em_alex`** (masculina, tono natural, suave y limpia), con fonética de español de España
+  (θ en «atención», ʎ en «Melilla», «NFC» = «ene-efe-ce»). Sin cambios de tono ni eco: solo ecualización y compresión ligeras.
+- Presentadora del informativo: Kokoro `ef_dora`.
 - La música baja ~8,5 dB mientras habla la voz (ducking).
 
 ## Texto para publicar
@@ -58,9 +59,11 @@ si tienes fotos propias de barberías o cafeterías de Melilla, sustitúyelas en
 
 ## Regenerar
 ```bash
-pip install scipy piper-tts pillow numpy
+pip install scipy pillow numpy
 python3 fetch_images.py            # solo si falta img/
-# voces Piper en voices/ (o PIPER_VOICES=/ruta): es_ES-davefx-medium y es_ES-sharvard-medium (.onnx + .onnx.json)
+pip install kokoro-onnx soundfile
+# en voices/ (o KOKORO_DIR=/ruta): onnx/model.onnx, voices/em_alex.bin y voices/ef_dora.bin de
+# https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX
 ./build.sh
 python3 render.py stills 2.0 9.0   # fotogramas de prueba en stills/
 ```

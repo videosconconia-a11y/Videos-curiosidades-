@@ -38,7 +38,10 @@ Las fotos se han recortado a vertical y se les ha aplicado etalonaje de color, r
 - El anuncio no incluye estadísticas ni promete resultados.
 
 ## Voces
-- Piper TTS, voces `es_ES-davefx-medium` y `es_ES-sharvard-medium` — https://huggingface.co/rhasspy/piper-voices
+- Kokoro-82M (licencia Apache 2.0), voces `em_alex` y `ef_dora`, vía kokoro-onnx — https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX
+
+## Producto
+- `producto/placa_nfc_original.jpg`: foto de la placa NFC enviada por el cliente (frontal enderezado para la animación 3D; recorte sin fondo en `producto/placas_recorte.png`).
 
 ## Música y efectos
 Sintetizados desde cero con numpy en `audio.py` (sin muestras de terceros).

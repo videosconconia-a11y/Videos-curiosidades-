@@ -165,6 +165,20 @@ def card_textures():
     return front, backi
 CARD_F, CARD_B = card_textures()
 
+PRODUCT_CUT = Image.open(os.path.join(HERE, "producto", "placas_recorte.png")).convert("RGBA")   # la imagen del cliente, sin fondo
+def product_shot(img, cx, cy, width, t, glow=1.2, shine=None, ang=0.0):
+    """Pega la foto original del producto (las dos placas) con brillo y halo."""
+    w = int(width); h = int(PRODUCT_CUT.size[1] * w / PRODUCT_CUT.size[0])
+    p = PRODUCT_CUT.resize((w, h), Image.LANCZOS)
+    if shine is not None:
+        sh = rgba((w, h)); ds = ImageDraw.Draw(sh); x = -w * 0.4 + shine * w * 1.8
+        ds.polygon([(x, 0), (x + w * 0.12, 0), (x - w * 0.2, h), (x - w * 0.32, h)], fill=(255, 255, 255, 80))
+        sh = sh.filter(ImageFilter.GaussianBlur(w * 0.02)); m = p.getchannel("A"); p.alpha_composite(sh); p.putalpha(m)
+    if ang: p = p.rotate(ang, Image.BICUBIC, expand=True)
+    g = Image.new("RGBA", p.size, CYAN + (0,)); g.putalpha(p.getchannel("A").filter(ImageFilter.GaussianBlur(30)).point(lambda v: int(min(255, v * 0.8 * glow))))
+    pos = (int(cx - p.size[0] / 2), int(cy - p.size[1] / 2))
+    img.alpha_composite(g, pos); img.alpha_composite(p, pos)
+
 def persp_coeffs(dst, src):
     A, B = [], []
     for (x, y), (u, v) in zip(dst, src):
@@ -494,7 +508,7 @@ def shot(name, t, a, b):
         return img
     if name == "m_card":
         img = Image.new("RGBA", (W, H), (4, 8, 20, 255)); particles(img, t, 90, MAG, 11, True, 7)
-        put_card(img, W / 2, H / 2 + 330, 760 - 120 * p, yaw=150 + 60 * p, pitch=10, roll=8, shine=p * 1.3, glow=1.6)
+        product_shot(img, W / 2, H / 2 + 330, 820 + 120 * p, t, glow=1.6, shine=p * 1.2, ang=4 - 6 * p)
         return img
     if name == "news":
         return news(t, p)
@@ -589,8 +603,7 @@ def finale(t, p):
     img2 = img2.filter(ImageFilter.GaussianBlur(5)); img2.alpha_composite(Image.new("RGBA", (W, H), (0, 0, 15, 200)))
     particles(img2, t, 60, GOLD, 31, True, 5)
     q0 = eout(t1 / 0.5)
-    put_card(img2, W / 2, 1010 + 40 * (1 - q0), 470 + 90 * (1 - q0), yaw=10 * math.sin(t * 1.4), pitch=6, roll=0,
-             shine=(t1 / 1.6) % 1.4, glow=1.4)
+    product_shot(img2, W / 2, 1015 + 40 * (1 - q0) + 8 * math.sin(t * 2), 640 + 80 * (1 - q0), t, glow=1.4, shine=(t1 / 1.8) % 1.3)
     lay = rgba(); d = ImageDraw.Draw(lay)
     for i, s in enumerate(["EL FUTURO", "DE TU NEGOCIO", "ESTÁ A", "UN TOQUE"]):
         q = back((t1 - i * 0.14) / 0.35)

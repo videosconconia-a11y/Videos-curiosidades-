@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Genera el anuncio completo: voz (Piper) -> música+efectos+ducking -> vídeo en 4 partes paralelas -> final.
+# Genera el anuncio completo: voz (Kokoro) -> música+efectos+ducking -> vídeo en 4 partes paralelas -> final.
 set -euo pipefail
 cd "$(dirname "$0")"
-if [ -f voices/es_ES-davefx-medium.onnx ] || [ -n "${PIPER_VOICES:-}" ]; then python3 voice.py; else echo "Sin voces Piper: se usa vo/ existente"; fi
+if [ -f voices/model.onnx ] || [ -n "${KOKORO_DIR:-}" ]; then python3 voice.py; else echo "Sin modelo Kokoro: se usa vo/ existente"; fi
 python3 audio.py
 python3 -c "from script_data import write_srt; write_srt('subtitulos.srt')"
 P=4

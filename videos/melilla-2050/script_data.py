@@ -17,13 +17,15 @@ SCENES = [
 
 # Voz: (inicio, voz, texto). voz "narrador" = grave y misteriosa; "presentadora" = informativo.
 VOICE = [
-    (0.15, "narrador", "Atención, Melilla. La forma de conseguir reseñas está cambiando."),
-    (3.35, "narrador", "¿Todavía pides reseñas a la antigua?"),
+    (0.05, "narrador", "Atención, Melilla. La forma de conseguir reseñas está cambiando."),
+    (3.78, "narrador", "¿Todavía pides reseñas a la antigua?"),
     (6.7, "narrador", "Hasta que llegó… esto."),
     (10.15, "narrador", "Un toque con el móvil… y se abre tu página de reseñas de Google."),
-    (14.4, "narrador", "Más fácil. Más cómodo. Más tecnológico."),
-    (19.35, "presentadora", "Última hora: los negocios de Melilla ya pueden utilizar tecnología NFC para facilitar las reseñas de sus clientes."),
-    (25.4, "narrador", "No somos una multinacional. Somos de Melilla. Y apostamos por los negocios de aquí."),
+    (14.2, "narrador", "Más fácil."),
+    (15.7, "narrador", "Más cómodo."),
+    (17.25, "narrador", "Más tecnológico."),
+    (19.12, "presentadora", "Última hora: los negocios de Melilla ya pueden utilizar tecnología NFC para facilitar las reseñas de sus clientes."),
+    (25.62, "narrador", "No somos una multinacional. Somos de Melilla. Y apostamos por los negocios de aquí."),
     (32.6, "narrador", "El futuro de tu negocio está a un toque. Consigue tu tarjeta NFC. Escríbenos por privado."),
 ]
 
@@ -85,15 +87,15 @@ HITS = [0.0, 1.45, 3.0, 6.0, 8.15, 10.0, 11.2, 14.0, 19.0, 24.4, 25.0, 32.0, 35.
 # Subtítulos (SRT) = la locución, en bloques cortos
 def subtitle_blocks():
     return [
-        (0.15, 1.5, "Atención, Melilla."), (1.5, 3.0, "La forma de conseguir reseñas está cambiando."),
-        (3.35, 5.6, "¿Todavía pides reseñas a la antigua?"),
+        (0.05, 1.5, "Atención, Melilla."), (1.5, 3.0, "La forma de conseguir reseñas está cambiando."),
+        (3.78, 6.1, "¿Todavía pides reseñas a la antigua?"),
         (6.7, 8.6, "Hasta que llegó… esto."),
         (10.15, 11.6, "Un toque con el móvil…"), (11.6, 13.9, "y se abre tu página de reseñas de Google."),
-        (14.4, 15.6, "Más fácil."), (15.6, 16.8, "Más cómodo."), (16.8, 18.6, "Más tecnológico."),
-        (19.35, 21.2, "Última hora: los negocios de Melilla"), (21.2, 22.9, "ya pueden utilizar tecnología NFC"),
-        (22.9, 24.6, "para facilitar las reseñas de sus clientes."),
-        (25.4, 27.2, "No somos una multinacional."), (27.2, 29.2, "Somos de Melilla."),
-        (29.2, 31.8, "Y apostamos por los negocios de aquí."),
+        (14.2, 15.6, "Más fácil."), (15.7, 17.1, "Más cómodo."), (17.25, 18.8, "Más tecnológico."),
+        (19.12, 21.2, "Última hora: los negocios de Melilla"), (21.2, 22.9, "ya pueden utilizar tecnología NFC"),
+        (22.9, 25.4, "para facilitar las reseñas de sus clientes."),
+        (25.62, 27.4, "No somos una multinacional."), (27.4, 29.0, "Somos de Melilla."),
+        (29.0, 31.8, "Y apostamos por los negocios de aquí."),
         (32.6, 35.0, "El futuro de tu negocio está a un toque."), (35.0, 37.0, "Consigue tu tarjeta NFC."),
         (37.0, 39.5, "Escríbenos por privado."),
     ]
