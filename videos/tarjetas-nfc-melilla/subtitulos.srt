@@ -1,0 +1,32 @@
+1
+00:00:00,350 --> 00:00:03,528
+Hemos encontrado un pequeño gadget que puede facilitarte algo muy importante.
+
+2
+00:00:04,300 --> 00:00:06,205
+Parece una tarjeta normal… pero no lo es.
+
+3
+00:00:06,450 --> 00:00:10,393
+Acercas el móvil. Tocas. Y se abre la página de reseñas.
+
+4
+00:00:10,950 --> 00:00:12,605
+Tecnología para los negocios de aquí.
+
+5
+00:00:14,200 --> 00:00:18,702
+Barberías. Restaurantes. Tiendas. Cualquier negocio.
+
+6
+00:00:19,100 --> 00:00:22,794
+Tus clientes pueden acceder directamente a tu enlace de reseñas con un simple toque.
+
+7
+00:00:24,400 --> 00:00:28,427
+Melilla tiene futuro. Tiene talento. Y tiene tecnología.
+
+8
+00:00:30,150 --> 00:00:34,884
+Tu negocio también puede dar el salto. Tarjetas NFC. Escríbenos por privado.
+
