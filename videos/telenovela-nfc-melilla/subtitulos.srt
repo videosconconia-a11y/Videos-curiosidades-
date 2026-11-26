@@ -1,0 +1,32 @@
+1
+00:00:00,300 --> 00:00:04,004
+En una ciudad donde todos se conocen… una reseña lo cambiaría todo.
+
+2
+00:00:04,900 --> 00:00:08,615
+RAFA: Llevo meses esperando que mis clientes encuentren mi perfil de Google…
+
+3
+00:00:09,350 --> 00:00:11,626
+SOFÍA: ¿Todavía no tienes una tarjeta NFC?
+
+4
+00:00:14,300 --> 00:00:19,095
+SOFÍA: Solo tienes que acercar el móvil… y tus clientes podrán acceder directamente a tus reseñas.
+
+5
+00:00:21,400 --> 00:00:23,443
+RAFA: ¡¿Por qué nadie me lo había contado antes?!
+
+6
+00:00:26,400 --> 00:00:28,838
+La tecnología ha llegado a Melilla.
+
+7
+00:00:29,600 --> 00:00:32,537
+Para barberías, restaurantes y comercios.
+
+8
+00:00:35,200 --> 00:00:39,089
+RAFA: Yo solo quería que mis clientes pudieran dejar su opinión más fácilmente…
+
