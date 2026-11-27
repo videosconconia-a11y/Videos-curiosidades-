@@ -11,6 +11,7 @@ efectos de sonido y subtítulos sincronizados.
 | `videos/rana-de-bosque` | La rana que se congela… y vuelve a la vida | 58,5 s |
 | `videos/melilla-2050` | Anuncio TikTok: tarjetas NFC para reseñas de Google (Melilla 2050) — fotos reales de Commons + voz Piper | 40 s |
 | `videos/misterio-melilla` | Anuncio TikTok: «El misterio de Melilla» (ovni, marciano y documental) para placas NFC de reseñas | 40 s |
+| `videos/nfc-ladron` | Sketch «¿Tú sabes lo que es una NFC?»: etiquetas NFC a 30 € (guion, storyboard, portada y 3 ganchos en su README) | 40 s |
 
 ## Estructura de cada vídeo
 
