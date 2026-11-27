@@ -15,6 +15,9 @@ def cover():
     ctext(d, 280, "LE ESTÁN ROBANDO…", fit_font(d, "LE ESTÁN ROBANDO…", FB, 92, 880), (20, 20, 30, 255))
     ctext(d, 400, "Y ÉL EXPLICA", font(FB, 92), (20, 20, 30, 255))
     ctext(d, 515, "QUÉ ES UNA NFC", fit_font(d, "QUÉ ES UNA NFC", FB, 92, 880), (220, 30, 60, 255))
+    import base as B
+    B.product_shot(img, 760, 1150, 470, t, glow=1.3, ang=-6)
+    d = ImageDraw.Draw(img)
     d.rounded_rectangle([300, 1450, 780, 1560], 55, fill=(10, 14, 28, 235))
     ctext(d, 1468, "Melilla · 30 €", font(FB, 60), (255, 255, 255, 255))
     img.convert("RGB").save(os.path.join(HERE, "portada.jpg"), quality=92)

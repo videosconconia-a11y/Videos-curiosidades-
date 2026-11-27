@@ -77,7 +77,13 @@ def make_tag(D=420):
     hl = rgba(S.size); ImageDraw.Draw(hl).ellipse([c - D * 0.38, c - D * 0.45, c + D * 0.05, c - D * 0.15], fill=(255, 255, 255, 120))
     S.alpha_composite(hl.filter(ImageFilter.GaussianBlur(20)))
     return S
-TAG = make_tag()
+def make_plate(D=440):
+    """Placa NFC real del cliente (frontal enderezado de producto/placa_nfc_original.jpg) con sombra."""
+    S = rgba((D + 80, D + 80)); pl = B.CARD_F.resize((D, D), Image.LANCZOS)
+    sh = rgba(S.size); sh.paste((0, 0, 0, 130), (40 + 10, 40 + 18), pl.getchannel("A"))
+    S.alpha_composite(sh.filter(ImageFilter.GaussianBlur(14))); S.alpha_composite(pl, (40, 40))
+    return S
+TAG = make_plate()      # antes: etiqueta redonda genérica (make_tag)
 def put_tag(img, cx, cy, size, glow=0.0, persp=1.0):
     s = TAG.resize((int(size), max(1, int(size * persp))), Image.LANCZOS)
     if glow > 0:
@@ -512,8 +518,8 @@ def endcard(t, u):
     img.alpha_composite(Image.new("RGBA", (W, H), (5, 10, 30, 150)))
     particles(img, t, 50, CYAN, 7, True, 4)
     q = eout(u / 0.3)
-    put_tag(img, W / 2, 400, 330, glow=1.4)
     rings(img, W / 2, 400, (u * 0.8) % 1.0, CYAN, 1.0)
+    B.product_shot(img, W / 2, 410 + 6 * math.sin(t * 2), 560, t, glow=1.4, shine=(u / 2.0) % 1.3)
     lay = rgba(); d = ImageDraw.Draw(lay)
     ctext(d, 640, "MODERNIZA TU NEGOCIO", fit_font(d, "MODERNIZA TU NEGOCIO", FB, 90, 860), WHITE + (255,), stroke=6, sf=(0, 0, 0, 255))
     ctext(d, 750, "CON NFC", font(FB, 120), CYAN + (255,), stroke=6, sf=(0, 0, 0, 255))

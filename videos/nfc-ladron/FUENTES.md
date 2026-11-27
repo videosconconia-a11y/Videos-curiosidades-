@@ -19,6 +19,9 @@ Todas son de Melilla. Licencias libres: CC BY / CC BY-SA exigen citar autor y li
 La «Tienda de Paco» y los personajes son un decorado y personajes de dibujos inventados (no es un comercio real).
 El escaparate muestra una foto real de la calle Ejército Español; no se afirma que exista esa tienda en esa calle.
 
+## Producto
+- `producto/placa_nfc_original.jpg`: foto de la placa NFC enviada por el cliente (recorte sin fondo en `producto/placas_recorte.png`).
+
 ## Datos técnicos
 - NFC (Near Field Communication, «comunicación de campo cercano») funciona a muy corta distancia, del orden de pocos centímetros (en la práctica, unos 4 cm o menos): por eso se dice «a pocos centímetros».
 - Leer etiquetas NFC requiere un móvil con NFC (en Android, con el NFC activado; en iPhone, XS o posterior lo hace en segundo plano).

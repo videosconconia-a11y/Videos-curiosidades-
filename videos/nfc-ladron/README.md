@@ -61,7 +61,11 @@ Música y efectos son originales (sintetizados). No uso audios virales con derec
 
 **Transiciones:** cortes secos con un pequeño glitch en cada cambio de plano, destellos blancos en los golpes, zooms de golpe (planos 2 y 3), congelación de imagen (plano 4) y sonido de barrido entre planos.
 
-## 4. Personajes y voces
+## 4. Producto
+La placa NFC que sale en todo el vídeo es **la del cliente** (`producto/placa_nfc_original.jpg`, «¡Apreciaríamos tu reseña en Google!»).
+El frontal se ha enderezado para colocarla en el mostrador, en cada toque del móvil y junto a Paco. En la portada y en la pantalla final aparece la foto original con las dos caras (frontal y adhesivo 3M), sin el fondo.
+
+## 4b. Personajes y voces
 - **Paco** (dependiente): calvo, bigote, gafas redondas, delantal azul y una calma infinita. Voz: Kokoro `em_alex`.
 - **Clienta:** moño, pendientes y top rojo; muy expresiva. Voz: Kokoro `ef_dora`, más rápida y comprimida para sonar alterada.
 - **Ladrón:** gorro, antifaz y camiseta de rayas de dibujos clásicos; carga «FOLLETOS», «CATÁLOGO 2019» y «TARJETAS». Voz: Kokoro `em_santa`, un poco más grave.
